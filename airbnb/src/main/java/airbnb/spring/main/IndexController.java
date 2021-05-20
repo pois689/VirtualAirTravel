@@ -8,6 +8,9 @@ public class IndexController {
 
 	@GetMapping("/index")
 	public void index() {
-		
+	}
+	
+	@GetMapping("/component")
+	public void index1() {
 	}
 }
