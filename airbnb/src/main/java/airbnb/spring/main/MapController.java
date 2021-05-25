@@ -14,4 +14,14 @@ public class MapController {
 	public void test2() {
 		
 	}
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+	@GetMapping("/practice")
+	public void test3() {
+		
+	}
+=======
+>>>>>>> 3f412ef2ae1488435504afdde2d1ba00cc49b71b
+>>>>>>> Stashed changes
 }
