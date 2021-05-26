@@ -1,0 +1,28 @@
+.mod-calendar__body-inner{
+    display: flex;
+    padding-right: 0;
+    padding-left: 0;
+    box-sizing: border-box;
+    margin-right: auto;
+    margin-left: auto;
+    overflow-x: hidden;
+    width: auto;
+}
+
+.mod-calendar__slider-overlay mod-calendar__slider-overlay--left{
+	padding-right: 4.73684%;
+	z-index: 2;
+    display: block;
+    width: 5px;
+    flex-grow: 100;
+    background-color: hsla(0,0%,100%,.8);
+}
+
+.mod-calendar__slider-wrapper{
+	flex-grow: 2;
+    width: 1032px;
+}
+
+.slick-slider{
+	touch-action: auto;
+}

@@ -8,6 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <link rel="stylesheet" href="/resources/css/style.css">
+    <link rel="stylesheet" href="/resources/css/slider.css">
     <!-- 파비콘 링크  / 없으면 아이콘 안뜸-->
     <link rel="shortcut icon" sizes="76x76" type="image/x-icon"
         href="https://a0.muscache.com/airbnb/static/logotype_favicon-21cc8e6c6a2cca43f061d2dcabdf6e58.ico">
@@ -171,6 +172,41 @@
         <section>
             <div class="ad1"></div>
         </section>
+        
+        <div class="mod-calendar__header">
+        	<div class="mod-calendar__header-inner">
+        		<h2 class="mod-calendar__heading">여행 하이라이트</h2>
+        	</div>
+        </div>
+        <!-- 여기부터 슬라이드 쇼 -->
+        <div class="mod-calendar__body">
+        	<div class="mod-calendar__body-inner">
+        		<div class="mod-calendar__slider-overlay mod-calendar__slider-overlay--left"></div>
+        		<div class="mod-calender__slider-wrapper">
+        			<div class="mod-calender__slider slick-initialized slick-slider">
+        				<button type="button" class="slick-prev slick-arrow">
+        					<span>Previous</span>
+        				</button>
+        				<div class="slick-list draggable">
+        					<div class="slick-track" style="opacity: 1; width: 120000px; transform: translate3d(-3393px, 0px, 0px);">
+        						<div class="mod-calendar__item slick-slide slick-cloned" data-slick-index="-4" id aria-hidden="true" tabindex="-1">
+        							<a href="#" class="mod-calendar__item-inner" tabindex="-1">
+        								<div class="mod-calendar_image">
+        									<img src="https://res-1.cloudinary.com/jnto/image/upload/w_450,h_670,c_fill,f_auto,fl_lossy,q_auto/v1514196556/nagano/Nagano2474_17" data-src="https://res-1.cloudinary.com/jnto/image/upload/w_450,h_670,c_fill,f_auto,fl_lossy,q_auto/v1514196556/nagano/Nagano2474_17" alt="Seasonal Highlights Hakuba Ski Resorts" class=" lazyloaded">
+        								</div>
+        								<span class="mod-calendar__text">1월의 일본</span>
+        							</a>
+        						</div>
+        					</div>
+        				</div>
+        				<button class="slick-next slick-arrow">
+        					<span>Next</span>
+        				</button>
+        			</div>
+        		</div>
+        		<div class="mod-calendar__slider-overlay mod-calendar__slider-overlay--right"></div>
+        	</div>
+        </div>
 
         <section>
             <div class="sec__title">추천 여행지</div>
