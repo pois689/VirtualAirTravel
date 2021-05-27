@@ -7,11 +7,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class IndexController {
 
 	@GetMapping("/index")
-	public void index() {
+	public String index() {
+		return "tiles/index.tiles";
 	}
 	
 	@GetMapping("/test")
-	public String test() {
-		return "tiles/body.tiles";
+	public void test() {
+		
 	}
 }

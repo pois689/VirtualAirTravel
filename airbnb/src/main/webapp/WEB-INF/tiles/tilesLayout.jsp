@@ -6,7 +6,6 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>tiles test</title>
 </head>
 		<tiles:insertAttribute name="tilesTop"/>
 		<tiles:insertAttribute name="content"/>

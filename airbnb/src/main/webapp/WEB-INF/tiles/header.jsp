@@ -6,7 +6,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
     <link rel="stylesheet" href="/resources/css/style.css">
     <!-- 파비콘 링크  / 없으면 아이콘 안뜸-->
     <link rel="shortcut icon" sizes="76x76" type="image/x-icon"
@@ -56,7 +55,7 @@
 				    <button class="dropdown-item" value="숙소">숙소</button>
 				    <button class="dropdown-item" value="맛집">맛집</button>
 				    <button class="dropdown-item" value="볼거리">볼거리</button>
-				    <button class="dropdown-item" value="이동수단">이동수단</button>
+				    <button class="dropdown-item" value="이동수단">교통</button>
 				</div>
 				
 			<span class="search__span"></span>
