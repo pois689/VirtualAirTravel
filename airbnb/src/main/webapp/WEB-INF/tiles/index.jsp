@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="/resources/css/style.css">
     <link rel="stylesheet" href="/resources/css/slider.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+	<link rel = "preconnect"href = "https://fonts.gstatic.com">
 	<title>Virtual Air Travel</title>
 </head>
 
@@ -41,7 +42,7 @@
 	        <ul class="slides">
 			    <input type="radio" name="radio-btn" id="img-1" checked />
 			    <li class="slide-container">
-			    	<a href="#">
+			    	<a href="https://www.japan.travel/ko/guide/january/">
 				    	<div class="slide">
 				      		<img src="/resources/images/test2.jpg" />
 				        	<span class="slide-text">1월의 행사</span>
@@ -55,7 +56,7 @@
 			
 			    <input type="radio" name="radio-btn" id="img-2" />
 			    <li class="slide-container">
-			    	<a href="#">
+			    	<a href="https://www.japan.travel/ko/guide/february/">
 				        <div class="slide">
 				          <img src="/resources/images/Festival2.jpg" />
 				          <span class="slide-text">2월의 행사</span>
@@ -69,7 +70,7 @@
 			
 			    <input type="radio" name="radio-btn" id="img-3" />
 			    <li class="slide-container">
-			    	<a href="#">
+			    	<a href="https://www.japan.travel/ko/guide/march/">
 				        <div class="slide">
 				          <img src="/resources/images/Festival3.jpg" />
 				          <span class="slide-text">3월의 행사</span>
@@ -83,7 +84,7 @@
 			
 			    <input type="radio" name="radio-btn" id="img-4" />
 			    <li class="slide-container">
-			    	<a href="#">
+			    	<a href="https://www.japan.travel/ko/guide/april/">
 				        <div class="slide">
 				          <img src="/resources/images/Festival4.jpg" />
 				          <span class="slide-text">4월의 행사</span>
@@ -97,7 +98,7 @@
 			
 			    <input type="radio" name="radio-btn" id="img-5" />
 			    <li class="slide-container">
-			    	<a href="#">
+			    	<a href="https://www.japan.travel/ko/guide/may/">
 				        <div class="slide">
 				          <img src="/resources/images/Festival5.jpg" />
 				          <span class="slide-text">5월의 행사</span>
@@ -111,7 +112,7 @@
 			
 			    <input type="radio" name="radio-btn" id="img-6" />
 			    <li class="slide-container">
-			    	<a href="#">
+			    	<a href="https://www.japan.travel/ko/guide/june/">
 				        <div class="slide">
 				          <img src="/resources/images/Festival6.jpg" />
 				          <span class="slide-text">6월의 행사</span>
@@ -124,7 +125,7 @@
 			    </li>
 			    <input type="radio" name="radio-btn" id="img-7" />
 			    <li class="slide-container">
-					    <a href="#">
+					    <a href="https://www.japan.travel/ko/guide/july/">
 					        <div class="slide">
 					          <img src="/resources/images/Festival7.jpg" />
 					          <span class="slide-text">7월의 행사</span>
@@ -137,7 +138,7 @@
 			    </li>
 			    <input type="radio" name="radio-btn" id="img-8" />
 			    <li class="slide-container">
-				    <a href="#">
+				    <a href="https://www.japan.travel/ko/guide/august/">
 				        <div class="slide">
 				          <img src="/resources/images/Festival8.jpg" />
 				          <span class="slide-text">8월의 행사</span>
@@ -150,7 +151,7 @@
 			    </li>
 			    <input type="radio" name="radio-btn" id="img-9" />
 			    <li class="slide-container">
-				    <a href="#">
+				    <a href="https://www.japan.travel/ko/guide/september/">
 				        <div class="slide">
 				          <img src="/resources/images/sity1.jpg" />
 				          <span class="slide-text">9월의 행사</span>
@@ -163,7 +164,7 @@
 			    </li>
 			    <input type="radio" name="radio-btn" id="img-10" />
 			    <li class="slide-container">
-				    <a href="#">
+				    <a href="https://www.japan.travel/ko/guide/october/">
 				        <div class="slide">
 				          <img src="/resources/images/sity2.jpg" />
 				          <span class="slide-text">10월의 행사</span>
@@ -176,7 +177,7 @@
 			    </li>
 			    <input type="radio" name="radio-btn" id="img-11" />
 			    <li class="slide-container">
-					<a href="#">
+					<a href="https://www.japan.travel/ko/guide/november/">
 					        <div class="slide">
 					          <img src="/resources/images/sity3.jpg" />
 					          <span class="slide-text">11월의 행사</span>
@@ -189,7 +190,7 @@
 			    </li>
 			    <input type="radio" name="radio-btn" id="img-12" />
 			    <li class="slide-container">
-				    <a href="#">
+				    <a href="https://www.japan.travel/ko/guide/december/">
 				        <div class="slide">
 				          <img src="/resources/images/sity4.jpg" />
 				          <span class="slide-text">12월의 행사</span>
