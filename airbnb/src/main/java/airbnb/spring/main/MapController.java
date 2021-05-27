@@ -1,7 +1,10 @@
 package airbnb.spring.main;
 
+import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class MapController {
@@ -14,14 +17,9 @@ public class MapController {
 	public void test2() {
 		
 	}
-<<<<<<< Updated upstream
-=======
-<<<<<<< HEAD
 	@GetMapping("/practice")
-	public void test3() {
-		
+	public void test3(@Nullable @RequestParam String category, @Nullable @RequestParam String name, Model model) {
+		model.addAttribute("category",category);
+		model.addAttribute("name",name);
 	}
-=======
->>>>>>> 3f412ef2ae1488435504afdde2d1ba00cc49b71b
->>>>>>> Stashed changes
 }

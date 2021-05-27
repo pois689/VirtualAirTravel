@@ -1,13 +1,5 @@
 Manifest-Version: 1.0
-<<<<<<< Updated upstream
-Built-By: home
-=======
-<<<<<<< HEAD
 Built-By: JMP Korea
-=======
-Built-By: home
->>>>>>> 3f412ef2ae1488435504afdde2d1ba00cc49b71b
->>>>>>> Stashed changes
 Build-Jdk: 11.0.10
 Created-By: Maven Integration for Eclipse
 

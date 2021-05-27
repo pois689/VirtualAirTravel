@@ -2,85 +2,123 @@
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-<<<<<<< Updated upstream
-=======
-<<<<<<< HEAD
-  <head>
-    <title>Local Context Basic</title>
-    <style type="text/css">
-      /* Always set the map height explicitly to define the size of the div
-       * element that contains the map. */
-      #map {
-        height: 100%;
-      }
-      /* Optional: Makes the sample page fill the window. */
-      html,
-      body {
-        height: 100%;
-        margin: 0;
-        padding: 0;
-      }
-    </style>
-    <script>
-      function initMap() {
-        const localContextMapView =
-          new google.maps.localContext.LocalContextMapView({
-            element: document.getElementById("map"),
-            placeTypePreferences: [
-              "airport"
-            ],
-            maxPlaceCount: 12
-          });
-        let map = localContextMapView.map;
-        map.setOptions({
-          center: {lat:35.6785,lng:139.7922},
-          zoom: 13,
-        });
-      }
-    </script>
-  </head>
-  <body>
-    <div id="map"></div>
-
-    <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
-    <script
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD9Ipehrpor4GUgqPUAUI7sXldNenx5suo&region=JP&language=ko&callback=initMap&libraries=localContext&v=beta"
-      async
-    ></script>
-  </body>
-=======
->>>>>>> Stashed changes
-<head>
-<title>Simple Map</title>
-<meta name="viewport" content="initial-scale=1.0">
-<meta charset="utf-8">
-<style>
-#map {
-	height: 100%;
-}
-html, body {
-	height: 100%;
-	margin: 0;
-	padding: 0;
-}
-</style>
-</head>
-<body>
-	<div id="map"></div>
-	<script>
-      var map;
-      function initMap() {
-        map = new google.maps.Map(document.getElementById('map'), {
-          center: {lat: -34.397, lng: 150.644},
-          zoom: 15
-        });
-      }
-    </script>
-	<script	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD9Ipehrpor4GUgqPUAUI7sXldNenx5suo"
-		async defer></script>
-</body>
-<<<<<<< Updated upstream
-=======
->>>>>>> 3f412ef2ae1488435504afdde2d1ba00cc49b71b
->>>>>>> Stashed changes
+	<head>
+		<title>Local Context Basic</title>
+		 <script src="https://polyfill.io/v3/polyfill.js?features=default"></script>
+		<style type="text/css">
+			html, body {
+				height: 100%;
+				margin: 0;
+				padding: 0;
+			}
+			#map {
+				height: 100%;
+			}
+			#pac-input{
+							
+			}
+		</style>
+	</head>
+	
+	<body>
+		<input id="pac-input" class="controls" type="text" placeholder="Search Box" />
+		<div id="map"> </div>
+	
+	</body>
+	
+		<script src="https://maps.googleapis.com/maps/api/js?
+			key=AIzaSyD9Ipehrpor4GUgqPUAUI7sXldNenx5suo
+			&region=JP
+			&language=ko
+			&libraries=localContext,places
+			&v=beta
+			&callback=initMap"
+			async></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+		<script>
+			function initMap() {
+				//infowindow setting
+				let infowindow = new google.maps.InfoWindow();
+				
+				//context map component				
+				const localContextMapView = new google.maps.localContext.LocalContextMapView({
+					//insert position
+					element : document.getElementById("map"),
+					//category setting
+					placeTypePreferences : [ 
+						{ type: "bakery", weight: 1 },
+					    { type: "park", weight: 2 },
+					    { type: "restaurant", weight: 3 },
+					    { type: "shopping_mall", weight: 1 },
+					    { type: "tourist_attraction", weight: 3 }, 
+					],
+					//view count
+					maxPlaceCount : 18,
+					
+					/* placeChooserViewSetup: ({defaultLayoutMode}) => {
+						if (defaultLayoutMode === 'SHEET') {
+							return {position: 'INLINE_START'};
+						}
+					},
+					placeDetailsViewSetup: ({defaultLayoutMode}) => {
+						if (defaultLayoutMode === 'SHEET') {
+							return {position: 'INLINE_START'};
+						}
+					} */
+				});
+				
+				//map initializing
+				let map = localContextMapView.map;
+				let name = '<c:out value="${name}"/>';
+				
+				//places service
+				if(name != null){
+					let service = new google.maps.places.PlacesService(map);
+					const request = {
+					    query: name,
+					    fields: ["name", "geometry"],
+					};
+					service.findPlaceFromQuery(request,(results,status) =>{
+						if (status === google.maps.places.PlacesServiceStatus.OK && results) {
+							for (let i = 0; i < results.length; i++) {
+								createMarker(results[i]);
+							}
+							let temp_center = results[0].geometry.location;
+							map.setCenter(results[0].geometry.location);
+						}
+					});
+					
+					function createMarker(place){
+						if (!place.geometry || !place.geometry.location) return;
+						const marker = new google.maps.Marker({
+							map,
+							position: place.geometry.location,
+						});
+	  					google.maps.event.addListener(marker, "click", () => {
+	    					infowindow.setContent(place.name || "");
+	    					infowindow.open(map,marker);
+	  					});
+					}
+				}
+				
+				//map center Lat&Lng
+				const tokyo = new google.maps.LatLng(35.6785,139.7922);
+				let category = '<c:out value="${category}"/>';
+				let place = (temp_center=='')? tokyo:temp_center;
+				
+				//map component setting
+				map.setOptions({
+					center : place,
+					zoom : 13,
+					mapTypeId:"roadmap",
+					mapTypeControl: false,
+					streetViewControl: false,
+					fullscreenControl: false
+				});
+				
+				/* google.maps.event.addListener(map, 'click', function() {
+					  alert('You clicked the map.');
+					});*/
+			} //initMap
+		</script>
 </html>
