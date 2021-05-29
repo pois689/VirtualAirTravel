@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <link rel="stylesheet" href="/resources/css/style.css">
+    <link rel="stylesheet" href="/resources/css/styleindex.css">
     <link rel="stylesheet" href="/resources/css/slider.css">
     <!-- 파비콘 링크  / 없으면 아이콘 안뜸-->
     <link rel="shortcut icon" sizes="76x76" type="image/x-icon"
