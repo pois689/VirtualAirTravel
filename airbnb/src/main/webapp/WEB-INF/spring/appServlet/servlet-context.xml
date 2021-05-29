@@ -48,7 +48,6 @@
 		class="org.springframework.web.multipart.support.StandardServletMultipartResolver"> 
 	</beans:bean>
 	
-	<context:component-scan base-package="airbnb.spring.board" />
 	<context:component-scan base-package="airbnb.spring.service" />
 	<context:component-scan base-package="airbnb.spring.controller" />
 
