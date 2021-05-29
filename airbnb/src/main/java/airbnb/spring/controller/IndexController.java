@@ -14,5 +14,5 @@ public class IndexController {
 	@GetMapping("/test")
 	public void test() {
 		
-	}  
+	}
 }
