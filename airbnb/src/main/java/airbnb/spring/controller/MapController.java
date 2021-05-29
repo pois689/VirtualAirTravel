@@ -1,4 +1,4 @@
-package airbnb.spring.main;
+package airbnb.spring.controller;
 
 import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Controller;
