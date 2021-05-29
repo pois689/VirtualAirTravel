@@ -1,5 +1,22 @@
 package airbnb.spring.service;
 
-public interface LoginService {
+import airbnb.spring.dto.User;
 
+public interface LoginService {
+	public User login(User vo);
+	
+	public int updateSessionKey(User user);
+	
+	public User loginSessionKey(String sessionkey);
+
+	public User checkId(String id);
+	
+	public int insertUser(User user);
+	
+	public User searchId(User user);
+	public User searchPwd(User user);
+
+	public int updatePwd(User user);
+
+	public User get(String id);
 }

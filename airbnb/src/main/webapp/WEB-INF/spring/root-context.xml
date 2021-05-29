@@ -38,5 +38,6 @@
 	</bean>
 	
 	<!-- 메일 프로퍼티 설정 -->
-	<util:properties id="mailconfig" location="classpath:mailconfig.properties"></util:properties>
+	<util:properties id="prop" location="classpath:config.properties"></util:properties>
+	
 </beans>
