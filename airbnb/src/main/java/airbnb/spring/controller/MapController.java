@@ -8,15 +8,17 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class MapController {
-	
+	//html desu
 	@GetMapping("/map")
 	public void test1() {
 		
 	}
+	//sample desu
 	@GetMapping("/sample")
 	public void test2() {
 		
 	}
+	//honntou no map
 	@GetMapping("/practice")
 	public void test3(@Nullable @RequestParam String category, @Nullable @RequestParam String name, Model model) {
 		model.addAttribute("category",category);
