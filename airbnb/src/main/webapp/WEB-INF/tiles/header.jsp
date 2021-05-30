@@ -144,8 +144,8 @@
 		                </button>
 		                <!-- 로그인 메뉴 -->
 		                <ul class="dropdown-menu" aria-labelledby="dropdownRoginButton" style="border-radius: 2.5rem; text-align: center; min-width: 12rem;">
-						    <li><a class="dropdown-item" href="#">회원 가입</a></li>
-						    <li><a class="dropdown-item" href="#">로그인</a></li>
+						    <li><a class="dropdown-item" href="/login/register">회원 가입</a></li>
+						    <li><a class="dropdown-item" href="/login/login">로그인</a></li>
 						    <li><a class="dropdown-item" href="#">마이페이지</a></li>
 						</ul>
 		            </div>

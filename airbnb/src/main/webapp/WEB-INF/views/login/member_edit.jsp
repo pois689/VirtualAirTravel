@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>네이버 : 회원가입</title>
-<link rel="stylesheet" href="/resources/css/new_reg2.css">
+<link rel="stylesheet" href="/resources/css/login/new_reg2.css">
 <script src="https://www.google.com/recaptcha/api.js"></script>
 <script src="/resources/js/jquery-3.6.0.min.js"></script>
 <script src="/resources/js/snowfall.jquery.js"></script>

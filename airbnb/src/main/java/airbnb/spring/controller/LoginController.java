@@ -242,7 +242,7 @@ public class LoginController {
 		
 //		int res = service.update(vo);
 //		String resMsg = "";
-//		
+//		55
 //		if(res>0) {
 //			resMsg = "수정되었습니다";
 //		}else {
