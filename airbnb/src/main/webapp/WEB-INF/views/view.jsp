@@ -34,6 +34,34 @@
 	max-height: 200px;
 }
 </style>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script type="text/javascript">
+function getAjaxList(){
+	$.ajax({
+		url : '/reply/list/22',
+		method : 'get',
+		dataType : 'json',
+		
+		success : function( data, textStatus, jqXHR ){
+			
+			console.log("data",data);
+			
+			var tblContent = "";
+			
+			$.each(data, function(index, item){
+				tblContent +="<tr><td>" + item.reply + "</td><td>"+item.replyer+"</td></tr>";
+			});
+			
+			$("#repleTbl").html(tblContent);
+			
+		},
+		error : function ( jqXHR, textStatus, errorThrown ){
+			console.log("textStatus", textStatus);
+		}
+		
+	});
+}
+</script>
 </head>
 <body>
 	<div>
