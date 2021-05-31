@@ -12,10 +12,18 @@
 				padding: 0;
 			}
 			#map {
+				width: 70%;
 				height: 100%;
 			}
-			#pac-input{
-							
+			#pac-input {
+				background-color: #fff;
+				font-family: Roboto;
+				font-size: 15px;
+				font-weight: 300;
+				margin-left: 12px;
+				padding: 0 11px 0 13px;
+				text-overflow: ellipsis;
+				width: 400px;
 			}
 		</style>
 	</head>
@@ -70,7 +78,6 @@
 				//map initializing
 				let map = localContextMapView.map;
 				let name = '<c:out value="${name}"/>';
-				
 				//places service
 				if(name != null){
 					let service = new google.maps.places.PlacesService(map);
@@ -104,6 +111,7 @@
 				//map center Lat&Lng
 				const tokyo = new google.maps.LatLng(35.6785,139.7922);
 				let category = '<c:out value="${category}"/>';
+				let temp_center = '<c:out value="${name}"/>';
 				let place = (temp_center=='')? tokyo:temp_center;
 				
 				//map component setting

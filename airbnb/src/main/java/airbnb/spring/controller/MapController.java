@@ -14,7 +14,7 @@ public class MapController {
 		
 	}
 	//sample desu
-	@GetMapping("/sample")
+	@GetMapping("/NewFile")
 	public void test2() {
 		
 	}
