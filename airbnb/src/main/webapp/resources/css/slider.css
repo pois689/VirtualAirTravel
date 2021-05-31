@@ -62,6 +62,11 @@
     text-shadow: 0px 0px 15px rgb(119, 119, 119);
 }
 
+.slide-link{
+	transform: translate(33.5%, 0px);
+	
+}
+
 .slide:hover + .nav label { opacity: 0.5; }
 
 .nav label:hover { opacity: 1; }
