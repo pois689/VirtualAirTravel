@@ -207,31 +207,6 @@
 			</ul>
 		</section>
 		<!-- 슬라이드 끝 -->
-        <section>
-            <div class="sec__title">추천 여행지</div>
-            <div class="choo__box">
-            	<div class="choo">
-	                <div class="choo_img1"></div>
-	                <div class="info2" style="text-align: center;">훗카이도</div>
-	            </div>
-	            <div class="choo">
-	                <div class="choo_img2"></div>
-	                <div class="info2" style="text-align: center;">도쿄</div>
-	            </div>
-	            <div class="choo">
-	                <div class="choo_img3"></div>
-	                <div class="info2" style="text-align: center;">간사이</div>
-	            </div>
-	            <div class="choo">
-	                <div class="choo_img4"> </div>
-	                <div class="info2" style="text-align: center;">규슈</div>
-	            </div>
-	            <div class="choo">
-	                <div class="choo_img5"></div>
-	                <div class="info2" style="text-align: center;">도호쿠</div>
-	            </div>
-	        </div>
-        </section>
 
         <section>
             <div class="sec__title">진행중인 축제</div>
@@ -340,6 +315,20 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </section>
+        
+        <section>
+            <div class="hostbox">
+            	<a class="bostbox-a" href="#">
+		            <div class="hostbox-context">
+		            	<span class="hostbox-context-title">호스트가 되어보세요</span>
+		            	<span class="hostbox-context-content">자신이 알고 있는 맛집과 숙소 정보를 모두와 나누세요.</span>
+		            	<div style="padding: 20px;">
+		            	<button class="hostbox-context-button">자세히 알아보기</button>
+		            	</div>
+		            </div>
+	            </a>
             </div>
         </section>
     </main>

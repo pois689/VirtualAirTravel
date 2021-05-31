@@ -95,7 +95,7 @@
 		       
 		        <div class="flex mr-4 items-center">
 		          <a class="inline-block py-2 px-3 hover:bg-gray-200 rounded-full" href="#" style="text-decoration: none;">
-		            <div class="flex items-center relative cursor-pointer whitespace-nowrap" style="color: rgb(34, 34, 34);">호스팅 신청</div>
+		            <div class="flex items-center relative cursor-pointer whitespace-nowrap" style="color: rgb(34, 34, 34); font-weight: 800;">호스팅 신청</div>
 		          </a>
 		          <div class="block relative">
 		            <button type="button" class="inline-block py-2 px-3 hover:bg-gray-200 rounded-full relative ">

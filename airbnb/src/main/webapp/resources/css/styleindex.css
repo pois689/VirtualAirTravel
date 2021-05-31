@@ -83,16 +83,12 @@ body {
     font-weight: 800;
 }
 
-table {
-    width: 100%;
-}
-
 main {  
     margin: 30px 80px;
 }
 
 section {
-    margin: 30px 0;
+    margin: 80px 0;
 }
 
 .sec__title {
@@ -143,7 +139,8 @@ section {
     box-shadow: 0 0 3px 0 rgb(172, 170, 170);
 }
 
-.ad1 {
+/* 호스트 박스 */
+.hostbox {
     border-radius: 20px;
     margin: 40px 0;
     background-image: url("/resources/images/ad1.jpg");
@@ -151,45 +148,56 @@ section {
     background-size: 100% 100%;
 }
 
-.choo__box {
-    display:grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-    grid-gap: 10px;
+.bostbox-a {
+	display: inherit;
+    height: 100% !important;
+    text-decoration: none;
 }
 
-.choo_img1 {
-    background-image: url("/resources/images/sity1.jpg");
-    height: 250px;
-    background-size: 100% 100%;
+.hostbox-context {
+	display: flex;
+	height: 100% !important;
+	width: 35%;
+	padding-left: 80px !important;
+    padding-right: 80px !important;
+    flex-direction: column;
+    justify-content: center !important;
+    align-items: flex-start !important;
+    text-align: left !important;
 }
 
-.choo_img2 {
-    background-image: url("/resources/images/sity3.jpg");
-    height: 250px;
-    background-size: 100% 100%;
+.hostbox span {
+	letter-spacing: normal !important;
+    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif !important;
+    color: rgb(255, 255, 255);
+    font-weight: 600 !important;
+    white-space: pre-wrap !important;
 }
 
-.choo_img3 {
-    background-image: url("/resources/images/sity6.jpg");
-    height: 250px;
-    background-size: 100% 100%;
+.hostbox-context-title{
+	font-size: 48px !important;
+    line-height: 52px !important;
 }
 
-.choo_img4 {
-    background-image: url("/resources/images/sity4.jpg");
-    height: 250px;
-    background-size: 100% 100%;
+.hostbox-context-content {
+	font-size: 18px !important;
+    line-height: 24px !important;
+    padding-top: 12px;
 }
 
-.choo_img5 {
-    background-image: url("/resources/images/sity5.jpg");
-    height: 250px;
-    background-size: 100% 100%;
+.hostbox-context-button {
+	padding-top: 12px;
+	font-size: 16px !important;
+    line-height: 20px !important;
+    letter-spacing: normal !important;
+    padding: 14px 24px !important;
+    font-weight: 600 !important;
+    border: 0px !important;
+    background: var(--eh-iti-bg, #FFFFFF) !important;
+    border-radius: 8px !important;
 }
 
-.choo {
-	padding-bottom: 20px;
-}
+/* 호스트 박스 끝 */
 
 .home {
 	padding-bottom: 20px;
