@@ -13,7 +13,7 @@
 </head>
 <body>
 	<section class="login-form">
-		<h1>아이디 찾기</h1>
+		<a href="/index"><h1>아이디 찾기</h1></a>
 		<form action="/login/id_finded" method="post">
 			<div class="int-area">
 				<input type="text" name="name" id="name"

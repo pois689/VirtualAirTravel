@@ -13,7 +13,7 @@
 </head>
 <body>
 	<section class="login-form">
-		<h1>찾기 결과</h1>
+		<a href="/index"><h1>찾기 결과</h1></a>
             <div class="btn-area">
                 <button id="btn" onclick="location.href='/login/login'" type="button">${ res }</button>
             </div>

@@ -58,7 +58,7 @@
                 
                 
                 <div id="logo">
-                    <h1>개인정보 수정</h1>
+                    <a href="/index"><h1>개인정보 수정</h1></a>
                 </div>
 
                 <form action="/login/member_edit" name="regForm" method="POST">
@@ -73,17 +73,6 @@
                         <span class="step_url"></span>
                     </span>
                     <span class="error_next_box"></span>
-                </div>
-
-                <!-- PW1 -->
-                <div>
-                    <h3 class="join_title"><label for="pswd1">비밀번호</label></h3>
-                    <span class="box int_pass">
-                        <input type="text" name="pswd1" id="pswd1" class="int" maxlength="20" value="">
-                        <input type="button" value="수정" onclick="checkId()" class="checkid">
-                        <span id="alertTxt">사용불가</span>
-                    </span>
-                    <span class="error_next_box" ></span>
                 </div>
 
                 <!-- NAME -->

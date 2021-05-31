@@ -13,7 +13,7 @@
 </head>
 <body>
 	<section class="login-form">
-		<h1>비밀번호 찾기</h1>
+		<a href="/index"><h1>비밀번호 찾기</h1></a>
 		<form action="/login/mail" method="post">
 			<div class="int-area">
 				<input type="text" name="id" id="id"

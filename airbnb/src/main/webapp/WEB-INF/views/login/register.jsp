@@ -10,6 +10,44 @@
 <script src="https://www.google.com/recaptcha/api.js"></script>
 <script src="/resources/js/jquery-3.6.0.min.js"></script>
 <script src="/resources/js/snowfall.jquery.js"></script>
+<script type="text/javascript">
+$(document).ready(
+function(){
+		$(".sendMail").click(function() {// 메일 입력 유효성 검사
+			var mail = $(".email").val(); //사용자의 이메일 입력값. 
+			if (mail == "") {
+				alert("메일 주소가 입력되지 않았습니다.");
+			} else {
+				 //셀렉트 박스에 @뒤 값들을 더함.
+			$.ajax({
+				type : 'post',
+				url : '/CheckMail',
+				data : {
+					mail:mail
+					},
+				dataType :'json',
+				success : function(data) {
+					key = data.key;
+				}
+
+			});
+				alert("인증번호가 전송되었습니다.") 
+				$(".compare").css("display", "block");
+				$(".compare-text").css("display", "block");
+				isCertification=true; //추후 인증 여부를 알기위한 값
+			}
+		});
+		$(".compare").on("propertychange change keyup paste input", function() {
+			if ($(".compare").val() == key) {   //인증 키 값을 비교를 위해 텍스트인풋과 벨류를 비교
+				$(".compare-text").text("인증 성공!").css("color", "black");
+				isCertification = true;  //인증 성공여부 check
+			} else {
+				$(".compare-text").text("불일치!").css("color", "red");
+				isCertification = false; //인증 실패
+			}
+		});
+		});
+</script>
 <!-- <script>
             function onSubmit(token) {
               document.getElementById("demo-form").submit();
@@ -43,11 +81,12 @@
                 }
             }
           </script> -->
+          
 </head>
 <body>
 <%-- ${result } --%>
 	<section class="login-form">
-		<h1>Virtual Air Travel</h1>
+		<<a href="/index"><h1>Virtual Air Travel</h1></a>
 		<form action="/login/registerMember" method="post" accept-charset="UTF-8" >
 			<div class="int-area">
 				<input type="text" name="id" id="id"
@@ -73,8 +112,12 @@
 				<label for="name1">NAME</label>				
             </div>
 			<div class="int-area">
-				<input type="email" name="email" id="email"
+				<input type="email" name="email" id="email" class="email"
 				autocomplete="off" required="required">
+				<button class="sendMail" type="button">이메일 인증</button>
+				<input type="text" placeholder="인증 키 입력" style="display: none;"
+					class="compare"><span class="compare-text"
+					style="display: none"></span>
 				<label for="email">E-MAIL</label>				
             </div>
 			<div class="int-area">

@@ -29,7 +29,7 @@ public class LoginServiceImpl implements LoginService{
 			//비밀번호가 틀릴경우 ,USER객체 NULL로 반환
 			
 			//로그인 유저의 권한을 리스트로조회
-			List<String> role = mapper.userRole(loginUser.getId());
+			List<String> role = mapper.userRole(loginUser.getUno());
 			//유저객체리스트에 담아줍니다
 			loginUser.setUserRole(role);
 		}else {
@@ -48,7 +48,7 @@ public class LoginServiceImpl implements LoginService{
 	public User loginSessionKey(String sessionkey) {
 		// TODO Auto-generated method stub
 		User user = loginSessionKey(sessionkey);
-		List<String> role = mapper.userRole(user.getId());
+		List<String> role = mapper.userRole(user.getUno());
 		user.setUserRole(role);
 		return user;
 	}
@@ -72,7 +72,8 @@ public class LoginServiceImpl implements LoginService{
 		int res = mapper.insertUser(user);
 		//권한 추가
 		if(res>0) {
-			res = mapper.insertUserRole(user.getId(), "ROLE_USER");
+			User us = mapper.get(user.getId());
+			res = mapper.insertUserRole(us.getUno(),"ROLE_USER");
 		}
 		return res;
 	}

@@ -8,6 +8,8 @@ import lombok.Data;
 @Data
 public class User {
 	
+	public int uno; //uno
+	
 	public String id;	//id
 	
 	public String pwd;	//pw
@@ -34,9 +36,9 @@ public class User {
 	 */
 	
 	//포함되어있으면 참 거짓
-	public boolean hasRole(String role_id){
+	public boolean hasRole(String role_uno){
 		if(userRole != null) {
-			return userRole.contains(role_id);
+			return userRole.contains(role_uno);
 		}
 		
 		return false;

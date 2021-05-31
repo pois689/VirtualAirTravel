@@ -14,7 +14,7 @@
 <body>
 ${result }
 	<section class="login-form">
-		<h1>Virtual Air Travel</h1>
+		<a href="/index"><h1>Virtual Air Travel</h1></a>
 		<form action="/login/loginProcess" method="post">
 			<div class="int-area">
 				<input type="text" name="id" id="id"

@@ -1,5 +1,8 @@
 package airbnb.spring.controller;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Random;
 import java.util.UUID;
 
 import javax.inject.Inject;
@@ -23,6 +26,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.util.WebUtils;
 
@@ -192,6 +196,30 @@ public class LoginController {
 		
 		return "/login/id_finded";
 	}
+	@PostMapping("CheckMail") // AJAX와 URL을 매핑시켜줌 
+	@ResponseBody  //AJAX후 값을 리턴하기위해 작성
+		public Map<String, Object> SendMail2(String mail, HttpSession session) {
+			//가입된 메일이있으면 null보내줌
+			Map<String, Object> map = new HashMap<>();
+			Random random=new Random();  //난수 생성을 위한 랜덤 클래스
+			String key="";  //인증번호 
+
+			SimpleMailMessage msg = new SimpleMailMessage();
+			//입력 키를 위한 코드
+			for(int i =0; i<3;i++) {
+				int index=random.nextInt(25)+65; //A~Z까지 랜덤 알파벳 생성
+				key+=(char)index;
+			}
+			int numIndex=random.nextInt(9999)+1000; //4자리 랜덤 정수를 생성
+			key+=numIndex;
+			msg.setTo(mail); //보내는 경로
+			msg.setSubject("인증번호 입력을 위한 메일 전송");
+			msg.setText("인증 번호 : "+key);
+			msg.setFrom("leehjcap4@gmail.com");
+			sender.send(msg);
+			map.put("key", key);
+			return map;
+		}
 	
 	@GetMapping("/login/register")
 	public void register() {
@@ -225,12 +253,17 @@ public class LoginController {
 	
 	//edit
 	@GetMapping("/login/member_edit")
-	public String member_edit(User vo ,Model model) {
+	public String member_edit(User vo ,Model model, HttpSession session) {
 		//상세정보조회
-		vo = service.get(vo.getId());
-		//모델에 담아서 화면에 전달
-		model.addAttribute("vo", vo);
-		
+		User user = (User) session.getAttribute("user");
+		if(user != null) {
+			vo = service.get(user.getId());
+			//모델에 담아서 화면에 전달
+			model.addAttribute("vo", vo);
+		}else {
+			return "/login/login";
+		}
+			
 		//리턴이없으므로 /board/get(URL)로 페이지연결
 		
 		return "/login/member_edit";
@@ -260,4 +293,6 @@ public class LoginController {
 		return "redirect:/login/member_edit";
 		
 	}
+	
+
 }
