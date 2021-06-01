@@ -64,9 +64,27 @@
 								</div>
 								<!-- 게시글 제목 -->
 								<div class="_1qdp1ym">
-									<div id="adr">
-										<span class="_ngrlha"> <span class="_169len4r">
-												Yeongok-myeon, Gangneung, 강원도, 한국</span>
+									<div class="_544wcx">
+										<span class="_14spi0z3"> <span class="_hyestb">
+												<svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"
+													aria-hidden="true" role="presentation" focusable="false"
+													style="display: block; height: 14px; width: 14px; fill: currentcolor;">
+    												<path
+														d="M15.094 1.579l-4.124 8.885-9.86 1.27a1 1 0 0 0-.542 1.736l7.293 6.565-1.965 9.852a1 1 0 0 0 1.483 1.061L16 25.951l8.625 4.997a1 1 0 0 0 1.482-1.06l-1.965-9.853 7.293-6.565a1 1 0 0 0-.541-1.735l-9.86-1.271-4.127-8.885a1 1 0 0 0-1.814 0z"
+														fill-rule="evenodd">
+    												</path>
+   												</svg>
+										</span> <!-- 별모양 --> <span class="_mvp6j0g">5.0</span> <a
+											aria-label="후기 107개로부터 5점 만점에 5.0점을 받은 숙소입니다."
+											href="/rooms/43261595/reviews?federated_search_id=1d2fb8d4-ed02-466b-894d-2012ec4a51bb&amp;source_impression_id=p3_1621818029_uZ9kEuxpkmyCPgmj&amp;guests=1&amp;adults=1"
+											class="_5twioja"><span class="_142pbzop">(후기 107개)</span></a>
+										</span>
+										<!-- 별점 평균 입력 위치 -->
+										<span class="_ngrlha"> <a
+											href="/rooms/43261595/location?federated_search_id=1d2fb8d4-ed02-466b-894d-2012ec4a51bb&amp;source_impression_id=p3_1621818029_uZ9kEuxpkmyCPgmj&amp;guests=1&amp;adults=1"
+											class="_5twioja"> <span class="_169len4r">Yeongok-myeon,
+													Gangneung, 강원도, 한국</span>
+										</a>
 										</span>
 										<!-- 주소 표시 -->
 									</div>
@@ -82,23 +100,48 @@
 			<!-- 사진 전체 div -->
 			<div class="item">
 				<!-- 1,2번 사진 -->
-				<img class="img" aria-hidden="true" alt="" id="FMP-target"
-					src="https://a0.muscache.com/im/pictures/miso/Hosting-43261595/original/509bdd17-0b32-4f4a-8449-cfe8012162cf.jpeg?im_w=720"
-					style="object-fit: cover; vertical-align: bottom;">
+				<div class="pic">
+					<img class="img" aria-hidden="true" alt=""
+						id="FMP-target"
+						src="https://a0.muscache.com/im/pictures/miso/Hosting-43261595/original/509bdd17-0b32-4f4a-8449-cfe8012162cf.jpeg?im_w=720"
+						style="object-fit: cover; vertical-align: bottom;">
+				</div>
+				<div class="pic">
+					<img class="img" aria-hidden="true" alt=""
+						id="FMP-target"
+						src="https://a0.muscache.com/im/pictures/miso/Hosting-43261595/original/509bdd17-0b32-4f4a-8449-cfe8012162cf.jpeg?im_w=720"
+						style="object-fit: cover; vertical-align: bottom;">
+				</div>
 			</div>
 			<div class="item">
 				<!-- 3,4번 사진 -->
-				<img class="img" aria-hidden="true" alt=""
-					src="https://a0.muscache.com/im/pictures/7462044d-110c-4916-853c-a7f746d3e7d7.jpg?im_w=720"
-					data-original-uri="https://a0.muscache.com/pictures/7462044d-110c-4916-853c-a7f746d3e7d7.jpg"
-					style="object-fit: cover; vertical-align: bottom;">
+				<div class="pic">
+					<img class="img" aria-hidden="true" alt=""
+						src="https://a0.muscache.com/im/pictures/7462044d-110c-4916-853c-a7f746d3e7d7.jpg?im_w=720"
+						data-original-uri="https://a0.muscache.com/pictures/7462044d-110c-4916-853c-a7f746d3e7d7.jpg"
+						style="object-fit: cover; vertical-align: bottom;">
+				</div>
+				<div class="pic">
+					<img class="img" aria-hidden="true" alt=""
+						src="https://a0.muscache.com/im/pictures/miso/Hosting-43261595/original/dabac19b-3245-4989-acd4-2e99121fd70b.jpeg?im_w=720"
+						data-original-uri="https://a0.muscache.com/pictures/miso/Hosting-43261595/original/dabac19b-3245-4989-acd4-2e99121fd70b.jpeg"
+						style="object-fit: cover; vertical-align: bottom;">
+				</div>
 			</div>
 			<div class="item">
 				<!-- 5,6 번 사진 -->
-				<img class="img" aria-hidden="true" alt=""
-					src="https://a0.muscache.com/im/pictures/miso/Hosting-43261595/original/2733e046-ef2f-4275-ba46-9d28d105698d.jpeg?im_w=720"
-					data-original-uri="https://a0.muscache.com/pictures/miso/Hosting-43261595/original/2733e046-ef2f-4275-ba46-9d28d105698d.jpeg"
-					style="object-fit: cover; vertical-align: bottom;">
+				<div class="pic">
+					<img class="img" aria-hidden="true" alt=""
+						src="https://a0.muscache.com/im/pictures/miso/Hosting-43261595/original/2733e046-ef2f-4275-ba46-9d28d105698d.jpeg?im_w=720"
+						data-original-uri="https://a0.muscache.com/pictures/miso/Hosting-43261595/original/2733e046-ef2f-4275-ba46-9d28d105698d.jpeg"
+						style="object-fit: cover; vertical-align: bottom;">
+				</div>
+				<div class="pic">
+					<img class="img" aria-hidden="true" alt=""
+						src="https://a0.muscache.com/im/pictures/miso/Hosting-43261595/original/bf844985-5fb1-4b3a-93a5-0fba5f2bd0be.jpeg?im_w=720"
+						data-original-uri="https://a0.muscache.com/pictures/miso/Hosting-43261595/original/bf844985-5fb1-4b3a-93a5-0fba5f2bd0be.jpeg"
+						style="object-fit: cover; vertical-align: bottom;">
+				</div>
 			</div>
 		</div>
 	</div>
@@ -244,44 +287,22 @@ function initMap() {
     	if (status === google.maps.places.PlacesServiceStatus.OK) {
     		request = {
     			placeId: results[0].place_id,
-    			fields: ['name','photos','geometry','rating','reviews','adr_address']
+    			fields: ['photos']
     		}
     		service.getDetails(request,function(detail_results, status){
     			let temp = '';
     		 	if (status === google.maps.places.PlacesServiceStatus.OK) {
     				if(detail_results.length == null){
-    				//marker
-    					new google.maps.Marker({
-	   						position: detail_results.geometry.location,
-	  						map,
-	  						title: detail_results.name,
-  						});
-	    				map.setCenter(detail_results.geometry.location);
-	    				console.log(detail_results);
-	    				console.log(detail_results.photos);
+    				
 	    				console.log(detail_results.photos[0].getUrl());
-	    				console.log(detail_results.adr_address);
 	    				
-	    				// 주소 바꾸기.
-	    				let adr='';
-	    				adr += detail_results.adr_address;
-	    				$('#adr').html(adr);
-	    				
-	    				// 제목 바꾸기.
-	    				let title='';
-	    				title += '<span class="_9cqu50">';
-						title += '<h1 tabindex="-1" class="_fecoyn4">';
-						title += detail_results.name;
-						title += '</h1></span>';
-						$('#title').html(title);
-						
-						
     			}else {
 	    			for (let i = 0; i < detail_results.length; i++) {
 	    				console.log("error");
 	    				history.go(-1);
 	    				}
     				  }
+    			$('#detail').html(temp);
      			}
     	    });
       	/* for (let i = 0; i < results.length; i++) {
@@ -297,7 +318,7 @@ function initMap() {
       		$('#detail').html(temp);*/
 		}
 	});
-
+  	
   	
 }
 </script>
