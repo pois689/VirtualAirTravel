@@ -37,6 +37,20 @@
             </div>
         </section>
 
+		<section>
+            <div class="hostbox">
+            	<a class="hostbox-a">
+		            <div class="hostbox-context">
+		            	<span class="hostbox-context-title">새로운 여행에 도전하는 당신..</span>
+		            	<span class="hostbox-context-content">구체적인 여행 계획을 세워보세요.</span>
+		            	<div class="hostbox-context-divbox">
+		            	<button class="hostbox-context-button">자세히 알아보기</button>
+		            	</div>
+		            </div>
+	            </a>
+            </div>
+        </section>
+        
         <!-- 여기부터 슬라이드 쇼 -->
         <section>
 	        <ul class="slides">
@@ -318,19 +332,6 @@
             </div>
         </section>
         
-        <section>
-            <div class="hostbox">
-            	<a class="bostbox-a" href="#">
-		            <div class="hostbox-context">
-		            	<span class="hostbox-context-title">호스트가 되어보세요</span>
-		            	<span class="hostbox-context-content">자신이 알고 있는 맛집과 숙소 정보를 모두와 나누세요.</span>
-		            	<div style="padding: 20px;">
-		            	<button class="hostbox-context-button">자세히 알아보기</button>
-		            	</div>
-		            </div>
-	            </a>
-            </div>
-        </section>
     </main>
 </body>
 </html>

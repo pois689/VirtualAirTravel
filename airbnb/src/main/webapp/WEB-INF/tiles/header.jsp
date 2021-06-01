@@ -45,11 +45,11 @@
 		    <!-- 검색 bar -->
 		    <div class="header__search">
 				<div class="search__button" style="padding-left: 24px; outline: none;" role="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-					<div style="font-weight: 800">카테고리</div>
+					<div class="search__category">카테고리</div>
 					<input class="button__value" id="category" placeholder="미입력" readonly="readonly">
 				</div>
 				<!-- 카테고리 -->
-				<div class="dropdown-menu" aria-labelledby="dropdownMenuButton1" style="border-radius: 2.5rem; text-align: center; min-width: 12rem;">
+				<div class="dropdown-menu" aria-labelledby="dropdownMenuButton1" style="border-radius: 2rem; text-align: center; min-width: 12rem;">
 				    <button class="dropdown-item" value="여행지">여행지</button>
 				    <button class="dropdown-item" value="행사">행사</button>
 				    <button class="dropdown-item" value="숙소">숙소</button>
@@ -63,7 +63,8 @@
 			<input class="search__button" placeholder="검색">
 			<span class="search__span"></span>
 			<!-- 검색 아이콘 -->
-			<button class="flex items-center justify-center relative  h-8 w-8 rounded-full" type="submit" style="padding-right: 7px; width: 150px; outline: none;">
+			<div class="search__submit__button">
+			<button class="flex items-center justify-center relative  h-8 w-8 rounded-full" type="submit" style="width: -webkit-fill-available; height: -webkit-fill-available;">
 			                        <svg
 			                            viewBox="0 0 32 32"
 			                            xmlns="http://www.w3.org/2000/svg"
@@ -87,16 +88,14 @@
 			                            </g>
 			                        </svg>
 			                    </button>
+			                    </div>
         </div>
 		    <!-- end search bar -->
 		    <!-- login -->
-		    <div class="flex-initial">
+		    <div class="flex-initial" style="margin-right: 30px;">
 		      <div class="flex justify-end items-center relative">
 		       
 		        <div class="flex mr-4 items-center">
-		          <a class="inline-block py-2 px-3 hover:bg-gray-200 rounded-full" href="#" style="text-decoration: none;">
-		            <div class="flex items-center relative cursor-pointer whitespace-nowrap" style="color: rgb(34, 34, 34); font-weight: 800;">호스팅 신청</div>
-		          </a>
 		          <div class="block relative">
 		            <button type="button" class="inline-block py-2 px-3 hover:bg-gray-200 rounded-full relative ">
 		              <div class="flex items-center h-5">
@@ -143,7 +142,7 @@
 		                    </div>
 		                </button>
 		                <!-- 로그인 메뉴 -->
-		                <ul class="dropdown-menu" aria-labelledby="dropdownRoginButton" style="border-radius: 2.5rem; text-align: center; min-width: 12rem;">
+		                <ul class="dropdown-menu" aria-labelledby="dropdownRoginButton" style="border-radius: 1.5rem; text-align: center; min-width: 12rem;">
 						    <li><a class="dropdown-item" href="#">회원 가입</a></li>
 						    <li><a class="dropdown-item" href="#">로그인</a></li>
 						    <li><a class="dropdown-item" href="#">마이페이지</a></li>
