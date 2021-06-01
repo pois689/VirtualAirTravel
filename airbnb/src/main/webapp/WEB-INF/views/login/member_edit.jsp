@@ -68,7 +68,7 @@
                         <label for="id">아이디</label>
                     </h3>
                     <span class="box int_id">
-                        <input type="text" name="id" id="id" class="int" maxlength="20" value="${vo.id}">
+                        <input type="text" name="id" id="id" class="int" maxlength="20" value="${user.id}">
                         <input type="button" value="수정" onclick="checkId()" class="checkid">
                         <span class="step_url"></span>
                     </span>
@@ -79,7 +79,7 @@
                 <div>
                     <h3 class="join_title"><label for="name">이름</label></h3>
                     <span class="box int_name">
-                        <input type="text" name="name" class="int" maxlength="20" value="${vo.name}">
+                        <input type="text" name="name" class="int" maxlength="20" value="${user.name}">
                         <input type="button" value="수정" onclick="checkId()" class="checkid">
                     </span>
                     <span class="error_next_box"></span>
@@ -89,7 +89,7 @@
                 <div>
                     <h3 class="join_title"><label for="email">본인확인 이메일<span class="optional">(중요)</span></label></h3>
                     <span class="box int_email">
-                        <input type="text" name="email" id="email" class="int" maxlength="100" placeholder="필수입력" value="${vo.email}">
+                        <input type="text" name="email" id="email" class="int" maxlength="100" placeholder="필수입력" value="${user.email}">
                         <input type="button" value="수정" onclick="checkId()" class="checkid">
                     </span>
                     <span class="error_next_box">이메일 주소를 다시 확인해주세요.</span>    
@@ -99,7 +99,7 @@
                 <div>
                     <h3 class="join_title"><label for="phoneNo">휴대전화</label></h3>
                     <span class="box int_mobile">
-                        <input type="tel" id="mobile" class="int" maxlength="16" placeholder="전화번호 입력" value="${vo.tel}">
+                        <input type="tel" id="mobile" class="int" maxlength="16" placeholder="전화번호 입력" value="${user.tel}">
                         <input type="button" value="수정" onclick="checkId()" class="checkid">
                     </span>
                     <span class="error_next_box"></span>    

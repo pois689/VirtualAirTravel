@@ -7,10 +7,10 @@ function detailBtn(url) {
 	document.detailForm.action=url;
 	document.detailForm.submit();
 }
-
 </script>
 <form method="get" action="/login/logout" name="detailForm">
 <input type="hidden" name="id" value="${user.id}">
+<a class="dropdown-item" href="/login/member_edit">마이페이지</a>
 ${msg}<br>
 <button type="button" class="btn btn-default" onClick="detailBtn('/login/member_edit')">수정</button>
 <button type=submit>로그아웃</button><br>

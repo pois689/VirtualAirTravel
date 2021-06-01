@@ -56,7 +56,8 @@
 	</section>
 <script>
     let id = $('#id');
-    let pw = $('#pw');
+    let email = $('#email');
+    let name = $('#name');
     let btn = $('#btn');
 
     $(btn).on('click',function(){
@@ -66,8 +67,14 @@
                 $('label').removeClass('warning')
             },1500)
         }
-        else if($(pw).val()==""){
-            $(pw).next('label').addClass('warning');
+        else if($(email).val()==""){
+            $(email).next('label').addClass('warning');
+            setTimeout(function(){
+                $('label').removeClass('warning')
+            },1500)
+        }
+        else if($(name).val()==""){
+            $(name).next('label').addClass('warning');
             setTimeout(function(){
                 $('label').removeClass('warning')
             },1500)

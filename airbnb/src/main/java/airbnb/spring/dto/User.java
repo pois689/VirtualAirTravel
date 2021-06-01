@@ -38,7 +38,7 @@ public class User {
 	//포함되어있으면 참 거짓
 	public boolean hasRole(String role_uno){
 		if(userRole != null) {
-			return userRole.contains(role_uno);
+			return userRole.contains(role_uno); //포함?
 		}
 		
 		return false;

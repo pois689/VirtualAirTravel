@@ -110,7 +110,14 @@
 	        <!-- <beans:property name="scope" value="https://www.googleapis.com/auth/plus.login" /> -->
 	        <beans:property name="redirectUri" ref="googleRedirectUrl" />
 	</beans:bean>
-	
+		<!--LoginInterceptor를 Bean으로 등록 합니다.-->
+	<beans:bean id="loginInterceptor" class="airbnb.spring.interceptor.LoginInterceptor"></beans:bean>
+	<interceptors>
+		<interceptor>
+			<mapping path="/login/loginProcess"/>
+			<beans:ref bean="loginInterceptor"/>
+		</interceptor>
+	</interceptors>
 	<context:component-scan base-package="airbnb.spring.service" />
 	<context:component-scan base-package="airbnb.spring.controller" />
 

@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="/resources/css/login/style2.css">
     <script src="/resources/js/jquery-3.6.0.min.js"></script>
     <script src="/resources/js/snowfall.jquery.js"></script>
+    <script type="text/javascript">
+    </script>
 </head>
 <body>
 ${result }

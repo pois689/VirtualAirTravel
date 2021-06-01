@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.mail.MailSender;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -94,16 +95,16 @@ public class LoginController {
 		
 		User user = service.login(vo);
 		
-		if(user == null) {
-			model.addAttribute("msg","로그인에 실패하였습니다 Id,Pwd를 확인하세요");
-			return "/login/loginProcess";
-			
-		}else {
+		if(user != null) {
 			// user 객체를 세션에 담아줌 - 로그인 처리
 			HttpSession session = request.getSession();
 			session.setAttribute("user", user);
 			
 			model.addAttribute("msg",user.getId()+"님 로그인에 성공하였습니다");
+			return "tiles/index.tiles";
+			
+		}else {
+			model.addAttribute("msg","로그인에 실패하였습니다 Id,Pwd를 확인하세요");
 			return "/login/loginProcess";
 		}
 		
@@ -124,7 +125,7 @@ public class LoginController {
 			response.addCookie(loginCookie);
 		}
 		
-		return "/login/login";
+		return "tiles/index.tiles";
 	}
 	
 	// 아이디 찾기
@@ -251,15 +252,15 @@ public class LoginController {
 	//유저정보 페이지
 	
 	
-	//edit
+	//edit,상세페이지
 	@GetMapping("/login/member_edit")
 	public String member_edit(User vo ,Model model, HttpSession session) {
 		//상세정보조회
+		//User user = service.get(vo.getId());
 		User user = (User) session.getAttribute("user");
+		//user = request.getParameter("user");
 		if(user != null) {
-			vo = service.get(user.getId());
-			//모델에 담아서 화면에 전달
-			model.addAttribute("vo", vo);
+			model.addAttribute("user", user);
 		}else {
 			return "/login/login";
 		}

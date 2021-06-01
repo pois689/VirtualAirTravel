@@ -10,44 +10,6 @@
 <script src="https://www.google.com/recaptcha/api.js"></script>
 <script src="/resources/js/jquery-3.6.0.min.js"></script>
 <script src="/resources/js/snowfall.jquery.js"></script>
-<script type="text/javascript">
-$(document).ready(
-function(){
-		$(".sendMail").click(function() {// 메일 입력 유효성 검사
-			var mail = $(".email").val(); //사용자의 이메일 입력값. 
-			if (mail == "") {
-				alert("메일 주소가 입력되지 않았습니다.");
-			} else {
-				 //셀렉트 박스에 @뒤 값들을 더함.
-			$.ajax({
-				type : 'post',
-				url : '/CheckMail',
-				data : {
-					mail:mail
-					},
-				dataType :'json',
-				success : function(data) {
-					key = data.key;
-				}
-
-			});
-				alert("인증번호가 전송되었습니다.") 
-				$(".compare").css("display", "block");
-				$(".compare-text").css("display", "block");
-				isCertification=true; //추후 인증 여부를 알기위한 값
-			}
-		});
-		$(".compare").on("propertychange change keyup paste input", function() {
-			if ($(".compare").val() == key) {   //인증 키 값을 비교를 위해 텍스트인풋과 벨류를 비교
-				$(".compare-text").text("인증 성공!").css("color", "black");
-				isCertification = true;  //인증 성공여부 check
-			} else {
-				$(".compare-text").text("불일치!").css("color", "red");
-				isCertification = false; //인증 실패
-			}
-		});
-		});
-</script>
 <!-- <script>
             function onSubmit(token) {
               document.getElementById("demo-form").submit();
@@ -86,7 +48,7 @@ function(){
 <body>
 <%-- ${result } --%>
 	<section class="login-form">
-		<<a href="/index"><h1>Virtual Air Travel</h1></a>
+		<a href="/index"><h1>Virtual Air Travel</h1></a>
 		<form action="/login/registerMember" method="post" accept-charset="UTF-8" >
 			<div class="int-area">
 				<input type="text" name="id" id="id"
@@ -95,13 +57,13 @@ function(){
 				<input type="button" value="ID 중복검사" onclick="checkId()" class="idcheck">		
             </div>
 			<div class="int-area">
-				<input type="text" name="pwd1" id="pwd1"
+				<input type="text" name="pwd" id="pwd1"
 				autocomplete="off" required="required">
 				<label for="pwd1">PASSWORD</label>				
 				<img src="/resources/images/key1.png" id="pswd1_img1" class="pswdImg">
             </div>
 			<div class="int-area">
-				<input type="text" name="pwd" id="pwd2"
+				<input type="text" name="pwd2" id="pwd2"
 				autocomplete="off" required="required">
 				<label for="pwd2">REPASSWORD</label>				
 				<img src="/resources/images/key2.png" id="pswd2_img1" class="pswdImg">
@@ -114,11 +76,11 @@ function(){
 			<div class="int-area">
 				<input type="email" name="email" id="email" class="email"
 				autocomplete="off" required="required">
+				<label for="email">E-MAIL</label>				
 				<button class="sendMail" type="button">이메일 인증</button>
 				<input type="text" placeholder="인증 키 입력" style="display: none;"
-					class="compare"><span class="compare-text"
-					style="display: none"></span>
-				<label for="email">E-MAIL</label>				
+					class="compare">
+					<span class="compare-text" style="display: none"></span>
             </div>
 			<div class="int-area">
 				<input type="tel" name="tel" id="tel"
@@ -150,49 +112,107 @@ function(){
 		
 	</section>
 	
-<script>
-    let id = $('#id');
-    let pwd = $('#pwd');
-    let btn = $('#btn');
+<script type="text/javascript">
+$(document).ready(
+		function(){
+				$(".sendMail").click(function() {// 메일 입력 유효성 검사
+					var mail = $(".email").val(); //사용자의 이메일 입력값. 
+					if (mail == "") {
+						alert("메일 주소가 입력되지 않았습니다.");
+					} else {
+						 //셀렉트 박스에 @뒤 값들을 더함.
+					$.ajax({
+						type : 'post',
+						url : '/CheckMail',
+						data : {
+							mail:mail
+							},
+						dataType :'json',
+						success : function(data) {
+							key = data.key;
+						}
 
-    $(btn).on('click',function(){
-        if($(id).val()==""){
-            $(id).next('label').addClass('warning');
-            setTimeout(function(){
-                $('label').removeClass('warning')
-            },1500)
-        }
-        else if($(pwd1).val()==""){
-            $(pwd1).next('label').addClass('warning');
-            setTimeout(function(){
-                $('label').removeClass('warning')
-            },1500)
-        }
-        else if($(pwd2).val()==""){
-            $(pwd2).next('label').addClass('warning');
-            setTimeout(function(){
-                $('label').removeClass('warning')
-            },1500)
-        }
-        else if($(name1).val()==""){
-            $(name1).next('label').addClass('warning');
-            setTimeout(function(){
-                $('label').removeClass('warning')
-            },1500)
-        }
-        else if($(email).val()==""){
-            $(email).next('label').addClass('warning');
-            setTimeout(function(){
-                $('label').removeClass('warning')
-            },1500)
-        }
-        else if($(tel).val()==""){
-            $(tel).next('label').addClass('warning');
-            setTimeout(function(){
-                $('label').removeClass('warning')
-            },1500)
-        }
-    });
+					});
+						alert("인증번호가 전송되었습니다.") 
+						$(".compare").css("display", "block");
+						$(".compare-text").css("display", "block");
+					}
+				});
+				
+			    $(btn).on('click',function(){
+				    let id = $('#id');
+				    let pwd1 = $('#pwd1');
+				    let pwd2 = $('#pwd2');
+				    let btn = $('#btn');
+				    
+				    //정규식
+				    //test함수는 문자열(t,f) search함수값 위치값(1,-1) replase함수는 교체(값)
+					let regExPw = /^[a-zA-Z0-9]{8,20}$/;
+					let chk_num = pw1.search(/[0-9]/g); //비밀번호와 숫자 인덱스 검색,숫자가 1개라도 있어야하고
+					let chk_eng = pw1.search(/[a-zA-Z]/g); //비번 영문자의 인덱스 검색,문자가 하나라도 있어야함 
+			    	
+			        if($(id).val()==""){
+			            $(id).next('label').addClass('warning');
+			            setTimeout(function(){
+			                $('label').removeClass('warning')
+			            },1500)
+			        }
+			        else if($(pwd1).val()==""){
+			            $(pwd1).next('label').addClass('warning');
+			            setTimeout(function(){
+			                $('label').removeClass('warning')
+			            },1500)
+			        }
+			        else if($(pwd2).val()==""){
+			            $(pwd2).next('label').addClass('warning');
+			            setTimeout(function(){
+			                $('label').removeClass('warning')
+			            },1500)
+			        }
+			        else if($(pwd1).val()!=$(pwd2).val()){
+			        	alert("비밀번호가 다릅니다")
+			        	return false;
+			        }
+			        else if($(name1).val()==""){
+			            $(name1).next('label').addClass('warning');
+			            setTimeout(function(){
+			                $('label').removeClass('warning')
+			            },1500)
+			        }
+			        else if($(email).val()==""){
+			            $(email).next('label').addClass('warning');
+			            setTimeout(function(){
+			                $('label').removeClass('warning')
+			            },1500)
+			        }
+			        else if($(tel).val()==""){
+			            $(tel).next('label').addClass('warning');
+			            setTimeout(function(){
+			                $('label').removeClass('warning')
+			            },1500)
+			        }
+			        else if(($(".compare").val() == "")){
+						alert("메일 인증이 완료되지 않았습니다.");
+						return false;
+					}
+			        else if(($(".compare-text").text() == "인증 성공!")){
+			        	return true;
+			        }
+			        else if(($(".compare-text").text() == "불일치!")){
+			        	alert("인증에 실패하셨습니다.");
+			        	return false;
+			        }
+			    });
+				$(".compare").on("propertychange change keyup paste input", function() {
+					if ($(".compare").val() == key) {   //인증 키 값을 비교를 위해 텍스트인풋과 벨류를 비교
+						$(".compare-text").text("인증 성공!").css("color", "black");
+					} else {
+						$(".compare-text").text("불일치!").css("color", "red");
+					}
+				});
+				
+				});
+    
 
     $(document).snowfall({round : true, maxSize : 3});
 </script>
