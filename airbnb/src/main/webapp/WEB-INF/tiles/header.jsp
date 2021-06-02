@@ -22,8 +22,8 @@
 	/* 카테고리 선택 */
 	$(document).ready( function() {
 	    $(".dropdown-item").click(function(){
-	    	var category = this.value;
-	    	document.getElementById("category").value = category;
+	    	var search_category = this.value;
+	    	document.getElementById("search_category").value = search_category;
 	    });
 	
 	});
