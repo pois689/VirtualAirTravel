@@ -223,7 +223,7 @@
 		<!-- 슬라이드 끝 -->
 
         <section>
-            <div class="sec__title">진행중인 축제</div>
+            <div class="sec__title">유명 관광지</div>
 
             <div class="home__box">
                 <div class="home">

@@ -46,7 +46,7 @@
 		    <div class="header__search">
 				<div class="search__button" style="padding-left: 24px; outline: none;" role="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
 					<div class="search__category">카테고리</div>
-					<input class="button__value" id="category" placeholder="미입력" readonly="readonly">
+					<input class="button__value" id="search_category" placeholder="미입력" readonly="readonly">
 				</div>
 				<!-- 카테고리 -->
 				<div class="dropdown-menu" aria-labelledby="dropdownMenuButton1" style="border-radius: 2rem; text-align: center; min-width: 12rem;">
@@ -60,36 +60,34 @@
 				
 			<span class="search__span"></span>
 			<!-- 검색어 -->
-			<input class="search__button" placeholder="검색">
+			<input class="search__button" placeholder="검색" id="search_name">
 			<span class="search__span"></span>
 			<!-- 검색 아이콘 -->
 			<div class="search__submit__button">
-			<button class="flex items-center justify-center relative  h-8 w-8 rounded-full" type="submit" style="width: -webkit-fill-available; height: -webkit-fill-available;">
-			                        <svg
-			                            viewBox="0 0 32 32"
-			                            xmlns="http://www.w3.org/2000/svg"
-			                            aria-hidden="true"
-			                            role="presentation"
-			                            focusable="false"
-			                            style="
-			                                display: block;
-			                                fill: none;
-			                                height: 20px;
-			                                width: 50px;
-			                                stroke: currentcolor;
-			                                stroke-width: 5.33333;
-			                                overflow: visible;
-			                            "
-			                        >
-			                            <g fill="none">
-			                                <path
-			                                    d="m13 24c6.0751322 0 11-4.9248678 11-11 0-6.07513225-4.9248678-11-11-11-6.07513225 0-11 4.92486775-11 11 0 6.0751322 4.92486775 11 11 11zm8-3 9 9"
-			                                ></path>
-			                            </g>
-			                        </svg>
-			                    </button>
-			                    </div>
-        </div>
+				<button class="flex items-center justify-center relative  h-8 w-8 rounded-full" type="submit" style="width: -webkit-fill-available; height: -webkit-fill-available;">
+				                        <svg
+				                            viewBox="0 0 32 32"
+				                            xmlns="http://www.w3.org/2000/svg"
+				                            aria-hidden="true"
+				                            role="presentation"
+				                            focusable="false"
+				                            style="
+				                                display: block;
+				                                fill: none;
+				                                height: 20px;
+				                                width: 50px;
+				                                stroke: currentcolor;
+				                                stroke-width: 5.33333;
+				                                overflow: visible;">
+				                            <g fill="none">
+				                                <path
+				                                    d="m13 24c6.0751322 0 11-4.9248678 11-11 0-6.07513225-4.9248678-11-11-11-6.07513225 0-11 4.92486775-11 11 0 6.0751322 4.92486775 11 11 11zm8-3 9 9"
+				                                ></path>
+				                            </g>
+				                        </svg>
+				 </button>
+			 </div>
+        	</div>
 		    <!-- end search bar -->
 		    <!-- login -->
 		    <div class="flex-initial" style="margin-right: 30px;">
