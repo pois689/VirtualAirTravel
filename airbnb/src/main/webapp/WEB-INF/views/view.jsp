@@ -90,20 +90,20 @@
 					src="https://a0.muscache.com/im/pictures/miso/Hosting-43261595/original/509bdd17-0b32-4f4a-8449-cfe8012162cf.jpeg?im_w=720"
 					style="object-fit: cover; vertical-align: bottom;">
 			</div>
-			<div class="item2">
-				<!-- 3,4번 사진 -->
+			<!-- <div class="item2">
+				3,4번 사진
 				<img class="img" aria-hidden="true" alt=""
 					src="https://a0.muscache.com/im/pictures/7462044d-110c-4916-853c-a7f746d3e7d7.jpg?im_w=720"
 					data-original-uri="https://a0.muscache.com/pictures/7462044d-110c-4916-853c-a7f746d3e7d7.jpg"
 					style="object-fit: cover; vertical-align: bottom;">
 			</div>
 			<div class="item3">
-				<!-- 5,6 번 사진 -->
+				5,6 번 사진
 				<img class="img" aria-hidden="true" alt=""
 					src="https://a0.muscache.com/im/pictures/miso/Hosting-43261595/original/2733e046-ef2f-4275-ba46-9d28d105698d.jpeg?im_w=720"
 					data-original-uri="https://a0.muscache.com/pictures/miso/Hosting-43261595/original/2733e046-ef2f-4275-ba46-9d28d105698d.jpeg"
 					style="object-fit: cover; vertical-align: bottom;">
-			</div>
+			</div> -->
 		</div>
 	</div>
 
@@ -130,13 +130,13 @@
 								d="M17.954 2.781l.175.164 13.072 12.842-1.402 1.426-1.8-1.768L28 29a2 2 0 0 1-1.85 1.994L26 31H6a2 2 0 0 1-1.995-1.85L4 29V15.446l-1.8 1.767-1.4-1.426L13.856 2.958a3 3 0 0 1 4.097-.177zm-2.586 1.503l-.096.088L6 13.48 6 29l5-.001V19a2 2 0 0 1 1.85-1.995L13 17h6a2 2 0 0 1 1.995 1.85L21 19v9.999h5V13.48l-9.3-9.135a1.001 1.001 0 0 0-1.332-.06zM19 19h-6v9.999h6z"></path></svg>
 					</div>
 					<div class="_1mqc21n">
-						<div class="_1jlr81g">구글지도에서 받아오는 상세정보 표시</div>
+						<div class="detail">구글지도에서 받아오는 상세정보 표시</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-	<div data-plugin-in-point-id="DESCRIPTION_DEFAULT"
+	<!-- <div data-plugin-in-point-id="DESCRIPTION_DEFAULT"
 		data-section-id="DESCRIPTION_DEFAULT"
 		style="padding-top: 32px; padding-bottom: 48px;">
 		<div>
@@ -144,7 +144,7 @@
 					<div class="_1d784e5">직접 작성한 상세 내용 들어가는 자리</div>
 				</div> </span>
 		</div>
-	</div>
+	</div> -->
 
 	<!-- 댓글 붙여넣을 자리 -->
 	<div class="_1gw6tte">
@@ -242,7 +242,7 @@ function initMap() {
     	if (status === google.maps.places.PlacesServiceStatus.OK) {
     		request = {
     			placeId: results[0].place_id,
-    			fields: ['name','photos','geometry','rating','reviews','adr_address','business_status']
+    			fields: ['name','photos','geometry','rating','reviews','adr_address','business_status','types']
     		}
     		service.getDetails(request,function(detail_results, status){
     			let temp = '';
@@ -260,6 +260,7 @@ function initMap() {
 	    				console.log(detail_results.photos[0].getUrl());
 	    				console.log(detail_results.adr_address);
 	    				console.log(detail_results.business_status);
+	    				console.log(detail_results.types);
 	    				
 	    				// 주소 바꾸기.
 	    				let adr='';
@@ -282,16 +283,31 @@ function initMap() {
 							temp += ' style="object-fit: cover; vertical-align: bottom;"/>';
 							if(i == 0)
 								$('.item1').html(temp);
-							else if(i == 1)
+							/* else if(i == 1)
 								$('.item2').html(temp);
 							else if(i == 2)
-								$('.item3').html(temp);
+								$('.item3').html(temp); */
+							else
+								$('.item1').after(temp);
 						}
+
 						
 						// 영업중인가 임시휴업인가 폐업인가 상태 표시
 						let open = '';
 						open = detail_results.business_status;
-						$('.business_status').html(open);
+						if(open == 'OPERATIONAL')
+							$('.business_status').html('영업중');
+						else if(open == 'CLOSED_TEMPORARILY')
+							$('.business_status').html('임시 휴업');
+						else if(open == 'CLOSED_TEMPORARILY')
+							$('.business_status').html('폐업');
+						
+						// 검색한 장소의 유형 (갤러리, 관광장소 등등)
+						for(let i = 0; i<3; i++){
+							let type = '';
+							type += detail_result.types[i];
+							
+						}
 						
     			}else {
 	    			for (let i = 0; i < detail_results.length; i++) {
