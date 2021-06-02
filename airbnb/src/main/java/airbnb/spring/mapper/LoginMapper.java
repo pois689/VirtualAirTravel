@@ -15,6 +15,7 @@ public interface LoginMapper { //crud create,read,delete,update
 	public User loginSessionKey(String sessionkey);
 	
 	public User checkId(String id);
+	public User checkemail(String email);
 	
 	public int insertUser(User user);
 	public int insertUserRole(@Param("uno")int uno, @Param("role_uno")String role_uno);

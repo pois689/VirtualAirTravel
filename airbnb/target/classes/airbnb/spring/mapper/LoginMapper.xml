@@ -31,6 +31,10 @@
 		select * from TBL_USER where id = #{id}
 	</select>
 	
+	<select id="checkemail" resultType="airbnb.spring.dto.User">
+		select * from TBL_USER where email = #{email}
+	</select>
+	
 	<insert id="insertUser">
 		insert into TBL_USER (uno, id, pwd, enabled, name, email, tel)
 			values (SEQ_USER.nextval, #{id}, #{pwd}, 1, #{name}, #{email}, #{tel})

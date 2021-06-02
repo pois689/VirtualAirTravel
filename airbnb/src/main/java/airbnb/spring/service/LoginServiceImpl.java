@@ -57,6 +57,14 @@ public class LoginServiceImpl implements LoginService{
 	public User checkId(String id) {
 		return mapper.checkId(id);
 	}
+	
+
+	@Override
+	public User checkemail(String email) {
+		// TODO Auto-generated method stub
+		return mapper.checkemail(email);
+	}
+	
 	/**
 	 * 사용자권한 추가 
 	 */
@@ -97,6 +105,9 @@ public class LoginServiceImpl implements LoginService{
 	public User get(String id) {
 		return mapper.get(id);
 	}
+
+
+
 
 
 

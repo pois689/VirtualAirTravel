@@ -71,7 +71,7 @@
 	        <beans:constructor-arg value="IDZgsg3PbT" />
 	</beans:bean>
 	<beans:bean id="naverRedirectUrl" class="java.lang.String">
-	        <beans:constructor-arg value="http://localhost:8090/auth/naver/callback" />
+	        <beans:constructor-arg value="http://localhost:8090/login/callback2" />
 	</beans:bean>
 	    
 	<beans:bean id="naverSns" class="airbnb.spring.auth.SNS">
@@ -88,8 +88,9 @@
 	<beans:bean id="googleClientSecret" class="java.lang.String">
 	        <beans:constructor-arg value="PjKLR5bf76A7nu9Xkg6Mz66a" />
 	</beans:bean>
-	<beans:bean id="googleRedirectUrl" class="java.lang.String">
-	        <beans:constructor-arg value="http://localhost:8080/auth/google/callback" />
+    
+    <beans:bean id="googleRedirectUrl" class="java.lang.String">
+	        <beans:constructor-arg value="http://localhost:8090/login/callback2" />
 	</beans:bean>
     
 	<beans:bean id="googleSns" class="airbnb.spring.auth.SNS">
@@ -112,12 +113,12 @@
 	</beans:bean>
 		<!--LoginInterceptor를 Bean으로 등록 합니다.-->
 	<beans:bean id="loginInterceptor" class="airbnb.spring.interceptor.LoginInterceptor"></beans:bean>
-	<interceptors>
+<!-- 	<interceptors>
 		<interceptor>
 			<mapping path="/login/loginProcess"/>
 			<beans:ref bean="loginInterceptor"/>
 		</interceptor>
-	</interceptors>
+	</interceptors> -->
 	<context:component-scan base-package="airbnb.spring.service" />
 	<context:component-scan base-package="airbnb.spring.controller" />
 

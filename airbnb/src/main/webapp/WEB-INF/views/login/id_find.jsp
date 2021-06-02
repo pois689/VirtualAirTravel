@@ -44,8 +44,6 @@
             <img src="/resources/images/goggle.jpg" width="55" height="55" alt="goggle"></a>
             <a href="#" id="btnLogin3">
             <img src="/resources/images/apple.jpg" width="55" height="55" alt="apple"></a>
-            <a href="#" id="btnLogin4">
-            <img src="/resources/images/facebok.jpg" width="55" height="55" alt="facebok"></a>
         </div>
 
 	</section>

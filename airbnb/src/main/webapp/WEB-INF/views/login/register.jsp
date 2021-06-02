@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
 <!DOCTYPE html>
 <html>
 <head>
@@ -49,29 +48,29 @@
 <%-- ${result } --%>
 	<section class="login-form">
 		<a href="/index"><h1>Virtual Air Travel</h1></a>
-		<form action="/login/registerMember" method="post" accept-charset="UTF-8" >
+		<form action="/login/registerMember" method="post">
 			<div class="int-area">
 				<input type="text" name="id" id="id"
 				autocomplete="off" required="required">
 				<label for="id">ID</label>
-				<input type="button" value="ID 중복검사" onclick="checkId()" class="idcheck">		
+				<input type="button" value="ID 중복검사" id="idCheck" class="idcheck">		
             </div>
 			<div class="int-area">
-				<input type="text" name="pwd" id="pwd1"
+				<input type="text" name="pwd" id="pwd"
 				autocomplete="off" required="required">
-				<label for="pwd1">PASSWORD</label>				
+				<label for="pwd">PASSWORD</label>				
 				<img src="/resources/images/key1.png" id="pswd1_img1" class="pswdImg">
             </div>
 			<div class="int-area">
-				<input type="text" name="pwd2" id="pwd2"
+				<input type="text" name="pwdCheck" id="pwdCheck"
 				autocomplete="off" required="required">
-				<label for="pwd2">REPASSWORD</label>				
+				<label for="pwdCheck">REPASSWORD</label>				
 				<img src="/resources/images/key2.png" id="pswd2_img1" class="pswdImg">
             </div>
 			<div class="int-area">
-				<input type="text" name="name" id="name1"
+				<input type="text" name="name" id="name"
 				autocomplete="off" required="required">
-				<label for="name1">NAME</label>				
+				<label for="name">NAME</label>				
             </div>
 			<div class="int-area">
 				<input type="email" name="email" id="email" class="email"
@@ -88,7 +87,7 @@
 				<label for="tel">PhoneNo</label>				
             </div>
             <div class="btn-area">
-                <button id="btn" type="submit">LOGIN</button>
+                <button id="btn" type="submit">회원 가입</button>
             </div>
         </form>
         <div class="caption">
@@ -98,23 +97,42 @@
             <span>|</span>
             <a href="register" id="f3">회원가입하기</a></p>
         </div>
-
-        <div class="tpa">
-            <a href="${naver_url }" id="btnLogin1">
-            <img src="/resources/images/naver.jpg" width="55" height="55" alt="naver"></a>
-            <a href="${google_url }" id="btnLogin2">
-            <img src="/resources/images/goggle.jpg" width="55" height="55" alt="goggle"></a>
-            <a href="#" id="btnLogin3">
-            <img src="/resources/images/apple.jpg" width="55" height="55" alt="apple"></a>
-            <a href="#" id="btnLogin4">
-            <img src="/resources/images/facebok.jpg" width="55" height="55" alt="facebok"></a>
-        </div>
 		
 	</section>
 	
 <script type="text/javascript">
 $(document).ready(
 		function(){
+			
+			$("input[name=id]").on("change",function(){
+				$("input[name=id]").prop("dataValue",false);
+				$("input[name=id]").attr("dataValue",false);
+			});
+			$("#idCheck").on("click", function(){
+				let idd = $("input[name=id]").val();
+				$.ajax({
+					url : '/checkId/' + idd,
+					method : 'get',
+					dataType : 'json',
+					success : function(data){
+						//이미 등록된 아이디인 경우
+						if(!data){
+							alert("이미 등록된 아이디 입니다.")
+						}else{
+							alert("등록 가능한 아이디 입니다.")
+							//회원가입버특클릭시 중복처리 했다고 알림
+							//속성값을 추가 해보자
+							$("input[name=id]").prop("dataValue",true);
+						}
+						//등록 가능한 아이디인 경우
+					},
+					error : function(){
+						console.log('error');
+					}
+				});
+				$("input[name=id]").prop("dataValue",false);
+			});
+			
 				$(".sendMail").click(function() {// 메일 입력 유효성 검사
 					var mail = $(".email").val(); //사용자의 이메일 입력값. 
 					if (mail == "") {
@@ -129,52 +147,50 @@ $(document).ready(
 							},
 						dataType :'json',
 						success : function(data) {
+							if(data.key == "return"){
+								alert("이미 가입한 이메일이있습니다")
+							}else{
+							console.log("data",data.key);
 							key = data.key;
+							alert("인증번호가 전송되었습니다.") 
+							$(".compare").css("display", "block");
+							$(".compare-text").css("display", "block");
+							}
 						}
-
 					});
-						alert("인증번호가 전송되었습니다.") 
-						$(".compare").css("display", "block");
-						$(".compare-text").css("display", "block");
 					}
 				});
 				
 			    $(btn).on('click',function(){
 				    let id = $('#id');
-				    let pwd1 = $('#pwd1');
-				    let pwd2 = $('#pwd2');
+				    let pwd1 = $('#pwd');
+				    let pwd2 = $('#pwdCheck');
 				    let btn = $('#btn');
 				    
-				    //정규식
-				    //test함수는 문자열(t,f) search함수값 위치값(1,-1) replase함수는 교체(값)
-					let regExPw = /^[a-zA-Z0-9]{8,20}$/;
-					let chk_num = pw1.search(/[0-9]/g); //비밀번호와 숫자 인덱스 검색,숫자가 1개라도 있어야하고
-					let chk_eng = pw1.search(/[a-zA-Z]/g); //비번 영문자의 인덱스 검색,문자가 하나라도 있어야함 
-			    	
 			        if($(id).val()==""){
 			            $(id).next('label').addClass('warning');
 			            setTimeout(function(){
 			                $('label').removeClass('warning')
 			            },1500)
 			        }
-			        else if($(pwd1).val()==""){
-			            $(pwd1).next('label').addClass('warning');
+			        else if($(pwd).val()==""){
+			            $(pwd).next('label').addClass('warning');
 			            setTimeout(function(){
 			                $('label').removeClass('warning')
 			            },1500)
 			        }
-			        else if($(pwd2).val()==""){
-			            $(pwd2).next('label').addClass('warning');
+			        else if($(pwdCheck).val()==""){
+			            $(pwdCheck).next('label').addClass('warning');
 			            setTimeout(function(){
 			                $('label').removeClass('warning')
 			            },1500)
 			        }
-			        else if($(pwd1).val()!=$(pwd2).val()){
+			        else if($(pwd).val()!=$(pwdCheck).val()){
 			        	alert("비밀번호가 다릅니다")
 			        	return false;
 			        }
-			        else if($(name1).val()==""){
-			            $(name1).next('label').addClass('warning');
+			        else if($(name).val()==""){
+			            $(name).next('label').addClass('warning');
 			            setTimeout(function(){
 			                $('label').removeClass('warning')
 			            },1500)

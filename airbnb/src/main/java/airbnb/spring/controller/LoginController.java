@@ -1,6 +1,7 @@
 package airbnb.spring.controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Random;
 import java.util.UUID;
@@ -23,6 +24,7 @@ import org.springframework.social.oauth2.OAuth2Parameters;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -46,19 +48,36 @@ public class LoginController {
 	@Autowired
 	MailSender sender;
 	
-	@Inject
+	@Autowired
 	private SNS naverSns;
 	
-	@Inject
+	@Autowired
 	private SNS googleSns;
 	
-	@Inject
+	@Autowired
 	private GoogleConnectionFactory googleConnectionFactory;
 	
-	@Inject
+	@Autowired
 	private OAuth2Parameters googleOAuth2Parameters;
 	
-	@RequestMapping(value = "/auth/google/callback",
+	@GetMapping("/login")
+	public void slogin() {
+		
+	}
+	@GetMapping("/login/callback")
+	public String scallback() {
+		
+		return "tiles/index.tiles";
+	}
+	/*
+	 * @GetMapping("/login/callback2") public void scallback2() {
+	 * 
+	 * }
+	 */
+	
+	
+	
+	@RequestMapping(value = "/login/callback2",
 					method = {RequestMethod.GET, RequestMethod.POST})
 	public String snsLoginCallback(Model model, @RequestParam String code) throws Exception {
 		//1. code를 이용하여 access_token받기
@@ -69,7 +88,7 @@ public class LoginController {
 		String profile = snslogin.getUserProfile(code);
 				
 		
-		return "loginResult";
+		return "/login/callback2";
 	}
 	
 	//로그인
@@ -200,44 +219,50 @@ public class LoginController {
 	@PostMapping("CheckMail") // AJAX와 URL을 매핑시켜줌 
 	@ResponseBody  //AJAX후 값을 리턴하기위해 작성
 		public Map<String, Object> SendMail2(String mail, HttpSession session) {
-			//가입된 메일이있으면 null보내줌
 			Map<String, Object> map = new HashMap<>();
-			Random random=new Random();  //난수 생성을 위한 랜덤 클래스
-			String key="";  //인증번호 
+			//가입된 메일이있으면 null보내줌
+			User user = service.checkemail(mail);
+			System.out.println("\n\n\n\n\n\n\n\n"+user);
+			if(user==null) {
+				Random random=new Random();  //난수 생성을 위한 랜덤 클래스
+				String key="";  //인증번호 
 
-			SimpleMailMessage msg = new SimpleMailMessage();
-			//입력 키를 위한 코드
-			for(int i =0; i<3;i++) {
-				int index=random.nextInt(25)+65; //A~Z까지 랜덤 알파벳 생성
-				key+=(char)index;
-			}
-			int numIndex=random.nextInt(9999)+1000; //4자리 랜덤 정수를 생성
-			key+=numIndex;
-			msg.setTo(mail); //보내는 경로
-			msg.setSubject("인증번호 입력을 위한 메일 전송");
-			msg.setText("인증 번호 : "+key);
-			msg.setFrom("leehjcap4@gmail.com");
-			sender.send(msg);
-			map.put("key", key);
+				SimpleMailMessage msg = new SimpleMailMessage();
+				//입력 키를 위한 코드
+				for(int i =0; i<3;i++) {
+					int index=random.nextInt(25)+65; //A~Z까지 랜덤 알파벳 생성
+					key+=(char)index;
+				}
+				int numIndex=random.nextInt(9999)+1000; //4자리 랜덤 정수를 생성
+				key+=numIndex;
+				msg.setTo(mail); //보내는 경로
+				msg.setSubject("인증번호 입력을 위한 메일 전송");
+				msg.setText("인증 번호 : "+key);
+				msg.setFrom("leehjcap4@gmail.com");
+				sender.send(msg);
+				map.put("key", key);
+				return map;
+			}else {
+			map.put("key", "return");
 			return map;
+			}
 		}
 	
+	//회원가입//
 	@GetMapping("/login/register")
 	public void register() {
 		
 	}
-	@GetMapping("/login/register2")
-	public void register2() {
-		
-	}
+	//회원가입처리//
 	@PostMapping("/login/registerMember")
 	public String registerMember(User user) {
+		System.out.println(user);
 		//회원가입
 		//회원가입 처리
 		try {
 			int res = service.insertUser(user);
 			if(res>0) {
-				return "forward:/login/loginProcess";
+				return "forward:/login/loginProcess"; //회원가입즉시 로그인
 			}else {
 				return "/error";
 			}
@@ -247,7 +272,18 @@ public class LoginController {
 			return "/error";
 		}
 	}
-	
+	//회원가입시 아이디중복확인
+	@GetMapping("/checkId/{id}")
+	@ResponseBody
+	public boolean checkId(@PathVariable("id") String id) {
+		User user = service.checkId(id);
+		if(user != null) {
+			return false;
+		}
+		else {
+			return true;
+		}
+	}
 
 	//유저정보 페이지
 	
