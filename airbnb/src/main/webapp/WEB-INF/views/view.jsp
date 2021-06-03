@@ -148,7 +148,7 @@
 	</div> -->
 
 	<!-- 댓글 붙여넣을 자리 -->
-	<div class="review"></div>
+	<jsp:include page="comment.jsp"/>
 	<div id="map"></div>
 	<div id="detail"></div>
 	<c:out value=""></c:out>
@@ -184,6 +184,9 @@ function initMap() {
     			placeId: results[0].place_id,
     			fields: ['name','photos','geometry','rating','reviews','adr_address','business_status','types','website','international_phone_number','reviews']
     		}
+    		
+    		console.log(results[0].place_id);
+    		
     		service.getDetails(request,function(detail_results, status){
     			let temp = '';
     		 	if (status === google.maps.places.PlacesServiceStatus.OK) {
@@ -227,7 +230,7 @@ function initMap() {
 						$('#title').html(title);
 						
 						// 이미지 바꾸기
-						for (let i = 0; i < detail_results.photos.length; i++) {
+						for (let i = 0; i < 3; i++) {
 			    			let temp = '';
 							temp += '<img class="img" aria-hidden="true" alt="" id="FMP-target" src=';
 							temp += detail_results.photos[i].getUrl();
