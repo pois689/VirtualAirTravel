@@ -50,15 +50,11 @@ html, body {
 	width: 840px;
 	flex-direction: column;
 }
-.header__search{
-	flex-grow: 1;
-	height: 250px !important;
-}
+
 ul {
 	list-style-type: none;
 	padding: 0;
 	margin: 0;
-	width: 100%;
 	overflow-y: scroll;
 	flex-grow: 1;
 }
@@ -71,39 +67,15 @@ li {
 	overflow: hidden;
 	font-size: 1.25rem;
 	cursor: pointer;
-	width: 100%;
-	display: flex;
-	flex-direction: row;
 }
 
 li:nth-child(odd) {
 	background-color: #fcfcfc;
 }
-.img{
-	border-radius: 20px;
-	position:relative; 
-	height : 100%;
-	width: 300px;
-}  
 
-.img img{
-	position:absolute; 
-	top:50%; 
-	margin-top:15px; 
-	width: 300px;
-	height:200px;
-	border-radius: 20px;
-} 
-
-.content{
-	margin: 16px;
-	height: 200px;
+li>img{
+	width: 
 }
-
-hr{
-	width: 32px;
-}
-
 
 button {
 	width: 100%;
@@ -136,20 +108,7 @@ button:disabled {
 	    	var category = this.value;
 	    	document.getElementById("category").value = category;
 	    });
-	    $(window).scroll(function(){   //스크롤이 최하단 으로 내려가면 리스트를 조회하고 page를 증가시킨다.
-			 var scrolltop = $(document).scrollTop();
-		        console.log(scrolltop);
-		        var height = $(document).height();
-		        console.log(height);
-		        var height_win = $(window).height();
-		        console.log(height_win);
-			if($(window).scrollTop() >= $(document).height() - $(window).height()){
-		    	if (getNextPage) {
-					getNextPage();
-				}//if exists?
-		    } 
-			
-		});
+	
 	});
 
     let travel = ['aquarium','museum','zoo','campground'];//여행지
@@ -234,6 +193,7 @@ button:disabled {
 	        // For each place, get the icon, name and location.
 	        const bounds = new google.maps.LatLngBounds();
 	        places.forEach((place) => {
+	        	console.log(place);
 	           	if (!place.geometry || !place.geometry.location) {
 					console.log("없다");
 	             	return;
@@ -246,6 +206,7 @@ button:disabled {
 	             	scaledSize: new google.maps.Size(25, 25),
 				};
 	           	// Create a marker for each place.
+	           	console.log(place);
 	           	center = place.geometry.location;
 	           	markers.push(
 					new google.maps.Marker({
@@ -262,7 +223,6 @@ button:disabled {
 	           	} else {
 					bounds.extend(place.geometry.location);
 				}
-	           	nearbySearch(map, service,place.geometry.location, restaurant);
 			});
 	    map.fitBounds(bounds);
 		});//searchbox -> place changed
@@ -293,7 +253,7 @@ button:disabled {
 	function nearbySearch(map, service, location, type){
 		let getNextPage;
 		const moreButton = document.getElementById("more");
-		
+
 		moreButton.onclick = function () {
 			moreButton.disabled = true;
 
@@ -303,15 +263,9 @@ button:disabled {
 		};
 		// Perform a nearby search.
 		service.nearbySearch( { location: location, radius: 1000, type: type }, (results, status, pagination) => {
-			let places=[];
-			addPlaces(results, map);
-			for(let i=0; i<results.length; i++){
-				console.log(getDetail(service, results[i].place_id));
-				/* places.push(getDetail(service, results[i].place_id)); */
-			}
-			console.log(results[0].place_id);
 			if (status !== "OK" || !results) {return;}
 			
+			addPlaces(results, map);
 			moreButton.disabled = (!pagination || !pagination.hasNextPage);
 			
 		    if (pagination && pagination.hasNextPage) {
@@ -338,7 +292,6 @@ button:disabled {
 
 	//add place
 	function addPlaces(places, map) {
-    	console.log(places[0]);
 		for (let place of places) {
 			if (place.geometry && place.geometry.location) {
 				const image = {
@@ -354,45 +307,12 @@ button:disabled {
 		            title: place.name,
 		            position: place.geometry.location,
 				});
-				const HR = document.createElement('hr');
-				const BR = document.createElement('br');
-				let span = document.createElement('span');
-				
-				//img
 				let img = document.createElement('img');
 				img.setAttribute("src",place.photos[0].getUrl());
 				
-				//본문 div
-				 ///img
-				let img_div = document.createElement('div');
-				img_div.setAttribute("class",'img');
-				img_div.append(img);
-				
-				 ///content
-				let content_div = document.createElement('div');
-				content_div.setAttribute("class",'content');
-				
-				content_div.append(place.name);//이름
-				content_div.append(HR);//hr
-				if(place.rating != null){
-					content_div.append(place.rating);//rating
-					content_div.append(BR);//hr
-				}
-				console.log(place.opening_hours);
-				if(place.opening_hours != null){
-					content_div.append(place.opening_hours.toString());
-				}
-				
-				for(let i=0; i<place.types.length; i++){
-					let p = document.createElement('p');
-					p.append(place.types[i]);//
-					content_div.append(p);//
-				};
 				let li = document.createElement('li');
-				li.append(img_div);
-				li.append(content_div);
-				
-				
+				li.append(img);
+				li.append(place.name);
 				let placesList = document.getElementById("places");
 				placesList.append(li);
 				
@@ -403,22 +323,6 @@ button:disabled {
 			}
 		}
 	}//add place after click to button
-	
-	//get detail
-	function getDetail(service, placeId){
-		
-		const request = {	
-			placeId: placeId,
-			fields: ['ALL'],
-		};
-		service.getDetails(request, (place, status) => {
-			if (status === google.maps.places.PlacesServiceStatus.OK &&place &&place.geometry &&place.geometry.location) {
-				return place;
-			} else {
-				return null;
-			}
-		});
-	}
 </script>
 </head>
 <body>
@@ -447,7 +351,6 @@ button:disabled {
 			<input id="search__button" class="controls" type="text" placeholder="Search Box"/>
 			<span class="search__span"></span>
 		</div>
-		
 		<ul id="places"></ul>
 		<button id="more">Load more results</button>
 	</div>

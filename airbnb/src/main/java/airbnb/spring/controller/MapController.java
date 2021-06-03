@@ -10,7 +10,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class MapController {
 	//html desu
 	@GetMapping("/map")
-	public void test1(@Nullable @RequestParam String search_category, @Nullable @RequestParam String search_name, Model model) {
+	public String test1(@Nullable @RequestParam String search_category, @Nullable @RequestParam String search_name, Model model) {
+		model.addAttribute("category",search_category);
+		model.addAttribute("name",search_name);
+		return "tiles/map.tiless";
+	}
+	@GetMapping("/map2")
+	public void test4(@Nullable @RequestParam String search_category, @Nullable @RequestParam String search_name, Model model) {
 		model.addAttribute("category",search_category);
 		model.addAttribute("name",search_name);
 	}
