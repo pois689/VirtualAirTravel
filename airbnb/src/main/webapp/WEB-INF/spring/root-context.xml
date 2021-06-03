@@ -33,10 +33,11 @@
 	
 	<context:component-scan base-package="airbnb.spring.service"></context:component-scan>
 	
-	<bean class="org.springframework.jdbc.datasource.DataSourceTransactionManager" id="transactionManager">
+<!-- 트랜잭션	<bean class="org.springframework.jdbc.datasource.DataSourceTransactionManager" id="transactionManager">
 		<property name="dataSource" ref="dataSource"/>
-	</bean>
+	</bean> -->
 	
 	<!-- 메일 프로퍼티 설정 -->
-	<util:properties id="mailconfig" location="classpath:mailconfig.properties"></util:properties>
+	<util:properties id="prop" location="classpath:config.properties"></util:properties>
+	
 </beans>

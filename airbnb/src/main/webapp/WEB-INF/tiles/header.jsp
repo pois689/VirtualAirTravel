@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,9 +26,11 @@
 	    	var search_category = this.value;
 	    	document.getElementById("search_category").value = search_category;
 	    });
+	    
 	
 	});
 </script>
+${sessionScope.user }
     <header>
     	<nav class=" bg-white w-full flex relative justify-between items-center mx-auto px-8 h-20">
 		    <!-- logo -->
@@ -139,11 +142,23 @@
 		                        </svg>
 		                    </div>
 		                </button>
+
 		                <!-- 로그인 메뉴 -->
-		                <ul class="dropdown-menu" aria-labelledby="dropdownRoginButton" style="border-radius: 1.5rem; text-align: center; min-width: 12rem;">
-						    <li><a class="dropdown-item" href="#">회원 가입</a></li>
-						    <li><a class="dropdown-item" href="#">로그인</a></li>
-						    <li><a class="dropdown-item" href="#">마이페이지</a></li>
+		                <ul class="dropdown-menu" aria-labelledby="dropdownRoginButton" style="border-radius: 2.5rem; text-align: center; min-width: 12rem;">
+		                <!--로그인한 사용자인 경우 로그아웃 처리 로그인전 이면 로그인 처리-->
+	                        <c:choose>
+	                        	<c:when test="${sessionScope.user.id != null }">
+	        		                <li><a class="dropdown-item" href="/login/logout">로그아웃</a></li>
+	        		                <li><a class="dropdown-item" href="/login/member_edit">마이페이지</a></li>
+	                        	</c:when>
+	                        	<c:otherwise>
+	                        		<li><a class="dropdown-item" href="/login/register">회원 가입</a></li>
+			                        <li><a class="dropdown-item" href="/login/login">로그인</a></li>
+	                        	</c:otherwise>
+	                        </c:choose>
+<!-- 						    <li><a class="dropdown-item" href="/login/register">회원 가입</a></li>
+						    <li><a class="dropdown-item" href="/login/login">로그인</a></li>
+						    <li><a class="dropdown-item" href="/login/member_edit">마이페이지</a></li> -->
 						</ul>
 		            </div>
 		        </div>
