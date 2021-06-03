@@ -17,8 +17,8 @@
 	<bean id="config" class="com.zaxxer.hikari.HikariConfig">
 		<property name="driverClassName" value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy"></property>
 		<property name="jdbcUrl" value="jdbc:log4jdbc:oracle:thin:@localhost:1521:XE"></property>
-		<property name="username" value="jweb"></property>
-		<property name="password" value="4321"></property>
+		<property name="username" value="VirtualAirTravel"></property>
+		<property name="password" value="1234"></property>
 	</bean>
 
 	 <bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource" destroy-method="close">
@@ -33,10 +33,11 @@
 	
 	<context:component-scan base-package="airbnb.spring.service"></context:component-scan>
 	
-	<bean class="org.springframework.jdbc.datasource.DataSourceTransactionManager" id="transactionManager">
+<!-- 트랜잭션	<bean class="org.springframework.jdbc.datasource.DataSourceTransactionManager" id="transactionManager">
 		<property name="dataSource" ref="dataSource"/>
-	</bean>
+	</bean> -->
 	
 	<!-- 메일 프로퍼티 설정 -->
-	<util:properties id="mailconfig" location="classpath:mailconfig.properties"></util:properties>
+	<util:properties id="prop" location="classpath:config.properties"></util:properties>
+	
 </beans>
