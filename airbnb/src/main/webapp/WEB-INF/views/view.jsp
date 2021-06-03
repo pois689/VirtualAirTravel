@@ -169,7 +169,14 @@
 						</div>
 					</div>
 				</div>
-			</div>
+				
+				<!-- 여기에 리플 붙이기 -->
+				<input type="text" value="" name="place_id" id="place_id"><br>
+				<input type="text" id="rno"><br>
+				
+				
+				
+		</div>
 		</section>
 		
 		<hr>
@@ -179,13 +186,13 @@
 			<div id="map" class="map"></div>
 		</div>
 	</main>
-
 </body>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script async
 	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD9Ipehrpor4GUgqPUAUI7sXldNenx5suo&region=JP&language=ko&libraries=places&callback=initMap">
 </script>
+<script type="text/javascript" src="/resources/css/reply/reply.js"></script>
 <script>
 let map;
 let service;
@@ -214,6 +221,11 @@ function initMap() {
     		}
     		
     		console.log(results[0].place_id);
+			
+    		let value_place =''
+    		value_place += results[0].place_id;
+    		
+    		$('#place_id').val(value_place);
     		
     		service.getDetails(request,function(detail_results, status){
     			let temp = '';
@@ -249,7 +261,7 @@ function initMap() {
 	    				// 주소 바꾸기.
 	    				let adr='';
 	    				adr += detail_results.adr_address;
-	    				$('#adr').html(adr);
+	    				$('.title_information_first_address').html(adr);
 	    				
 	    				// 제목 바꾸기.
 	    				let title='';
@@ -258,7 +270,7 @@ function initMap() {
 
 						title += detail_results.name;
 						title += '</h1>';
-						$('#title').html(title);
+						$('.section_main_title').html(title);
 						
 						let temp = '';
 						
@@ -286,22 +298,26 @@ function initMap() {
 
 						// 장소의 공식 홈페이지 가 있을경우 홈페이지 주소 불러오기
 						let web = '';
-						web += '<a href=';
-						web += detail_results.website;
-						web += ' target="_blank">';
-						web += detail_results.name;
-						web += '</a>';
-						$('.homepage').html(web);
+						if(detail_results.website !=null){
+							web += '<a href=';
+							web += detail_results.website;
+							web += ' target="_blank">';
+							web += detail_results.name;
+							web += '</a>';
+							$('#adr').html(web);
+						}else{
+							$('#adr').html('홈페이지가 존재하지 않습니다.');
+						}
 						
 						// 검색한 장소의 유형 (갤러리, 관광장소 등등)
 						for(let i = 0; i<3; i++){
 							let type = '';
 							type += detail_results.types[i];
-							type += '<br>';
+							type += '&nbsp;&nbsp;';
 							if(i == 0)
-								$('.detail').html(type);
+								$('.section_detail').html(type);
 							else
-								$('.detail').after(type);
+								$('.section_detail').after(type);
 						}
 						
 						// 국제 전화번호
@@ -309,11 +325,11 @@ function initMap() {
 						phone += '<p>국제 전화번호 : ';
 						phone += detail_results.international_phone_number;
 						phone += '</p>'
-						$('.homepage').after(phone);
+						$('.section_detail').after(phone);
 						
 						
 						// 리뷰 가져오기 만들어야함.
-						for(let i = 0; i < 5; i++){
+						/* for(let i = 0; i < 5; i++){
 							console.log(detail_results.reviews[0].rating);
 							let rev = '';	//review
 							let star = '';	//star
@@ -332,7 +348,7 @@ function initMap() {
 								$('.review').html(rev);
 							else
 								$('.review').after(rev);
-						}
+						} */
 
 						
     			}else {
@@ -345,9 +361,11 @@ function initMap() {
     	    });
       
 		}
-	});
-
-  	
+	});	
 }
+
+$(document).ready(function(){
+	console.log(replyService);
+});
 </script>
 </html>
