@@ -185,7 +185,15 @@ select {
 .btn_area {
     margin: 30px 0 91px;
 }
-
+#btnJoin2 {
+    margin: 10px 0 46px;
+    width: 100%;
+    padding: 10px 0 15px;
+    border: 0;
+    cursor: pointer;
+    color: #fff;
+    background-color: #8080ff;
+}
 #btnJoin {
     width: 100%;
     padding: 21px 0 17px;

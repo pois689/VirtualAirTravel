@@ -24,4 +24,8 @@ public interface LoginMapper { //crud create,read,delete,update
 	public User searchPwd(User user);
 	public int updatePwd(User user);
 	public User get(String id);
+	
+	public User snslogin(User user);
+	public int snsinsertUser(User user);
+
 }

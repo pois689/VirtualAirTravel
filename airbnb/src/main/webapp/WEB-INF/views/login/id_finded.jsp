@@ -13,9 +13,9 @@
 </head>
 <body>
 	<section class="login-form">
-		<a href="/index"><h1>찾기 결과</h1></a>
+		<a href="/index"><h1>${ res }</h1></a>
             <div class="btn-area">
-                <button id="btn" onclick="location.href='/login/login'" type="button">${ res }</button>
+                <button id="btn" onclick="location.href='/login/login'" type="button">로그인창으로</button>
             </div>
         <div class="caption">
             <p><a href="id_find" id="f1">Forgot ID?&nbsp;</a>

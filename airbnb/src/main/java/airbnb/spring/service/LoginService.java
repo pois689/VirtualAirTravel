@@ -1,6 +1,5 @@
 package airbnb.spring.service;
 
-import java.util.List;
 
 import airbnb.spring.dto.User;
 
@@ -22,4 +21,7 @@ public interface LoginService {
 	public int updatePwd(User user);
 
 	public User get(String id);
+
+	public User snslogin(User user);
+
 }

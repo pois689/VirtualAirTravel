@@ -62,4 +62,8 @@
 		select * from TBL_USER where id=#{id}
 	</select>
 	
+	<select id="snslogin" resultType="airbnb.spring.dto.User">
+		select * from TBL_USER where email=#{email}
+	</select>
+	
 </mapper>

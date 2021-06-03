@@ -1,19 +1,17 @@
 package airbnb.spring.controller;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Random;
 import java.util.UUID;
 
-import javax.inject.Inject;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
 import org.springframework.mail.MailSender;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -32,6 +30,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.util.WebUtils;
+
 
 import airbnb.spring.auth.SNS;
 import airbnb.spring.auth.SNSLogin;
@@ -77,19 +76,93 @@ public class LoginController {
 	
 	
 	
-	@RequestMapping(value = "/login/callback2",
-					method = {RequestMethod.GET, RequestMethod.POST})
-	public String snsLoginCallback(Model model, @RequestParam String code) throws Exception {
-		//1. code를 이용하여 access_token받기
-		//2. access_token을 이용하여 사용자 프로필가져오기
-		//3. db에 해당유저가 존재하는지 체크
-		//4. 존재시 강제로그인 ,미존재시 가입페이지로
-		SNSLogin snslogin = new SNSLogin(googleSns);
-		String profile = snslogin.getUserProfile(code);
-				
+//	@RequestMapping(value = "/login/callback2",
+//					method = {RequestMethod.GET, RequestMethod.POST})
+//	public String snsLoginCallback(Model model, @RequestParam String code) throws Exception {
+//		//1. code를 이용하여 access_token받기
+//		//2. access_token을 이용하여 사용자 프로필가져오기
+//		SNSLogin snslogin = new SNSLogin(googleSns);
+//		String profile = snslogin.getUserProfile(code);
+//		//System.out.println(profile);
+//		//model.addAttribute("result", profile);
+//		//3. db에 해당유저가 존재하는지 체크
+//		//4. 존재시 강제로그인 ,미존재시 가입페이지로
+//		return "/login/callback2";
+//	}
+	@RequestMapping(value = "/{snsService}/callback2",
+			method = {RequestMethod.GET, RequestMethod.POST})
+	public String snsLoginCallback(@PathVariable String snsService,
+				Model model, @RequestParam String code,HttpSession session) throws Exception {
+		SNS sns = null;
+		if (StringUtils.equals("naver", snsService))
+			sns = naverSns;
+		else
+			sns = googleSns;
 		
-		return "/login/callback2";
+		SNSLogin snsLogin = new SNSLogin(sns);
+		User snsUser = snsLogin.getUserProfile(code);// 1,2번 동시
+		System.out.println("\n\n\n\n\n\n\n\n"+snsUser);
+		User user = service.snslogin(snsUser);
+		System.out.println(user);
+		if (user == null) {
+			model.addAttribute("msg", "추가 정보를 입력해주세요.");
+			model.addAttribute("email", snsUser.getEmail());
+			if(snsUser.getName()!=null) {
+				model.addAttribute("name", snsUser.getName());
+			}
+			if(snsUser.getTel()!=null){
+				model.addAttribute("tel", snsUser.getTel());
+			}
+			//미존재시 가입페이지로!!
+			return "/login/snsregister";
+		} else {
+			model.addAttribute("result", user.getName() + "님 반갑습니다.");
+			
+			// 4. 존재시 강제로그인
+			session.setAttribute("user", user);
+			return "tiles/index.tiles";
+		}
+		
 	}
+	
+	//네이버 소셜 로그인 콜백가면 회원이 있으면 index페이지로 , 없으면 회원가입페이지로
+//	@RequestMapping(value = "/login/callback2",
+//			method = {RequestMethod.GET, RequestMethod.POST})
+//	public void snsLoginCallback(Model model) throws Exception {
+//		
+//	}
+	
+	//네이버 소셜 로그인
+//	@RequestMapping(value = "/login/snsloginProcess",
+//			method = {RequestMethod.GET, RequestMethod.POST})
+//	@ResponseBody  //AJAX후 값을 리턴하기위해 작성
+//	public Map<String, Object> snsloginProcess(User vo, Model model, HttpServletRequest request) throws Exception {
+//		System.out.println("\n\n\n\n\n\n\n\n\n"+vo);
+//		User user = service.snslogin(vo.getEmail());
+//		
+//		Map<String, Object> map = new HashMap<String, Object>();
+//		if(user != null) {
+//			// user 객체를 세션에 담아줌 - 로그인 처리
+//			HttpSession session = request.getSession();
+//			session.setAttribute("user", user);
+//			System.out.println("\n\n\n\n\n\n\n"+user);
+//			map.put("result", "success");
+//			return map;
+//		}else {
+//			map.put("result", "fail");
+//			return map;
+//
+//		}
+//	}
+	
+	
+	//회원가입처리//
+	//네이버 소셜 회원가입
+	@GetMapping("/login/snsregister")
+	public void snsregister() {
+
+	}
+	
 	
 	//로그인
 	@GetMapping("/login/login")

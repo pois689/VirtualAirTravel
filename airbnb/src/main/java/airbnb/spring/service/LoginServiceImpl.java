@@ -106,6 +106,13 @@ public class LoginServiceImpl implements LoginService{
 		return mapper.get(id);
 	}
 
+	@Override
+	public User snslogin(User user) {
+		return mapper.snslogin(user);
+	}
+
+
+
 
 
 
