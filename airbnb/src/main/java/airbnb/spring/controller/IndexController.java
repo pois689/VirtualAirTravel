@@ -15,4 +15,10 @@ public class IndexController {
 	public void test() {
 		
 	}
+	
+	@GetMapping("/hostform")
+	public void hostform() {
+		
+	}
+	
 }

@@ -37,169 +37,171 @@
             </div>
         </section>
 
+		<section>
+            <div class="hostbox">
+            	<a class="hostbox-a">
+		            <div class="hostbox-context">
+		            	<span class="hostbox-context-title">새로운 여행에 도전하는 당신..</span>
+		            	<span class="hostbox-context-content">구체적인 여행 계획을 세워보세요.</span>
+		            	<div class="hostbox-context-divbox">
+		            	<button class="hostbox-context-button">자세히 알아보기</button>
+		            	</div>
+		            </div>
+	            </a>
+            </div>
+        </section>
+        
         <!-- 여기부터 슬라이드 쇼 -->
         <section>
 	        <ul class="slides">
 			    <input type="radio" name="radio-btn" id="img-1" checked />
 			    <li class="slide-container">
-			    	<a href="https://www.japan.travel/ko/guide/january/">
 				    	<div class="slide">
 				      		<img src="/resources/images/test2.jpg" />
 				        	<span class="slide-text">1월의 행사</span>
 				        </div>
 					    <div class="nav">
 					      <label for="img-12" class="prev">&#x2039;</label>
+					      <label class="slide-link" style="width: 60%;" onclick="window.open('https://www.japan.travel/ko/guide/january/','window_name','width=1200,height=800,location=no,status=no,scrollbars=yes');"></label>
 					      <label for="img-2" class="next">&#x203a;</label>
 					    </div>
-				    </a>
 			    </li>
 			
 			    <input type="radio" name="radio-btn" id="img-2" />
 			    <li class="slide-container">
-			    	<a href="https://www.japan.travel/ko/guide/february/">
 				        <div class="slide">
 				          <img src="/resources/images/Festival2.jpg" />
 				          <span class="slide-text">2월의 행사</span>
 				        </div>
 					    <div class="nav">
 					      <label for="img-1" class="prev">&#x2039;</label>
+					      <label class="slide-link" style="width: 60%;" onclick="window.open('https://www.japan.travel/ko/guide/february/','window_name','width=1200,height=800,location=no,status=no,scrollbars=yes');"></label>
 					      <label for="img-3" class="next">&#x203a;</label>
 					    </div>
-				    </a>
 			    </li>
 			
 			    <input type="radio" name="radio-btn" id="img-3" />
 			    <li class="slide-container">
-			    	<a href="https://www.japan.travel/ko/guide/march/">
 				        <div class="slide">
 				          <img src="/resources/images/Festival3.jpg" />
 				          <span class="slide-text">3월의 행사</span>
 				        </div>
 					    <div class="nav">
 					      <label for="img-2" class="prev">&#x2039;</label>
+					      <label class="slide-link" style="width: 60%;" onclick="window.open('https://www.japan.travel/ko/guide/march/','window_name','width=1200,height=800,location=no,status=no,scrollbars=yes');"></label>
 					      <label for="img-4" class="next">&#x203a;</label>
 					    </div>
-			    	</a>
 			    </li>
 			
 			    <input type="radio" name="radio-btn" id="img-4" />
 			    <li class="slide-container">
-			    	<a href="https://www.japan.travel/ko/guide/april/">
 				        <div class="slide">
 				          <img src="/resources/images/Festival4.jpg" />
 				          <span class="slide-text">4월의 행사</span>
 				        </div>
 					    <div class="nav">
 					      <label for="img-3" class="prev">&#x2039;</label>
+					      <label class="slide-link" style="width: 60%;" onclick="window.open('https://www.japan.travel/ko/guide/april/','window_name','width=1200,height=800,location=no,status=no,scrollbars=yes');"></label>
 					      <label for="img-5" class="next">&#x203a;</label>
 					    </div>
-				    </a>
 			    </li>
 			
 			    <input type="radio" name="radio-btn" id="img-5" />
 			    <li class="slide-container">
-			    	<a href="https://www.japan.travel/ko/guide/may/">
 				        <div class="slide">
 				          <img src="/resources/images/Festival5.jpg" />
 				          <span class="slide-text">5월의 행사</span>
 				        </div>
 					    <div class="nav">
 					      <label for="img-4" class="prev">&#x2039;</label>
+					      <label class="slide-link" style="width: 60%;" onclick="window.open('https://www.japan.travel/ko/guide/may/','window_name','width=1200,height=800,location=no,status=no,scrollbars=yes');"></label>
 					      <label for="img-6" class="next">&#x203a;</label>
 					    </div>
-				    </a>
 			    </li>
 			
 			    <input type="radio" name="radio-btn" id="img-6" />
 			    <li class="slide-container">
-			    	<a href="https://www.japan.travel/ko/guide/june/">
 				        <div class="slide">
 				          <img src="/resources/images/Festival6.jpg" />
 				          <span class="slide-text">6월의 행사</span>
 				        </div>
 					    <div class="nav">
 					      <label for="img-5" class="prev">&#x2039;</label>
+					      <label class="slide-link" style="width: 60%;" onclick="window.open('https://www.japan.travel/ko/guide/june/','window_name','width=1200,height=800,location=no,status=no,scrollbars=yes');"></label>
 					      <label for="img-7" class="next">&#x203a;</label>
 					    </div>
-			    	</a>
 			    </li>
 			    <input type="radio" name="radio-btn" id="img-7" />
 			    <li class="slide-container">
-					    <a href="https://www.japan.travel/ko/guide/july/">
 					        <div class="slide">
 					          <img src="/resources/images/Festival7.jpg" />
 					          <span class="slide-text">7월의 행사</span>
 					        </div>
 					    <div class="nav">
 					      <label for="img-6" class="prev">&#x2039;</label>
+					      <label class="slide-link" style="width: 60%;" onclick="window.open('https://www.japan.travel/ko/guide/july/','window_name','width=1200,height=800,location=no,status=no,scrollbars=yes');"></label>
 					      <label for="img-8" class="next">&#x203a;</label>
 					    </div>
-				    </a>
 			    </li>
 			    <input type="radio" name="radio-btn" id="img-8" />
 			    <li class="slide-container">
-				    <a href="https://www.japan.travel/ko/guide/august/">
 				        <div class="slide">
 				          <img src="/resources/images/Festival8.jpg" />
 				          <span class="slide-text">8월의 행사</span>
 				        </div>
 					    <div class="nav">
 					      <label for="img-7" class="prev">&#x2039;</label>
+					      <label class="slide-link" style="width: 60%;" onclick="window.open('https://www.japan.travel/ko/guide/august/','window_name','width=1200,height=800,location=no,status=no,scrollbars=yes');"></label>
 					      <label for="img-9" class="next">&#x203a;</label>
 					    </div>
-				    </a>
 			    </li>
 			    <input type="radio" name="radio-btn" id="img-9" />
 			    <li class="slide-container">
-				    <a href="https://www.japan.travel/ko/guide/september/">
 				        <div class="slide">
 				          <img src="/resources/images/sity1.jpg" />
 				          <span class="slide-text">9월의 행사</span>
 				        </div>
 					    <div class="nav">
 					      <label for="img-8" class="prev">&#x2039;</label>
+					      <label class="slide-link" style="width: 60%;" onclick="window.open('https://www.japan.travel/ko/guide/september/','window_name','width=1200,height=800,location=no,status=no,scrollbars=yes');"></label>
 					      <label for="img-10" class="next">&#x203a;</label>
 					    </div>
-			    	</a>
 			    </li>
 			    <input type="radio" name="radio-btn" id="img-10" />
 			    <li class="slide-container">
-				    <a href="https://www.japan.travel/ko/guide/october/">
 				        <div class="slide">
 				          <img src="/resources/images/sity2.jpg" />
 				          <span class="slide-text">10월의 행사</span>
 				        </div>
 					    <div class="nav">
 					      <label for="img-9" class="prev">&#x2039;</label>
+					      <label class="slide-link" style="width: 60%;" onclick="window.open('https://www.japan.travel/ko/guide/october/','window_name','width=1200,height=800,location=no,status=no,scrollbars=yes');"></label>
 					      <label for="img-11" class="next">&#x203a;</label>
 					    </div>
-				    </a>
 			    </li>
 			    <input type="radio" name="radio-btn" id="img-11" />
 			    <li class="slide-container">
-					<a href="https://www.japan.travel/ko/guide/november/">
 					        <div class="slide">
 					          <img src="/resources/images/sity3.jpg" />
 					          <span class="slide-text">11월의 행사</span>
 					        </div>
 					    <div class="nav">
 					      <label for="img-10" class="prev">&#x2039;</label>
+					      <label class="slide-link" style="width: 60%;" onclick="window.open('https://www.japan.travel/ko/guide/november/','window_name','width=1200,height=800,location=no,status=no,scrollbars=yes');"></label>
 					      <label for="img-12" class="next">&#x203a;</label>
 					    </div>
-				    </a>
 			    </li>
 			    <input type="radio" name="radio-btn" id="img-12" />
 			    <li class="slide-container">
-				    <a href="https://www.japan.travel/ko/guide/december/">
 				        <div class="slide">
 				          <img src="/resources/images/sity4.jpg" />
 				          <span class="slide-text">12월의 행사</span>
 				        </div>
 					    <div class="nav">
 					      <label for="img-11" class="prev">&#x2039;</label>
+					      <label class="slide-link" style="width: 60%;" onclick="window.open('https://www.japan.travel/ko/guide/december/','window_name','width=1200,height=800,location=no,status=no,scrollbars=yes');"></label>
 					      <label for="img-1" class="next">&#x203a;</label>
 					    </div>
-				    </a>
 			    </li>
 			
 			    <li class="nav-dots">
@@ -219,34 +221,9 @@
 			</ul>
 		</section>
 		<!-- 슬라이드 끝 -->
-        <section>
-            <div class="sec__title">추천 여행지</div>
-            <div class="choo__box">
-            	<div class="choo">
-	                <div class="choo_img1"></div>
-	                <div class="info2" style="text-align: center;">훗카이도</div>
-	            </div>
-	            <div class="choo">
-	                <div class="choo_img2"></div>
-	                <div class="info2" style="text-align: center;">도쿄</div>
-	            </div>
-	            <div class="choo">
-	                <div class="choo_img3"></div>
-	                <div class="info2" style="text-align: center;">간사이</div>
-	            </div>
-	            <div class="choo">
-	                <div class="choo_img4"> </div>
-	                <div class="info2" style="text-align: center;">규슈</div>
-	            </div>
-	            <div class="choo">
-	                <div class="choo_img5"></div>
-	                <div class="info2" style="text-align: center;">도호쿠</div>
-	            </div>
-	        </div>
-        </section>
 
         <section>
-            <div class="sec__title">진행중인 축제</div>
+            <div class="sec__title">유명 관광지</div>
 
             <div class="home__box">
                 <div class="home">
@@ -354,6 +331,7 @@
                 </div>
             </div>
         </section>
+        
     </main>
 </body>
 <script>
