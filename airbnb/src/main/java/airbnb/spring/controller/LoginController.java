@@ -96,30 +96,41 @@ public class LoginController {
 		else
 			sns = googleSns;
 		
-		SNSLogin snsLogin = new SNSLogin(sns);
+		SNSLogin snsLogin = new SNSLogin(sns); //sns로그인부분을 컨트롤러
+		//sns회원가입페이지 따로
 		User snsUser = snsLogin.getUserProfile(code);// 1,2번 동시
 		System.out.println("\n\n\n\n\n\n\n\n"+snsUser);
 		User user = service.snslogin(snsUser);
-		System.out.println(user);
-		if (user == null) {
-			model.addAttribute("msg", "추가 정보를 입력해주세요.");
-			model.addAttribute("email", snsUser.getEmail());
-			if(snsUser.getName()!=null) {
-				model.addAttribute("name", snsUser.getName());
-			}
-			if(snsUser.getTel()!=null){
-				model.addAttribute("tel", snsUser.getTel());
-			}
-			//미존재시 가입페이지로!!
-			return "/login/snsregister";
-		} else {
-			model.addAttribute("result", user.getName() + "님 반갑습니다.");
-			
-			// 4. 존재시 강제로그인
+		if(user != null) {
 			session.setAttribute("user", user);
-			return "tiles/index.tiles";
+		}else {
+			session.setAttribute("user", snsUser);
 		}
 		
+		
+		
+		
+//		User user = service.snslogin(snsUser);
+//		System.out.println(user);
+//		if (user == null) {
+//			model.addAttribute("msg", "추가 정보를 입력해주세요.");
+//			model.addAttribute("email", snsUser.getEmail());
+//			if(snsUser.getName()!=null) {
+//				model.addAttribute("name", snsUser.getName());
+//			}
+//			if(snsUser.getTel()!=null){
+//				model.addAttribute("tel", snsUser.getTel());
+//			}
+//			//미존재시 가입페이지로!!
+//			return "/login/snsregister";
+//		} else {
+//			model.addAttribute("result", user.getName() + "님 반갑습니다.");
+//			
+//			// 4. 존재시 강제로그인
+//			session.setAttribute("user", user);
+//			return "tiles/index.tiles";
+//		}
+		return "tiles/index.tiles";
 	}
 	
 	//네이버 소셜 로그인 콜백가면 회원이 있으면 index페이지로 , 없으면 회원가입페이지로
@@ -156,8 +167,16 @@ public class LoginController {
 	//회원가입처리//
 	//네이버 소셜 회원가입
 	@GetMapping("/login/snsregister")
-	public void snsregister() {
-
+	public void snsregister(Model model,HttpSession session,HttpServletRequest request) {
+		User user = (User) session.getAttribute("user");
+		model.addAttribute("msg", "추가 정보를 입력해주세요.");
+		model.addAttribute("email", user.getEmail());
+		if(user.getName()!=null) {
+			model.addAttribute("name", user.getName());
+		}
+		if(user.getTel()!=null){
+			model.addAttribute("tel", user.getTel());
+		}
 	}
 	
 	
