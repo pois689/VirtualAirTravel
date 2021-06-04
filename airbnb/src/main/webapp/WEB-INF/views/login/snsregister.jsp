@@ -100,7 +100,6 @@
             <div class="btn-area">
                 <button id="btn" type="submit">로그인</button>
             </div>
-
         </form>
         <div class="caption">
             <p><a href="id_find" id="f1">Forgot ID?&nbsp;</a>

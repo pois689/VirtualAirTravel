@@ -166,6 +166,9 @@ $(document).ready(
 				    let pwd1 = $('#pwd');
 				    let pwd2 = $('#pwdCheck');
 				    let btn = $('#btn');
+				    let name = $('#name');
+				    let email = $('#email');
+				    let tel = $('#tel');
 				    
 			        if($(id).val()==""){
 			            $(id).next('label').addClass('warning');

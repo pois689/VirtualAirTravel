@@ -28,4 +28,6 @@ public interface LoginMapper { //crud create,read,delete,update
 	public User snslogin(User user);
 	public int snsinsertUser(User user);
 
+	public int update(User vo);
+	
 }

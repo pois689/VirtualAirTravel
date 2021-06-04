@@ -68,6 +68,25 @@ label{
     position: relative;
 }
 
+.address{
+	display: block;
+    width: 100%;
+    height: 43px;
+    box-sizing: border-box;
+    position: relative;
+}
+
+#member_post, #member_addr{
+	width: 40%;
+	padding: 5px;
+}
+
+#detail_addr{
+	margin-top: 3px;
+	padding : 3px;
+	width: 85%;
+}
+
 .int {
     display: block;
     position: relative;

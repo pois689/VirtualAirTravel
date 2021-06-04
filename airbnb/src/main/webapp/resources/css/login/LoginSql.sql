@@ -34,3 +34,7 @@ insert into TBL_USER_ROLE (UNO, ROLE_UNO) values (SEQ_ROLE.nextval, 'ROLE_USER')
 insert into TBL_USER_ROLE (UNO, ROLE_UNO) values (1, 'ROLE_ADMIN');
 alter table TBL_USER add sessionkey varchar(50);
 alter table TBL_USER add sessionlimit date;
+
+alter table TBL_USER add jip varchar(50);
+alter table TBL_USER add address varchar(100);
+alter table TBL_USER add dtaddress varchar(100);

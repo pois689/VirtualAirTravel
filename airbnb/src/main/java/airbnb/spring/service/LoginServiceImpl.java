@@ -111,6 +111,12 @@ public class LoginServiceImpl implements LoginService{
 		return mapper.snslogin(user);
 	}
 
+	@Override
+	public int update(User vo) {
+		// TODO Auto-generated method stub
+		return mapper.update(vo);
+	}
+
 
 
 

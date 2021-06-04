@@ -66,4 +66,10 @@
 		select * from TBL_USER where email=#{email}
 	</select>
 	
+	 <update id="update">
+ 		update TBL_USER
+ 		set id=#{id}, name=#{name}, email=#{email}, jip=#{jip}, address=#{address}, dtaddress=#{dtaddress}
+ 		where uno=#{uno}
+ 	</update>
+	
 </mapper>

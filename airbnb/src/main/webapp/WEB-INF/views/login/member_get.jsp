@@ -26,7 +26,7 @@
                 
                 
                 <div id="logo">
-                    <a href="/index"><h1>개인정보 수정</h1></a>
+                    <a href="/index"><h1>마이페이지</h1></a>
                 </div>
 
                 <form action="/login/member_edit" name="regForm" method="POST">
@@ -37,6 +37,7 @@
                     </h3>
                     <span class="box int_id">
                         <input type="text" name="id" id="id" class="int" maxlength="20" value="${user.id}">
+                        <input type="button" value="수정" onclick="checkId()" class="checkid">
                         <span class="step_url"></span>
                     </span>
                     <span class="error_next_box"></span>
@@ -47,6 +48,7 @@
                     <h3 class="join_title"><label for="name">이름</label></h3>
                     <span class="box int_name">
                         <input type="text" name="name" class="int" maxlength="20" value="${user.name}">
+                        <input type="button" value="수정" onclick="checkId()" class="checkid">
                     </span>
                     <span class="error_next_box"></span>
                 </div>
@@ -56,6 +58,7 @@
                     <h3 class="join_title"><label for="email">본인확인 이메일<span class="optional">(중요)</span></label></h3>
                     <span class="box int_email">
                         <input type="text" name="email" id="email" class="int" maxlength="100" placeholder="필수입력" value="${user.email}">
+                        <input type="button" value="수정" onclick="checkId()" class="checkid">
                     </span>
                     <span class="error_next_box">이메일 주소를 다시 확인해주세요.</span>    
                 </div>
@@ -64,8 +67,9 @@
                 <div>
                     <h3 class="join_title"><label for="phoneNo">휴대전화</label></h3>
                     <span class="box int_mobile">
-                        <input type="tel" name="tel" id="mobile" class="int" maxlength="16" placeholder="전화번호 입력" value="${user.tel}">
-                        <input type="hidden" name="uno" id="uno" value="${user.uno }">
+                        <input type="tel" id="mobile" class="int" maxlength="16" placeholder="전화번호 입력" value="${user.tel}">
+                        <input type="text" name="uno" id="uno" value="${user.uno }">
+                        <input type="button" value="수정" onclick="checkId()" class="checkid">
                     </span>
                     <span class="error_next_box"></span>    
                 </div>
@@ -74,9 +78,9 @@
                 <div>
                     <h3 class="join_title"><label for="address">주소</label></h3>
                     <span class="address">
-                        <input id="member_post" name="jip" onclick="findAddr()" type="text" placeholder="우편 번호" readonly value="${user.jip }">
-                        <input id="member_addr" name="address" type="text" placeholder="주소 입력" readonly value="${user.address }">
-                        <input id="detail_addr" name="dtaddress" type="text" placeholder="상세 주소" value="${user.dtaddress }">
+                        <input id="member_post" name="jip" onclick="findAddr()" type="text" placeholder="우편 번호" readonly>
+                        <input id="member_addr" name="address" type="text" placeholder="주소 입력" readonly>
+                        <input id="detail_addr" name="dtaddress" type="text" placeholder="상세 주소">
                         <input type="button" value="입력" onclick="findAddr()" class="checkid">
                     </span>
                     <span class="error_next_box"></span>    

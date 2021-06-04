@@ -22,6 +22,33 @@
 <script type="text/javascript">
 	/* 카테고리 선택 */
 	$(document).ready( function() {
+	
+		$.ajax({
+			url : '/login/update',
+			method : 'post',
+			dataType : 'String',
+			
+			data : JSON.stringify(updateData),
+			contentType : 'application/json; charset=UTF-8',
+			
+			success : function(data, status){
+				console.log(data);
+				if(data.result == "success"){
+				}else{
+					alert("입력중 오류가 발생했습니다");
+				}
+			},
+			error : function(xhr, status, error){
+				console.log(error);
+			}
+			
+		});
+		
+		
+		
+		
+		
+		
 	    $(".dropdown-item").click(function(){
 	    	var search_category = this.value;
 	    	document.getElementById("search_category").value = search_category;

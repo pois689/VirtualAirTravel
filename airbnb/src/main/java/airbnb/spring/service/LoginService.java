@@ -24,4 +24,6 @@ public interface LoginService {
 
 	public User snslogin(User user);
 
+	public int update(User vo);
+
 }

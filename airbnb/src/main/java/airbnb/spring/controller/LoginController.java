@@ -59,6 +59,8 @@ public class LoginController {
 	@Autowired
 	private OAuth2Parameters googleOAuth2Parameters;
 	
+	
+	
 	@GetMapping("/login")
 	public void slogin() {
 		
@@ -68,11 +70,6 @@ public class LoginController {
 		
 		return "tiles/index.tiles";
 	}
-	/*
-	 * @GetMapping("/login/callback2") public void scallback2() {
-	 * 
-	 * }
-	 */
 	
 	
 	
@@ -81,7 +78,7 @@ public class LoginController {
 //	public String snsLoginCallback(Model model, @RequestParam String code) throws Exception {
 //		//1. code를 이용하여 access_token받기
 //		//2. access_token을 이용하여 사용자 프로필가져오기
-//		SNSLogin snslogin = new SNSLogin(googleSns);
+//		SNSLogin snslogin = new SNSLogin(naverSns);
 //		String profile = snslogin.getUserProfile(code);
 //		//System.out.println(profile);
 //		//model.addAttribute("result", profile);
@@ -379,29 +376,25 @@ public class LoginController {
 		return "/login/member_edit";
 	}
 	
+	/*
+	 * @GetMapping("/login/member_edit") public void edit(User vo ,Model model) {
+	 * //상세정보조회 vo = service.get(vo.getId());
+	 * 
+	 * //모델에 담아서 화면에 전달 model.addAttribute("vo", vo);
+	 * 
+	 * //리턴이없으므로 /board/get(URL)로 페이지연결
+	 * 
+	 * }
+	 */
+	
+	
 	//에딧(포스트)
 	@PostMapping("/login/member_edit")
-	public String editExe(User vo, RedirectAttributes rttr) {
-		
-//		int res = service.update(vo);
-//		String resMsg = "";
-//		55
-//		if(res>0) {
-//			resMsg = "수정되었습니다";
-//		}else {
-//			resMsg = "수정작업이 실패 했습니다. 관리자에게 문의해주세요.";
-//		}
-//		//상세화면 이동시 필요한 파라메터를 세팅
-//		rttr.addAttribute("bno", vo.getBno());//bno에파라미터값 넣기
-//		
-//		rttr.addAttribute("pageNo", cri.getPageNo());//페이지번호
-//		rttr.addAttribute("type", cri.getType());//타입(제목,내용,작성자)
-//		rttr.addAttribute("keyword", cri.getKeyword());//검색어
-//		
-//		rttr.addFlashAttribute("resMsg", resMsg);
-//		
-		return "redirect:/login/member_edit";
-		
+	public String editExe(User vo, RedirectAttributes rttr, HttpServletRequest request) {
+		int res = service.update(vo);
+		HttpSession session = request.getSession();
+		session.setAttribute("user", vo);
+		return "redirect:/index";
 	}
 	
 
