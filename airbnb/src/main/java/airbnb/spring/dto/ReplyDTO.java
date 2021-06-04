@@ -9,11 +9,10 @@ public class ReplyDTO {
 	
 	int rno;
 	String place_id;
-	
 	String content;
 	String name;
+	int star;
 	Date replyDate;
 	Date updateDate;
 	
-	int star;
 }

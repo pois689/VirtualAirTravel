@@ -44,7 +44,7 @@ public class ReplyMapperTest {
 	@Test
 	public void testDelete() {
 		int targetrno = 1;
-		mapper.delete(targetrno);
+		log.error(mapper.delete(targetrno));
 	}
 	
 	@Test
@@ -58,6 +58,7 @@ public class ReplyMapperTest {
 	
 	@Test
 	public void testCreate() {
+		
 			ReplyDTO dto = new ReplyDTO();
 			
 			dto.setPlace_id("SEOUL");

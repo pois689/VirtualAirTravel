@@ -22,12 +22,14 @@ import airbnb.spring.service.ReplyService;
 import lombok.extern.log4j.Log4j;
 
 @RestController
+@RequestMapping("/replies/")
 @Log4j
 public class ReplyController {
 
 	@Autowired
 	ReplyService service;
 	
+	//생성
 	@PostMapping(value = "/new", consumes="application/json", produces= {MediaType.TEXT_PLAIN_VALUE})
 	public ResponseEntity<String> create(@RequestBody ReplyDTO dto){
 		
@@ -50,7 +52,7 @@ public class ReplyController {
 		return new ResponseEntity<>(service.getList(cri, place_id), HttpStatus.OK);
 	}
 	
-	// 댓글 삭제
+	// 댓글 상세보기
 	@GetMapping(value="/{rno}", produces= {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_UTF8_VALUE})
 	public ResponseEntity<ReplyDTO> get(@PathVariable("rno") int rno){
 		log.info("get : "+rno);
@@ -62,8 +64,12 @@ public class ReplyController {
 	@DeleteMapping(value="/{rno}", produces= {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_UTF8_VALUE})
 	public ResponseEntity<String> remove(@PathVariable("rno") int rno){
 		log.info("remove : "+rno);
+		int temp = service.remove(rno);
 		
-		return service.remove(rno) == 1 ? new ResponseEntity<>("success", HttpStatus.OK) : new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		log.error("temp : " + temp);
+		log.error("temp_bool : "+(temp == 1));
+		//return "success";
+		return (temp == 1) ? new ResponseEntity<>("success", HttpStatus.OK) : new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 	
 	// 댓글 수정

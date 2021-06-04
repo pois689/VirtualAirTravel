@@ -50,7 +50,8 @@
 		<!-- 상세 정보 -->
 		<section>
 			<div class="section_start">
-				<span class="section_detail">쏼라쏼라 매장 정보 제공부분 가져오기(테이크아웃 or 매장내 식사가능 등)</span>
+				<span class="section_detail" id="type">쏼라쏼라 매장 정보 제공부분 가져오기(테이크아웃 or 매장내 식사가능 등)</span>
+				<span class="section_detail" id="phone">쏼라쏼라 매장 정보 제공부분 가져오기(테이크아웃 or 매장내 식사가능 등)</span>
 				<div class="section_detail_information">
 					<svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="presentation" focusable="false" style="display: block; width: 22px; fill: currentcolor;"><path d="M16 1C7.716 1 1 7.716 1 16s6.716 15 15 15 15-6.716 15-15S24.284 1 16 1zm7.895 22.954l-9.526-5.5a1.5 1.5 0 0 1-.743-1.154l-.007-.145v-11h3V16.29l8.776 5.067-1.5 2.598z"></path></svg>
 					<div class="business_status">영업 여부</div>
@@ -171,8 +172,8 @@
 				</div>
 				
 				<!-- 여기에 리플 붙이기 -->
-				<input type="text" value="" name="place_id" id="place_id"><br>
-				<input type="text" id="rno"><br>
+				<input type="hidden" name="place_id" id="place_id" value="dasdf"><br>
+				<input type="hidden" id="rno"><br>
 				
 				
 				
@@ -199,6 +200,7 @@ let service;
 let infowindow;
 let temp_place_id;
 let service_review;
+let value_place = '';
 
 function initMap() {
 	let sydney = new google.maps.LatLng(-33.867, 151.195);
@@ -207,7 +209,7 @@ function initMap() {
 	    document.getElementById('map'), {center: sydney, zoom: 15, disableDefaultUI: true});
 
 	let request = {
-		query: '<c:out value="${name}"></c:out>'||'Museum of Contemporary Art Australia',
+		query: '<c:out value="${name}"></c:out>',
     	fields: ['place_id'],
 	};
 
@@ -222,7 +224,8 @@ function initMap() {
     		
     		console.log(results[0].place_id);
 			
-    		let value_place =''
+    		//place id 넣기
+    		
     		value_place += results[0].place_id;
     		
     		$('#place_id').val(value_place);
@@ -315,17 +318,19 @@ function initMap() {
 							type += detail_results.types[i];
 							type += '&nbsp;&nbsp;';
 							if(i == 0)
-								$('.section_detail').html(type);
+								$('#type').html(type);
 							else
-								$('.section_detail').after(type);
+								$('#type').after(type);
 						}
 						
 						// 국제 전화번호
 						let phone = '';
+						//let p = document.createElement("p");
+						//p.append('국제 전화 번호 : ' + );
 						phone += '<p>국제 전화번호 : ';
 						phone += detail_results.international_phone_number;
 						phone += '</p>'
-						$('.section_detail').after(phone);
+						$('#phone').html(phone);
 						
 						
 						// 리뷰 가져오기 만들어야함.
@@ -364,8 +369,50 @@ function initMap() {
 	});	
 }
 
-$(document).ready(function(){
+/* $(document).ready(function(){
 	console.log(replyService);
-});
+}); */
+window.onload = function(){
+	console.log("=======================");
+	console.log("JS TEST");
+	
+	console.log("place_id value : ",value_place);
+	/* 리플 추가 테스트
+	replyService.add(
+		{content:"JS Test", name:"tester", place_id:pce},
+			function(result){
+				alert("RESULT : "+ result)
+		}
+	); */
+	
+	/* 리플 리스트 불러오기 테스트
+	replyService.getList({place_id:value_place, page:1}, function(list){
+		for(var i=0, len=list.length||0; i<len; i++){
+			console.log(list[i]);
+		}
+	}); */
+	
+	/* 리플 삭제 테스트 
+	replyService.remove(15,
+			
+	function(count){
+		console.log(count);
+		
+		if(count == "success"){
+			alert("REMOVED");
+		}
+	}, 
+	
+	function(err){
+		alert('ERROR');
+	});*/
+	
+	/* 리플 수정 테스트 */
+	/* ReplyService.update({
+		rno:,
+		place_id:,
+		reply:"",
+	}); */
+};
 </script>
 </html>
