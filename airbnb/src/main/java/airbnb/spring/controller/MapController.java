@@ -13,7 +13,7 @@ public class MapController {
 	public String test1(@Nullable @RequestParam String search_category, @Nullable @RequestParam String search_name, Model model) {
 		model.addAttribute("category",search_category);
 		model.addAttribute("name",search_name);
-		return "tiles/map.tiless";
+		return "tiles/map.tiles";
 	}
 	@GetMapping("/map2")
 	public void test4(@Nullable @RequestParam String search_category, @Nullable @RequestParam String search_name, Model model) {

@@ -267,6 +267,18 @@ button:disabled {
 	    map.fitBounds(bounds);
 		});//searchbox -> place changed
 	    
+		map.addListener("center_changed",() => {
+			markers.forEach((marker) => {
+	        	marker.setMap(null);
+	        });
+	    	markers = [];
+	    	
+			nearbySearch(map, service, map.getCenter(), restaurant);
+			
+		});
+		
+		
+		
 	}//initAutocomplete
 	
 	//html query
@@ -378,16 +390,18 @@ button:disabled {
 					content_div.append(place.rating);//rating
 					content_div.append(BR);//hr
 				}
+				
 				console.log(place.opening_hours);
 				if(place.opening_hours != null){
 					content_div.append(place.opening_hours.toString());
 				}
 				
-				for(let i=0; i<place.types.length; i++){
-					let p = document.createElement('p');
-					p.append(place.types[i]);//
-					content_div.append(p);//
-				};
+				//type
+				let p = document.createElement('p');
+				p.append(place.types[0]);//
+				content_div.append(p);//
+				
+				//li
 				let li = document.createElement('li');
 				li.append(img_div);
 				li.append(content_div);
