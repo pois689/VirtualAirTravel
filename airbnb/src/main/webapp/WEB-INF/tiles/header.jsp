@@ -21,14 +21,18 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous"></script>
 <script type="text/javascript">
 	/* 카테고리 선택 */
+	let search_name = '';
 	$(document).ready( function() {
 	    $(".dropdown-item").click(function(){
 	    	var search_category = this.value;
 	    	document.getElementById("search_category").value = search_category;
 	    });
-	    
-	
+	    $('#search_button_dd').on("click",function(){
+			search_name = document.getElementById('search_name');
+			location.href='/map?search_name='+search_name.value;
+	    });
 	});
+	
 </script>
 ${sessionScope.user }
     <header>
@@ -67,7 +71,7 @@ ${sessionScope.user }
 			<span class="search__span"></span>
 			<!-- 검색 아이콘 -->
 			<div class="search__submit__button">
-				<button class="flex items-center justify-center relative  h-8 w-8 rounded-full" type="submit" style="width: -webkit-fill-available; height: -webkit-fill-available;">
+				<button id="search_button_dd" class="flex items-center justify-center relative  h-8 w-8 rounded-full" type="submit" style="width: -webkit-fill-available; height: -webkit-fill-available;">
 				                        <svg
 				                            viewBox="0 0 32 32"
 				                            xmlns="http://www.w3.org/2000/svg"
