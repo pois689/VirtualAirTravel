@@ -42,7 +42,9 @@
 			value="org.springframework.web.servlet.view.tiles3.TilesView" name="viewClass" />
 		<beans:property value="1" name="order" />
 	</beans:bean>
-	
+
+	<context:component-scan base-package="airbnb.spring.main" />
+
 	<!-- 파일 업로드 -->
 	<beans:bean id="multipartResolver"
 		class="org.springframework.web.multipart.support.StandardServletMultipartResolver"> 
