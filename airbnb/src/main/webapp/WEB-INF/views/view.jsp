@@ -74,6 +74,16 @@
 					<span>(후기 20개)</span>
 				</h2>
 				
+				<div class="review_insert">
+					<div class="review_insert_header">
+						<div class="review_insert_image">이미지</div>
+						<div class="review_insert_id">id</div>
+					</div>
+					<div class="review_insert_context">
+						
+					</div>
+				</div>
+				
 				<div class="review_start">
 					<div class="review_frame">
 						<div class="review_box">
@@ -169,6 +179,8 @@
 					</div>
 				</div>
 			</div>
+			
+			
 		</section>
 		
 		<hr>
