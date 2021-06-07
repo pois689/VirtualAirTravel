@@ -1,6 +1,7 @@
 console.log("Reply Module.....");
 
 var replyService=(function(){
+	// 추가
 	function add(reply,callback, error){
 		console.log("add reply........");
 		
@@ -21,6 +22,7 @@ var replyService=(function(){
 			}
 		});
 	}
+	// 불러오기
 	function getList(param, callback, error){
 		var place_id = param.place_id;
 		var page = param.page || 1;
@@ -36,6 +38,7 @@ var replyService=(function(){
 			}
 		});
 	}
+	// 제거
 	function remove(rno,callback,error){
 		$.ajax({
 			type:'delete',
@@ -55,6 +58,7 @@ var replyService=(function(){
 			}
 		});
 	}
+	// 수정
 	function update(reply, callback, error){
 		console.log("RNO: " + reply.rno);
 		
@@ -75,6 +79,16 @@ var replyService=(function(){
 			}
 		});
 	}
+	// 조회
+	/*function get(rno, callback, error){
+		console.log("rno : "+reply.rno);
+		
+		$.get("/replies/"+rno+".json",function(result){
+			if(callback){
+				callback(result);
+			}
+		}),fail
+	}*/
 	return{
 		add:add,
 		getList : getList,

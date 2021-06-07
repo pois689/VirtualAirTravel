@@ -242,7 +242,7 @@ function initMap() {
   						});
     					map.setZoom(18);
 	    				map.setCenter(detail_results.geometry.location);
-	    				console.log(detail_results);
+	    				/* console.log(detail_results);
 	    				console.log(detail_results.photos);
 	    				console.log(detail_results.photos[0].getUrl());
 	    				console.log(detail_results.adr_address);
@@ -258,7 +258,7 @@ function initMap() {
 	    				console.log(detail_results.reviews[0].author_name);
 	    				console.log(detail_results.reviews[0].rating);
 	    				console.log(detail_results.reviews[0].text);
-	    				console.log(new Date(detail_results.reviews[0].time*1000));
+	    				console.log(new Date(detail_results.reviews[0].time*1000)); */
 
 	    				
 	    				// 주소 바꾸기.
@@ -408,11 +408,13 @@ window.onload = function(){
 	});*/
 	
 	/* 리플 수정 테스트 */
-	/* ReplyService.update({
-		rno:,
-		place_id:,
-		reply:"",
-	}); */
+	replyService.update({
+		rno:5,
+		place_id: "서울",
+		content:"modify reply test",
+	}, function(result){
+		alert("수정완료");
+	});
 };
 </script>
 </html>
