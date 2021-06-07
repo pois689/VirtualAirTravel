@@ -340,7 +340,6 @@ public class LoginController {
 	//회원가입//
 	@GetMapping("/login/register")
 	public void register() {
-		
 	}
 	//회원가입처리//
 	@PostMapping("/login/registerMember")

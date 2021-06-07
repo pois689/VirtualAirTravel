@@ -210,6 +210,10 @@ $(document).ready(
 			                $('label').removeClass('warning')
 			            },1500)
 			        }
+			        else if(!$("input[name=id]").prop("dataValue")){
+			        	alert("ID 중복검사가 완료되지 않았습니다.");
+						return false;
+					}
 			        else if(($(".compare").val() == "")){
 						alert("메일 인증이 완료되지 않았습니다.");
 						return false;
