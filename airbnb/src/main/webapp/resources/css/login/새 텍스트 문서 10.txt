@@ -95,7 +95,14 @@ OAUTH2 로그인 ->
 
 유효성검사 필수 -- email, id,
 
-
+CREATE TABLE AnissTest.tb_ljk(
+	no INT(11) AUTO_INCREMENT PRIMARY KEY
+	, name VARCHAR(50)
+	, email VARCHAR(50)
+	, gender VARCHAR(15)
+	, title VARCHAR(100)
+	, content VARCHAR(500)
+)
 네이버 api
 E68ohfVFivN9KQZJTFIx
 IDZgsg3PbT
