@@ -80,19 +80,25 @@ var replyService=(function(){
 		});
 	}
 	// 조회
-	/*function get(rno, callback, error){
-		console.log("rno : "+reply.rno);
+	function get(rno, callback, error){
+		console.log("rno : "+rno);
 		
 		$.get("/replies/"+rno+".json",function(result){
 			if(callback){
 				callback(result);
 			}
-		}),fail
-	}*/
+		}).fail(function(xhr,status,err){
+			if(error){
+				error();
+			}
+		});
+	}
+	
 	return{
 		add:add,
-		getList : getList,
-		remove : remove,
-		update : update
+		getList : getList
+		,remove : remove
+		,update : update
+		,get : get
 	};
 })();

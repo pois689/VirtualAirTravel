@@ -408,13 +408,37 @@ window.onload = function(){
 	});*/
 	
 	/* 리플 수정 테스트 */
-	replyService.update({
+	/* replyService.update({
 		rno:5,
 		place_id: "서울",
 		content:"modify reply test",
 	}, function(result){
 		alert("수정완료");
-	});
+	}); */
+	
+	//게시글 조회 테스트
+	/*replyService.get(16,function(data){
+		console.log(data);
+	});*/
+	
+	var replyUL = $(".review_start");
+	
+	showList(1);
+	
+	function showList(page){
+		replyService.getList({place_id:value_place, page: page||1}, function(list){
+			var str="";
+			if(list == null || list.length==0){
+				$(".review_start").html("");
+				return;
+			}
+			for(var i=0, len=list.length||0; i<len; i++){
+				str += ""
+				console.log(list[i]);
+			}
+		});
+	}
+	
 };
 </script>
 </html>
