@@ -51,25 +51,25 @@
 		<form action="/login/registerMember" method="post">
 			<div class="int-area">
 				<input type="text" name="id" id="id"
-				autocomplete="off" required="required">
+				autocomplete="off" required="required" maxlength="20">
 				<label for="id">ID</label>
 				<input type="button" value="ID 중복검사" id="idCheck" class="idcheck">		
             </div>
 			<div class="int-area">
 				<input type="text" name="pwd" id="pwd"
-				autocomplete="off" required="required">
+				autocomplete="off" required="required" maxlength="20">
 				<label for="pwd">PASSWORD</label>				
 				<img src="/resources/images/key1.png" id="pswd1_img1" class="pswdImg">
             </div>
 			<div class="int-area">
 				<input type="text" name="pwdCheck" id="pwdCheck"
-				autocomplete="off" required="required">
+				autocomplete="off" required="required" maxlength="20">
 				<label for="pwdCheck">REPASSWORD</label>				
 				<img src="/resources/images/key2.png" id="pswd2_img1" class="pswdImg">
             </div>
 			<div class="int-area">
 				<input type="text" name="name" id="name"
-				autocomplete="off" required="required">
+				autocomplete="off" required="required" maxlength="20">
 				<label for="name">NAME</label>				
             </div>
 			<div class="int-area">
@@ -78,12 +78,12 @@
 				<label for="email">E-MAIL</label>				
 				<button class="sendMail" type="button">이메일 인증</button>
 				<input type="text" placeholder="인증 키 입력" style="display: none;"
-					class="compare">
+					class="compare" maxlength="100">
 					<span class="compare-text" style="display: none"></span>
             </div>
 			<div class="int-area">
 				<input type="tel" name="tel" id="tel"
-				autocomplete="off" required="required">
+				autocomplete="off" required="required" maxlength="16">
 				<label for="tel">PhoneNo</label>				
             </div>
             <div class="btn-area">
