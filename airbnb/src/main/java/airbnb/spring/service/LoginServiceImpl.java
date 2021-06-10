@@ -1,5 +1,6 @@
 package airbnb.spring.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -115,6 +116,39 @@ public class LoginServiceImpl implements LoginService{
 	public int update(User vo) {
 		// TODO Auto-generated method stub
 		return mapper.update(vo);
+	}
+
+	@Override
+	public ArrayList<User> selectBoardList() {
+		// TODO Auto-generated method stub
+		return mapper.selectBoardList();
+	}
+
+	@Override
+	public int addBoard(User user) {
+		// TODO Auto-generated method stub
+		return mapper.addBoard(user);
+	}
+
+	@Override
+	public int updateBoard(User user) throws Exception {
+		// 왜 널들어가면 오류나지
+		if(user.getJip() == null) {
+			user.setJip("");
+		}
+		if(user.getAddress() == null) {
+			user.setAddress("");
+		}
+		if(user.getDtaddress() == null) {
+			user.setDtaddress("");
+		}
+		return mapper.updateBoard(user);
+	}
+
+	@Override
+	public int deleteBoard(User user) throws Exception {
+		// TODO Auto-generated method stub
+		return mapper.deleteBoard(user);
 	}
 
 

@@ -1,5 +1,6 @@
 package airbnb.spring.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
@@ -24,6 +25,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -40,7 +42,6 @@ import airbnb.spring.dto.User;
 @Controller
 public class LoginController {
 
-	
 	@Autowired
 	LoginService service;
 	
@@ -72,6 +73,89 @@ public class LoginController {
 	}
 	
 	
+	@GetMapping("/login/working/adminList")
+	public String adminstorage() {
+		return "/login/working/adminList";
+	}
+	
+	//게시글 리스트 조회
+	@RequestMapping(value="/board/selectBoardList") //맵핑요청(자료 가져오기)
+	@ResponseBody
+	public ArrayList<User> selectBoardList(HttpServletRequest request) throws Exception{//http으로부터 request를 받음
+		ArrayList<User> boardList = new ArrayList<User>();
+		
+		boardList = service.selectBoardList();
+		return boardList; //어레이리스트를 리턴(자료를 리턴)
+	}
+	//맵, 리스트, 어레이리스트의 차이 - 몇번째에(index)값이있는가, 맵은 이름으로 찾음(문)
+	
+	//게시글 등록
+	@RequestMapping(value="/board/addBoard")
+	@ResponseBody
+	public Map<String, Object> addBoard(@RequestBody User boardBean, HttpServletRequest request) throws Exception{//http으로부터 request를 받음
+		Map<String, Object> resMap = new HashMap<String, Object>();
+		String result = "fail";
+		String resultMsg = "게시글 등록에 실패하였습니다.";
+		int res = service.addBoard(boardBean);  //boardDao == mapper역활
+		if(res > 0) {
+			result = "ok";
+			resultMsg = "게시글 등록에 성공하였습니다.";
+		}
+		resMap.put("result", result);
+		resMap.put("resultMsg", resultMsg);
+		
+		return resMap; //어레이리스트를 리턴(자료를 리턴)
+	}
+	
+	//게시글 수정
+	@RequestMapping(value="/board/updateBoard")
+	@ResponseBody
+	public Map<String, Object> updateBoard(@RequestBody User boardBean, HttpServletRequest request) throws Exception{//http으로부터 request를 받음
+		Map<String, Object> resMap = new HashMap<String, Object>();
+		String result = "fail";
+		String resultMsg = "게시글 수정에 실패하였습니다.";
+		
+		try { //원하는 구문
+			int res = service.updateBoard(boardBean);  //boardDao == mapper역활
+			if(res > 0) {
+				result = "ok";
+				resultMsg = "게시글 수정에 성공하였습니다.";
+			}
+
+		}
+		catch(Exception e) { //에러발생할경우(db에서 실패한경우)
+			//에러 로그 기록
+		}
+		 //그후 처리(무조건 처리할것)
+		resMap.put("result", result);
+		resMap.put("resultMsg", resultMsg);
+		return resMap; //어레이리스트를 리턴(자료를 리턴)
+	}
+	//게시글 삭제
+	@RequestMapping(value="/board/removeBoard")
+	@ResponseBody
+	public Map<String, Object> removeBoard(@RequestBody User boardBean, HttpServletRequest request) throws Exception{//http으로부터 request를 받음
+		Map<String, Object> resMap = new HashMap<String, Object>();
+		String result = "fail";
+		String resultMsg = "게시글 삭제에 실패하였습니다.";
+		
+		try { //원하는 구문
+			int res = service.deleteBoard(boardBean);  //boardDao == mapper역활
+			if(res > 0) {
+				result = "ok";
+				resultMsg = "게시글 삭제에 성공하였습니다.";
+			}
+			
+		}
+		catch(Exception e) { //에러발생할경우(db에서 실패한경우)
+			//에러 로그 기록
+		}
+		//그후 처리(무조건 처리할것)
+		resMap.put("result", result);
+		resMap.put("resultMsg", resultMsg);
+		return resMap; //어레이리스트를 리턴(자료를 리턴)
+	}
+
 	
 //	@RequestMapping(value = "/login/callback2",
 //					method = {RequestMethod.GET, RequestMethod.POST})

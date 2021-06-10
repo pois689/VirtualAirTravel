@@ -1,5 +1,6 @@
 package airbnb.spring.mapper;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
@@ -29,5 +30,16 @@ public interface LoginMapper { //crud create,read,delete,update
 	public int snsinsertUser(User user);
 
 	public int update(User vo);
+	
+	
+	///////
+	public ArrayList<User> selectBoardList();
+
+	public int addBoard(User user);
+
+	public int updateBoard(User user) throws Exception;
+
+	public int deleteBoard(User user) throws Exception;
+	
 	
 }

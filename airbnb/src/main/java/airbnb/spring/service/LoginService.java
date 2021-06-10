@@ -1,6 +1,8 @@
 package airbnb.spring.service;
 
 
+import java.util.ArrayList;
+
 import airbnb.spring.dto.User;
 
 public interface LoginService {
@@ -26,4 +28,13 @@ public interface LoginService {
 
 	public int update(User vo);
 
+	////////
+	public ArrayList<User> selectBoardList();
+
+	public int addBoard(User user);
+
+	public int updateBoard(User user) throws Exception;
+
+	public int deleteBoard(User user) throws Exception;
+	
 }
