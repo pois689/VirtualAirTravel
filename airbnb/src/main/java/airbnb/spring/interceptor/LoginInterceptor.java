@@ -35,7 +35,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 		
 	}
 	/**
-	 * 컨트롤러 실행후(컨트롤러 실행후)
+	 * 컨트롤러 실행후(컨트롤러 실행후) 로그인 처리
 	 */
 	@Override
 	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,

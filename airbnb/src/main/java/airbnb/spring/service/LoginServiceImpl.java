@@ -23,8 +23,8 @@ public class LoginServiceImpl implements LoginService{
 		User loginUser = mapper.login(vo);
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 		// 로그인 성공시 유저의 권한을 조회 해줍니다
-			System.out.println("\n\n\n\n\n\n\n\n\n\n\n"+encoder.matches(vo.getPwd(), loginUser.getPwd()));
 			if(loginUser != null && encoder.matches(vo.getPwd(), loginUser.getPwd())) {
+				System.out.println("\n\n\n\n\n\n\n\n\n\n\n"+encoder.matches(vo.getPwd(), loginUser.getPwd()));
 			//로그인 유저가 있다면  TODO:비밀번호를 비교하는 로직추가
 			//만약 비밀번호가 일치하면 권한 조회해서 유저객체 반환
 			//비밀번호가 틀릴경우 ,USER객체 NULL로 반환
@@ -98,6 +98,10 @@ public class LoginServiceImpl implements LoginService{
 
 	@Override
 	public int updatePwd(User user) {
+		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+		String encodePwd = encoder.encode(user.getPwd());
+		user.setPwd(encodePwd);
+
 		// TODO Auto-generated method stub
 		return mapper.updatePwd(user);
 	}
@@ -109,7 +113,12 @@ public class LoginServiceImpl implements LoginService{
 
 	@Override
 	public User snslogin(User user) {
-		return mapper.snslogin(user);
+		
+		
+		User loginuser = mapper.snslogin(user);
+		
+		
+		return loginuser;
 	}
 
 	@Override

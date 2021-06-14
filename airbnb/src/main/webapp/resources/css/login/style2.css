@@ -17,7 +17,7 @@ body {
     background-color: rgba(0, 0, 0, -1);
 } */
 
-.pswdImg{
+.pswdImg1, .pswdImg2{
     width: 18px;
     height: 20px;
     display: inline-block;

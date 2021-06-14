@@ -78,6 +78,11 @@ public class LoginController {
 		return "/login/working/adminList";
 	}
 	
+	@GetMapping("/login/updatePwd")
+	public String updatePwd() {
+		return "/login/updatePwd";
+	}
+	
 	//게시글 리스트 조회
 	@RequestMapping(value="/board/selectBoardList") //맵핑요청(자료 가져오기)
 	@ResponseBody
@@ -246,8 +251,7 @@ public class LoginController {
 //
 //		}
 //	}
-	
-	
+
 	//회원가입처리//
 	//네이버 소셜 회원가입
 	@GetMapping("/login/snsregister")
@@ -292,12 +296,12 @@ public class LoginController {
 			HttpSession session = request.getSession();
 			session.setAttribute("user", user);
 			
-			model.addAttribute("msg",user.getId()+"님 로그인에 성공하였습니다");
+			model.addAttribute("res",user.getId()+"님 로그인에 성공하였습니다");
 			return "tiles/index.tiles";
 			
 		}else {
-			model.addAttribute("msg","로그인에 실패하였습니다 Id,Pwd를 확인하세요");
-			return "/login/loginProcess";
+			model.addAttribute("res","로그인에 실패하였습니다 Id,Pwd를 확인하세요");
+			return "/login/id_finded";
 		}
 		
 	}
@@ -454,6 +458,42 @@ public class LoginController {
 		}
 		else {
 			return true;
+		}
+	}
+	
+	//비밀번호중복확인
+	@PostMapping("/checkPwd")
+	@ResponseBody
+	public String checkPw(@RequestBody String pw,HttpSession session)throws Exception {
+		String result = null;
+		//암호화
+		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+		User user = (User) session.getAttribute("user");
+		
+		if(encoder.matches(pw, user.getPwd())) {
+			result = "Success";
+		}else {
+			result = "fail";
+		}
+		
+		return result;
+	}
+	
+	@PostMapping("/pwd_change")
+	public String pwChange(@RequestBody User user, HttpSession session)throws Exception{
+		System.out.println(user);
+		
+		try {
+			int res = service.updatePwd(user);
+			if(res>0) {
+				return "forward:/login/loginProcess"; //변경즉시 로그인
+			}else {
+				return "/error";
+			}
+			
+		}catch (Exception e) {
+			e.printStackTrace();
+			return "/error";
 		}
 	}
 

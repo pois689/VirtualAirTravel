@@ -57,15 +57,15 @@
             </div>
 			<div class="int-area">
 				<input type="text" name="pwd" id="pwd"
-				autocomplete="off" required="required" maxlength="20">
+				autocomplete="off" required="required" maxlength="20" oninput="checkPwd()">
 				<label for="pwd">PASSWORD</label>				
-				<img src="/resources/images/key1.png" id="pswd1_img1" class="pswdImg">
+				<img src="/resources/images/key1.png" id="pswd1_img1" class="pswdImg1">
             </div>
 			<div class="int-area">
 				<input type="text" name="pwdCheck" id="pwdCheck"
-				autocomplete="off" required="required" maxlength="20">
+				autocomplete="off" required="required" maxlength="20" oninput="checkPwd()">
 				<label for="pwdCheck">REPASSWORD</label>				
-				<img src="/resources/images/key2.png" id="pswd2_img1" class="pswdImg">
+				<img src="/resources/images/key2.png" id="pswd1_img2" class="pswdImg2">
             </div>
 			<div class="int-area">
 				<input type="text" name="name" id="name"
@@ -78,7 +78,7 @@
 				<label for="email">E-MAIL</label>				
 				<button class="sendMail" type="button">이메일 인증</button>
 				<input type="text" placeholder="인증 키 입력" style="display: none;"
-					class="compare" maxlength="100">
+					class="compare" maxlength="100" name="compare">
 					<span class="compare-text" style="display: none"></span>
             </div>
 			<div class="int-area">
@@ -118,11 +118,13 @@ $(document).ready(
 						//이미 등록된 아이디인 경우
 						if(!data){
 							alert("이미 등록된 아이디 입니다.")
+							$("input[name=id]").css("background-color", "#FFCECE");
 						}else{
 							alert("등록 가능한 아이디 입니다.")
 							//회원가입버특클릭시 중복처리 했다고 알림
 							//속성값을 추가 해보자
 							$("input[name=id]").prop("dataValue",true);
+							$("input[name=id]").css("background-color", "#4CAF50");
 						}
 						//등록 가능한 아이디인 경우
 					},
@@ -229,12 +231,40 @@ $(document).ready(
 				$(".compare").on("propertychange change keyup paste input", function() {
 					if ($(".compare").val() == key) {   //인증 키 값을 비교를 위해 텍스트인풋과 벨류를 비교
 						$(".compare-text").text("인증 성공!").css("color", "black");
+			            $("input[name=compare]").css("background-color", "#B0F6AC");
 					} else {
 						$(".compare-text").text("불일치!").css("color", "red");
+			            $("input[name=compare]").css("background-color", "#FFCECE");						
 					}
 				});
 				
 				});
+				
+				function checkPwd(){
+					var regExPw = /^[a-zA-Z0-9]{8,20}$/;
+			        var inputed = $('#pwd').val();
+			        var reinputed = $('#pwdCheck').val();
+			        var	img1 = document.getElementById('pswd1_img1');
+			        var	img2 = document.getElementById('pswd1_img2');
+			        if(reinputed=="" && (inputed != reinputed || inputed == reinputed)){ //초기화면
+			        	img1.src="/resources/images/key4.png";
+			        	img2.src="/resources/images/key2.png";
+			            $("input[name=pwd]").css("background-color", "#aaaaaa");
+			            $("input[name=pwdCheck]").css("background-color", "#FFCECE");
+			        }
+			        else if (regExPw.test(inputed)&&inputed == reinputed) { //pwd1이 유효성검사했을때 틀리면
+			        	img1.src="/resources/images/key5.png";
+			        	img2.src="/resources/images/key3.png";
+			            $("input[name=pwd]").css("background-color", "#B0F6AC");
+			            $("input[name=pwdCheck]").css("background-color", "#B0F6AC");
+			        } else if (inputed != reinputed) {
+			        	img1.src="/resources/images/key6.png";
+			        	img2.src="/resources/images/key2.png";
+			            $("input[name=pwd]").css("background-color", "#aaaaaa");
+			            $("input[name=pwdCheck]").css("background-color", "#FFCECE");
+			            
+			        }
+				}
     
 
     $(document).snowfall({round : true, maxSize : 3});

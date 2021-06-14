@@ -119,6 +119,9 @@
 			<beans:ref bean="loginInterceptor"/>
 		</interceptor>
 	</interceptors> -->
+	
+	
+	<!--AuthInterceptor를 Bean으로 등록 합니다. 권한 확인-->
 	<context:component-scan base-package="airbnb.spring.service" />
 	<context:component-scan base-package="airbnb.spring.controller" />
 

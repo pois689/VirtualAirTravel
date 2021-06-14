@@ -91,7 +91,7 @@
                     <button type="submit" id="btnJoin" onclick="checkId()">
                         <span>수정하기</span>
                     </button>
-                     <button type="button" id="btnJoin2" onclick="checkId()">
+                     <button onclick="move()" type="button" id="btnJoin2" onclick="checkId()">
                         <span>비밀번호 변경하기</span>
                     </button>
                 </div>
@@ -104,6 +104,13 @@
         </div> 
         <!-- wrapper -->
     <script>
+    
+    function move(){
+    location.href="updatePwd";
+
+    }
+    
+    
     function findAddr(){
     	new daum.Postcode({
             oncomplete: function(data) {

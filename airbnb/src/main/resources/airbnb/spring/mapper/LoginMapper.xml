@@ -6,7 +6,7 @@
 <mapper namespace="airbnb.spring.mapper.LoginMapper">
 	
 	<select id="login" resultType="airbnb.spring.dto.User">
-		select * from TBL_USER where id=#{id}
+		select * from TBL_USER where id=#{id} AND enabled != '0'
 	</select>
 
 	<select id="userRole" resultType="String">
@@ -24,15 +24,15 @@
 	<select id="loginSessionKey" resultType="airbnb.spring.dto.User">
 		select * from TBL_USER 
 				where sessionkey= #{sessionkey} 
-                and sessionlimit > sysdate
+                and sessionlimit > sysdate AND enabled != '0'
 	</select>
 	
 	<select id="checkId" resultType="airbnb.spring.dto.User">
-		select * from TBL_USER where id = #{id}
+		select * from TBL_USER where id = #{id} AND enabled != '0'
 	</select>
 	
 	<select id="checkemail" resultType="airbnb.spring.dto.User">
-		select * from TBL_USER where email = #{email}
+		select * from TBL_USER where email = #{email} AND enabled != '0'
 	</select>
 	
 	<insert id="insertUser">
@@ -45,12 +45,12 @@
 	</insert>
 	
 	<select id="searchId" resultType="airbnb.spring.dto.User">
-		select id from TBL_USER where name = #{name} or email = #{email}
+		select id from TBL_USER where name = #{name} or email = #{email} AND enabled != '0'
 	</select>
 	
 	<select id="searchPwd" resultType="airbnb.spring.dto.User">
 	select * from TBL_USER where id = #{id} or name = #{name}
-    or email = #{email}	
+    or email = #{email}	AND enabled != '0'
     </select>
 	
 	<update id="updatePwd">
@@ -59,7 +59,7 @@
 	</update>
 	
 	<select id="get" resultType="airbnb.spring.dto.User">
-		select * from TBL_USER where id=#{id}
+		select * from TBL_USER where id=#{id} AND enabled != '0'
 	</select>
 	
 	<select id="snslogin" resultType="airbnb.spring.dto.User">
