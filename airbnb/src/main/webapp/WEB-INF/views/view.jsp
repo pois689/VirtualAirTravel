@@ -186,7 +186,10 @@
 				</div>
 			</div>
 			
-			
+			<!-- 댓글 더 보기 -->
+			<div class="review_more">
+				<button class="review_more_button">댓글 더 보기</button>
+			</div>
 		</section>
 		
 		<hr>
