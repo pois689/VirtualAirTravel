@@ -95,8 +95,8 @@ var replyService=(function(){
 	}
 	
 	return{
-		add:add,
-		getList : getList
+		add:add
+		,getList : getList
 		,remove : remove
 		,update : update
 		,get : get

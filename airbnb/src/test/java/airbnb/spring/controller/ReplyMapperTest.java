@@ -25,9 +25,8 @@ public class ReplyMapperTest {
 	
 	@Test
 	public void testList() {
-		Criteria cri = new Criteria();
 		
-		List<ReplyDTO> replies = mapper.getList(cri, "서울");
+		List<ReplyDTO> replies = mapper.getList("서울");
 		
 		replies.forEach(reply -> log.info(reply));
 	}

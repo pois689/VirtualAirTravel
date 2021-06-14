@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import airbnb.spring.controller.ReplyController;
-import airbnb.spring.dto.Criteria;
 import airbnb.spring.dto.ReplyDTO;
 import airbnb.spring.service.ReplyService;
 import lombok.extern.log4j.Log4j;
@@ -42,14 +42,14 @@ public class ReplyController {
 	//리스트 조회
 	@GetMapping(value="/pages/{place_id}/{page}", produces= {MediaType.APPLICATION_XML_VALUE,
 			MediaType.APPLICATION_JSON_UTF8_VALUE})
-	public ResponseEntity<List<ReplyDTO>> getList(@PathVariable("page") int page,
-												  @PathVariable("place_id") String place_id){
+	public ResponseEntity<List<ReplyDTO>> getList(@PathVariable("page") int page
+												  ,@PathVariable("place_id") String place_id
+												  ,Model model){
 		
 		log.info("getList.........");
-		Criteria cri = new Criteria(page,10);
-		log.info(cri);
-		
-		return new ResponseEntity<>(service.getList(cri, place_id), HttpStatus.OK);
+		int temp = service.getCountReply(place_id);//해당하는 장소의 댓글갯수
+		model.addAttribute(temp);
+		return new ResponseEntity<>(service.getList(place_id), HttpStatus.OK);
 	}
 	
 	// 댓글 상세보기

@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import airbnb.spring.dto.Criteria;
 import airbnb.spring.dto.ReplyDTO;
 import airbnb.spring.mapper.ReplyMapper;
 import lombok.extern.log4j.Log4j;
@@ -42,9 +41,16 @@ public class ReplyServiceImpl implements ReplyService{
 	}
 
 	@Override
-	public List<ReplyDTO> getList(Criteria cri, String place_id) {
+	public List<ReplyDTO> getList(String place_id) {
 		log.info("get reply list of a board "+ place_id);
-		return mapper.getList(cri, place_id);
+		return mapper.getList(place_id);
 	}
+
+	@Override
+	public int getCountReply(String place_id) {
+		// TODO Auto-generated method stub
+		return mapper.getCountReply(place_id);
+	}
+
 
 }

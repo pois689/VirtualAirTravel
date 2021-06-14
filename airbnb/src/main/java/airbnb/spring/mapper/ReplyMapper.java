@@ -18,6 +18,7 @@ public interface ReplyMapper {
 	public int update(ReplyDTO dto);
 	
 	public List<ReplyDTO> getList(
-			@Param("cri") Criteria cri,
 			@Param("place_id") String place_id);
+	
+	public int getCountReply(String place_id);
 }

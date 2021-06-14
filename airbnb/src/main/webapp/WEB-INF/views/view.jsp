@@ -7,189 +7,254 @@
 </head>
 <body>
 	<main>
-		<section>
-			<div class="section_start">
-				<!-- 제목 부분 -->
-				<div class="main_title">
-					<div>
-						<h1 class="section_main_title">{Cloud 9./1호} 정면바다뷰/연박할인多/일출/도보1분/깔끔/넷플릭스/오픈베란다</h1>
-						<div class="section_main_title_information">
-							<div class="title_information_first">
-								<span>
-									<svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="presentation" focusable="false" style="display: block; height: 14px; width: 14px; fill: currentcolor; color: #FF385C !important;"><path d="M15.094 1.579l-4.124 8.885-9.86 1.27a1 1 0 0 0-.542 1.736l7.293 6.565-1.965 9.852a1 1 0 0 0 1.483 1.061L16 25.951l8.625 4.997a1 1 0 0 0 1.482-1.06l-1.965-9.853 7.293-6.565a1 1 0 0 0-.541-1.735l-9.86-1.271-4.127-8.885a1 1 0 0 0-1.814 0z" fill-rule="evenodd"></path></svg>
-								</span>
-								<span>4.5</span>
-								<span style="color: rgb(113, 113, 113) !important;">(후기xx개)</span>
-							</div>
-							<div class="title_information_first">
-								<span class="margins" aria-hidden="true"></span>
-							</div>
-							<div class="title_information_first">
-								<span class="title_information_first_address">경기도 광명시 광명7동</span>
-							</div>
+	<section>
+		<div class="section_start">
+			<!-- 제목 부분 -->
+			<div class="main_title">
+				<div>
+					<h1 class="section_main_title">{Cloud 9./1호}
+						정면바다뷰/연박할인多/일출/도보1분/깔끔/넷플릭스/오픈베란다</h1>
+					<div class="section_main_title_information">
+						<div class="title_information_first">
+							<span> <svg viewBox="0 0 32 32"
+									xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
+									role="presentation" focusable="false"
+									style="display: block; height: 14px; width: 14px; fill: currentcolor; color: #FF385C !important;">
+									<path
+										d="M15.094 1.579l-4.124 8.885-9.86 1.27a1 1 0 0 0-.542 1.736l7.293 6.565-1.965 9.852a1 1 0 0 0 1.483 1.061L16 25.951l8.625 4.997a1 1 0 0 0 1.482-1.06l-1.965-9.853 7.293-6.565a1 1 0 0 0-.541-1.735l-9.86-1.271-4.127-8.885a1 1 0 0 0-1.814 0z"
+										fill-rule="evenodd"></path></svg>
+							</span> <span>4.5</span> <span
+								style="color: rgb(113, 113, 113) !important;">(후기xx개)</span>
+						</div>
+						<div class="title_information_first">
+							<span class="margins" aria-hidden="true"></span>
+						</div>
+						<div class="title_information_first">
+							<span class="title_information_first_address">경기도 광명시 광명7동</span>
 						</div>
 					</div>
 				</div>
 			</div>
-		</section>
-		<section>
-			<div class="section_img">
-				<div class="main_img">
-					<!-- 사진  -->
-					<div class="item1">
-						<img class="img" aria-hidden="true" alt="" id="FMP-target"
-							src="https://a0.muscache.com/im/pictures/miso/Hosting-43261595/original/509bdd17-0b32-4f4a-8449-cfe8012162cf.jpeg?im_w=720">
-					</div>
-				</div>
-				
-			</div>
-		</section>
-		
-		<hr>
-		
-		<!-- 상세 정보 -->
-		<section>
-			<div class="section_start">
-				<span class="section_detail" id="type">쏼라쏼라 매장 정보 제공부분 가져오기(테이크아웃 or 매장내 식사가능 등)</span>
-				<span class="section_detail" id="phone">쏼라쏼라 매장 정보 제공부분 가져오기(테이크아웃 or 매장내 식사가능 등)</span>
-				<div class="section_detail_information">
-					<svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="presentation" focusable="false" style="display: block; width: 22px; fill: currentcolor;"><path d="M16 1C7.716 1 1 7.716 1 16s6.716 15 15 15 15-6.716 15-15S24.284 1 16 1zm7.895 22.954l-9.526-5.5a1.5 1.5 0 0 1-.743-1.154l-.007-.145v-11h3V16.29l8.776 5.067-1.5 2.598z"></path></svg>
-					<div class="business_status">영업 여부</div>
-					<span class="margins" aria-hidden="true"></span>
-					<svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="presentation" focusable="false" style="display: block; width: 24px; margin-left: 6px; fill: currentcolor;"><path d="M17.954 2.781l.175.164 13.072 12.842-1.402 1.426-1.8-1.768L28 29a2 2 0 0 1-1.85 1.994L26 31H6a2 2 0 0 1-1.995-1.85L4 29V15.446l-1.8 1.767-1.4-1.426L13.856 2.958a3 3 0 0 1 4.097-.177zm-2.586 1.503l-.096.088L6 13.48 6 29l5-.001V19a2 2 0 0 1 1.85-1.995L13 17h6a2 2 0 0 1 1.995 1.85L21 19v9.999h5V13.48l-9.3-9.135a1.001 1.001 0 0 0-1.332-.06zM19 19h-6v9.999h6z"></path></svg>
-					<div id="adr"></div>
+		</div>
+	</section>
+	<section>
+		<div class="section_img">
+			<div class="main_img">
+				<!-- 사진  -->
+				<div class="item1">
+					<img class="img" aria-hidden="true" alt="" id="FMP-target"
+						src="https://a0.muscache.com/im/pictures/miso/Hosting-43261595/original/509bdd17-0b32-4f4a-8449-cfe8012162cf.jpeg?im_w=720">
 				</div>
 			</div>
 
-		</section>
-		
-		<hr>
-		
-		<!-- 댓글  -->
-		<section>
-			<div class="section_start">
-				<h2 class="review">
-					<span>
-						<svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="presentation" focusable="false" style="display: block; height: 20px; width: 20px; fill: currentcolor; color: #FF385C !important;"><path d="M15.094 1.579l-4.124 8.885-9.86 1.27a1 1 0 0 0-.542 1.736l7.293 6.565-1.965 9.852a1 1 0 0 0 1.483 1.061L16 25.951l8.625 4.997a1 1 0 0 0 1.482-1.06l-1.965-9.853 7.293-6.565a1 1 0 0 0-.541-1.735l-9.86-1.271-4.127-8.885a1 1 0 0 0-1.814 0z" fill-rule="evenodd"></path></svg>
-					</span>
-					<span>4.5</span>
-					<span>(후기 20개)</span>
-				</h2>
-				
-				<div class="review_start">
-					<div class="review_frame">
-						<div class="review_box">
-							<div class="review_header">
-								<div class="review_id">ID
-									<div class="review_date">2021년 6월 2일</div>
-								</div>
-							</div>
-							
-							<div class="review_text">
-								<span>너무 좋앗어용</span>
-							</div>
-						</div>
-					</div>
-					
-					<div class="review_frame">
-						<div class="review_box">
-							<div class="review_header">
-								<div class="review_id">ID2
-									<div class="review_date">2021년 6월 2일</div>
-								</div>
-							</div>
-							
-							<div class="review_text">
-								<span>너무 좋앗어용너무 좋앗어용너무 좋앗어용너무 좋앗어용너무 좋앗어용너무 좋앗어용</span>
-							</div>
-						</div>
-					</div>
-					<div class="review_frame">
-						<div class="review_box">
-							<div class="review_header">
-								<div class="review_id">ID2
-									<div class="review_date">2021년 6월 2일</div>
-								</div>
-							</div>
-							
-							<div class="review_text">
-								<span>너무 좋앗어용너무 좋앗어용너무 좋앗어용너무 좋앗어용너무 좋앗어용너무 좋앗어용</span>
-							</div>
-						</div>
-					</div>
-					<div class="review_frame">
-						<div class="review_box">
-							<div class="review_header">
-								<div class="review_id">ID2
-									<div class="review_date">2021년 6월 2일</div>
-								</div>
-							</div>
-							
-							<div class="review_text">
-								<span>너무 좋앗어용너무 좋앗어용너무 좋앗어용너무 좋앗어용너무 좋앗어용너무 좋앗어용</span>
+		</div>
+	</section>
+
+	<hr>
+
+	<!-- 상세 정보 -->
+	<section>
+		<div class="section_start">
+			<span class="section_detail" id="type">쏼라쏼라 매장 정보 제공부분
+				가져오기(테이크아웃 or 매장내 식사가능 등)</span> <span class="section_detail" id="phone">쏼라쏼라
+				매장 정보 제공부분 가져오기(테이크아웃 or 매장내 식사가능 등)</span>
+			<div class="section_detail_information">
+				<svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"
+					aria-hidden="true" role="presentation" focusable="false"
+					style="display: block; width: 22px; fill: currentcolor;">
+					<path
+						d="M16 1C7.716 1 1 7.716 1 16s6.716 15 15 15 15-6.716 15-15S24.284 1 16 1zm7.895 22.954l-9.526-5.5a1.5 1.5 0 0 1-.743-1.154l-.007-.145v-11h3V16.29l8.776 5.067-1.5 2.598z"></path></svg>
+				<div class="business_status">영업 여부</div>
+				<span class="margins" aria-hidden="true"></span>
+				<svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"
+					aria-hidden="true" role="presentation" focusable="false"
+					style="display: block; width: 24px; margin-left: 6px; fill: currentcolor;">
+					<path
+						d="M17.954 2.781l.175.164 13.072 12.842-1.402 1.426-1.8-1.768L28 29a2 2 0 0 1-1.85 1.994L26 31H6a2 2 0 0 1-1.995-1.85L4 29V15.446l-1.8 1.767-1.4-1.426L13.856 2.958a3 3 0 0 1 4.097-.177zm-2.586 1.503l-.096.088L6 13.48 6 29l5-.001V19a2 2 0 0 1 1.85-1.995L13 17h6a2 2 0 0 1 1.995 1.85L21 19v9.999h5V13.48l-9.3-9.135a1.001 1.001 0 0 0-1.332-.06zM19 19h-6v9.999h6z"></path></svg>
+				<div id="adr"></div>
+			</div>
+		</div>
+
+	</section>
+
+	<hr>
+
+	<!-- 댓글  -->
+	<section>
+		<div class="section_start">
+			<h2 class="review">
+				<span> <svg viewBox="0 0 32 32"
+						xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
+						role="presentation" focusable="false"
+						style="display: block; height: 20px; width: 20px; fill: currentcolor; color: #FF385C !important;">
+						<path
+							d="M15.094 1.579l-4.124 8.885-9.86 1.27a1 1 0 0 0-.542 1.736l7.293 6.565-1.965 9.852a1 1 0 0 0 1.483 1.061L16 25.951l8.625 4.997a1 1 0 0 0 1.482-1.06l-1.965-9.853 7.293-6.565a1 1 0 0 0-.541-1.735l-9.86-1.271-4.127-8.885a1 1 0 0 0-1.814 0z"
+							fill-rule="evenodd"></path></svg>
+				</span> <span>4.5</span> <span>(후기 20개)</span>
+				<div class="addBtn">
+					<button type="button" id='addReplyBtn'>댓글 작성</button>
+				</div>
+			</h2>
+
+			<div class="review_start">
+				<div class="review_frame">
+					<div class="review_box">
+						<div class="review_header">
+							<div class="review_id">
+								ID
+								<div class="review_date">2021년 6월 2일</div>
 							</div>
 						</div>
-					</div>
-					<div class="review_frame">
-						<div class="review_box">
-							<div class="review_header">
-								<div class="review_id">ID2
-									<div class="review_date">2021년 6월 2일</div>
-								</div>
-							</div>
-							
-							<div class="review_text">
-								<span>너무 좋앗어용너무 좋앗어용너무 좋앗어용너무 좋앗어용너무 좋앗어용너무 좋앗어용</span>
-							</div>
-						</div>
-					</div>
-					<div class="review_frame">
-						<div class="review_box">
-							<div class="review_header">
-								<div class="review_id">ID2
-									<div class="review_date">2021년 6월 2일</div>
-								</div>
-							</div>
-							
-							<div class="review_text">
-								<span>너무 좋앗어용너무 좋앗어용너무 좋앗어용너무 좋앗어용너무 좋앗어용너무 좋앗어용</span>
-							</div>
-						</div>
-					</div>
-					<div class="review_frame">
-						<div class="review_box">
-							<div class="review_header">
-								<div class="review_id">ID2
-									<div class="review_date">2021년 6월 2일</div>
-								</div>
-							</div>
-							
-							<div class="review_text">
-								<span>너무 좋앗어용너무 좋앗어용너무 좋앗어용너무 좋앗어용너무 좋앗어용너무 좋앗어용</span>
-							</div>
+
+						<div class="review_text">
+							<span>너무 좋앗어용</span>
 						</div>
 					</div>
 				</div>
-				
-				<!-- 여기에 리플 붙이기 -->
-				<input type="hidden" name="place_id" id="place_id" value="dasdf"><br>
-				<input type="hidden" id="rno"><br>
-				
-				
-				
+
+				<div class="review_frame">
+					<div class="review_box">
+						<div class="review_header">
+							<div class="review_id">
+								ID2
+								<div class="review_date">2021년 6월 2일</div>
+							</div>
+						</div>
+
+						<div class="review_text">
+							<span>너무 좋앗어용너무 좋앗어용너무 좋앗어용너무 좋앗어용너무 좋앗어용너무 좋앗어용</span>
+						</div>
+					</div>
+				</div>
+				<div class="review_frame">
+					<div class="review_box">
+						<div class="review_header">
+							<div class="review_id">
+								ID2
+								<div class="review_date">2021년 6월 2일</div>
+							</div>
+						</div>
+
+						<div class="review_text">
+							<span>너무 좋앗어용너무 좋앗어용너무 좋앗어용너무 좋앗어용너무 좋앗어용너무 좋앗어용</span>
+						</div>
+					</div>
+				</div>
+				<div class="review_frame">
+					<div class="review_box">
+						<div class="review_header">
+							<div class="review_id">
+								ID2
+								<div class="review_date">2021년 6월 2일</div>
+							</div>
+						</div>
+
+						<div class="review_text">
+							<span>너무 좋앗어용너무 좋앗어용너무 좋앗어용너무 좋앗어용너무 좋앗어용너무 좋앗어용</span>
+						</div>
+					</div>
+				</div>
+				<div class="review_frame">
+					<div class="review_box">
+						<div class="review_header">
+							<div class="review_id">
+								ID2
+								<div class="review_date">2021년 6월 2일</div>
+							</div>
+						</div>
+
+						<div class="review_text">
+							<span>너무 좋앗어용너무 좋앗어용너무 좋앗어용너무 좋앗어용너무 좋앗어용너무 좋앗어용</span>
+						</div>
+					</div>
+				</div>
+				<div class="review_frame">
+					<div class="review_box">
+						<div class="review_header">
+							<div class="review_id">
+								ID2
+								<div class="review_date">2021년 6월 2일</div>
+							</div>
+						</div>
+
+						<div class="review_text">
+							<span>너무 좋앗어용너무 좋앗어용너무 좋앗어용너무 좋앗어용너무 좋앗어용너무 좋앗어용</span>
+						</div>
+					</div>
+				</div>
+				<div class="review_frame">
+					<div class="review_box">
+						<div class="review_header">
+							<div class="review_id">
+								ID2
+								<div class="review_date">2021년 6월 2일</div>
+							</div>
+						</div>
+
+						<div class="review_text">
+							<span>너무 좋앗어용너무 좋앗어용너무 좋앗어용너무 좋앗어용너무 좋앗어용너무 좋앗어용</span>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- 여기에 리플 붙이기 -->
+			<input type="hidden" name="place_id" id="place_id" value=""><br>
+
 		</div>
-		</section>
-		
-		<hr>
-		<!-- 맵 부분 -->
-		<h2 class="review" style="margin-left: 300px !important; margin-right: 300px !important; margin: 50px 0px;">위치</h2>
-		<div class="map_frame">
-			<div id="map" class="map"></div>
-		</div>
+	</section>
+
+	<hr>
+	<!-- 맵 부분 -->
+	<h2 class="review"
+		style="margin-left: 300px !important; margin-right: 300px !important; margin: 50px 0px;">위치</h2>
+	<div class="map_frame">
+		<div id="map" class="map"></div>
+	</div>
 	</main>
+
+	<!-- Modal -->
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-hidden="true">&times;</button>
+					<h4 class="modal-title" id="myModalLabel">댓글 작성</h4>
+				</div>
+				<div class="modal-body">
+					<ul class="list-group list-group-flush">
+						<li class="list-group-item"><input type="text"
+							class="form-control ml-2" placeholder="user" id="user"></li>
+						<li class="list-group-item"><textarea class="form-control"
+								id="content" placeholder="content" rows="3"></textarea></li>
+					</ul>
+				</div>
+				<div class="modal-footer">
+
+					<button type="button" class="btn btn-warning" data-dismiss="modal"
+						id="modalModBtn">Modify</button>
+					<button type="button" class="btn btn-danger" data-dismiss="modal"
+						id="modalRemoveBtn">Remove</button>
+					<button type="button" class="btn btn-primary" id="modalRegisterBtn">Save</button>
+					<button type="button" class="btn btn-default" id="modalCloseBtn"
+						data-dismiss="modal">Close</button>
+				</div>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal-dialog -->
+	</div>
+	<!-- /.modal -->
 </body>
+
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script async
 	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD9Ipehrpor4GUgqPUAUI7sXldNenx5suo&region=JP&language=ko&libraries=places&callback=initMap">
 </script>
@@ -377,9 +442,9 @@ window.onload = function(){
 	console.log("JS TEST");
 	
 	console.log("place_id value : ",value_place);
-	/* 리플 추가 테스트
-	replyService.add(
-		{content:"JS Test", name:"tester", place_id:pce},
+	// 리플 추가 테스트
+	/*replyService.add(
+		{content:"테스트중", name:"이름", place_id:value_place},
 			function(result){
 				alert("RESULT : "+ result)
 		}
@@ -433,12 +498,97 @@ window.onload = function(){
 				return;
 			}
 			for(var i=0, len=list.length||0; i<len; i++){
-				str += ""
-				console.log(list[i]);
+				str += "<div class='review_frame'><div class='review_box'><div class='review_header'>";
+				str += "<div class='review_id'>"+list[i].name;
+				str += "<div class='review_date'>"+list[i].replyDate+"</div></div></div>";
+				str += "<div class='review_text'><span data-rno='"+list[i].rno+"'>"+list[i].content+"</span></div></div></div>";
+				
+				//console.log(list[i]);
+				//console.log(list[i].rno);
 			}
-		});
-	}
+			$(".review_start").html(str);
+		}); // end function
+	} // end showList
 	
+	var modal = $(".modal");
+	//var modalInputContent = modal.find("input[name='content']");
+	//var modalInputUser = modal.find("input[name='user']");
+	//var modalInputReplyDate = modal.find("input[name='replyDate']");
+	
+	var modalModBtn = $("#modalModBtn");
+	var modalRemoveBtn = $("#modalRemoveBtn");
+	var modalRegisterBtn = $("#modalRegisterBtn");
+	
+	$("#addReplyBtn").on("click", function(e){
+		modal.find("input").val("");
+		//modalInputReplyDate.closest("div").hide();
+		modal.find("button[id !='modalCloseBtn']").hide();
+		content:$("#content").val("");
+		name:$("#user").val("");
+		modalRegisterBtn.show();
+		
+		$(".modal").modal("show");
+	});
+	
+	// 새로운 댓글 추가 처리
+	modalRegisterBtn.on("click",function(e){
+		var reply = {
+				content:$("#content").val(),
+				name:$("#user").val(),
+				place_id:value_place
+		};
+		replyService.add(reply, function(result){
+			alert(result);
+			
+			modal.find("input").val("");
+			modal.modal("hide");
+			
+			showList(1);
+		});
+	});
+	
+	// 모달로 상세보기 불러오기
+	$(".review_start").on("click","span",function(e){
+		var rno = $(this).data("rno");
+		
+		replyService.get(rno,function(reply){
+			
+			$("#content").val(reply.content);
+			$("#user").val(reply.name);
+			modal.data("rno",reply.rno);
+			
+			modal.find("button[id!='modalCloseBtn']").hide();
+			modalModBtn.show();
+			modalRemoveBtn.show();
+			
+			$(".modal").modal("show");
+		});
+		//console.log(rno);
+	});
+	
+	// 댓글 수정
+	modalModBtn.on("click", function(e){
+		
+		var reply = {rno:modal.data("rno"), content:$("#content").val()};
+		
+		replyService.update(reply, function(result){
+			alert(result);
+			modal.modal("hide");
+			showList(1);
+		});
+	});
+	
+	// 댓글 삭제
+	modalRemoveBtn.on("click", function(e){
+		
+		var rno = modal.data("rno");
+		
+		replyService.remove(rno, function(result){
+			alert(result);
+			modal.modal("hide");
+			showList(1);
+		});
+	});
 };
 </script>
 </html>
