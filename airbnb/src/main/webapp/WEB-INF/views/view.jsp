@@ -76,18 +76,18 @@
 				
 				<div class="review_insert">
 					<div class="review_insert_header">
-						<div class="review_insert_image">이미지</div>
+						<img class="review_insert_image" src="/resources/images/profile.png" alt="프로필사진">
 						<div class="review_insert_id">id</div>
 					</div>
-					<div class="review_insert_context">
-						
-					</div>
+					<textarea class="review_insert_context"></textarea>
+					<button class="hostbox-context-button" type="button">Write</button>
 				</div>
 				
 				<div class="review_start">
 					<div class="review_frame">
 						<div class="review_box">
 							<div class="review_header">
+								<img class="review_insert_image" src="/resources/images/profile.png" alt="프로필사진">
 								<div class="review_id">ID
 									<div class="review_date">2021년 6월 2일</div>
 								</div>
@@ -102,6 +102,7 @@
 					<div class="review_frame">
 						<div class="review_box">
 							<div class="review_header">
+								<img class="review_insert_image" src="/resources/images/profile.png" alt="프로필사진">
 								<div class="review_id">ID2
 									<div class="review_date">2021년 6월 2일</div>
 								</div>
@@ -115,6 +116,7 @@
 					<div class="review_frame">
 						<div class="review_box">
 							<div class="review_header">
+								<img class="review_insert_image" src="/resources/images/profile.png" alt="프로필사진">
 								<div class="review_id">ID2
 									<div class="review_date">2021년 6월 2일</div>
 								</div>
@@ -128,6 +130,7 @@
 					<div class="review_frame">
 						<div class="review_box">
 							<div class="review_header">
+								<img class="review_insert_image" src="/resources/images/profile.png" alt="프로필사진">
 								<div class="review_id">ID2
 									<div class="review_date">2021년 6월 2일</div>
 								</div>
@@ -141,6 +144,7 @@
 					<div class="review_frame">
 						<div class="review_box">
 							<div class="review_header">
+								<img class="review_insert_image" src="/resources/images/profile.png" alt="프로필사진">
 								<div class="review_id">ID2
 									<div class="review_date">2021년 6월 2일</div>
 								</div>
@@ -154,6 +158,7 @@
 					<div class="review_frame">
 						<div class="review_box">
 							<div class="review_header">
+								<img class="review_insert_image" src="/resources/images/profile.png" alt="프로필사진">
 								<div class="review_id">ID2
 									<div class="review_date">2021년 6월 2일</div>
 								</div>
@@ -167,6 +172,7 @@
 					<div class="review_frame">
 						<div class="review_box">
 							<div class="review_header">
+								<img class="review_insert_image" src="/resources/images/profile.png" alt="프로필사진">
 								<div class="review_id">ID2
 									<div class="review_date">2021년 6월 2일</div>
 								</div>
