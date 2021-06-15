@@ -164,6 +164,7 @@ $(document).ready(
 				});
 				
 			    $(btn).on('click',function(){
+			    	let reg2 = /^[a-zA-Z0-9]{8,20}$/;
 				    let id = $('#id');
 				    let pwd1 = $('#pwd');
 				    let pwd2 = $('#pwdCheck');
@@ -192,6 +193,10 @@ $(document).ready(
 			        }
 			        else if($(pwd).val()!=$(pwdCheck).val()){
 			        	alert("비밀번호가 다릅니다")
+			        	return false;
+			        }
+			        else if(!reg2.test(pwd)){
+			        	alert("비밀번호는 8자리이상이여야합니다")
 			        	return false;
 			        }
 			        else if($(name).val()==""){
@@ -241,28 +246,42 @@ $(document).ready(
 				});
 				
 				function checkPwd(){
-					var regExPw = /^[a-zA-Z0-9]{8,20}$/;
+					var reg = /^[a-zA-Z0-9]{8,20}$/;
 			        var inputed = $('#pwd').val();
 			        var reinputed = $('#pwdCheck').val();
 			        var	img1 = document.getElementById('pswd1_img1');
 			        var	img2 = document.getElementById('pswd1_img2');
-			        if(reinputed=="" && (inputed != reinputed || inputed == reinputed)){ //초기화면
+			        if(!reg.test(inputed) && reinputed=="" && (inputed != reinputed || inputed == reinputed)){ //초기화면
 			        	img1.src="/resources/images/key4.png";
 			        	img2.src="/resources/images/key2.png";
 			            $("input[name=pwd]").css("background-color", "#aaaaaa");
 			            $("input[name=pwdCheck]").css("background-color", "#FFCECE");
-			        }
-			        else if (regExPw.test(inputed)&&inputed == reinputed) { //pwd1이 유효성검사했을때 틀리면
+			            console.log("실1행");
+			        }else if(reg.test(inputed) && (inputed == reinputed)) { //pwd1이 유효성검사했을때 틀리면
 			        	img1.src="/resources/images/key5.png";
 			        	img2.src="/resources/images/key3.png";
 			            $("input[name=pwd]").css("background-color", "#B0F6AC");
 			            $("input[name=pwdCheck]").css("background-color", "#B0F6AC");
-			        } else if (inputed != reinputed) {
-			        	img1.src="/resources/images/key6.png";
+
+			            console.log("실2행");
+			        }else if (!reg.test(inputed) && inputed == reinputed) { //pwd1이 유효성검사했을때 틀리면
+			        	img1.src="/resources/images/key4.png";
+			        	img2.src="/resources/images/key3.png";
+			            $("input[name=pwd]").css("background-color", "#aaaaaa");
+			            $("input[name=pwdCheck]").css("background-color", "#B0F6AC");
+			            console.log("실3행");
+			        }else if (reg.test(inputed) && inputed != reinputed) { //pwd1이 유효성검사했을때 틀리면
+			        	img1.src="/resources/images/key5.png";
+			        	img2.src="/resources/images/key2.png";
+			            $("input[name=pwd]").css("background-color", "#B0F6AC");
+			            $("input[name=pwdCheck]").css("background-color", "#FFCECE");
+			            console.log("실3행");
+			        }else if (!reg.test(inputed) && inputed != reinputed) {
+			        	img1.src="/resources/images/key4.png";
 			        	img2.src="/resources/images/key2.png";
 			            $("input[name=pwd]").css("background-color", "#aaaaaa");
 			            $("input[name=pwdCheck]").css("background-color", "#FFCECE");
-			            
+			            console.log("실4행");
 			        }
 				}
     

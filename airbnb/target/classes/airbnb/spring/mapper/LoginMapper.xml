@@ -55,7 +55,7 @@
 	
 	<update id="updatePwd">
 	update TBL_USER set pwd=#{pwd} where id=#{id} or name=#{name} 
-	or email=#{email} 
+	or email=#{email}
 	</update>
 	
 	<select id="get" resultType="airbnb.spring.dto.User">

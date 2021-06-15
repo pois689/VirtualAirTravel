@@ -464,37 +464,45 @@ public class LoginController {
 	//비밀번호중복확인
 	@PostMapping("/checkPwd")
 	@ResponseBody
-	public String checkPw(@RequestBody String pw,HttpSession session)throws Exception {
+	public String checkPw(HttpSession session,HttpServletRequest request)throws Exception {
 		String result = null;
-		//암호화
+		String pw = request.getParameter("pw");
+		System.out.println("\n\n\n\n\n"+pw);
+		
+		//암호화 확인
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 		User user = (User) session.getAttribute("user");
-		
+		System.out.println(user.getPwd());
 		if(encoder.matches(pw, user.getPwd())) {
 			result = "Success";
+			return result;
 		}else {
 			result = "fail";
+			return result;
 		}
 		
-		return result;
+		
 	}
 	
 	@PostMapping("/pwd_change")
-	public String pwChange(@RequestBody User user, HttpSession session)throws Exception{
+	@ResponseBody
+	public Map<String, Object> pwChange(@RequestBody User user, HttpSession session)throws Exception{
 		System.out.println(user);
-		
-		try {
+		Map<String, Object> map = new HashMap<>();
+		String result = null;
 			int res = service.updatePwd(user);
-			if(res>0) {
-				return "forward:/login/loginProcess"; //변경즉시 로그인
-			}else {
-				return "/error";
-			}
 			
-		}catch (Exception e) {
-			e.printStackTrace();
-			return "/error";
-		}
+			if(res>0) {
+				result = "Success";
+				map.put("result", result);
+				System.out.println("\n\n\n\n\n\n\n\n" + result);
+				session.invalidate();
+			}else {
+				result = "fail";
+				map.put("result", result);
+			}
+			return map;
+
 	}
 
 	//유저정보 페이지
