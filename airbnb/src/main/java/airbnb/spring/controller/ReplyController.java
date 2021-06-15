@@ -45,10 +45,9 @@ public class ReplyController {
 	public ResponseEntity<List<ReplyDTO>> getList(@PathVariable("page") int page
 												  ,@PathVariable("place_id") String place_id
 												  ,Model model){
-		
-		log.info("getList.........");
 		int temp = service.getCountReply(place_id);//해당하는 장소의 댓글갯수
-		model.addAttribute(temp);
+		model.addAttribute("ReplyCnt",temp);
+		log.info("getList.........");
 		return new ResponseEntity<>(service.getList(place_id), HttpStatus.OK);
 	}
 	

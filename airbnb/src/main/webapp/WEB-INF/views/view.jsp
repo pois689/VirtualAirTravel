@@ -24,7 +24,7 @@
 										d="M15.094 1.579l-4.124 8.885-9.86 1.27a1 1 0 0 0-.542 1.736l7.293 6.565-1.965 9.852a1 1 0 0 0 1.483 1.061L16 25.951l8.625 4.997a1 1 0 0 0 1.482-1.06l-1.965-9.853 7.293-6.565a1 1 0 0 0-.541-1.735l-9.86-1.271-4.127-8.885a1 1 0 0 0-1.814 0z"
 										fill-rule="evenodd"></path></svg>
 							</span> <span>4.5</span> <span
-								style="color: rgb(113, 113, 113) !important;">(후기xx개)</span>
+								style="color: rgb(113, 113, 113) !important;">${ReplyCnt}</span>
 						</div>
 						<div class="title_information_first">
 							<span class="margins" aria-hidden="true"></span>
@@ -256,7 +256,7 @@
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script async
-	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD9Ipehrpor4GUgqPUAUI7sXldNenx5suo&region=JP&language=ko&libraries=places&callback=initMap">
+	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDUBAs2Aoeh9UJxjarRyXFSvuBDE-BLFVM&region=JP&language=ko&libraries=places&callback=initMap">
 </script>
 <script type="text/javascript" src="/resources/css/reply/reply.js"></script>
 <script>
@@ -589,6 +589,7 @@ window.onload = function(){
 			showList(1);
 		});
 	});
+	
 };
 </script>
 </html>
