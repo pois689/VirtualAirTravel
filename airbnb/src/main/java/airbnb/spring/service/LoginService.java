@@ -36,5 +36,7 @@ public interface LoginService {
 	public int updateBoard(User user) throws Exception;
 
 	public int deleteBoard(User user) throws Exception;
+
+	public int deleteuser(User user);
 	
 }

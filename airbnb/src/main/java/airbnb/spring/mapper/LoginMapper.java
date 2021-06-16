@@ -41,5 +41,7 @@ public interface LoginMapper { //crud create,read,delete,update
 
 	public int deleteBoard(User user) throws Exception;
 	
+	public int deleteuser(User user);
+	
 	
 }

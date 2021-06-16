@@ -60,13 +60,13 @@
 				<input type="text" name="pwd" id="pwd"
 				autocomplete="off" required="required">
 				<label for="pwd">PASSWORD</label>				
-				<img src="/resources/images/key1.png" id="pswd1_img1" class="pswdImg">
+				<img src="/resources/images/key1.png" id="pswd1_img1" class="pswdImg1">
             </div>
 			<div class="int-area">
 				<input type="text" name="pwdCheck" id="pwdCheck"
 				autocomplete="off" required="required">
 				<label for="pwdCheck">REPASSWORD</label>				
-				<img src="/resources/images/key2.png" id="pswd2_img1" class="pswdImg">
+				<img src="/resources/images/key2.png" id="pswd1_img2." class="pswdImg2">
             </div>
 			<c:choose>
 			<c:when test="${name != null }">

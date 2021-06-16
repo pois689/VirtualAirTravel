@@ -19,21 +19,20 @@
 		<input type="text" name="id" id="id" value ="${user.id }">
 			<div class="int-area">
 				<input type="text" name="pwd" id="pwd"
-				autocomplete="off" required="required">
+				autocomplete="off" required="required" maxlength="20">
 				<label for="pwd">Existing PASSWORD</label>				
-				<img src="/resources/images/key2.png" id="pswd1_img1" class="pswdImg1">
             </div>
 			<div class="int-area">
 				<input type="text" name="repwd" id="repwd"
-				autocomplete="off" required="required">
+				autocomplete="off" required="required" oninput="checkPwd()">
 				<label for="pwdCheck">PASSWORD</label>				
-				<img src="/resources/images/key1.png" id="pswd2_img1" class="pswdImg1">
+				<img src="/resources/images/key1.png" maxlength="20" id="pswd1_img1" class="pswdImg1">
             </div>
 			<div class="int-area">
 				<input type="text" name="repwdCheck" id="repwdCheck"
-				autocomplete="off" required="required">
+				autocomplete="off" required="required" maxlength="20" oninput="checkPwd()">
 				<label for="repwdCheck">REPASSWORD</label>				
-				<img src="/resources/images/key2.png" id="pswd2_img1" class="pswdImg2">
+				<img src="/resources/images/key2.png" id="pswd1_img2" class="pswdImg2">
             </div>
             <div class="btn-area">
                 <button id="btn" type="button">비밀번호 변경하기</button>
@@ -127,6 +126,50 @@ $(document).ready(
         	
         });
 	}
+	
+	function checkPwd(){
+		var reg = /^[a-zA-Z0-9]{8,20}$/;
+        var inp = $('#pwd').val();
+        var inputed = $('#repwd').val();
+        var reinputed = $('#repwdCheck').val();
+        var	img1 = document.getElementById('pswd1_img1');
+        var	img2 = document.getElementById('pswd1_img2');
+        if(!reg.test(inputed) && reinputed=="" && (inputed != reinputed || inputed == reinputed)){ //초기화면
+        	img1.src="/resources/images/key4.png";
+        	img2.src="/resources/images/key2.png";
+            $("input[name=repwd]").css("background-color", "#aaaaaa");
+            $("input[name=repwdCheck]").css("background-color", "#FFCECE");
+            console.log("실1행");
+        }else if(reg.test(inputed) && (inputed == reinputed)) { //pwd1이 유효성검사했을때 틀리면
+        	img1.src="/resources/images/key5.png";
+        	img2.src="/resources/images/key3.png";
+            $("input[name=repwd]").css("background-color", "#B0F6AC");
+            $("input[name=repwdCheck]").css("background-color", "#B0F6AC");
+
+            console.log("실2행");
+        }else if (inp!="" || !reg.test(inputed) && inputed == reinputed) { //pwd1이 유효성검사했을때 틀리면
+        	img1.src="/resources/images/key4.png";
+        	img2.src="/resources/images/key3.png";
+            $("input[name=pwd]").css("background-color", "#B0F6AC");
+            $("input[name=repwd]").css("background-color", "#aaaaaa");
+            $("input[name=repwdCheck]").css("background-color", "#B0F6AC");
+            console.log("실3행");
+        }else if (reg.test(inputed) && inputed != reinputed) { //pwd1이 유효성검사했을때 틀리면
+        	img1.src="/resources/images/key5.png";
+        	img2.src="/resources/images/key2.png";
+            $("input[name=repwd]").css("background-color", "#B0F6AC");
+            $("input[name=repwdCheck]").css("background-color", "#FFCECE");
+            console.log("실3행");
+        }else if (!reg.test(inputed) && inputed != reinputed) {
+        	img1.src="/resources/images/key4.png";
+        	img2.src="/resources/images/key2.png";
+            $("input[name=repwd]").css("background-color", "#aaaaaa");
+            $("input[name=repwdCheck]").css("background-color", "#FFCECE");
+            console.log("실4행");
+        }
+	}
+
+	
 
     $(document).snowfall({round : true, maxSize : 3});
 </script>

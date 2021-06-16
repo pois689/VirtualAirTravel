@@ -44,7 +44,7 @@ public class LoginController {
 
 	@Autowired
 	LoginService service;
-	
+
 	@Autowired
 	MailSender sender;
 	
@@ -72,6 +72,15 @@ public class LoginController {
 		return "tiles/index.tiles";
 	}
 	
+	
+	@GetMapping("/login/deleteuser")
+	public String deleteuser(HttpSession session,HttpServletRequest request) {
+		User user = (User) session.getAttribute("user");
+		service.deleteuser(user);
+		session.invalidate();
+
+		return "tiles/index.tiles";
+	}
 	
 	@GetMapping("/login/working/adminList")
 	public String adminstorage() {
@@ -187,13 +196,18 @@ public class LoginController {
 		
 		SNSLogin snsLogin = new SNSLogin(sns); //sns로그인부분을 컨트롤러
 		//sns회원가입페이지 따로
-		User snsUser = snsLogin.getUserProfile(code);// 1,2번 동시
+		User snsUser = snsLogin.getUserProfile(code);// 1,2번 동시 sns유저
 		System.out.println("\n\n\n\n\n\n\n\n"+snsUser);
-		User user = service.snslogin(snsUser);
+		User user = service.snslogin(snsUser); //기존유저
 		if(user != null) {
 			session.setAttribute("user", user);
-		}else {
+		}
+		else if(snsUser.getEnabled()==null){
 			session.setAttribute("user", snsUser);
+		}
+		else {
+			session.setAttribute("user", snsUser);
+
 		}
 		
 		

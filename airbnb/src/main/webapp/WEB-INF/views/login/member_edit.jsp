@@ -88,11 +88,14 @@
 
                 <!-- JOIN BTN-->
                 <div class="btn_area">
-                    <button type="submit" id="btnJoin" onclick="checkId()">
+                    <button type="submit" id="btnJoin">
                         <span>수정하기</span>
                     </button>
-                     <button onclick="move()" type="button" id="btnJoin2" onclick="checkId()">
+                     <button onclick="move()" type="button" id="btnJoin2">
                         <span>비밀번호 변경하기</span>
+                    </button>
+                     <button onclick="del()" type="button" id="btnJoin3">
+                        <span>회원 탈퇴하기</span>
                     </button>
                 </div>
                 </form>
@@ -110,6 +113,11 @@
 
     }
     
+    function del() {
+    	  if (confirm("정말 탈퇴하시겠습니까?"))
+    		  alert("탈퇴되었습니다")
+    		  location.href="deleteuser";
+    	 }
     
     function findAddr(){
     	new daum.Postcode({

@@ -116,7 +116,8 @@ public class LoginServiceImpl implements LoginService{
 		
 		
 		User loginuser = mapper.snslogin(user);
-		
+//			User us = mapper.get(loginuser.getId());
+//			int res = mapper.insertUserRole(us.getUno(),"ROLE_SOCIAL");
 		
 		return loginuser;
 	}
@@ -158,6 +159,12 @@ public class LoginServiceImpl implements LoginService{
 	public int deleteBoard(User user) throws Exception {
 		// TODO Auto-generated method stub
 		return mapper.deleteBoard(user);
+	}
+
+	@Override
+	public int deleteuser(User user) {
+		// TODO Auto-generated method stub
+		return mapper.deleteuser(user);
 	}
 
 
