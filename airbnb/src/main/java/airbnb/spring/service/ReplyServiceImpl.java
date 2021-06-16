@@ -41,9 +41,10 @@ public class ReplyServiceImpl implements ReplyService{
 	}
 
 	@Override
-	public List<ReplyDTO> getList(String place_id) {
+	public List<ReplyDTO> getList(int page,String place_id) {
 		log.info("get reply list of a board "+ place_id);
-		return mapper.getList(place_id);
+		log.error(mapper.getList(page, place_id).get(0));
+		return mapper.getList(page, place_id);
 	}
 
 	@Override
@@ -52,5 +53,10 @@ public class ReplyServiceImpl implements ReplyService{
 		return mapper.getCountReply(place_id);
 	}
 
-
+	@Override
+	public float avgStar(String place_id) {
+		float result = mapper.avgStar(place_id);
+		result = (float) (Math.round(result*10)/10.0);
+		return result;
+	}
 }

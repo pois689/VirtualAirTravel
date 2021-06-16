@@ -22,17 +22,20 @@
 	</delete>
 	
 	<update id="update">
-		update tbl_reply set content = #{content}, updatedate = sysdate where rno = #{rno}
+		update tbl_reply set content = #{content}, updatedate = sysdate, star = #{star} where rno = #{rno}
 	</update>
 	
 	<select id="getList" resultType="airbnb.spring.dto.ReplyDTO">
-		select rno, place_id, content, name, replydate, updatedate
-		from tbl_reply
-		where place_id = #{place_id}
-		order by rno desc
+		select rno, place_id, content, name, replydate, updatedate, star from (
+			select /*+INDEX_DESC(TBL_REPLY PK_REPLY) */ rownum rn, rno, place_id, content, name, replydate, updatedate, star from tbl_reply where place_id = #{place_id}
+        ) where rn between (#{page}-1)*10+1 and #{page}*10
 	</select>
 	
 	<select id="getCountReply" resultType="int">
 		select count(rno) from tbl_reply where place_id=#{place_id}
 	</select>
+	
+	<select id="avgStar" resultType="float">
+		select avg(star) from tbl_reply where place_id = #{place_id}
+	</select> 
 </mapper>

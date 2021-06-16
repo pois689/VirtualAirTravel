@@ -23,8 +23,8 @@
 									<path
 										d="M15.094 1.579l-4.124 8.885-9.86 1.27a1 1 0 0 0-.542 1.736l7.293 6.565-1.965 9.852a1 1 0 0 0 1.483 1.061L16 25.951l8.625 4.997a1 1 0 0 0 1.482-1.06l-1.965-9.853 7.293-6.565a1 1 0 0 0-.541-1.735l-9.86-1.271-4.127-8.885a1 1 0 0 0-1.814 0z"
 										fill-rule="evenodd"></path></svg>
-							</span> <span>4.5</span> <span
-								style="color: rgb(113, 113, 113) !important;">${ReplyCnt}</span>
+							</span> <span class="avgStar">4.5</span> <span class="reply_cnt"
+								style="color: rgb(113, 113, 113) !important;">댓글 갯수</span>
 						</div>
 						<div class="title_information_first">
 							<span class="margins" aria-hidden="true"></span>
@@ -90,9 +90,9 @@
 						<path
 							d="M15.094 1.579l-4.124 8.885-9.86 1.27a1 1 0 0 0-.542 1.736l7.293 6.565-1.965 9.852a1 1 0 0 0 1.483 1.061L16 25.951l8.625 4.997a1 1 0 0 0 1.482-1.06l-1.965-9.853 7.293-6.565a1 1 0 0 0-.541-1.735l-9.86-1.271-4.127-8.885a1 1 0 0 0-1.814 0z"
 							fill-rule="evenodd"></path></svg>
-				</span> <span>4.5</span> <span>(후기 20개)</span>
+				</span> <span class="avgStar">4.5</span> <span class="reply_cnt">(후기 20개)</span>
 				<div class="addBtn">
-					<button type="button" id='addReplyBtn'>댓글 작성</button>
+					<button type="button" class="ml-2 btn btn-primary btn-lg" id='addReplyBtn'>댓글 작성</button>
 				</div>
 			</h2>
 
@@ -148,7 +148,7 @@
 								<div class="review_date">2021년 6월 2일</div>
 							</div>
 						</div>
-
+						
 						<div class="review_text">
 							<span>너무 좋앗어용너무 좋앗어용너무 좋앗어용너무 좋앗어용너무 좋앗어용너무 좋앗어용</span>
 						</div>
@@ -212,7 +212,7 @@
 		<div id="map" class="map"></div>
 	</div>
 	</main>
-
+	
 	<!-- Modal -->
 	<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
 		aria-labelledby="myModalLabel" aria-hidden="true">
@@ -223,16 +223,31 @@
 						aria-hidden="true">&times;</button>
 					<h4 class="modal-title" id="myModalLabel">댓글 작성</h4>
 				</div>
+				<!-- modal_textArea -->
 				<div class="modal-body">
+					<!-- star_jquery -->
+					<select id="example">
+						<option value="1">1</option>
+						<option value="2">2</option>
+						<option value="3">3</option>
+						<option value="4">4</option>
+						<option value="5">5</option>
+					</select>
+					<input type="hidden" id="star">
+					
+					<!-- text -->
 					<ul class="list-group list-group-flush">
-						<li class="list-group-item"><input type="text"
-							class="form-control ml-2" placeholder="user" id="user"></li>
-						<li class="list-group-item"><textarea class="form-control"
-								id="content" placeholder="content" rows="3"></textarea></li>
+						<li class="list-group-item">
+							<input type="text" class="form-control ml-2" placeholder="user" id="user">
+						</li>
+						<li class="list-group-item">
+							<textarea class="form-control" id="content" placeholder="content" rows="3" maxlength="2000"></textarea>
+						</li>
 					</ul>
 				</div>
+				
+				<!-- modal_button -->
 				<div class="modal-footer">
-
 					<button type="button" class="btn btn-warning" data-dismiss="modal"
 						id="modalModBtn">Modify</button>
 					<button type="button" class="btn btn-danger" data-dismiss="modal"
@@ -258,7 +273,11 @@
 <script async
 	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDUBAs2Aoeh9UJxjarRyXFSvuBDE-BLFVM&region=JP&language=ko&libraries=places&callback=initMap">
 </script>
-<script type="text/javascript" src="/resources/css/reply/reply.js"></script>
+<script type="text/javascript" src="/resources/js/reply/reply.js"></script>
+<!-- bar-rating -->
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+<link rel="stylesheet" href="/resources/css/reply/fontawesome-stars.css">
+<script type="text/javascript" src="/resources/js/reply/jquery.barrating.min.js"></script>
 <script>
 let map;
 let service;
@@ -487,26 +506,35 @@ window.onload = function(){
 	});*/
 	
 	var replyUL = $(".review_start");
-	
-	showList(1);
+		
+	showList();
 	
 	function showList(page){
-		replyService.getList({place_id:value_place, page: page||1}, function(list){
+		replyService.getList({place_id:value_place, page: page||1}, function(map){
+			console.log('댓글 갯수 : ', map['ReplyCnt']);
+			console.log('리스트 : ', map['List']);
+			console.log('별점 : ', map['List']);
 			var str="";
-			if(list == null || list.length==0){
+			if(map['List'] == null || map['List'].length==0){
 				$(".review_start").html("");
 				return;
 			}
-			for(var i=0, len=list.length||0; i<len; i++){
-				str += "<div class='review_frame'><div class='review_box'><div class='review_header'>";
-				str += "<div class='review_id'>"+list[i].name;
-				str += "<div class='review_date'>"+list[i].replyDate+"</div></div></div>";
-				str += "<div class='review_text'><span data-rno='"+list[i].rno+"'>"+list[i].content+"</span></div></div></div>";
+			for(var i=0, len=map['List'].length||0; i<len; i++){
+				str += "<div class='review_frame' data-rno='"+map['List'][i].rno+"'><div class='review_box'><div class='review_header'>";
+				str += "<div class='review_id'>"+map['List'][i].name;
+				str += "<div class='review_date'>"+map['List'][i].replyDate+"</div></div></div>";
+				str += "<div class='review_text'><span data-rno='"+map['List'][i].rno+"'>";
+				str += map['List'][i].content+"</span></div></div></div>";
 				
-				//console.log(list[i]);
-				//console.log(list[i].rno);
+				//console.log(map['List'][i]);
+				//console.log(map['List'][i].rno);
 			}
 			$(".review_start").html(str);
+			var cnt = "후기 "+map['ReplyCnt']+"개";
+				
+			var avg_star = map['avgStar'];
+			$(".avgStar").html(avg_star);
+			$(".reply_cnt").html(cnt);
 		}); // end function
 	} // end showList
 	
@@ -520,26 +548,26 @@ window.onload = function(){
 	var modalRegisterBtn = $("#modalRegisterBtn");
 	
 	$("#addReplyBtn").on("click", function(e){
+		$('#example').barrating('set', 5);
 		modal.find("input").val("");
 		//modalInputReplyDate.closest("div").hide();
 		modal.find("button[id !='modalCloseBtn']").hide();
 		content:$("#content").val("");
 		name:$("#user").val("");
 		modalRegisterBtn.show();
-		
 		$(".modal").modal("show");
 	});
 	
 	// 새로운 댓글 추가 처리
 	modalRegisterBtn.on("click",function(e){
 		var reply = {
-				content:$("#content").val(),
-				name:$("#user").val(),
-				place_id:value_place
+				content:$("#content").val()
+				,name:$("#user").val()
+				,place_id:value_place
+				,star:$('#star').val()
 		};
 		replyService.add(reply, function(result){
 			alert(result);
-			
 			modal.find("input").val("");
 			modal.modal("hide");
 			
@@ -548,16 +576,21 @@ window.onload = function(){
 	});
 	
 	// 모달로 상세보기 불러오기
-	$(".review_start").on("click","span",function(e){
+	$(".review_start").on("click",".review_frame",function(e){
 		var rno = $(this).data("rno");
 		
 		replyService.get(rno,function(reply){
 			
 			$("#content").val(reply.content);
-			$("#user").val(reply.name);
+			let name = $("#user").val(reply.name);
+			$("#star").val(reply.star);
+	 		$('#example').barrating('set', reply.star);
 			modal.data("rno",reply.rno);
 			
 			modal.find("button[id!='modalCloseBtn']").hide();
+			/* if({세션}==null||{세션}==name){
+				null or 다를 때 hide처리
+			} */
 			modalModBtn.show();
 			modalRemoveBtn.show();
 			
@@ -569,7 +602,7 @@ window.onload = function(){
 	// 댓글 수정
 	modalModBtn.on("click", function(e){
 		
-		var reply = {rno:modal.data("rno"), content:$("#content").val()};
+		var reply = {rno:modal.data("rno"), content:$("#content").val(), star:$("#star").val()};
 		
 		replyService.update(reply, function(result){
 			alert(result);
@@ -590,6 +623,19 @@ window.onload = function(){
 		});
 	});
 	
+	$('select').barrating({
+	     theme: 'fontawesome-stars'
+	   	 , onSelect: function(value, text, event){
+	   			// 별점 클릭 후 처리는 여기서 코드
+	   			// 선택한 별점 값을 value로 받음
+	   			$('#star').val(value);
+	   		}
+	   });
+	
 };
+   /* $('.ex').barrating({
+     theme: 'fontawesome-stars'
+     , readonly: true
+   }); */
 </script>
 </html>

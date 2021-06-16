@@ -1,20 +1,11 @@
 package airbnb.spring.controller;
 
-import java.util.List;
+import java.util.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import airbnb.spring.controller.ReplyController;
 import airbnb.spring.dto.ReplyDTO;
@@ -42,13 +33,15 @@ public class ReplyController {
 	//리스트 조회
 	@GetMapping(value="/pages/{place_id}/{page}", produces= {MediaType.APPLICATION_XML_VALUE,
 			MediaType.APPLICATION_JSON_UTF8_VALUE})
-	public ResponseEntity<List<ReplyDTO>> getList(@PathVariable("page") int page
-												  ,@PathVariable("place_id") String place_id
-												  ,Model model){
-		int temp = service.getCountReply(place_id);//해당하는 장소의 댓글갯수
-		model.addAttribute("ReplyCnt",temp);
-		log.info("getList.........");
-		return new ResponseEntity<>(service.getList(place_id), HttpStatus.OK);
+	public ResponseEntity<Map<String, Object>> getList(@PathVariable("page") int page
+												  ,@PathVariable("place_id") String place_id){
+		
+		Map<String, Object> listMap = new HashMap<String, Object>(); 
+		listMap.put("List", service.getList(page, place_id));
+			log.info("getList.........");
+		listMap.put("ReplyCnt", service.getCountReply(place_id));//해당하는 장소의 댓글갯수
+		listMap.put("avgStar", service.avgStar(place_id));
+		return new ResponseEntity<>(listMap, HttpStatus.OK);
 	}
 	
 	// 댓글 상세보기

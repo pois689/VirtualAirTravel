@@ -26,9 +26,9 @@ public class ReplyMapperTest {
 	@Test
 	public void testList() {
 		
-		List<ReplyDTO> replies = mapper.getList("서울");
+		//List<ReplyDTO> replies = mapper.getList("서울");
 		
-		replies.forEach(reply -> log.info(reply));
+		//replies.forEach(reply -> log.info(reply));
 	}
 	
 	@Test

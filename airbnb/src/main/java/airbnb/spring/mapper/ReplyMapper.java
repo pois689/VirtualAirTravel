@@ -18,7 +18,11 @@ public interface ReplyMapper {
 	public int update(ReplyDTO dto);
 	
 	public List<ReplyDTO> getList(
-			@Param("place_id") String place_id);
+			@Param("page") int page,
+			@Param("place_id") String place_id
+		);
 	
 	public int getCountReply(String place_id);
+	
+	public float avgStar(String place_id);
 }
