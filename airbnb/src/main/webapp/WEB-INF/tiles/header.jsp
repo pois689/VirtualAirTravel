@@ -182,7 +182,6 @@ ${sessionScope.snsUser }
 	                        	</c:when>
 	                        	<c:when test="${sessionScope.user.uno == 0 }">
 	                        	<li><a class="dropdown-item" href="/login/logout">로그아웃</a></li>
-	                        	<li><a class="dropdown-item" href="/login/snsregister">소셜아이디로 회원가입</a></li>
 	                        	</c:when>
 	                        	<c:otherwise>
 	        		                <li><a class="dropdown-item" href="/login/logout">로그아웃</a></li>

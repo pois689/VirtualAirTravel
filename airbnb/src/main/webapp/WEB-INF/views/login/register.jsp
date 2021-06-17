@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="/resources/css/login/style2.css">
 <script src="https://www.google.com/recaptcha/api.js"></script>
 <script src="/resources/js/jquery-3.6.0.min.js"></script>
-<script src="/resources/js/snowfall.jquery.js"></script>
+<script src="/resources/js/ljk_snowfall.jquery.js"></script>
 <!-- <script>
             function onSubmit(token) {
               document.getElementById("demo-form").submit();
@@ -110,6 +110,11 @@ $(document).ready(
 			});
 			$("#idCheck").on("click", function(){
 				let idd = $("input[name=id]").val();
+				if(idd == ""){
+					alert("아이디가 입력되지 않았습니다");
+					$("input[name=id]").css("background-color", "#ffffff");
+				}
+				else{
 				$.ajax({
 					url : '/checkId/' + idd,
 					method : 'get',
@@ -132,14 +137,21 @@ $(document).ready(
 						console.log('error');
 					}
 				});
+				}
 				$("input[name=id]").prop("dataValue",false);
 			});
 			
 				$(".sendMail").click(function() {// 메일 입력 유효성 검사
 					var mail = $(".email").val(); //사용자의 이메일 입력값. 
+					var regExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i; 
+					
 					if (mail == "") {
 						alert("메일 주소가 입력되지 않았습니다.");
-					} else {
+					}
+					else if(mail.match(regExp) == null){
+						alert('이메일형식에 맞게 입력해주세요'); 
+					}
+					else {
 						 //셀렉트 박스에 @뒤 값들을 더함.
 					$.ajax({
 						type : 'post',
@@ -171,7 +183,6 @@ $(document).ready(
 				
 				
 			    $(btn).on('click',function(){
-			    	let reg2 = /^[a-zA-Z0-9]{8,20}$/;
 				    let id = $('#id');
 				    let pwd1 = $('#pwd');
 				    let pwd2 = $('#pwdCheck');
@@ -179,10 +190,13 @@ $(document).ready(
 				    let name = $('#name');
 				    let email = $('#email');
 				    let tel = $('#tel');
+			    	let regExPw = /^[a-zA-Z0-9]{8,20}$/;
+			    	let chk_num = $(pwd).val().search(/[0-9]/g); //비밀번호와 숫자 인덱스 검색,숫자가 1개라도 있어야하고
+			    	let chk_eng = $(pwd).val().search(/[a-zA-Z]/g); //비번 영문자의 인덱스 검색,문자가 하나라도 있어야함
 				    
 			        if($(id).val()==""){
 			            $(id).next('label').addClass('warning');
-			            setTimeout(function(){
+			            setTimeout(function(){	
 			                $('label').removeClass('warning')
 			            },1500)
 			        }
@@ -202,8 +216,8 @@ $(document).ready(
 			        	alert("비밀번호가 다릅니다")
 			        	return false;
 			        }
-			        else if(!reg2.test(pwd)){
-			        	alert("비밀번호는 8자리이상이여야합니다")
+			        else if(!regExPw.test($(pwd).val()) || chk_num < 0 || chk_eng < 0){
+			        	alert("비밀번호는 영문자와 숫자 조합으로 8~20자까지 가능합니다 한글x")
 			        	return false;
 			        }
 			        else if($(name).val()==""){
@@ -291,6 +305,10 @@ $(document).ready(
 			            console.log("실4행");
 			        }
 				}
+				
+
+
+				
 				var autoHypenPhone = function(str){
 				      str = str.replace(/[^0-9]/g, '');
 				      var tmp = '';

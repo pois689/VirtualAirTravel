@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="/resources/css/login/new_reg2.css">
 <script src="https://www.google.com/recaptcha/api.js"></script>
 <script src="/resources/js/jquery-3.6.0.min.js"></script>
-<script src="/resources/js/snowfall.jquery.js"></script>
+<script src="/resources/js/ljk_snowfall.jquery.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>    
 </head>
     <body>

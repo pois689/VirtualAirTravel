@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="/resources/css/login/style2.css">
 <script src="https://www.google.com/recaptcha/api.js"></script>
 <script src="/resources/js/jquery-3.6.0.min.js"></script>
-<script src="/resources/js/snowfall.jquery.js"></script>
+<script src="/resources/js/ljk_snowfall.jquery.js"></script>
 </head>
 <body>
 	<section class="login-form">

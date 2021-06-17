@@ -7,11 +7,11 @@
 <title>boardList</title>
 <script src="/resources/js/jquery-3.4.1.js"></script>
 <script src="/resources/js/angular.min.js"></script>
-<script src="/resources/js/bdApp.js"></script>
-<script src="/resources/js/bdController.js"></script>
+<script src="/resources/js/ljk_bdApp.js"></script>
+<script src="/resources/js/ljk_bdController.js"></script>
 </head>
 <body> <!-- bdapp : 앱구현  -->
-	<div ng-app="bdApp" ng-controller="bdController" 
+	<div ng-app="ljk_bdApp" ng-controller="ljk_bdController" 
 		ng-init="initBoardList();"> <!-- Initialize 초기화 -->
 		<form ng-submit="addBoard()"> <!-- ng-submit ng-컨트롤러로 폼을보냄 -->
 			아이디: <input type="text" ng-model="boardForm.id"> 

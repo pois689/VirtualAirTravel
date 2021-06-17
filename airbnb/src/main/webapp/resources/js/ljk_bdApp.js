@@ -1,6 +1,6 @@
 'use strict';
 
-var bdApp = angular.module("bdApp", []);
+var bdApp = angular.module("ljk_bdApp", []);
 
 // 팩토리 정의
 bdApp.factory("bdService", function($http){

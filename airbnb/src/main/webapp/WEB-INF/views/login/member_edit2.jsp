@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="/resources/css/login/new_reg2.css">
 <script src="https://www.google.com/recaptcha/api.js"></script>
 <script src="/resources/js/jquery-3.6.0.min.js"></script>
-<script src="/resources/js/snowfall.jquery.js"></script>
+<script src="/resources/js/ljk_snowfall.jquery.js"></script>
 <script>
             function onSubmit(token) {
               document.getElementById("demo-form").submit();

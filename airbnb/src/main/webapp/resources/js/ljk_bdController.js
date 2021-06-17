@@ -1,6 +1,6 @@
 'use strict';
 
-bdApp.controller('bdController', bdController);
+bdApp.controller('ljk_bdController', bdController);
 
 bdController.$inject = ['$rootScope', '$scope', 'bdService'];
 
