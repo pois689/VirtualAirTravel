@@ -299,7 +299,7 @@ function initMap() {
 
 	let service = new google.maps.places.PlacesService(map);
   
-  	service.findPlaceFromQuery(request, function(results, status) {
+  	service.textSearch(request, function(results, status) {
     	if (status === google.maps.places.PlacesServiceStatus.OK) {
     		request = {
     			placeId: results[0].place_id,
@@ -381,6 +381,8 @@ function initMap() {
 							$('.business_status').html('임시 휴업');
 						else if(open == 'CLOSED_TEMPORARILY')
 							$('.business_status').html('폐업');
+						else
+							$('.business_status').html('관계없음');
 						
 
 						// 장소의 공식 홈페이지 가 있을경우 홈페이지 주소 불러오기
@@ -513,7 +515,6 @@ window.onload = function(){
 		replyService.getList({place_id:value_place, page: page||1}, function(map){
 			console.log('댓글 갯수 : ', map['ReplyCnt']);
 			console.log('리스트 : ', map['List']);
-			console.log('별점 : ', map['List']);
 			var str="";
 			if(map['List'] == null || map['List'].length==0){
 				$(".review_start").html("");
