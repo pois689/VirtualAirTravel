@@ -194,7 +194,7 @@
 		
 		<hr>
 		<!-- 맵 부분 -->
-		<h2 class="review" style="margin-left: 300px !important; margin-right: 300px !important; margin: 50px 0px;">위치</h2>
+		<h2 class="map_title">위치</h2>
 		<div class="map_frame">
 			<div id="map" class="map"></div>
 		</div>
