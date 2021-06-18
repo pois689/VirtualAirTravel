@@ -26,10 +26,10 @@
 	</update>
 	
 	<select id="getList" resultType="airbnb.spring.dto.ReplyDTO">
-		select rno, place_id, content, name, replydate, updatedate, star from (
-			select /*+INDEX_DESC(TBL_REPLY PK_REPLY) */ rownum rn, rno, place_id, content, name, replydate, updatedate, star from tbl_reply where place_id = #{place_id}
-			ORDER BY rno DESC
-        ) where rn between (#{page}-1)*10+1 and #{page}*10
+		select rno, place_id, content, name, replydate, updatedate
+		from tbl_reply
+		where place_id = #{place_id}
+		order by rno desc
 	</select>
 	
 	<select id="getCountReply" resultType="int">

@@ -291,7 +291,6 @@ function initMap() {
 
 	map = new google.maps.Map(
 	    document.getElementById('map'), {center: sydney, zoom: 15, disableDefaultUI: true});
-
 	let request = {
 		query: '<c:out value="${name}"></c:out>',
     	fields: ['place_id'],
@@ -509,7 +508,7 @@ window.onload = function(){
 	
 	var replyUL = $(".review_start");
 		
-	showList();
+	showList(1);
 	
 	function showList(page){
 		replyService.getList({place_id:value_place, page: page||1}, function(map){
@@ -536,7 +535,18 @@ window.onload = function(){
 			var avg_star = map['avgStar'];
 			$(".avgStar").html(avg_star);
 			$(".reply_cnt").html(cnt);
+			
+			$('.review_frame:gt(9)').hide().last().after(
+				    $('<button />').text('Show more').click(function(){
+				        var a = this;
+				        $('.review_frame:not(:visible):lt(10)').fadeIn(function(){
+				         if ($('.review_frame:not(:visible)').length == 0) $(a).remove();   
+				        }); return false;
+				    })
+				);
+			
 		}); // end function
+		
 	} // end showList
 	
 	var modal = $(".modal");
@@ -549,7 +559,7 @@ window.onload = function(){
 	var modalRegisterBtn = $("#modalRegisterBtn");
 	
 	$("#addReplyBtn").on("click", function(e){
-		$('#example').barrating('set', 5);
+		$('#example').barrating('set', 1);
 		modal.find("input").val("");
 		//modalInputReplyDate.closest("div").hide();
 		modal.find("button[id !='modalCloseBtn']").hide();
@@ -632,6 +642,8 @@ window.onload = function(){
 	   			$('#star').val(value);
 	   		}
 	   });
+	
+	
 	
 };
    /* $('.ex').barrating({
