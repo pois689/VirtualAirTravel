@@ -14,6 +14,7 @@
 </head>
 
 <body>
+<div class="img"></div>
     <main>
         <section>
             <div class="sec__title">둘러보기</div>

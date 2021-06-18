@@ -19,5 +19,16 @@
 			<put-attribute name="content" value="/WEB-INF/{1}/{2}.jsp" />
 		</definition>
 		
+		<!-- <definition name="ryu_tilesLayout" template="/WEB-INF/tiles/ryu_tilesLayout.jsp">
+			<put-attribute name="tilesTop" value="/WEB-INF/tiles/ryu_header.jsp" />
+			<put-attribute name="content" value="" />
+		</definition>
 		
+		<definition name="*.tiless" extends="ryu_tilesLayout.jsp">
+			<put-attribute name="content" value="/WEB-INF/{1}.jsp" />
+		</definition>
+		
+		<definition name="*/*.tiless" extends="ryu_tilesLayout.jsp">
+			<put-attribute name="content" value="/WEB-INF/{1}/{2}.jsp" />
+		</definition> -->
 	</tiles-definitions>
