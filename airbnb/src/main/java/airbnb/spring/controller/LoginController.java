@@ -314,7 +314,7 @@ public class LoginController {
 			return "tiles/index.tiles";
 			
 		}else {
-			model.addAttribute("res","로그인에 실패하였습니다 Id,Pwd를 확인하세요");
+			model.addAttribute("res","로그인 실패 Id,Pwd를 확인하세요");
 			return "/login/id_finded";
 		}
 		
@@ -382,22 +382,23 @@ public class LoginController {
 	  	String uuid = null;
 		 for (int i = 0; i < 5; i++) {
 		        uuid = UUID.randomUUID().toString().replaceAll("-", ""); // -를 제거해 주었다.
-		        uuid = uuid.substring(0, 10); //uuid를 앞에서부터 10자리 잘라줌.
+		        uuid = uuid.substring(0, 8); //uuid를 앞에서부터 10자리 잘라줌.
 		  }
 		String encodePwd = encoder.encode(uuid);
 		User us = service.searchPwd(user);
 		if(us != null) {
-			user.setPwd(encodePwd);
-			int updateRes = service.updatePwd(user);
+			us.setPwd(uuid);
+			System.out.println(uuid);
+			int updateRes = service.updatePwd(us);
 			if(updateRes>0) {
 					SimpleMailMessage msg = new SimpleMailMessage();
 					msg.setTo("leehjcap1@gmail.com"); //보내는 경로
 					msg.setSubject("비밀번호확인해주세요");
-					msg.setText("임시비밀번호는"+uuid+"기존비밀번호"+us.getPwd()+"암호화된비밀번호" + encodePwd);
+					msg.setText("임시비밀번호는"+uuid+"입니다 \n 암호화된비밀번호는" + encodePwd);
 					//비밀번호 업데이트 서비스
 					msg.setFrom("leehjcap4@gmail.com");
 					sender.send(msg);
-					model.addAttribute("res", "입력하신 이메일로\n임시이메일을 전송하였습니다");
+					model.addAttribute("res", "임시이메일을 전송하였습니다");
 				}else {
 					model.addAttribute("res", "메일전송에 실패했습니다. 관리자에게 문의해주세요");
 				}

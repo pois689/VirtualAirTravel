@@ -59,6 +59,7 @@
 </script>
 ${sessionScope.user }
 ${sessionScope.snsUser }
+${sessionScope.user.userRole.indexOf('ROLE_ADMIN')}
     <header>
     	<nav class=" bg-white w-full flex relative justify-between items-center mx-auto px-8 h-20">
 		    <!-- logo -->
@@ -188,6 +189,9 @@ ${sessionScope.snsUser }
 	        		                <li><a class="dropdown-item" href="/login/member_edit">마이페이지</a></li>
 	                        	</c:otherwise>
 	                        </c:choose>
+	                        <c:if test="${sessionScope.user.userRole.indexOf(ROLE_ADMIN) < 0}">
+	                        <li><a class="dropdown-item" href="/login/working/adminList">관리자페이지</a></li>
+	                        </c:if>
 <!-- 						    <li><a class="dropdown-item" href="/login/register">회원 가입</a></li>
 						    <li><a class="dropdown-item" href="/login/login">로그인</a></li>
 						    <li><a class="dropdown-item" href="/login/member_edit">마이페이지</a></li> -->

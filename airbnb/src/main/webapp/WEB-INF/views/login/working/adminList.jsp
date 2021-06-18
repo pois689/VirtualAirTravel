@@ -5,6 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <title>boardList</title>
+<link rel="shortcut icon" sizes="76x76" type="image/x-icon"
+        href="https://a0.muscache.com/airbnb/static/logotype_favicon-21cc8e6c6a2cca43f061d2dcabdf6e58.ico">
 <script src="/resources/js/jquery-3.4.1.js"></script>
 <script src="/resources/js/angular.min.js"></script>
 <script src="/resources/js/ljk_bdApp.js"></script>
@@ -103,6 +105,7 @@
                 </tr>
          </table>
          <button type="button" data-ng-click="updateBoard(detail.uno);">수정하기</button>
+         <button type="button" onclick="history.go(-1);">뒤로가기</button>
 	</div>
 </body>
 </html>

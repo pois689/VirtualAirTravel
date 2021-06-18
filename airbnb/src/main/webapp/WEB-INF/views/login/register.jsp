@@ -6,6 +6,8 @@
 <meta charset="UTF-8">
 <title>네이버 : 회원가입</title>
 <link rel="stylesheet" href="/resources/css/login/style2.css">
+<link rel="shortcut icon" sizes="76x76" type="image/x-icon"
+        href="https://a0.muscache.com/airbnb/static/logotype_favicon-21cc8e6c6a2cca43f061d2dcabdf6e58.ico">
 <script src="https://www.google.com/recaptcha/api.js"></script>
 <script src="/resources/js/jquery-3.6.0.min.js"></script>
 <script src="/resources/js/ljk_snowfall.jquery.js"></script>
@@ -44,7 +46,7 @@
           </script> -->
           
 </head>
-<body>
+<body oncopy="return false" oncut="return false" onpaste="return false">
 <%-- ${result } --%>
 	<section class="login-form">
 		<a href="/index"><h1>Virtual Air Travel</h1></a>
@@ -97,6 +99,11 @@
             <span>|</span>
             <a href="register" id="f3">회원가입하기</a></p>
         </div>
+        
+        <div class="item">
+            <button  onclick="location.href='/login/login'" class="item_btn">로그인</button>
+        </div>
+        
 		
 	</section>
 	
@@ -268,41 +275,44 @@ $(document).ready(
 				
 				function checkPwd(){
 					var reg = /^[a-zA-Z0-9]{8,20}$/;
+			    	var chk_num = $('#pwd').val().search(/[0-9]/g); //비밀번호와 숫자 인덱스 검색,숫자가 1개라도 있어야하고
+			    	var chk_eng = $('#pwd').val().search(/[a-zA-Z]/g); //비번 영문자의 인덱스 검색,문자가 하나라도 있어야함
 			        var inputed = $('#pwd').val();
 			        var reinputed = $('#pwdCheck').val();
 			        var	img1 = document.getElementById('pswd1_img1');
 			        var	img2 = document.getElementById('pswd1_img2');
-			        if(!reg.test(inputed) && reinputed=="" && (inputed != reinputed || inputed == reinputed)){ //초기화면
+			        
+			        if(!reg.test(inputed) && (chk_num < 0 || chk_eng < 0) && reinputed=="" && (inputed != reinputed || inputed == reinputed)){ //초기화면
 			        	img1.src="/resources/images/key4.png";
 			        	img2.src="/resources/images/key2.png";
 			            $("input[name=pwd]").css("background-color", "#aaaaaa");
 			            $("input[name=pwdCheck]").css("background-color", "#FFCECE");
 			            console.log("실1행");
-			        }else if(reg.test(inputed) && (inputed == reinputed)) { //pwd1이 유효성검사했을때 틀리면
+			        }else if(reg.test(inputed) && (chk_num > 0 || chk_eng > 0) && (inputed == reinputed)) { //pwd1이 유효성검사했을때 틀리면
 			        	img1.src="/resources/images/key5.png";
 			        	img2.src="/resources/images/key3.png";
 			            $("input[name=pwd]").css("background-color", "#B0F6AC");
 			            $("input[name=pwdCheck]").css("background-color", "#B0F6AC");
 
 			            console.log("실2행");
-			        }else if (!reg.test(inputed) && inputed == reinputed) { //pwd1이 유효성검사했을때 틀리면
+			        }else if (!reg.test(inputed) && (chk_num < 0 || chk_eng < 0) && inputed == reinputed ) { //pwd1이 유효성검사했을때 틀리면
 			        	img1.src="/resources/images/key4.png";
 			        	img2.src="/resources/images/key3.png";
 			            $("input[name=pwd]").css("background-color", "#aaaaaa");
 			            $("input[name=pwdCheck]").css("background-color", "#B0F6AC");
 			            console.log("실3행");
-			        }else if (reg.test(inputed) && inputed != reinputed) { //pwd1이 유효성검사했을때 틀리면
+			        }else if (reg.test(inputed) && (chk_num > 0 || chk_eng > 0) && inputed != reinputed) { //pwd1이 유효성검사했을때 틀리면
 			        	img1.src="/resources/images/key5.png";
 			        	img2.src="/resources/images/key2.png";
 			            $("input[name=pwd]").css("background-color", "#B0F6AC");
 			            $("input[name=pwdCheck]").css("background-color", "#FFCECE");
-			            console.log("실3행");
-			        }else if (!reg.test(inputed) && inputed != reinputed) {
+			            console.log("실4행");
+			        }else if (!reg.test(inputed) && (chk_num < 0 || chk_eng < 0) && inputed != reinputed) {
 			        	img1.src="/resources/images/key4.png";
 			        	img2.src="/resources/images/key2.png";
 			            $("input[name=pwd]").css("background-color", "#aaaaaa");
 			            $("input[name=pwdCheck]").css("background-color", "#FFCECE");
-			            console.log("실4행");
+			            console.log("실5행");
 			        }
 				}
 				

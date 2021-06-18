@@ -14,6 +14,10 @@ body {
     cursor: pointer;
 }
 
+#logo a{
+	 text-decoration: none;
+}
+
 #header {
     padding-top: 62px;
     padding-bottom: 20px;
@@ -205,7 +209,7 @@ select {
     margin: 30px 0 91px;
 }
 #btnJoin2 {
-    margin: 10px 0 46px;
+    margin: 10px 0 29px;
     width: 100%;
     padding: 10px 0 15px;
     border: 0;

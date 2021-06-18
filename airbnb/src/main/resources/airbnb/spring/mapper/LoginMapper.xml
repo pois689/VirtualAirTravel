@@ -49,13 +49,13 @@
 	</select>
 	
 	<select id="searchPwd" resultType="airbnb.spring.dto.User">
-	select * from TBL_USER where id = #{id} or name = #{name}
-    or email = #{email}	AND enabled != '0'
+	select * from TBL_USER where id = #{id} and name = #{name}
+    and email = #{email}	AND enabled != '0'
     </select>
 	
 	<update id="updatePwd">
-	update TBL_USER set pwd=#{pwd} where id=#{id} or name=#{name} 
-	or email=#{email}
+	update TBL_USER set pwd=#{pwd} where id=#{id} and name=#{name} 
+	and email=#{email}
 	</update>
 	
 	<select id="get" resultType="airbnb.spring.dto.User">

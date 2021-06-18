@@ -8,6 +8,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <link rel="stylesheet" href="/resources/css/login/style2.css">
+    <link rel="shortcut icon" sizes="76x76" type="image/x-icon"
+        href="https://a0.muscache.com/airbnb/static/logotype_favicon-21cc8e6c6a2cca43f061d2dcabdf6e58.ico">
     <script src="/resources/js/jquery-3.6.0.min.js"></script>
     <script src="/resources/js/ljk_snowfall.jquery.js"></script>
 </head>
@@ -42,11 +44,8 @@
             <a href="register.html" id="f3">회원가입하기</a></p>
         </div>
 
-        <div class="tpa">
-            <a href="#" id="btnLogin1">
-            <img src="/resources/images/naver.jpg" width="55" height="55" alt="naver"></a>
-            <a href="#" id="btnLogin2">
-            <img src="/resources/images/goggle.jpg" width="55" height="55" alt="goggle"></a>
+        <div class="item">
+            <button  onclick="location.href='/login/login'" class="item_btn">로그인</button>
         </div>
 
 	</section>
