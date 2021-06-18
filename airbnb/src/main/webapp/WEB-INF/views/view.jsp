@@ -4,16 +4,20 @@
 <html>
 <head>
 <link rel="stylesheet" href="/resources/css/detail/detail.css">
+<!-- 파비콘 링크  / 없으면 아이콘 안뜸-->
+<link rel="shortcut icon" sizes="76x76" type="image/x-icon" href="https://a0.muscache.com/airbnb/static/logotype_favicon-21cc8e6c6a2cca43f061d2dcabdf6e58.ico">
 </head>
 <body>
-	<main>
+	<div class="loader">
+	</div>
+	
+	<main class="izxcuioww" style="display:none;">
 	<section>
 		<div class="section_start">
 			<!-- 제목 부분 -->
 			<div class="main_title">
 				<div>
-					<h1 class="section_main_title">{Cloud 9./1호}
-						정면바다뷰/연박할인多/일출/도보1분/깔끔/넷플릭스/오픈베란다</h1>
+					<h1 class="section_main_title"></h1>
 					<div class="section_main_title_information">
 						<div class="title_information_first">
 							<span> <svg viewBox="0 0 32 32"
@@ -23,7 +27,9 @@
 									<path
 										d="M15.094 1.579l-4.124 8.885-9.86 1.27a1 1 0 0 0-.542 1.736l7.293 6.565-1.965 9.852a1 1 0 0 0 1.483 1.061L16 25.951l8.625 4.997a1 1 0 0 0 1.482-1.06l-1.965-9.853 7.293-6.565a1 1 0 0 0-.541-1.735l-9.86-1.271-4.127-8.885a1 1 0 0 0-1.814 0z"
 										fill-rule="evenodd"></path></svg>
-							</span> <span class="avgStar">4.5</span> <span class="reply_cnt"
+							</span>
+							<span class="avgStar">4.5</span>
+							<span class="reply_cnt"
 								style="color: rgb(113, 113, 113) !important;">댓글 갯수</span>
 						</div>
 						<div class="title_information_first">
@@ -85,18 +91,20 @@
 					<span>
 						<svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="presentation" focusable="false" style="display: block; height: 20px; width: 20px; fill: currentcolor; color: #FF385C !important;"><path d="M15.094 1.579l-4.124 8.885-9.86 1.27a1 1 0 0 0-.542 1.736l7.293 6.565-1.965 9.852a1 1 0 0 0 1.483 1.061L16 25.951l8.625 4.997a1 1 0 0 0 1.482-1.06l-1.965-9.853 7.293-6.565a1 1 0 0 0-.541-1.735l-9.86-1.271-4.127-8.885a1 1 0 0 0-1.814 0z" fill-rule="evenodd"></path></svg>
 					</span>
-					<span>4.5</span>
-					<span>(후기 20개)</span>
+					<span class="avgStar">4.5</span>
+					<span class="reply_cnt">(후기 20개)</span>
+					<button type="button" class="ml-2 btn btn-primary btn-lg" id='addReplyBtn'>댓글 작성</button>
 				</h2>
 				
-				<div class="review_insert">
+				<!-- <div class="review_insert">
 					<div class="review_insert_header">
 						<img class="review_insert_image" src="/resources/images/profile.png" alt="프로필사진">
 						<div class="review_insert_id">id</div>
 					</div>
-					<textarea class="review_insert_context"></textarea>
+					star_jquery
+					<textarea class="review_insert_context" onclick=""></textarea>
 					<button class="hostbox-context-button" type="button">Write</button>
-				</div>
+				</div> -->
 				
 				<div class="review_start">
 					<div class="review_frame">
@@ -235,7 +243,7 @@
 			
 			<!-- 댓글 더 보기 -->
 			<div class="review_more">
-				<button class="review_more_button">댓글 더 보기</button>
+				<!-- <button class="review_more_button">댓글 더 보기</button> -->
 			</div>
 		</section>
 		
@@ -245,19 +253,11 @@
 		<div class="map_frame">
 			<div id="map" class="map"></div>
 		</div>
-	</section>
 
-	<hr>
-	<!-- 맵 부분 -->
-	<h2 class="review"
-		style="margin-left: 300px !important; margin-right: 300px !important; margin: 50px 0px;">위치</h2>
-	<div class="map_frame">
-		<div id="map" class="map"></div>
-	</div>
 	</main>
 	
 	<!-- Modal -->
-	<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+	<div style="display:none;" class="izxcuioww modal fade " id="myModal" tabindex="-1" role="dialog"
 		aria-labelledby="myModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
@@ -322,6 +322,12 @@
 <link rel="stylesheet" href="/resources/css/reply/fontawesome-stars.css">
 <script type="text/javascript" src="/resources/js/reply/jquery.barrating.min.js"></script>
 <script>
+var _showPage = function() {
+	  var loader = $("div.loader");
+	  var container = $("main.izxcuioww");
+	  loader.css("display","none");
+	  container.css("display","block");
+};
 let map;
 let service;
 let infowindow;
@@ -331,6 +337,7 @@ let value_place = '';
 
 function initMap() {
 	let sydney = new google.maps.LatLng(-33.867, 151.195);
+	
 
 	map = new google.maps.Map(
 	    document.getElementById('map'), {center: sydney, zoom: 15, disableDefaultUI: true});
@@ -348,8 +355,6 @@ function initMap() {
     			fields: ['name','photos','geometry','rating','reviews','adr_address','business_status','types','website','international_phone_number','reviews']
     		}
     		
-    		console.log(results[0].place_id);
-			
     		//place id 넣기
     		
     		value_place += results[0].place_id;
@@ -366,25 +371,9 @@ function initMap() {
 	  						map,
 	  						title: detail_results.name,
   						});
-    					map.setZoom(18);
+    					map.setZoom(15);
 	    				map.setCenter(detail_results.geometry.location);
-	    				/* console.log(detail_results);
-	    				console.log(detail_results.photos);
-	    				console.log(detail_results.photos[0].getUrl());
-	    				console.log(detail_results.adr_address);
-	    				console.log(detail_results.business_status);
-	    				console.log(detail_results.types);
-	    				console.log(detail_results.website);
-	    				console.log(detail_results.international_phone_number);
-	    				console.log("review",detail_results.reviews[2]);
-	    				console.log(detail_results.geometry.location);
 	    				
-	    				console.log(new Date(detail_results.reviews[2].time*1000));
-	    				
-	    				console.log(detail_results.reviews[0].author_name);
-	    				console.log(detail_results.reviews[0].rating);
-	    				console.log(detail_results.reviews[0].text);
-	    				console.log(new Date(detail_results.reviews[0].time*1000)); */
 
 	    				
 	    				// 주소 바꾸기.
@@ -396,7 +385,7 @@ function initMap() {
 	    				let title='';
 
 						title += '<h1>';
-
+						
 						title += detail_results.name;
 						title += '</h1>';
 						$('.section_main_title').html(title);
@@ -441,48 +430,24 @@ function initMap() {
 						}
 						
 						// 검색한 장소의 유형 (갤러리, 관광장소 등등)
-						for(let i = 0; i<3; i++){
-							let type = '';
-							type += detail_results.types[i];
-							type += '&nbsp;&nbsp;';
-							if(i == 0)
-								$('#type').html(type);
-							else
-								$('#type').after(type);
+						if(detail_results.types[0] != null){
+							let type = '[';
+							type += translate(detail_results.types[0]);
+							type += ']&nbsp;&nbsp;';
+							$('.section_main_title h1').prepend(type);
+							$('#type').html(type);
 						}
 						
 						// 국제 전화번호
 						let phone = '';
-						//let p = document.createElement("p");
-						//p.append('국제 전화 번호 : ' + );
-						phone += '<p>국제 전화번호 : ';
-						phone += detail_results.international_phone_number;
-						phone += '</p>'
+						if(detail_results.international_phone_number == null){
+							phone += '<p>국제 전화번호 : 존재하지 않습니다.';
+						}else{
+							phone += '<p>국제 전화번호 : ';
+							phone += detail_results.international_phone_number;
+							phone += '</p>'
+						}
 						$('#phone').html(phone);
-						
-						
-						// 리뷰 가져오기 만들어야함.
-						/* for(let i = 0; i < 5; i++){
-							console.log(detail_results.reviews[0].rating);
-							let rev = '';	//review
-							let star = '';	//star
-							
-							for(let j=0; j < detail_results.reviews[i].rating * 1; j++){
-								star += '★';
-							} for (let k=0; k<5-detail_results.reviews[i].rating*1; k++){
-								star += '☆';
-							}//star for
-							
-							rev += '<p> 작성자 : ' + detail_results.reviews[i].author_name + '</p>';
-							rev += '<p> 평점 : ' + star + '</p>';
-							rev += '<p> 내용 : ' + detail_results.reviews[i].text + '</p>';
-							rev += '<p> 작성시간 : ' + new Date(detail_results.reviews[i].time*1000) + '</p>';
-							if(i == 0)
-								$('.review').html(rev);
-							else
-								$('.review').after(rev);
-						} */
-
 						
     			}else {
 	    			for (let i = 0; i < detail_results.length; i++) {
@@ -497,58 +462,8 @@ function initMap() {
 	});	
 }
 
-/* $(document).ready(function(){
-	console.log(replyService);
-}); */
 window.onload = function(){
-	console.log("=======================");
-	console.log("JS TEST");
-	
-	console.log("place_id value : ",value_place);
-	// 리플 추가 테스트
-	/*replyService.add(
-		{content:"테스트중", name:"이름", place_id:value_place},
-			function(result){
-				alert("RESULT : "+ result)
-		}
-	); */
-	
-	/* 리플 리스트 불러오기 테스트
-	replyService.getList({place_id:value_place, page:1}, function(list){
-		for(var i=0, len=list.length||0; i<len; i++){
-			console.log(list[i]);
-		}
-	}); */
-	
-	/* 리플 삭제 테스트 
-	replyService.remove(15,
-			
-	function(count){
-		console.log(count);
-		
-		if(count == "success"){
-			alert("REMOVED");
-		}
-	}, 
-	
-	function(err){
-		alert('ERROR');
-	});*/
-	
-	/* 리플 수정 테스트 */
-	/* replyService.update({
-		rno:5,
-		place_id: "서울",
-		content:"modify reply test",
-	}, function(result){
-		alert("수정완료");
-	}); */
-	
-	//게시글 조회 테스트
-	/*replyService.get(16,function(data){
-		console.log(data);
-	});*/
-	
+	_showPage();
 	var replyUL = $(".review_start");
 		
 	showList(1);
@@ -579,23 +494,21 @@ window.onload = function(){
 			$(".avgStar").html(avg_star);
 			$(".reply_cnt").html(cnt);
 			
-			$('.review_frame:gt(9)').hide().last().after(
-				    $('<button />').text('Show more').click(function(){
-				        var a = this;
-				        $('.review_frame:not(:visible):lt(10)').fadeIn(function(){
-				         if ($('.review_frame:not(:visible)').length == 0) $(a).remove();   
-				        }); return false;
-				    })
-				);
+			$('.review_frame:gt(9)').hide();
+			$('.review_more').html(
+				$('<button />').addClass('review_more_button').text('댓글 더 보기').click(function(){
+				    var a = this;
+				    $('.review_frame:not(:visible):lt(10)').fadeIn(function(){
+				     if ($('.review_frame:not(:visible)').length == 0) $(a).remove();   
+				    }); return false;
+				})
+			);
 			
 		}); // end function
 		
 	} // end showList
 	
 	var modal = $(".modal");
-	//var modalInputContent = modal.find("input[name='content']");
-	//var modalInputUser = modal.find("input[name='user']");
-	//var modalInputReplyDate = modal.find("input[name='replyDate']");
 	
 	var modalModBtn = $("#modalModBtn");
 	var modalRemoveBtn = $("#modalRemoveBtn");
@@ -604,7 +517,6 @@ window.onload = function(){
 	$("#addReplyBtn").on("click", function(e){
 		$('#example').barrating('set', 1);
 		modal.find("input").val("");
-		//modalInputReplyDate.closest("div").hide();
 		modal.find("button[id !='modalCloseBtn']").hide();
 		content:$("#content").val("");
 		name:$("#user").val("");
@@ -642,15 +554,11 @@ window.onload = function(){
 			modal.data("rno",reply.rno);
 			
 			modal.find("button[id!='modalCloseBtn']").hide();
-			/* if({세션}==null||{세션}==name){
-				null or 다를 때 hide처리
-			} */
 			modalModBtn.show();
 			modalRemoveBtn.show();
 			
 			$(".modal").modal("show");
 		});
-		//console.log(rno);
 	});
 	
 	// 댓글 수정
@@ -680,18 +588,63 @@ window.onload = function(){
 	$('select').barrating({
 	     theme: 'fontawesome-stars'
 	   	 , onSelect: function(value, text, event){
-	   			// 별점 클릭 후 처리는 여기서 코드
-	   			// 선택한 별점 값을 value로 받음
 	   			$('#star').val(value);
 	   		}
 	   });
-	
-	
-	
 };
-   /* $('.ex').barrating({
-     theme: 'fontawesome-stars'
-     , readonly: true
-   }); */
+
+function translate(str){
+	let trans = '';
+	switch(str){
+		case 'aquarium':
+			trans = '여행지';
+			break;
+		case 'museum' :
+			trans = '여행지';
+			break;
+		case 'zoo' :
+			trans = '여행지';
+			break;
+		case 'campground' :
+			trans = '여행지';
+			break;
+		case 'lodging':
+			trans = '숙소';
+			break;
+		case 'bar':
+			trans = '맛집';
+			break;
+		case 'cafe':
+			trans = '맛집';
+			break;
+		case 'restaurant':
+			trans = '맛집';
+			break;
+		case 'tourist_attraction':
+			trans = '볼거리';
+			break;
+		case 'taxi_stand':
+			trans = '교통';
+			break;
+		case 'train_station':
+			trans = '교통';
+			break;
+		case 'subway_station':
+			trans = '교통';
+			break;
+		case 'bus_station':
+			trans = '교통';
+			break;
+		case 'airport':
+			trans = '교통';
+			break;
+		case 'locality':
+			trans = '지역';
+			break;
+		default :
+			trans = '';
+	}
+	return trans;
+}
 </script>
 </html>

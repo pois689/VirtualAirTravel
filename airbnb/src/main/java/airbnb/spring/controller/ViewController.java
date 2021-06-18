@@ -16,6 +16,7 @@ public class ViewController {
 		// 네임에 null 값이 넘어오면 404 에러 페이지 연결
 		// name 값이 넘어오면 받아오기
 		model.addAttribute("name", name);
-	}	
+	}
+	
 
 }
