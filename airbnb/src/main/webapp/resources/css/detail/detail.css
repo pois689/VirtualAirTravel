@@ -339,7 +339,24 @@ textarea:focus {outline: none;}
 }
 
 @media screen and (max-width: 1087px) {
-	
+	.section_main_title {
+    	font-size: 17px;
+    }
+    .section_detail_information span {
+    	font-size: 12px;
+    }
+    .review_insert_id {
+    	font-size: 18px;
+    }
+    .review_id {
+    	font-size: 14px;
+    }
+    .review_date {
+    	font-size: 12px;
+    }
+    .section_img {
+    	height: 370px;
+    }
 }
 
 
