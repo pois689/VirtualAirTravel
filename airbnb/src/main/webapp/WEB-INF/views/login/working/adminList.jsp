@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -106,6 +107,30 @@
          </table>
          <button type="button" data-ng-click="updateBoard(detail.uno);">수정하기</button>
          <button type="button" onclick="history.go(-1);">뒤로가기</button>
+         	<div style="display: block; text-align: center;">		
+				<c:if test="${paging.startPage != 1 }">
+					<a href="/login/working/adminList?nowPage=${paging.startPage - 1 }&cntPerPage=${paging.cntPerPage}">&lt;</a>
+				</c:if>
+				<c:forEach begin="${paging.startPage }" end="${paging.endPage }" var="p">
+					<c:choose>
+						<c:when test="${p == paging.nowPage }">
+							<b>${p }</b>
+						</c:when>
+						<c:when test="${p != paging.nowPage }">
+							<a href="/login/working/adminList?nowPage=${p }&cntPerPage=${paging.cntPerPage}">${p }</a>
+						</c:when>
+					</c:choose>
+				</c:forEach>
+				<c:if test="${paging.endPage != paging.lastPage}">
+					<a href="/login/working/adminList?nowPage=${paging.endPage+1 }&cntPerPage=${paging.cntPerPage}">&gt;</a>
+				</c:if>
+			</div>
 	</div>
+<script>
+	function selChange() {
+		var sel = document.getElementById('cntPerPage').value;
+		location.href="login/working/adminList/?nowPage=${paging.nowPage}&cntPerPage="+sel;
+	}
+</script>
 </body>
 </html>

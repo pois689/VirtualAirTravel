@@ -9,6 +9,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import airbnb.spring.mapper.LoginMapper;
+import airbnb.spring.dto.PagingVo;
 import airbnb.spring.dto.User;
 
 @Service
@@ -166,6 +167,19 @@ public class LoginServiceImpl implements LoginService{
 		// TODO Auto-generated method stub
 		return mapper.deleteuser(user);
 	}
+
+	@Override
+	public int countBoard() {
+		// TODO Auto-generated method stub
+		return mapper.countBoard();
+	}
+
+	@Override
+	public ArrayList<User> selectBoard(PagingVo vo) {
+		// TODO Auto-generated method stub
+		return mapper.selectBoard(vo);
+	}
+
 
 
 

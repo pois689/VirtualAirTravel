@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
+import airbnb.spring.dto.PagingVo;
 import airbnb.spring.dto.User;
 
 public interface LoginMapper { //crud create,read,delete,update
@@ -43,5 +44,11 @@ public interface LoginMapper { //crud create,read,delete,update
 	
 	public int deleteuser(User user);
 	
+	//////페이징
+	// 게시물 총 갯수
+	public int countBoard();
+
+	// 페이징 처리 게시글 조회
+	public ArrayList<User> selectBoard(PagingVo vo);
 	
 }

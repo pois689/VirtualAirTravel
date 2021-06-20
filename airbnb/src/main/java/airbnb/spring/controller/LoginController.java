@@ -37,6 +37,7 @@ import org.springframework.web.util.WebUtils;
 import airbnb.spring.auth.SNS;
 import airbnb.spring.auth.SNSLogin;
 import airbnb.spring.service.LoginService;
+import airbnb.spring.dto.PagingVo;
 import airbnb.spring.dto.User;
 
 @Controller
@@ -87,6 +88,28 @@ public class LoginController {
 		return "/login/working/adminList";
 	}
 	
+	
+	@GetMapping("/login/working/adminList2")
+	public String adminstorage2(PagingVo vo, Model model
+			,@RequestParam(value="nowPage", required=false) String nowPage
+			,@RequestParam(value="cntPerPage", required=false) String cntPerPage) {
+		int total = service.countBoard();
+		if (nowPage == null && cntPerPage == null) {
+			nowPage = "1";
+			cntPerPage = "5";
+		} else if (nowPage == null) {
+			nowPage = "1";
+		} else if (cntPerPage == null) { 
+			cntPerPage = "5";
+		}
+		vo = new PagingVo(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
+		model.addAttribute("paging", vo);
+		model.addAttribute("viewAll", service.selectBoard(vo));
+		vo.calcStartEndPage(Integer.parseInt(nowPage), 5);
+		vo.calcStartEnd(Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
+		return "/login/working/adminList";
+	}
+	
 	@GetMapping("/login/updatePwd")
 	public String updatePwd() {
 		return "/login/updatePwd";
@@ -100,6 +123,40 @@ public class LoginController {
 		
 		boardList = service.selectBoardList();
 		return boardList; //어레이리스트를 리턴(자료를 리턴)
+	}
+	
+	//게시글 리스트 조회
+	@RequestMapping(value="/board/selectBoardList2") //맵핑요청(자료 가져오기)
+	@ResponseBody
+	public ArrayList<User> selectBoardList2(HttpServletRequest request,PagingVo vo,Model model
+			,@RequestParam(value="nowPage", required=false) String nowPage
+			,@RequestParam(value="cntPerPage", required=false) String cntPerPage
+			) throws Exception{//http으로부터 request를 받음
+		
+		int total = service.countBoard();
+		if (nowPage == null && cntPerPage == null) {
+			nowPage = "1";
+			cntPerPage = "5";
+		} else if (nowPage == null) {
+			nowPage = "1";
+		} else if (cntPerPage == null) { 
+			cntPerPage = "5";
+		}
+		System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\\n\n"+vo.getEnd()+nowPage);
+		vo = new PagingVo(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
+		model.addAttribute("paging", vo);
+		model.addAttribute("viewAll", service.selectBoard(vo));
+		vo.calcStartEndPage(Integer.parseInt(nowPage), 5);
+		vo.calcStartEnd(Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
+		System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\\n\n"+vo.getEnd()+nowPage);
+		ArrayList<User> boardList = new ArrayList<User>();
+		boardList = service.selectBoard(vo);
+		return boardList;
+		
+//		ArrayList<User> boardList = new ArrayList<User>();
+//		
+//		boardList = service.selectBoardList();
+//		return boardList; //어레이리스트를 리턴(자료를 리턴)
 	}
 	//맵, 리스트, 어레이리스트의 차이 - 몇번째에(index)값이있는가, 맵은 이름으로 찾음(문)
 	

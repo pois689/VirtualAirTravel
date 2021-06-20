@@ -1,3 +1,12 @@
+SELECT * FROM tbl_user order by uno DESC;
+
+SELECT ROWNUM, tbl_user.* FROM tbl_user;
+
+SELECT ROWNUM, tbl_user.* FROM tbl_user ORDER BY uno DESC; --ÃÖ½Å¼ø
+
+
+
+
 CREATE TABLE TBL_USER (
     uno number(10) ,
     id varchar2(50) not null,

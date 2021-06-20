@@ -2,7 +2,9 @@ package airbnb.spring.service;
 
 
 import java.util.ArrayList;
+import java.util.List;
 
+import airbnb.spring.dto.PagingVo;
 import airbnb.spring.dto.User;
 
 public interface LoginService {
@@ -38,5 +40,13 @@ public interface LoginService {
 	public int deleteBoard(User user) throws Exception;
 
 	public int deleteuser(User user);
+	
+	
+	//////페이징
+	// 게시물 총 갯수
+	public int countBoard();
+
+	// 페이징 처리 게시글 조회
+	public ArrayList<User> selectBoard(PagingVo vo);
 	
 }

@@ -102,4 +102,14 @@
      WHERE uno=#{uno}
 	</update>  
 	
+	<select id="countBoard" resultType="int">
+	SELECT COUNT(*) FROM TBL_USER
+	</select>
+	
+	<select id="selectBoard" resultType="airbnb.spring.dto.User">
+	SELECT ROWNUM, t_user.*
+	FROM (SELECT * FROM tbl_user order by uno DESC) t_user
+	WHERE ROWNUM BETWEEN #{start} AND #{end}
+	</select>
+	
 </mapper>
