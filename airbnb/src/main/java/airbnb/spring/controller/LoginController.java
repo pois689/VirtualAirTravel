@@ -83,6 +83,34 @@ public class LoginController {
 		return "tiles/index.tiles";
 	}
 	
+	@GetMapping("/login/working/adminList/{nowPage}/{cntPerPage}")
+	@ResponseBody
+	public Map<String, Object> adminstorage3(PagingVo vo, Model model
+			,@PathVariable("nowPage") String nowPage
+			,@PathVariable("cntPerPage") String cntPerPage
+			) {
+		int total = service.countBoard();
+		if (nowPage == null && cntPerPage == null) {
+			nowPage = "1";
+			cntPerPage = "5";
+		} else if (nowPage == null) {
+			nowPage = "1";
+		} else if (cntPerPage == null) { 
+			cntPerPage = "5";
+		}
+		Map<String, Object> map = new HashMap<String, Object>();
+		vo = new PagingVo(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
+		model.addAttribute("paging", vo);
+		model.addAttribute("viewAll", service.selectBoard(vo));
+		vo.calcStartEndPage(Integer.parseInt(nowPage), 5);
+		vo.calcStartEnd(Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
+		ArrayList<User> boardList = new ArrayList<User>();
+		boardList = service.selectBoard(vo);
+		System.out.println(boardList);
+		map.put("list", boardList);
+		return map;
+	}
+	
 	@GetMapping("/login/working/adminList")
 	public String adminstorage() {
 		return "/login/working/adminList";

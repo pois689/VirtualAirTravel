@@ -107,9 +107,11 @@
 	</select>
 	
 	<select id="selectBoard" resultType="airbnb.spring.dto.User">
-	SELECT ROWNUM, t_user.*
-	FROM (SELECT * FROM tbl_user order by uno DESC) t_user
-	WHERE ROWNUM BETWEEN #{start} AND #{end}
+	SELECT * FROM(
+	    SELECT ROWNUM num, tbl_user.*
+	    FROM (SELECT * FROM  tbl_user ORDER BY uno DESC) tbl_user
+	    )
+	WHERE num BETWEEN #{start} AND #{end}
 	</select>
 	
 </mapper>

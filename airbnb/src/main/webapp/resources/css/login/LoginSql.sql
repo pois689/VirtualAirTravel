@@ -4,7 +4,15 @@ SELECT ROWNUM, tbl_user.* FROM tbl_user;
 
 SELECT ROWNUM, tbl_user.* FROM tbl_user ORDER BY uno DESC; --ÃÖ½Å¼ø
 
+SELECT ROWNUM, t_user.*
+FROM (SELECT * FROM tbl_user order by uno DESC) t_user
+WHERE ROWNUM BETWEEN 6 AND 10;
 
+SELECT * FROM(
+    SELECT ROWNUM num, tbl_user.*
+    FROM (SELECT * FROM  tbl_user ORDER BY uno DESC) tbl_user
+    )
+WHERE num BETWEEN 6 AND 10;
 
 
 CREATE TABLE TBL_USER (

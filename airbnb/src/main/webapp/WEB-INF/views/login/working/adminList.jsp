@@ -107,13 +107,16 @@
          </table>
          <button type="button" data-ng-click="updateBoard(detail.uno);">수정하기</button>
          <button type="button" onclick="history.go(-1);">뒤로가기</button>
-         	<div style="display: block; text-align: center;">		
+         <input type="hidden" name="nowPage" value="${paging.nowPage}">
+         <input type="hidden" name="cntPerPage" value="${paging.cntPerPage}"> 
+<%--          	<div style="display: block; text-align: center;">		
 				<c:if test="${paging.startPage != 1 }">
 					<a href="/login/working/adminList?nowPage=${paging.startPage - 1 }&cntPerPage=${paging.cntPerPage}">&lt;</a>
 				</c:if>
 				<c:forEach begin="${paging.startPage }" end="${paging.endPage }" var="p">
 					<c:choose>
 						<c:when test="${p == paging.nowPage }">
+						<button onclick="Ajax()">페이징 어렵다</button>
 							<b>${p }</b>
 						</c:when>
 						<c:when test="${p != paging.nowPage }">
@@ -124,13 +127,43 @@
 				<c:if test="${paging.endPage != paging.lastPage}">
 					<a href="/login/working/adminList?nowPage=${paging.endPage+1 }&cntPerPage=${paging.cntPerPage}">&gt;</a>
 				</c:if>
-			</div>
+			</div> --%>
+							      <!-- /.panel-heading -->
+							      <table border="1" class="chat">        
+							      
+							        <!-- ./ end ul -->
+							      </table>
+							      <!-- /.panel .chat-panel -->
 	</div>
 <script>
-	function selChange() {
-		var sel = document.getElementById('cntPerPage').value;
-		location.href="login/working/adminList/?nowPage=${paging.nowPage}&cntPerPage="+sel;
+	
+	function Ajax(){
+		$.ajax({
+			url : "/login/working/adminList/"+ ${paging.nowPage} +'/'+ ${paging.cntPerPage},
+			method : 'get',
+			dataType : 'json',
+			success : function(data){
+				console.log(data);
+				var htmlContent="";
+				if(data.list != null){
+					alert("success");
+					$.each(data.list,function(index, item){ //item이름으로 정보 뺴오기, map에서 data.list사용
+						htmlContent += 
+							+ "<tr><td>" + item.uno + "</td></tr>"
+							+ "<tr><td>" + item.id + "</td></tr>"
+							+ "<tr><td>" + item.name + "</td></tr>"
+							+ "<tr><td>" + item.email + "</td></tr>"
+							+ "<tr><td>" + item.tel + "</td></tr>"
+							+ "<tr><td>" + item.enabled + "</td></tr>"
+						$(".chat").html(htmlContent);
+					});
+				}else{
+					alert("입력중 오류가 발생했습니다");
+				}
+			}
+		});
 	}
+	
 </script>
 </body>
 </html>
