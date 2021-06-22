@@ -21,8 +21,8 @@ bdApp.factory("bdService", function($http){
 	
 	return service;
 	//리스트 ajax,  ajax실행후 성공시(리턴데이터), 에러(석세스/메세지에러)
-	function selectBoardListAjax(){
-		return $http.post("/board/selectBoardList").then(handleSuccess,handleError);
+	function selectBoardListAjax(param){
+		return $http.post("/board/selectBoardList", param).then(handleSuccess,handleError);
 	}
 	//등록 ajax , 페이지,매개변수,데이터타입(기본 context)
 	function addBoardAjax(param){

@@ -111,13 +111,13 @@ public class LoginController {
 		return map;
 	}
 	
-	@GetMapping("/login/working/adminList")
+	@GetMapping("/login/working/adminList2")
 	public String adminstorage() {
 		return "/login/working/adminList";
 	}
 	
 	
-	@GetMapping("/login/working/adminList2")
+	@GetMapping("/login/working/adminList")
 	public String adminstorage2(PagingVo vo, Model model
 			,@RequestParam(value="nowPage", required=false) String nowPage
 			,@RequestParam(value="cntPerPage", required=false) String cntPerPage) {
@@ -144,7 +144,7 @@ public class LoginController {
 	}
 	
 	//게시글 리스트 조회
-	@RequestMapping(value="/board/selectBoardList") //맵핑요청(자료 가져오기)
+	@RequestMapping(value="/board/selectBoardList2") //맵핑요청(자료 가져오기)
 	@ResponseBody
 	public ArrayList<User> selectBoardList(HttpServletRequest request) throws Exception{//http으로부터 request를 받음
 		ArrayList<User> boardList = new ArrayList<User>();
@@ -154,37 +154,25 @@ public class LoginController {
 	}
 	
 	//게시글 리스트 조회
-	@RequestMapping(value="/board/selectBoardList2") //맵핑요청(자료 가져오기)
+	@RequestMapping(value="/board/selectBoardList") //맵핑요청(자료 가져오기)
 	@ResponseBody
-	public ArrayList<User> selectBoardList2(HttpServletRequest request,PagingVo vo,Model model
-			,@RequestParam(value="nowPage", required=false) String nowPage
-			,@RequestParam(value="cntPerPage", required=false) String cntPerPage
+	public ArrayList<User> selectBoardList2(@RequestBody PagingVo vo,HttpServletRequest request,Model model
+
 			) throws Exception{//http으로부터 request를 받음
-		
+		System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\\n\n"+vo.getEnd());
+		int nowPage = vo.getNowPage();
+		int cntPerPage = vo.getCntPerPage();
 		int total = service.countBoard();
-		if (nowPage == null && cntPerPage == null) {
-			nowPage = "1";
-			cntPerPage = "5";
-		} else if (nowPage == null) {
-			nowPage = "1";
-		} else if (cntPerPage == null) { 
-			cntPerPage = "5";
-		}
-		System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\\n\n"+vo.getEnd()+nowPage);
-		vo = new PagingVo(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
+
+		vo = new PagingVo(total, nowPage, cntPerPage);
 		model.addAttribute("paging", vo);
 		model.addAttribute("viewAll", service.selectBoard(vo));
-		vo.calcStartEndPage(Integer.parseInt(nowPage), 5);
-		vo.calcStartEnd(Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
-		System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\\n\n"+vo.getEnd()+nowPage);
+		vo.calcStartEndPage(nowPage, 5);
+		vo.calcStartEnd(nowPage, cntPerPage);
 		ArrayList<User> boardList = new ArrayList<User>();
 		boardList = service.selectBoard(vo);
 		return boardList;
 		
-//		ArrayList<User> boardList = new ArrayList<User>();
-//		
-//		boardList = service.selectBoardList();
-//		return boardList; //어레이리스트를 리턴(자료를 리턴)
 	}
 	//맵, 리스트, 어레이리스트의 차이 - 몇번째에(index)값이있는가, 맵은 이름으로 찾음(문)
 	
@@ -294,9 +282,6 @@ public class LoginController {
 			session.setAttribute("user", snsUser);
 
 		}
-		
-		
-		
 		
 //		User user = service.snslogin(snsUser);
 //		System.out.println(user);

@@ -10,7 +10,12 @@ function bdController($rootScope, $scope, bdService){
 	$scope.isBtnClick = false;
 	
 	$scope.initBoardList = function(){
-		bdService.selectBoardList().then(function(res){ 
+		var param = {
+		nowPage : $("#nowPage").val(),
+		cntPerPage : $("#cntPerPage").val()
+		};
+		console.log(param);
+		bdService.selectBoardList(param).then(function(res){ 
 			$scope.boardList = res;
 		});
 	}
