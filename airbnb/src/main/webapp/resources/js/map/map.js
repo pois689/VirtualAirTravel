@@ -126,7 +126,6 @@ function initAutocomplete() {
 		               	position: place.geometry.location,
 	             	})
 				);
-				console.log(markers);
 	           	if (place.geometry.viewport) {
 	            // Only geocodes have viewport.
 	            	bounds.union(place.geometry.viewport);
@@ -262,7 +261,6 @@ function initAutocomplete() {
 			               	position: place.geometry.location,
 		             	})
 					);
-					
 					const HR = document.createElement('hr');
 					const BR = document.createElement('br');
 					let span = document.createElement('span');
@@ -283,6 +281,7 @@ function initAutocomplete() {
 					
 					content_div.append(place.name);//이름
 					content_div.append(HR);//hr
+					
 					if(place.rating != null){
 						content_div.append(place.rating);//rating
 						content_div.append(BR);//hr
@@ -296,6 +295,15 @@ function initAutocomplete() {
 					let p = document.createElement('p');
 					p.append(place.types[0]);//
 					content_div.append(p);//
+					
+					let content_review_div = document.createElement('div');
+					content_review_div.setAttribute("class",'content_review');
+					content_review_div.append('별점');
+					content_review_div.append('리뷰 개수');
+					/*content_detail_div.append('주소');
+					content_detail_div.append('번호');*/
+					
+					content_div.append(content_review_div);
 					
 					//li
 					let li = document.createElement('li');

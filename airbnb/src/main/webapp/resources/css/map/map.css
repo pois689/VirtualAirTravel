@@ -28,7 +28,7 @@ html, body {
 
 #sidebar {
 	display: flex;
-	width: 840px;
+	width: 45%;
 	flex-direction: column;
 }
 #places {
@@ -38,6 +38,10 @@ html, body {
 	width: 100%;
 	overflow-y: scroll;
 	flex-grow: 1;
+}
+
+.content_review {
+	display: flex;
 }
 
 #places>li {
@@ -102,3 +106,14 @@ hr{
 	color: #c5d4f0;
 	cursor: auto;
 }
+
+@media screen and (max-width:1130px){
+	#sidebar {
+		width: 100%
+	}
+	
+	#map {
+		width: 0px;
+	}
+}
+
