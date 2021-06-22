@@ -26,7 +26,7 @@
 	</update>
 	
 	<select id="getList" resultType="airbnb.spring.dto.ReplyDTO">
-		select rno, place_id, content, name, replydate, updatedate
+		select rno, place_id, content, name, replydate, updatedate, star
 		from tbl_reply
 		where place_id = #{place_id}
 		order by rno desc

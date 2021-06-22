@@ -368,7 +368,7 @@ function initMap() {
     				//marker
     					new google.maps.Marker({
 	   						position: detail_results.geometry.location,
-	  						map,
+	  						map: map,
 	  						title: detail_results.name,
   						});
     					map.setZoom(15);
@@ -462,7 +462,10 @@ function initMap() {
 	});	
 }
 
+
 window.onload = function(){
+	
+	
 	_showPage();
 	var replyUL = $(".review_start");
 		
@@ -480,14 +483,22 @@ window.onload = function(){
 			for(var i=0, len=map['List'].length||0; i<len; i++){
 				str += "<div class='review_frame' data-rno='"+map['List'][i].rno+"'><div class='review_box'><div class='review_header'>";
 				str += "<div class='review_id'>"+map['List'][i].name;
+				str += '<select class="example_'+ i +'"><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option></select>';
 				str += "<div class='review_date'>"+map['List'][i].replyDate+"</div></div></div>";
 				str += "<div class='review_text'><span data-rno='"+map['List'][i].rno+"'>";
 				str += map['List'][i].content+"</span></div></div></div>";
 				
-				//console.log(map['List'][i]);
+				console.log(map['List'][i].star);
 				//console.log(map['List'][i].rno);
 			}
 			$(".review_start").html(str);
+			for(let i=0; i<map['List'].length; i++){
+				$('.example_'+i).barrating({
+			      theme: 'fontawesome-stars',
+			      initialRating: map['List'][i].star,
+			      readonly:true
+			    });
+			}
 			var cnt = "후기 "+map['ReplyCnt']+"개";
 				
 			var avg_star = map['avgStar'];
@@ -541,7 +552,7 @@ window.onload = function(){
 		});
 	});
 	
-	// 모달로 상세보기 불러오기
+	// 모달로 상세보기 불러오기 작성자와 session id
 	$(".review_start").on("click",".review_frame",function(e){
 		var rno = $(this).data("rno");
 		
@@ -646,5 +657,7 @@ function translate(str){
 	}
 	return trans;
 }
+
+String dkdlel = session.getId();
 </script>
 </html>
