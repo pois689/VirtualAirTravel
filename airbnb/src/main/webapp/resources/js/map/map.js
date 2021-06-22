@@ -217,7 +217,7 @@ function initAutocomplete() {
 		 		let places=[];
 		 		addPlaces(results, map);
 		 		for(let i=0; i<results.length; i++){
-		 			console.log(getDetail(service, results[i].place_id));
+		 			//console.log(getDetail(service, results[i].place_id));
 		 			/* places.push(getDetail(service, results[i].place_id)); */
 		 		}
 		 		console.log(results[0].place_id);
@@ -243,6 +243,7 @@ function initAutocomplete() {
 	        });
 	        markers = [];
 	        
+	        let place_list_str = '';
 			for (let place of places) {
 				if (place.geometry && place.geometry.location) {
 					const image = {
@@ -261,65 +262,26 @@ function initAutocomplete() {
 			               	position: place.geometry.location,
 		             	})
 					);
-					const HR = document.createElement('hr');
-					const BR = document.createElement('br');
-					let span = document.createElement('span');
-					
-					//img
-					let img = document.createElement('img');
-					img.setAttribute("src",place.photos[0].getUrl());
-					
-					//본문 div
-					 ///img
-					let img_div = document.createElement('div');
-					img_div.setAttribute("class",'map_img');
-					img_div.append(img);
-					
-					 ///content
-					let content_div = document.createElement('div');
-					content_div.setAttribute("class",'content');
-					
-					content_div.append(place.name);//이름
-					content_div.append(HR);//hr
-					
-					if(place.rating != null){
-						content_div.append(place.rating);//rating
-						content_div.append(BR);//hr
-					}
-					
-					if(place.opening_hours != null){
-						content_div.append(place.opening_hours.toString());
-					}
-					
-					//type
-					let p = document.createElement('p');
-					p.append(place.types[0]);//
-					content_div.append(p);//
-					
-					let content_review_div = document.createElement('div');
-					content_review_div.setAttribute("class",'content_review');
-					content_review_div.append('별점');
-					content_review_div.append('리뷰 개수');
-					/*content_detail_div.append('주소');
-					content_detail_div.append('번호');*/
-					
-					content_div.append(content_review_div);
-					
-					//li
-					let li = document.createElement('li');
-					li.append(img_div);
-					li.append(content_div);
-					
-					
-					let placesList = document.getElementById("places");
-					placesList.append(li);
-					
-					
-					li.addEventListener("click", () => {
-						location.href = '/view?name='+place.name;
-					});
+					console.log(place.photos[0].getUrl());
+					document.getElementsByClassName('map_img_img')[0].src = 'https://maps.googleapis.com/maps/api/place/js/PhotoService.GetPhoto?1sATtYBwKrVrro4L5CHRAgOuM7HXskl7-OKXyj7N3Ej0IpUCv1x-mY0oJnVazLKPcqyxgqGJup66fv2r4TUxG1rdkd9MnnFsdM2Zg9VuSXT8VqY3VFau2GknwN_ugIYW3D3fX7ujsoghiNmgvMmBCJCzL6N7GG3_saOOVjpkEqzOf-ya9Hn8JY&3u720&5m1&2e1&callback=none&key=AIzaSyDUBAs2Aoeh9UJxjarRyXFSvuBDE-BLFVM&token=119423';
+					document.getElementsByClassName('content_img_img')[0].src = 'https://maps.googleapis.com/maps/api/place/js/PhotoService.GetPhoto?1sATtYBwKrVrro4L5CHRAgOuM7HXskl7-OKXyj7N3Ej0IpUCv1x-mY0oJnVazLKPcqyxgqGJup66fv2r4TUxG1rdkd9MnnFsdM2Zg9VuSXT8VqY3VFau2GknwN_ugIYW3D3fX7ujsoghiNmgvMmBCJCzL6N7GG3_saOOVjpkEqzOf-ya9Hn8JY&3u720&5m1&2e1&callback=none&key=AIzaSyDUBAs2Aoeh9UJxjarRyXFSvuBDE-BLFVM&token=119423';
+					document.getElementsByClassName('content_img_img2')[0].src = 'https://maps.googleapis.com/maps/api/place/js/PhotoService.GetPhoto?1sATtYBwKrVrro4L5CHRAgOuM7HXskl7-OKXyj7N3Ej0IpUCv1x-mY0oJnVazLKPcqyxgqGJup66fv2r4TUxG1rdkd9MnnFsdM2Zg9VuSXT8VqY3VFau2GknwN_ugIYW3D3fX7ujsoghiNmgvMmBCJCzL6N7GG3_saOOVjpkEqzOf-ya9Hn8JY&3u720&5m1&2e1&callback=none&key=AIzaSyDUBAs2Aoeh9UJxjarRyXFSvuBDE-BLFVM&token=119423';
+					place_list_str += '<li class="sidebar_li"><div class="map_img"><img alt="미리보기" class="map_img_img" src="';
+					place_list_str += place.photos[0].getUrl();//image url
+					place_list_str += '"></div><div class="content_review"><div class="content_header"><h2 class="content_title">';
+					place_list_str += 'place.name'; //place name
+					place_list_str += '</h2></div><hr><div class="content_detail"><div class="content_detail_star"><span><svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="presentation" focusable="false" style="display: block; height: 20px; width: 20px; fill: currentcolor; color: #FF385C !important;"><path d="M15.094 1.579l-4.124 8.885-9.86 1.27a1 1 0 0 0-.542 1.736l7.293 6.565-1.965 9.852a1 1 0 0 0 1.483 1.061L16 25.951l8.625 4.997a1 1 0 0 0 1.482-1.06l-1.965-9.853 7.293-6.565a1 1 0 0 0-.541-1.735l-9.86-1.271-4.127-8.885a1 1 0 0 0-1.814 0z" fill-rule="evenodd"></path></svg></span><span>';
+					place_list_str += '2.0'; //평균 별점
+					place_list_str += '</span><span style="color: rgb(113, 113, 113) !important;">(후기';
+					place_list_str += '';//후기 갯수 
+					place_list_str += '개)</span></div><div class="content_bottom"><span>';
+					place_list_str += 'place.주소'; //주소
+					place_list_str += '</span><span>';
+					place_list_str += '전화번호'; //전화번호
+					place_list_str += '</span></div></div></div></li>';
 				}
 			}
+			$("#places").append(place_list_str);
 		}//add place after click to button
 
 		 
@@ -335,7 +297,7 @@ function initAutocomplete() {
 	}//initAutocomplete
 	
 	//get detail
-	function getDetail(service, placeId){
+	/*function getDetail(service, placeId){
 		
 		const request = {	
 			placeId: placeId,
@@ -348,4 +310,4 @@ function initAutocomplete() {
 				return null;
 			}
 		});
-	}
+	}*/

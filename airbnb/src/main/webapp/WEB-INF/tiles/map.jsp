@@ -9,13 +9,43 @@
 <link rel="stylesheet" href="/resources/css/map/map.css">
 </head>
 <body>
-<div id="container">
-	<div id="sidebar">
-		<ul id="places"></ul>
-		<button id="more">Load more results</button>
+	<div id="container">
+		<div id="sidebar">
+			<ul id="places">
+				<li class="sidebar_li">
+					<div class="map_img">
+						<img alt="미리보기" class="map_img_img">
+					</div>
+					<div class="content_review">
+						<div class="content_header">
+							<h2 class="content_title">제목</h2>
+						</div>
+						<hr>
+						<div class="content_detail">
+							<div class="content_detail_star">
+								<span>
+									<svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="presentation" focusable="false" style="display: block; height: 20px; width: 20px; fill: currentcolor; color: #FF385C !important;"><path d="M15.094 1.579l-4.124 8.885-9.86 1.27a1 1 0 0 0-.542 1.736l7.293 6.565-1.965 9.852a1 1 0 0 0 1.483 1.061L16 25.951l8.625 4.997a1 1 0 0 0 1.482-1.06l-1.965-9.853 7.293-6.565a1 1 0 0 0-.541-1.735l-9.86-1.271-4.127-8.885a1 1 0 0 0-1.814 0z" fill-rule="evenodd"></path></svg>
+								</span>
+								<span>2.0</span>
+								<span style="color: rgb(113, 113, 113) !important;">(후기xx개)</span>
+							</div>
+							<div class="content_bottom">
+								<span>주소</span>
+								<span>전화번호</span>
+							</div>
+							<div class="content_img">
+								<img alt="여분 사진 미리보기" class="content_img_img">
+								<img alt="여분 사진 미리보기" class="content_img_img2">
+							</div>
+						</div>
+					</div>
+				</li>
+			</ul>
+			
+			<button id="more">Load more results</button>
+		</div>
+		<div id="map"></div>
 	</div>
-	<div id="map"></div>
-</div>
 </body>
 <script type="text/javascript">
 	let name = "<c:out value='${name}'/>" || "도쿄역";
@@ -23,7 +53,7 @@
 </script>
 <script
 	src="https://maps.googleapis.com/maps/api/js?
-	key=AIzaSyD9Ipehrpor4GUgqPUAUI7sXldNenx5suo
+	key=AIzaSyDUBAs2Aoeh9UJxjarRyXFSvuBDE-BLFVM
 	&region=JP
 	&language=ko
 	&callback=initAutocomplete
