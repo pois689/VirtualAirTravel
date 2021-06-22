@@ -544,7 +544,7 @@ window.onload = function(){
 				,star:$('#star').val()
 		};
 		replyService.add(reply, function(result){
-			alert(result);
+			console.log(result);
 			modal.find("input").val("");
 			modal.modal("hide");
 			
@@ -578,7 +578,7 @@ window.onload = function(){
 		var reply = {rno:modal.data("rno"), content:$("#content").val(), star:$("#star").val()};
 		
 		replyService.update(reply, function(result){
-			alert(result);
+			console.log(result);
 			modal.modal("hide");
 			showList(1);
 		});
@@ -590,7 +590,7 @@ window.onload = function(){
 		var rno = modal.data("rno");
 		
 		replyService.remove(rno, function(result){
-			alert(result);
+			console.log(result);
 			modal.modal("hide");
 			showList(1);
 		});
