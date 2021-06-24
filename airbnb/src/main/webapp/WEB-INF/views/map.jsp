@@ -10,17 +10,9 @@
 <link rel="stylesheet" href="/resources/css/styleindex.css">
 <!-- 파비콘 링크  / 없으면 아이콘 안뜸-->
 <link rel="shortcut icon" sizes="76x76" type="image/x-icon"
-	href="https://a0.muscache.com/airbnb/static/logotype_favicon-21cc8e6c6a2cca43f061d2dcabdf6e58.ico"
->
-<link href="https://unpkg.com/tailwindcss@2.0.2/dist/tailwind.min.css"
-	rel="stylesheet"
->
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css"
-	rel="stylesheet"
-	integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x"
-	crossorigin="anonymous"
->
+	href="https://a0.muscache.com/airbnb/static/logotype_favicon-21cc8e6c6a2cca43f061d2dcabdf6e58.ico">
+<link href="https://unpkg.com/tailwindcss@2.0.2/dist/tailwind.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
 <style type="text/css">
 /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
@@ -58,12 +50,20 @@ html, body {
 	width: 840px;
 	flex-direction: column;
 }
-
-.header__search {
+.header__search{
+	flex-grow: 1;
+	height: 250px !important;
+}
+ul {
+	list-style-type: none;
+	padding: 0;
+	margin: 0;
+	width: 100%;
+	overflow-y: scroll;
 	flex-grow: 1;
 }
 
-.list {
+li {
 	background-color: #f1f1f1;
 	padding: 10px;
 	text-overflow: ellipsis;
@@ -76,34 +76,34 @@ html, body {
 	flex-direction: row;
 }
 
-.list:nth-child(odd) {
+li:nth-child(odd) {
 	background-color: #fcfcfc;
 }
-
-.img {
+.img{
 	border-radius: 20px;
-	position: relative;
-	height: 100%;
+	position:relative; 
+	height : 100%;
 	width: 300px;
-}
+}  
 
-.img img {
-	position: absolute;
-	top: 50%;
-	margin-top: 15px;
+.img img{
+	position:absolute; 
+	top:50%; 
+	margin-top:15px; 
 	width: 300px;
-	height: 200px;
+	height:200px;
 	border-radius: 20px;
-}
+} 
 
-.content {
+.content{
 	margin: 16px;
 	height: 200px;
 }
 
-hr {
+hr{
 	width: 32px;
 }
+
 
 button {
 	width: 100%;
@@ -126,41 +126,9 @@ button:disabled {
 	cursor: auto;
 }
 </style>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"
-></script>
-<script
-	src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
-	integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
-	crossorigin="anonymous"
-></script>
-<script
-	src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js"
-	integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT"
-	crossorigin="anonymous"
-></script>
-
-</head>
-<body>
-	<div id="container">
-		<div id="sidebar">
-			<ul id="places"></ul>
-			<button id="more">Load more results</button>
-		</div>
-		<div id="map"></div>
-	</div>
-	<!-- Async script executes immediately and must be after any DOM elements used in callback. -->
-	<script
-		src="https://maps.googleapis.com/maps/api/js?
-		key=AIzaSyD9Ipehrpor4GUgqPUAUI7sXldNenx5suo
-		&region=JP
-		&language=ko
-		&callback=initAutocomplete
-		&libraries=places
-		&v=weekly"
-		async
-	></script>
-</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous"></script>
 <script>
 	/* 카테고리 선택 */
 	$(document).ready( function() {
@@ -233,8 +201,8 @@ button:disabled {
 		nearbySearch(map, service, center, restaurant);
 		
 		// Create the search box and link it to the UI element.
-		let input = document.getElementsByClassName("search__button").item(1);
-		const options = {	
+		const input = document.getElementById("search__button");
+		const options = {
 	        bounds: JAPAN_BOUNDS,
 	        componentRestrictions: { country: "jp" },
 	        fields: ["address_components", "geometry", "icon", "name"],
@@ -300,7 +268,6 @@ button:disabled {
 		});//searchbox -> place changed
 	    
 		map.addListener("center_changed",() => {
-			
 			markers.forEach((marker) => {
 	        	marker.setMap(null);
 	        });
@@ -310,19 +277,10 @@ button:disabled {
 			
 		});
 		
-		//create marker
-		function createMarker(place) {
-	    	if (!place.geometry || !place.geometry.location) return;
-	    	const marker = new google.maps.Marker({
-	    	    map: map,
-	    	    position: place.geometry.location,
-	    	});
-			google.maps.event.addListener(marker, "click", () => {
-				infowindow.setContent(place.name || "");
-	    	    infowindow.open(map);
-	    	});
-	    }//create marker
 		
+		
+	}//initAutocomplete
+	
 	//html query
 	function findPlaceFromQuery(map,service,name){
 		const request = {
@@ -360,8 +318,10 @@ button:disabled {
 			let places=[];
 			addPlaces(results, map);
 			for(let i=0; i<results.length; i++){
+				console.log(getDetail(service, results[i].place_id));
 				/* places.push(getDetail(service, results[i].place_id)); */
 			}
+			console.log(results[0].place_id);
 			if (status !== "OK" || !results) {return;}
 			
 			moreButton.disabled = (!pagination || !pagination.hasNextPage);
@@ -375,8 +335,22 @@ button:disabled {
 		});
 	}
 	
+	//create marker
+	function createMarker(place) {
+    	if (!place.geometry || !place.geometry.location) return;
+    	const marker = new google.maps.Marker({
+    	    map: map,
+    	    position: place.geometry.location,
+    	});
+		google.maps.event.addListener(marker, "click", () => {
+			infowindow.setContent(place.name || "");
+    	    infowindow.open(map);
+    	});
+    }//create marker
+
 	//add place
 	function addPlaces(places, map) {
+    	console.log(places[0]);
 		for (let place of places) {
 			if (place.geometry && place.geometry.location) {
 				const image = {
@@ -417,6 +391,7 @@ button:disabled {
 					content_div.append(BR);//hr
 				}
 				
+				console.log(place.opening_hours);
 				if(place.opening_hours != null){
 					content_div.append(place.opening_hours.toString());
 				}
@@ -428,10 +403,11 @@ button:disabled {
 				
 				//li
 				let li = document.createElement('li');
-				li.setAttribute("class",'list');
 				li.append(img_div);
 				li.append(content_div);
 				
+				
+				let placesList = document.getElementById("places");
 				placesList.append(li);
 				
 				
@@ -457,6 +433,50 @@ button:disabled {
 			}
 		});
 	}
-	}//initAutocomplete
 </script>
+</head>
+<body>
+<div id="container">
+	<div id="sidebar">
+		<div class="header__search">
+			<div class="search__button" style="padding-left: 24px; outline: none;"
+				role="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
+				aria-expanded="false">
+				<div style="font-weight: 800">카테고리</div>
+				<input class="button__value" id="category" placeholder="미입력" readonly="readonly">
+			</div>
+			<!-- 카테고리 -->
+			<div class="dropdown-menu" aria-labelledby="dropdownMenuButton1"
+				style="border-radius: 2.5rem; text-align: center; min-width: 12rem;">
+				<button class="dropdown-item" value="여행지">여행지</button>
+				<button class="dropdown-item" value="행사">행사</button>
+				<button class="dropdown-item" value="숙소">숙소</button>
+				<button class="dropdown-item" value="맛집">맛집</button>
+				<button class="dropdown-item" value="볼거리">볼거리</button>
+				<button class="dropdown-item" value="이동수단">교통</button>
+			</div>
+	
+			<span class="search__span"></span>
+			<!-- 검색어 -->
+			<input id="search__button" class="controls" type="text" placeholder="Search Box"/>
+			<span class="search__span"></span>
+		</div>
+		
+		<ul id="places"></ul>
+		<button id="more">Load more results</button>
+	</div>
+	<div id="map"></div>
+</div>
+	<!-- Async script executes immediately and must be after any DOM elements used in callback. -->
+	<script
+		src="https://maps.googleapis.com/maps/api/js?
+		key=AIzaSyD9Ipehrpor4GUgqPUAUI7sXldNenx5suo
+		&region=JP
+		&language=ko
+		&callback=initAutocomplete
+		&libraries=places
+		&v=weekly"
+		async
+	></script>
+</body>
 </html>

@@ -1,41 +1,43 @@
 package airbnb.spring.dto;
 
 import lombok.Data;
-
+// 페이지 처리
 @Data
 public class PageNavi {
-	//시작번호 끝번호
+
+	// 페이지 네비게이션의 시작 번호
 	int startPage;
+	// 페이지 네비게이션의 끝번호
 	int endPage;
-	//다음페이지 이전페이지 여부
+	// 이전 페이지 여부
 	boolean prev;
+	// 다음 페이지 여부
 	boolean next;
 	
-	//페이지정보
+	// 페이지 정보
 	Criteria cri;
-	//게시물의 총건수
+	// 게시물의 총 건수
 	int total;
 	
-	//페이지 구하는 생성자,endPage,startpage를 세팅함
-	public PageNavi(Criteria cri, int Total) {
-		
+	public PageNavi(Criteria cri, int total) {
 		this.cri = cri;
-		this.total = Total;
+		this.total = total;
 		
-		//페이지 네비게이션의 끝 번호
-		endPage = (int)Math.ceil((cri.getPageNo()/10.0))*10;
-		//페이지 네비게이션의 시작번호
-		startPage = endPage-9;
-		//실제 마지막 페이지번호
-		int realEndPage = (int)Math.ceil((Total*1.0)/cri.getAmount());
+		// 페이지 네비게이션의 끝 번호
+		endPage = (int)(Math.ceil(cri.getPageNo() / 10.0)) *10;
+		// 페이지 네비게이션의 시작 번호
+		startPage = endPage - 9;
+		// 실제 마지막 페이지 번호
+		int realEndPage = (int)Math.ceil((total*1.0)/cri.getAmount());
 		
-		//전페이지로이동은 1보다 클떄나와야함
-		prev = startPage > 1 ? true : false;
-		next = realEndPage>endPage ? true : false;
-
-		//끝페이지가 진짜페이지보다 크면 진짜페이지로 해줌
-		endPage = endPage>realEndPage ? realEndPage : endPage;
+		// 네비게이션의 마지막 페이지 번호 보다 실제 페이지 번호가 클경우 마지막 페이지 번호를 수정
+		endPage = endPage > realEndPage ? realEndPage : endPage;  
+		
+		prev = startPage>1;
+		
+		// 실제 마지막 페이지가 현재 내비게이션의 끝 페이지 번호 보다 크면
+		next = realEndPage > endPage;
+		
+			
 	}
-	
-	
 }
