@@ -25,6 +25,9 @@ CREATE TABLE TBL_USER (
     enabled char(1) default '1',
     sessionkey varchar(50),
     sessionlimit date,
+    jip varchar(50),
+    address varchar(100),
+    dtaddress varchar(100),
     primary key (uno)
    );
 
@@ -33,7 +36,8 @@ CREATE SEQUENCE seq_USER;
 create table TBL_USER_ROLE (
     UNO       number(10) NOT NULL,  --일반 사용자
     ROLE_UNO  varchar(50) NOT NULL,  --권한 사용자
-    constraint fk_USER_ROLE FOREIGN KEY ( UNO ) REFERENCES TBL_USER ( UNO ),
+    constraint fk_USER_ROLE FOREIGN KEY ( UNO ) REFERENCES TBL_USER ( UNO )
+    ON DELETE CASCADE ENABLE,
     constraint pk_USER_ROLE PRIMARY KEY (UNO, ROLE_UNO) --2개모두 pk
 );
 
@@ -50,10 +54,10 @@ GRANT connect, resource, dba TO VirtualAirTravel;
 
 
 insert into TBL_USER (uno ,id, pwd, enabled, name, email, tel)
-values (SEQ_USER.nextval, 'user01', '1234', 1, '일번', 'leehjcap1@gmail.com', '010-1234-5678');
+values (SEQ_USER.nextval, 'user01', '1234', '1', '일번', 'leehjcap1@gmail.com', '010-1234-5678');
 
-insert into TBL_USER_ROLE (UNO, ROLE_UNO) values (SEQ_ROLE.nextval, 'ROLE_USER');
-insert into TBL_USER_ROLE (UNO, ROLE_UNO) values (83, 'ROLE_ADMIN');
+insert into TBL_USER_ROLE (UNO, ROLE_UNO) values (1, 'ROLE_USER');
+insert into TBL_USER_ROLE (UNO, ROLE_UNO) values (1, 'ROLE_ADMIN');
 alter table TBL_USER add sessionkey varchar(50);
 alter table TBL_USER add sessionlimit date;
 

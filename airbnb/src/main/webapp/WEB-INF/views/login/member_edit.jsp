@@ -188,9 +188,10 @@
     }
     
     function del() {
-    	  if (confirm("정말 탈퇴하시겠습니까?"))
+    	  if (confirm("정말 탈퇴하시겠습니까?")){
     		  alert("탈퇴되었습니다")
     		  location.href="deleteuser";
+    	  }
     	 }
     
     function findAddr(){

@@ -148,33 +148,23 @@ $(document).ready(
         if(!reg.test(inputed) && reinputed=="" && (inputed != reinputed || inputed == reinputed)){ //초기화면
         	img1.src="/resources/images/key4.png";
         	img2.src="/resources/images/key2.png";
-            $("input[name=repwd]").css("background-color", "#aaaaaa");
-            $("input[name=repwdCheck]").css("background-color", "#FFCECE");
             console.log("실1행");
         }else if(reg.test(inputed) && (chk_num > 0 || chk_eng > 0) && (inputed == reinputed)) { //pwd1이 유효성검사했을때 틀리면
         	img1.src="/resources/images/key5.png";
         	img2.src="/resources/images/key3.png";
-            $("input[name=repwd]").css("background-color", "#B0F6AC");
-            $("input[name=repwdCheck]").css("background-color", "#B0F6AC");
 
             console.log("실2행");
         }else if (!reg.test(inputed) && (chk_num < 0 || chk_eng < 0) && inputed == reinputed) { //pwd1이 유효성검사했을때 틀리면
         	img1.src="/resources/images/key4.png";
         	img2.src="/resources/images/key3.png";
-            $("input[name=repwd]").css("background-color", "#aaaaaa");
-            $("input[name=repwdCheck]").css("background-color", "#B0F6AC");
             console.log("실3행");
         }else if (reg.test(inputed) && (chk_num > 0 || chk_eng > 0) && inputed != reinputed) { //pwd1이 유효성검사했을때 틀리면
         	img1.src="/resources/images/key5.png";
         	img2.src="/resources/images/key2.png";
-            $("input[name=repwd]").css("background-color", "#B0F6AC");
-            $("input[name=repwdCheck]").css("background-color", "#FFCECE");
             console.log("실4행");
         }else if (!reg.test(inputed) && (chk_num < 0 || chk_eng < 0) && inputed != reinputed) {
         	img1.src="/resources/images/key4.png";
         	img2.src="/resources/images/key2.png";
-            $("input[name=repwd]").css("background-color", "#aaaaaa");
-            $("input[name=repwdCheck]").css("background-color", "#FFCECE");
             console.log("실5행");
         }
 	}
