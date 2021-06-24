@@ -88,7 +88,7 @@ body {
     border-width: 1px !important;
     border-style: solid !important;
     outline: none !important;
-    padding: 10px 16px !important;
+    padding: 5px 15px !important;
     transition: box-shadow 0.2s ease 0s, -ms-transform 0.1s ease 0s, -webkit-transform 0.1s ease 0s, transform 0.1s ease 0s !important;
     border-color: rgb(34, 34, 34) !important;
     background: rgb(255, 255, 255) !important;
