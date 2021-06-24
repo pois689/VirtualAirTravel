@@ -334,6 +334,8 @@ let infowindow;
 let temp_place_id;
 let service_review;
 let value_place = '';
+let google_star='';
+let google_review;
 
 function initMap() {
 	let sydney = new google.maps.LatLng(-33.867, 151.195);
@@ -449,6 +451,9 @@ function initMap() {
 						}
 						$('#phone').html(phone);
 						
+						google_star=detail_results.rating;
+						google_review=detail_results.reviews;
+						
     			}else {
 	    			for (let i = 0; i < detail_results.length; i++) {
 	    				console.log("error");
@@ -465,7 +470,6 @@ function initMap() {
 
 window.onload = function(){
 	
-	
 	_showPage();
 	var replyUL = $(".review_start");
 		
@@ -473,10 +477,10 @@ window.onload = function(){
 	
 	function showList(page){
 		replyService.getList({place_id:value_place, page: page||1}, function(map){
-			console.log('댓글 갯수 : ', map['ReplyCnt']);
-			console.log('리스트 : ', map['List']);
 			var str="";
 			if(map['List'] == null || map['List'].length==0){
+				map.set('List',google_review); 
+				console.log(map['List']);
 				$(".review_start").html("");
 				return;
 			}
@@ -488,8 +492,6 @@ window.onload = function(){
 				str += "<div class='review_text'><span data-rno='"+map['List'][i].rno+"'>";
 				str += map['List'][i].content+"</span></div></div></div>";
 				
-				console.log(map['List'][i].star);
-				//console.log(map['List'][i].rno);
 			}
 			$(".review_start").html(str);
 			for(let i=0; i<map['List'].length; i++){
@@ -515,6 +517,31 @@ window.onload = function(){
 				})
 			);
 			
+		},function(er){
+			if(google_review != null || google_review.length != 0){
+				map.set('List',google_review); 
+				console.log(map['List']);
+				$(".avgStar").html(google_star);
+				let str='';
+				for(var i=0, len=map['List'].length||0; i<len; i++){
+					str += "<div class='review_frame'><div class='review_box'><div class='review_header'>";
+					str += "<div class='review_id'>"+map['List'][i].author_name;
+					str += '<select class="example_'+ i +'"><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option></select>';
+					str += "<div class='review_date'>"+map['List'][i].relative_time_description+"</div></div></div>";
+					str += "<div class='review_text'><span>";
+					str += map['List'][i].text+"</span></div></div></div>";
+				}
+				$(".review_start").html(str);
+				for(let i=0; i<map['List'].length; i++){
+					$('.example_'+i).barrating({
+				      theme: 'fontawesome-stars',
+				      initialRating: map['List'][i].rating,
+				      readonly:true
+				    });
+				}
+				var cnt = "후기 5개";
+				$(".reply_cnt").html(cnt);
+			}
 		}); // end function
 		
 	} // end showList
@@ -553,24 +580,26 @@ window.onload = function(){
 	});
 	
 	// 모달로 상세보기 불러오기 작성자와 session id
-	$(".review_start").on("click",".review_frame",function(e){
-		var rno = $(this).data("rno");
-		
-		replyService.get(rno,function(reply){
+	//if(session.getId() == reply.name){
+		$(".review_start").on("click",".review_frame",function(e){
+			var rno = $(this).data("rno");
 			
-			$("#content").val(reply.content);
-			let name = $("#user").val(reply.name);
-			$("#star").val(reply.star);
-	 		$('#example').barrating('set', reply.star);
-			modal.data("rno",reply.rno);
-			
-			modal.find("button[id!='modalCloseBtn']").hide();
-			modalModBtn.show();
-			modalRemoveBtn.show();
-			
-			$(".modal").modal("show");
+			replyService.get(rno,function(reply){
+				
+				$("#content").val(reply.content);
+				let name = $("#user").val(reply.name);
+				$("#star").val(reply.star);
+		 		$('#example').barrating('set', reply.star);
+				modal.data("rno",reply.rno);
+				
+				modal.find("button[id!='modalCloseBtn']").hide();
+				modalModBtn.show();
+				modalRemoveBtn.show();
+				
+				$(".modal").modal("show");
+			});
 		});
-	});
+	//}
 	
 	// 댓글 수정
 	modalModBtn.on("click", function(e){
@@ -601,7 +630,7 @@ window.onload = function(){
 	   	 , onSelect: function(value, text, event){
 	   			$('#star').val(value);
 	   		}
-	   });
+	});
 };
 
 function translate(str){
@@ -658,6 +687,5 @@ function translate(str){
 	return trans;
 }
 
-String dkdlel = session.getId();
 </script>
 </html>
