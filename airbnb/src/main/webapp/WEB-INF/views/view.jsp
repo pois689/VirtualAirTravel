@@ -385,11 +385,7 @@ function initMap() {
 	    				
 	    				// 제목 바꾸기.
 	    				let title='';
-
-						title += '<h1>';
-						
 						title += detail_results.name;
-						title += '</h1>';
 						$('.section_main_title').html(title);
 						
 						let temp = '';
@@ -485,7 +481,7 @@ window.onload = function(){
 				return;
 			}
 			for(var i=0, len=map['List'].length||0; i<len; i++){
-				str += "<div class='review_frame' data-rno='"+map['List'][i].rno+"'><div class='review_box'><div class='review_header'>";
+				str += "<div class='review_frame' data-rno='"+map['List'][i].rno+"'><div class='review_box'><div class='review_header'><img class='review_insert_image' src='/resources/images/profile.png' alt='프로필사진'>";
 				str += "<div class='review_id'>"+map['List'][i].name;
 				str += '<select class="example_'+ i +'"><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option></select>';
 				str += "<div class='review_date'>"+map['List'][i].replyDate+"</div></div></div>";
@@ -524,7 +520,7 @@ window.onload = function(){
 				$(".avgStar").html(google_star);
 				let str='';
 				for(var i=0, len=map['List'].length||0; i<len; i++){
-					str += "<div class='review_frame'><div class='review_box'><div class='review_header'>";
+					str += "<div class='review_frame'><div class='review_box'><div class='review_header'><img class='review_insert_image' src='/resources/images/profile.png' alt='프로필사진'>";
 					str += "<div class='review_id'>"+map['List'][i].author_name;
 					str += '<select class="example_'+ i +'"><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option></select>';
 					str += "<div class='review_date'>"+map['List'][i].relative_time_description+"</div></div></div>";

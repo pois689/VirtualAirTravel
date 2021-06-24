@@ -396,6 +396,11 @@ textarea:focus {outline: none;}
     }
 }
 
+@media screen and (max-width: 870px) {
+	
+	
+}
+
 
 
 
