@@ -106,7 +106,7 @@
                 </tr>
          </table>
          <button type="button" data-ng-click="updateBoard(detail.uno);">수정하기</button>
-         <button type="button" onclick="location.href='/index'">뒤로가기</button>
+         <button type="button" onclick="location.href='/index'">홈으로가기</button>
          <input type="hidden" name="nowPage" id="nowPage" value="${paging.nowPage}" ng-model="nowPage">
          <input type="hidden" name="cntPerPage" id="cntPerPage" value="${paging.cntPerPage}"ng-model="cntPerPage"> 
          	<div style="display: block; text-align: center;">		
