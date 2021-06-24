@@ -2,10 +2,6 @@
 body {
     margin: 0;
     font-family: Dotum,'돋움',Helvetica,sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
     background: url("/resources/images/back.jpg") no-repeat center;
     background-size: cover;
 }
@@ -24,25 +20,20 @@ body {
     text-align: center;
 }
 #wrapper {
-    position: relative;
+	display : flex;
+	justify-content : center;
     height: 100%;
 }
 
 #content {
-    position: absolute;
-    left: 50%;
-    transform: translate(-50%);
     width: 460px;
-    margin-top: 10vh;
-    /* background: white;
-    padding: 20px; */
 }
 
 
 
 /* 입력폼 */
 h1{
-    font-size: 50px; color: rgb(229, 160, 209);
+    color: rgb(11 232 255);
     text-align: center;
     margin-bottom: 30px;
 }
@@ -55,7 +46,7 @@ h3 {
 
 label{
     
-    background: rgb(229, 160, 209);
+    background: rgb(11 232 255);;
     color: rgb(255, 255, 255);
     padding : 5px;
     font-size: 1.1em;
@@ -129,9 +120,28 @@ input {
 .checkid{
     display: inline-block;
     position: absolute;
-    top: 50%;
-    right: 12px;
+    top: -3%;
+    right: -1px;
     margin-top: -10px;
+    cursor: pointer !important;
+    margin: 0px !important;
+    text-align: center !important;
+    text-decoration: none !important;
+    width: auto !important;
+    touch-action: manipulation !important;
+    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif !important;
+    font-size: 13px;
+    line-height: 20px;
+    font-weight: 600;
+    border-radius: 8px !important;
+    border-width: 1px !important;
+    border-style: solid !important;
+    outline: none !important;
+    padding: 19px 16px !important;
+    transition: box-shadow 0.2s ease 0s, -ms-transform 0.1s ease 0s, -webkit-transform 0.1s ease 0s, transform 0.1s ease 0s !important;
+    border-color: rgb(34, 34, 34) !important;
+    background: rgb(255, 255, 255) !important;
+    color: rgb(34, 34, 34) !important;
 }
 
 .pswdImg {
@@ -217,6 +227,30 @@ select {
     color: #fff;
     background-color: #8080ff;
 }
+#btnJoin3 {
+	cursor: pointer !important;
+    display: inline-block !important;
+    margin: 0px !important;
+    position: relative !important;
+    text-align: center !important;
+    text-decoration: none !important;
+    width: auto !important;
+    touch-action: manipulation !important;
+    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif !important;
+    font-size: 13px;
+    line-height: 20px;
+    font-weight: 600;
+    border-radius: 8px !important;
+    border-width: 1px !important;
+    border-style: solid !important;
+    outline: none !important;
+    padding: 10px 16px !important;
+    transition: box-shadow 0.2s ease 0s, -ms-transform 0.1s ease 0s, -webkit-transform 0.1s ease 0s, transform 0.1s ease 0s !important;
+    border-color: rgb(34, 34, 34) !important;
+    background: rgb(255, 255, 255) !important;
+    color: rgb(34, 34, 34) !important;
+}
+
 #btnJoin {
     width: 100%;
     padding: 21px 0 17px;
