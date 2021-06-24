@@ -22,6 +22,10 @@ public class AuthInterceptor extends HandlerInterceptorAdapter{
 	
 	/**
 	 * This implementation always returns {@code true}.
+	 * 
+	 * 
+	 * 		권한 확인 , 자동로그인확인
+	 * 
 	 */
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)

@@ -5,17 +5,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="google-signin-clinet_id" content="955391422565-88sjfl4ah16hpav3acqreemhkosvg5cd.apps.googleusercontent.com">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <link rel="stylesheet" href="/resources/css/login/style2.css">
+    <link rel="shortcut icon" sizes="76x76" type="image/x-icon"
+        href="https://a0.muscache.com/airbnb/static/logotype_favicon-21cc8e6c6a2cca43f061d2dcabdf6e58.ico">
     <script src="/resources/js/jquery-3.6.0.min.js"></script>
-    <script src="/resources/js/snowfall.jquery.js"></script>
-    <!-- <script type="text/javascript" src="/resources/js/naveridlogin_js_sdk_2.0.2.js"></script> -->
-	<script src="https://apis.google.com/js/platform.js?onload=init" async defer></script>
+    <script src="/resources/js/ljk_snowfall.jquery.js"></script>
 </head>
 <body>
 ${result }
+<!-- 		<input type="button" id="loginBtn" value="checking..." onclick="
+		if(this.value === 'login'){
+			gauth.signIn().then(function(){
+				console.log('gauth.signIn');
+				checkLoginStatus();
+			});
+		}else{
+			gauth.signOut().then(function(){
+				console.log('gauth.signOut');
+				checkLoginStatus();
+		});
+		}"> -->
 	<section class="login-form">
 		<a href="/index"><h1>Virtual Air Travel</h1></a>
 		<form action="/login/loginProcess" method="post">
@@ -29,6 +40,10 @@ ${result }
 				autocomplete="off" required="required">
 				<label for="pwd">PASSWORD</label>				
             </div>
+			<div id="saveid">
+				<input type="checkbox" name="idSaveCheck" id="idSaveCheck" style="cursor:pointer">
+				<label for="idSaveCheck" style="cursor:pointer">아이디 저장하기</label>	
+            </div>
             <div class="btn-area">
                 <button id="btn" type="submit">LOGIN</button>
             </div>
@@ -40,49 +55,68 @@ ${result }
             <span>|</span>
             <a href="register" id="f3">회원가입하기</a></p>
         </div>
+        
         <div class="tpa">
             <a href="${naver_url }" id="btnLogin1">
             <img src="/resources/images/naver.jpg" width="55" height="55" alt="naver"></a>
             <a href="${google_url }" id="btnLogin2">
             <img src="/resources/images/goggle.jpg" width="55" height="55" alt="goggle"></a>
-            <a href="#" id="btnLogin3">
-            <img src="/resources/images/apple.jpg" width="55" height="55" alt="apple"></a>
         </div>
+
 	</section>
 <script>
-//처음 실행하는 함수
-function init() {
-	gapi.load('auth2', function() {
-		gapi.auth2.init();
-		options = new gapi.auth2.SigninOptionsBuilder();
-		options.setPrompt('select_account');
-        // 추가는 Oauth 승인 권한 추가 후 띄어쓰기 기준으로 추가
-		options.setScope('email profile openid https://www.googleapis.com/auth/user.birthday.read');
-        // 인스턴스의 함수 호출 - element에 로그인 기능 추가
-        // GgCustomLogin은 li태그안에 있는 ID, 위에 설정한 options와 아래 성공,실패시 실행하는 함수들
-		gapi.auth2.getAuthInstance().attachClickHandler('GgCustomLogin', options, onSignIn, onSignInFailure);
-	})
-}
-
-function onSignIn(googleUser){
-	var profile = googleUser.getBasicProfile();
-}
-/* -----------------------------------------------------  */
-
-/* 	var naverLogin = new naver.LoginWithNaverId(
-		{
-			clientId: "E68ohfVFivN9KQZJTFIx",
-			callbackUrl: "http://localhost:8090/login/callback2",
-			isPopup: true, //팝업을 통한 연동처리 여부, true 면 팝업
-			loginButton: {color: "green", type: 3, height: 47} // 로그인 버튼의 타입을 지정
-		}		
-	);
-	naverLogin.init(); */
-
-	function onSignIn(googleUser){
-		var profile = googleUser.getBaicProfile();
+	$(document).ready(function(){
+		 
+	    // 저장된 쿠키값을 가져와서 ID 칸에 넣어준다. 없으면 공백으로 들어감.
+	    var key = getCookie("key");
+	    $("#id").val(key); 
+	     
+	    if($("#id").val() != ""){ // 그 전에 ID를 저장해서 처음 페이지 로딩 시, 입력 칸에 저장된 ID가 표시된 상태라면,
+	        $("#idSaveCheck").attr("checked", true); // ID 저장하기를 체크 상태로 두기.
+	    }
+	     
+	    $("#idSaveCheck").change(function(){ // 체크박스에 변화가 있다면,
+	        if($("#idSaveCheck").is(":checked")){ // ID 저장하기 체크했을 때,
+	            setCookie("key", $("#id").val(), 7); // 7일 동안 쿠키 보관
+	        }else{ // ID 저장하기 체크 해제 시,
+	            deleteCookie("key");
+	        }
+	    });
+	     
+	    // ID 저장하기를 체크한 상태에서 ID를 입력하는 경우, 이럴 때도 쿠키 저장.
+	    $("#id").keyup(function(){ // ID 입력 칸에 ID를 입력할 때,
+	        if($("#idSaveCheck").is(":checked")){ // ID 저장하기를 체크한 상태라면,
+	            setCookie("key", $("#id").val(), 7); // 7일 동안 쿠키 보관
+	        }
+	    });
+	});
+	 
+	function setCookie(cookieName, value, exdays){
+	    var exdate = new Date();
+	    exdate.setDate(exdate.getDate() + exdays);
+	    var cookieValue = escape(value) + ((exdays==null) ? "" : "; expires=" + exdate.toGMTString());
+	    document.cookie = cookieName + "=" + cookieValue;
 	}
-
+	 
+	function deleteCookie(cookieName){
+	    var expireDate = new Date();
+	    expireDate.setDate(expireDate.getDate() - 1);
+	    document.cookie = cookieName + "= " + "; expires=" + expireDate.toGMTString();
+	}
+	 
+	function getCookie(cookieName) {
+	    cookieName = cookieName + '=';
+	    var cookieData = document.cookie;
+	    var start = cookieData.indexOf(cookieName);
+	    var cookieValue = '';
+	    if(start != -1){
+	        start += cookieName.length;
+	        var end = cookieData.indexOf(';', start);
+	        if(end == -1)end = cookieData.length;
+	        cookieValue = cookieData.substring(start, end);
+	    }
+	    return unescape(cookieValue);
+	}
 
     let id = $('#id');
     let pwd = $('#pwd');

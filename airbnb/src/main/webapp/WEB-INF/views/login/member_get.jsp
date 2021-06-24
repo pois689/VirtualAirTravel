@@ -11,39 +11,7 @@
 <script src="https://www.google.com/recaptcha/api.js"></script>
 <script src="/resources/js/jquery-3.6.0.min.js"></script>
 <script src="/resources/js/ljk_snowfall.jquery.js"></script>
-<script>
-            function onSubmit(token) {
-              document.getElementById("demo-form").submit();
-            }
-            function registerCheckFunction(){
-                var userID = $('#id').val();
-                $ajax({
-                    url: './UserRegisterCheckServlet',
-                    method: 'POST',
-                    data: {userID: userID},
-                    success: function(result){
-                        if(result == 1){
-                            $('#checkMessage').html('사용할수있는아이디입니다');
-                            $('#checkType').attr('class', 'modal-content panel-success');
-                        }
-                        else{
-                            $('#checkMessage').html('사용할수 없는 아이디입니다.');
-                            $('#checkType').attr('class', 'modal-content panel-warning');
-                        }
-                        $('#checkModal').modal("show");
-                    }
-                });
-            }
-            function passwordCheckFunction(){
-                var passwd1 = $('#pswd1').val();
-                var passwd2 = $('#pswd2').val();
-                if(passwd1 != passwd2){
-                    $('#passwordCheckMessage').html('비밀번호가 서로 일치하지 않습니다');
-                }else{
-                    $('#passwordCheckMessage').html('');
-                }
-            }
-          </script>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>    
 </head>
     <body>
 
@@ -60,39 +28,28 @@
                 
                 
                 <div id="logo">
-                    <h1>개인정보 수정</h1>
+                    <a href="/index"><h1>마이페이지</h1></a>
                 </div>
 
-                <form action="" name="regForm" method="POST">
+                <form action="/login/member_edit" name="regForm" method="POST">
                 <!-- ID -->
                 <div>
                     <h3 class="join_title">
                         <label for="id">아이디</label>
                     </h3>
                     <span class="box int_id">
-                        <input type="text" name="id" id="id" class="int" maxlength="20">
+                        <input type="text" name="id" id="id" class="int" maxlength="20" value="${user.id}">
                         <input type="button" value="수정" onclick="checkId()" class="checkid">
                         <span class="step_url"></span>
                     </span>
                     <span class="error_next_box"></span>
                 </div>
 
-                <!-- PW1 -->
-                <div>
-                    <h3 class="join_title"><label for="pswd1">비밀번호</label></h3>
-                    <span class="box int_pass">
-                        <input type="text" name="pswd1" id="pswd1" class="int" maxlength="20">
-                        <input type="button" value="수정" onclick="checkId()" class="checkid">
-                        <span id="alertTxt">사용불가</span>
-                    </span>
-                    <span class="error_next_box" ></span>
-                </div>
-
                 <!-- NAME -->
                 <div>
                     <h3 class="join_title"><label for="name">이름</label></h3>
                     <span class="box int_name">
-                        <input type="text" name="name" class="int" maxlength="20">
+                        <input type="text" name="name" class="int" maxlength="20" value="${user.name}">
                         <input type="button" value="수정" onclick="checkId()" class="checkid">
                     </span>
                     <span class="error_next_box"></span>
@@ -102,7 +59,7 @@
                 <div>
                     <h3 class="join_title"><label for="email">본인확인 이메일<span class="optional">(중요)</span></label></h3>
                     <span class="box int_email">
-                        <input type="text" name="email" id="email" class="int" maxlength="100" placeholder="필수입력">
+                        <input type="text" name="email" id="email" class="int" maxlength="100" placeholder="필수입력" value="${user.email}">
                         <input type="button" value="수정" onclick="checkId()" class="checkid">
                     </span>
                     <span class="error_next_box">이메일 주소를 다시 확인해주세요.</span>    
@@ -112,7 +69,8 @@
                 <div>
                     <h3 class="join_title"><label for="phoneNo">휴대전화</label></h3>
                     <span class="box int_mobile">
-                        <input type="tel" id="mobile" class="int" maxlength="16" placeholder="전화번호 입력">
+                        <input type="tel" id="mobile" class="int" maxlength="16" placeholder="전화번호 입력" value="${user.tel}">
+                        <input type="text" name="uno" id="uno" value="${user.uno }">
                         <input type="button" value="수정" onclick="checkId()" class="checkid">
                     </span>
                     <span class="error_next_box"></span>    
@@ -121,9 +79,11 @@
                 <!-- 주소 -->
                 <div>
                     <h3 class="join_title"><label for="address">주소</label></h3>
-                    <span class="box int_mobile">
-                        <input type="text" id="address" class="int" maxlength="16" placeholder="주소입력">
-                        <input type="button" value="수정" onclick="checkId()" class="checkid">
+                    <span class="address">
+                        <input id="member_post" name="jip" onclick="findAddr()" type="text" placeholder="우편 번호" readonly>
+                        <input id="member_addr" name="address" type="text" placeholder="주소 입력" readonly>
+                        <input id="detail_addr" name="dtaddress" type="text" placeholder="상세 주소">
+                        <input type="button" value="입력" onclick="findAddr()" class="checkid">
                     </span>
                     <span class="error_next_box"></span>    
                 </div>
@@ -134,8 +94,11 @@
 
                 <!-- JOIN BTN-->
                 <div class="btn_area">
-                    <button type="button" id="btnJoin" onclick="checkId()">
+                    <button type="submit" id="btnJoin" onclick="checkId()">
                         <span>수정하기</span>
+                    </button>
+                     <button type="button" id="btnJoin2" onclick="checkId()">
+                        <span>비밀번호 변경하기</span>
                     </button>
                 </div>
                 </form>
@@ -146,9 +109,27 @@
 
         </div> 
         <!-- wrapper -->
-        
-    <script src="js/main.js"></script>
     <script>
+    function findAddr(){
+    	new daum.Postcode({
+            oncomplete: function(data) {
+            	
+            	console.log(data);
+            	
+                var roadAddr = data.roadAddress; // 도로명 주소 변수
+                var jibunAddr = data.jibunAddress; // 지번 주소 변수
+                // 우편번호와 주소 정보를 해당 필드에 넣는다.
+                document.getElementById('member_post').value = data.zonecode;
+                if(roadAddr !== ''){
+                    document.getElementById("member_addr").value = roadAddr;
+                } 
+                else if(jibunAddr !== ''){
+                    document.getElementById("member_addr").value = jibunAddr;
+                }
+            }
+        }).open();
+    }
+    
         $(document).snowfall({round : true, maxSize : 3});
     </script>
     

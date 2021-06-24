@@ -23,6 +23,33 @@
 	/* 카테고리 선택 */
 	let search_name = '';
 	$(document).ready( function() {
+	
+		$.ajax({
+			url : '/login/update',
+			method : 'post',
+			dataType : 'String',
+			
+			data : JSON.stringify(updateData),
+			contentType : 'application/json; charset=UTF-8',
+			
+			success : function(data, status){
+				console.log(data);
+				if(data.result == "success"){
+				}else{
+					alert("입력중 오류가 발생했습니다");
+				}
+			},
+			error : function(xhr, status, error){
+				console.log(error);
+			}
+			
+		});
+		
+		
+		
+		
+		
+		
 	    $(".dropdown-item").click(function(){
 	    	var search_category = this.value;
 	    	document.getElementById("search_category").value = search_category;
@@ -35,6 +62,8 @@
 	
 </script>
 ${sessionScope.user }
+${sessionScope.snsUser }
+${sessionScope.user.userRole.indexOf('ROLE_ADMIN')}
     <header>
     	<nav class=" bg-white w-full flex relative justify-between items-center mx-auto px-8 h-20">
 		    <!-- logo -->
@@ -150,15 +179,21 @@ ${sessionScope.user }
 		                <ul class="dropdown-menu" aria-labelledby="dropdownRoginButton" style="border-radius: 2.5rem; text-align: center; min-width: 12rem;">
 		                <!--로그인한 사용자인 경우 로그아웃 처리 로그인전 이면 로그인 처리-->
 	                        <c:choose>
-	                        	<c:when test="${sessionScope.user.id != null }">
-	        		                <li><a class="dropdown-item" href="/login/logout">로그아웃</a></li>
-	        		                <li><a class="dropdown-item" href="/login/member_edit">마이페이지</a></li>
-	                        	</c:when>
-	                        	<c:otherwise>
+	                        	<c:when test="${sessionScope.user.email == null }">
 	                        		<li><a class="dropdown-item" href="/login/register">회원 가입</a></li>
 			                        <li><a class="dropdown-item" href="/login/login">로그인</a></li>
+	                        	</c:when>
+	                        	<c:when test="${sessionScope.user.uno == 0 }">
+	                        	<li><a class="dropdown-item" href="/login/logout">로그아웃</a></li>
+	                        	</c:when>
+	                        	<c:otherwise>
+	        		                <li><a class="dropdown-item" href="/login/logout">로그아웃</a></li>
+	        		                <li><a class="dropdown-item" href="/login/member_edit">마이페이지</a></li>
 	                        	</c:otherwise>
 	                        </c:choose>
+	                        <c:if test="${sessionScope.user.userRole.indexOf('ROLE_ADMIN') >= 0}">
+	                        <li><a class="dropdown-item" href="/login/working/adminList">관리자페이지</a></li>
+	                        </c:if>
 <!-- 						    <li><a class="dropdown-item" href="/login/register">회원 가입</a></li>
 						    <li><a class="dropdown-item" href="/login/login">로그인</a></li>
 						    <li><a class="dropdown-item" href="/login/member_edit">마이페이지</a></li> -->

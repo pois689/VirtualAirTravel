@@ -17,7 +17,26 @@ body {
     background-color: rgba(0, 0, 0, -1);
 } */
 
-.pswdImg{
+
+.item_btn {
+    position: relative;
+    width: 100%;
+    padding: 13px 0 13px;
+    border: 1px solid #166cea;
+    background-color: #fff;
+    box-sizing: border-box;
+    margin-top: 10px;
+    -moz-transition: background, 0.5s;
+    -o-transition: background, 0.5s;
+    -webkit-transition: background, 0.5s;
+    transition: background, 0.5s;
+}
+
+.item_btn:hover{
+	background-color: lightgreen;
+} 
+
+.pswdImg1, .pswdImg2{
     width: 18px;
     height: 20px;
     display: inline-block;
@@ -39,12 +58,14 @@ body {
     background-color: rgb(255, 255, 255);
     padding: 20px;
 }
-
+.login-form a{
+	text-decoration: none;
+}
 .login-form {position: relative; z-index: 2;}
 .login-form h1{
     font-size: 50px; color: rgb(229, 160, 209);
     text-align: center;
-    margin-bottom: 60px;
+    margin-bottom: 50px;
 }
 .int-area {width: 400px; position: relative;
     margin-top: 20px;}
@@ -88,6 +109,14 @@ body {
     border: none;
     border-radius: 25px;
     cursor: pointer;
+            -moz-transition: background, 0.5s;
+    -o-transition: background, 0.5s;
+    -webkit-transition: background, 0.5s;
+    transition: background, 0.5s;
+
+}
+.btn-area button:hover{
+	background-color: #0065ca;
 }
 .caption {
     margin-top: 15px;
@@ -117,4 +146,8 @@ body {
 .tpa{
     margin-top: 20px;
     text-align: center;
+}
+#saveid{
+	margin-top: 10px;
+	padding-left: 5px;
 }

@@ -22,6 +22,12 @@ public class User {
 	
 	public String enabled;//사용여부
 	
+	public String jip; //우편번호
+	
+	public String address; //주소
+	
+	public String dtaddress; //상세주소
+	
 	public List<String> userRole;// 권한 사용자의 권한을 조회 하여 입력 해주세요
 	
 	//자동로그인 필요한키값,유효기간
