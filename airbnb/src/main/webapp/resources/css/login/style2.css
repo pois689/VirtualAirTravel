@@ -114,6 +114,7 @@ body {
 	position: relative;
     margin-top: 20px;
     display: flex;
+    align-items: center;
  }
 .int-area input:not(.idcheck) {
     width: 100%;
@@ -196,4 +197,11 @@ body {
 #saveid{
 	margin-top: 10px;
 	padding-left: 5px;
+}
+.compare-text {
+    color: black;
+    width: 25%;
+    font-size: 15px;
+    text-align: center;
+    font-weight: 600;
 }
