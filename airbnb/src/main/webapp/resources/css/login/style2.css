@@ -30,6 +30,7 @@ body {
     -o-transition: background, 0.5s;
     -webkit-transition: background, 0.5s;
     transition: background, 0.5s;
+    border-radius: 20px;
 }
 
 .item_btn:hover{
@@ -47,11 +48,51 @@ body {
     cursor: pointer;
 }
 .idcheck{
-    display: inline-block;
-    position: absolute;
-    top: 50%;
-    right: 12px;
-    margin-top: -10px;
+    cursor: pointer !important;
+    display: inline-block !important;
+    margin: 0px !important;
+    position: relative !important;
+    text-align: center !important;
+    text-decoration: none !important;
+    width: auto !important;
+    touch-action: manipulation !important;
+    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif !important;
+    font-size: 13px;
+    line-height: 20px;
+    font-weight: 600;
+    border-radius: 8px !important;
+    border-width: 1px !important;
+    border-style: solid !important;
+    outline: none !important;
+    padding: 10px 16px !important;
+    transition: box-shadow 0.2s ease 0s, -ms-transform 0.1s ease 0s, -webkit-transform 0.1s ease 0s, transform 0.1s ease 0s !important;
+    border-color: rgb(34, 34, 34) !important;
+    background: rgb(255, 255, 255) !important;
+    color: rgb(34, 34, 34) !important;
+}
+
+.sendMail {
+	cursor: pointer !important;
+    display: inline-block !important;
+    margin: 0px !important;
+    position: relative !important;
+    text-align: center !important;
+    text-decoration: none !important;
+    width: auto !important;
+    touch-action: manipulation !important;
+    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif !important;
+    font-size: 13px;
+    line-height: 20px;
+    font-weight: 600;
+    border-radius: 8px !important;
+    border-width: 1px !important;
+    border-style: solid !important;
+    outline: none !important;
+    padding: 10px 16px !important;
+    transition: box-shadow 0.2s ease 0s, -ms-transform 0.1s ease 0s, -webkit-transform 0.1s ease 0s, transform 0.1s ease 0s !important;
+    border-color: rgb(34, 34, 34) !important;
+    background: rgb(255, 255, 255) !important;
+    color: rgb(34, 34, 34) !important;
 }
 
 .login-form{
@@ -66,9 +107,14 @@ body {
     font-size: 50px; color: rgb(229, 160, 209);
     text-align: center;
     margin-bottom: 50px;
+    color: #8282ff;
 }
-.int-area {width: 400px; position: relative;
-    margin-top: 20px;}
+.int-area {
+	width: 400px;
+	position: relative;
+    margin-top: 20px;
+    display: flex;
+ }
 .int-area input:not(.idcheck) {
     width: 100%;
     padding: 20px 10px 10px;

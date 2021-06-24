@@ -79,9 +79,9 @@
 				autocomplete="off" required="required">
 				<label for="email">E-MAIL</label>				
 				<button class="sendMail" type="button">이메일 인증</button>
-				<input type="text" placeholder="인증 키 입력" style="display: none;"
+				<input type="text" placeholder="인증 키 입력" style="display: block !important;"
 					class="compare" maxlength="100" name="compare">
-					<span class="compare-text" style="display: none"></span>
+					<span class="compare-text" style="display: block !important;">일치</span>
             </div>
 			<div class="int-area">
 				<input type="tel" name="tel" id="tel"
