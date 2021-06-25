@@ -340,9 +340,13 @@ let google_review;
 function initMap() {
 	let sydney = new google.maps.LatLng(-33.867, 151.195);
 	
-
-	map = new google.maps.Map(
-	    document.getElementById('map'), {center: sydney, zoom: 15, disableDefaultUI: true});
+	map = new google.maps.Map(document.getElementById('map'), {
+		  center: sydney,
+		  zoom: 19,
+		  disableDefaultUI: true,
+		  mapId: '<c:out value="${mapid}"></c:out>'
+	});
+	
 	let request = {
 		query: '<c:out value="${name}"></c:out>',
     	fields: ['place_id'],
