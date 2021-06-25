@@ -49,6 +49,7 @@ ON DELETE CASCADE ENABLE;
 CREATE USER VirtualAirTravel IDENTIFIED BY 1234;
 GRANT connect, resource, dba TO VirtualAirTravel;
 
+DROP TABLE TBL_USER_ROLE;
 
 ---------------------------------------
 
