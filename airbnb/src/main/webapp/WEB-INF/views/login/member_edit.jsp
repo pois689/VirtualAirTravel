@@ -38,7 +38,7 @@
                         <label for="id">아이디</label>
                     </h3>
                     <span class="box int_id">
-                        <input type="text" name="id" id="id" class="int" maxlength="20" value="${user.id}" required="required">
+                        <input type="text" name="id" id="id" class="int" maxlength="20" value="${user.id}" required="required" readonly="readonly">
                         <span class="step_url"></span>
                     </span>
                     <span class="error_next_box"></span>
@@ -117,7 +117,9 @@
     		function(){
     			
     	$(".int_email").css("background-color","#d2d2d2");		
+    	$(".int_id").css("background-color","#d2d2d2");		
     	$("#email").css("background-color","#d2d2d2");		
+    	$("#id").css("background-color","#d2d2d2");		
     			
     			
 	    $(".sendMail").click(function() {// 메일 입력 유효성 검사

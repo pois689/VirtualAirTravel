@@ -35,7 +35,13 @@ body {
 
 .item_btn:hover{
 	background-color: lightgreen;
-} 
+}
+.idcheck:hover{
+    background-color: lightgray;
+}
+.sendMail:hover{
+    background-color: lightgray;
+}
 
 .pswdImg1, .pswdImg2{
     width: 18px;
@@ -65,11 +71,18 @@ body {
     border-style: solid !important;
     outline: none !important;
     padding: 10px 16px !important;
-    transition: box-shadow 0.2s ease 0s, -ms-transform 0.1s ease 0s, -webkit-transform 0.1s ease 0s, transform 0.1s ease 0s !important;
+    /* transition: box-shadow 0.2s ease 0s, -ms-transform 0.1s ease 0s, -webkit-transform 0.1s ease 0s, transform 0.1s ease 0s !important; */
+        -moz-transition: background, 0.5s;
+    -o-transition: background, 0.5s;
+    -webkit-transition: background, 0.5s;
+    transition: background, 0.5s;
     border-color: rgb(34, 34, 34) !important;
-    background: rgb(255, 255, 255) !important;
+    background: rgb(255, 255, 255) ;
     color: rgb(34, 34, 34) !important;
+    
 }
+
+
 
 .sendMail {
 	cursor: pointer !important;
@@ -89,9 +102,13 @@ body {
     border-style: solid !important;
     outline: none !important;
     padding: 5px 15px !important;
-    transition: box-shadow 0.2s ease 0s, -ms-transform 0.1s ease 0s, -webkit-transform 0.1s ease 0s, transform 0.1s ease 0s !important;
+    /* transition: box-shadow 0.2s ease 0s, -ms-transform 0.1s ease 0s, -webkit-transform 0.1s ease 0s, transform 0.1s ease 0s !important; */
+            -moz-transition: background, 0.5s;
+    -o-transition: background, 0.5s;
+    -webkit-transition: background, 0.5s;
+    transition: background, 0.5s;
     border-color: rgb(34, 34, 34) !important;
-    background: rgb(255, 255, 255) !important;
+    background: rgb(255, 255, 255);
     color: rgb(34, 34, 34) !important;
 }
 
@@ -114,7 +131,7 @@ body {
 	position: relative;
     margin-top: 20px;
     display: flex;
-    align-items: center;
+    /* align-items: center; */
  }
 .int-area input:not(.idcheck) {
     width: 100%;

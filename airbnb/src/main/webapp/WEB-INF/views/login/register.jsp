@@ -55,7 +55,7 @@
 				<input type="text" name="id" id="id"
 				autocomplete="off" required="required" maxlength="20">
 				<label for="id">ID</label>
-				<input type="button" value="ID 중복검사" id="idCheck" class="idcheck">		
+				<input type="button" value="ID 중복검사" id="idcheck" class="idcheck">		
             </div>
 			<div class="int-area">
 				<input type="text" name="pwd" id="pwd"
@@ -117,12 +117,12 @@ $(document).ready(
 				$("input[name=id]").prop("dataValue",false);
 				$("input[name=id]").attr("dataValue",false);
 			});
-			$("#idCheck").on("click", function(){
+			$("#idcheck").on("click", function(){
 				let idd = $("input[name=id]").val();
 				if(idd == ""){
 					alert("아이디가 입력되지 않았습니다");
 					//$("input[name=id]").css("background-color", "#ffffff");
-					$("#idCheck").val("불가능");
+					$("#idcheck").val("불가능");
 				}
 				else{
 				$.ajax({
@@ -134,14 +134,14 @@ $(document).ready(
 						if(!data){
 							alert("이미 등록된 아이디 입니다.")
 							//$("input[name=id]").css("background-color", "#FFCECE");
-							$("#idCheck").val("불가능");
+							$("#idcheck").val("불가능");
 						}else{
 							alert("등록 가능한 아이디 입니다.")
 							//회원가입버특클릭시 중복처리 했다고 알림
 							//속성값을 추가 해보자
 							$("input[name=id]").prop("dataValue",true);
 							//$("input[name=id]").css("background-color", "#4CAF50");
-							$("#idCheck").val("가능");
+							$("#idcheck").val("가능");
 						}
 						//등록 가능한 아이디인 경우
 					},
