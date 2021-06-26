@@ -20,18 +20,18 @@
 		<input type="hidden" name="name" id="name" value ="${user.name }" readonly="readonly">
 		<input type="hidden" name="id" id="id" value ="${user.id }" readonly="readonly">
 			<div class="int-area">
-				<input type="text" name="pwd" id="pwd"
+				<input type="password" name="pwd" id="pwd"
 				autocomplete="off" required="required" maxlength="20">
 				<label for="pwd">Existing(기존) PASSWORD</label>				
             </div>
 			<div class="int-area">
-				<input type="text" name="repwd" id="repwd"
+				<input type="password" name="repwd" id="repwd"
 				autocomplete="off" required="required" oninput="checkPwd()">
 				<label for="pwdCheck">PASSWORD</label>				
 				<img src="/resources/images/key1.png" maxlength="20" id="pswd1_img1" class="pswdImg1">
             </div>
 			<div class="int-area">
-				<input type="text" name="repwdCheck" id="repwdCheck"
+				<input type="password" name="repwdCheck" id="repwdCheck"
 				autocomplete="off" required="required" maxlength="20" oninput="checkPwd()">
 				<label for="repwdCheck">REPASSWORD</label>				
 				<img src="/resources/images/key2.png" id="pswd1_img2" class="pswdImg2">
@@ -84,8 +84,8 @@ $(document).ready(
 			        }
 			        else if(check1 == null){ //체크확인,기존비밀번호확인
 			        	var pw = $('#pwd').val();
-			        	alert("변경비밀번호:"+$(repwdCheck).val());
-			        	alert("기존비밀번호:"+pw);
+/* 			        	alert("변경비밀번호:"+$(repwdCheck).val());
+			        	alert("기존비밀번호:"+pw); */
 			    		//ajax로 기존비밀번호 확인
 			    		$.ajax({
 			    			type : "POST",

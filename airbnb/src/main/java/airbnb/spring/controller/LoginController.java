@@ -462,7 +462,8 @@ public class LoginController {
 			int updateRes = service.updatePwd(us);
 			if(updateRes>0) {
 					SimpleMailMessage msg = new SimpleMailMessage();
-					msg.setTo("leehjcap1@gmail.com"); //보내는 경로
+					//msg.setTo("leehjcap1@gmail.com"); //보내는 경로
+					msg.setTo(us.getEmail()); //보내는 경로
 					msg.setSubject("비밀번호확인해주세요");
 					msg.setText("임시비밀번호는"+uuid+"입니다 \n 암호화된비밀번호는" + encodePwd);
 					//비밀번호 업데이트 서비스

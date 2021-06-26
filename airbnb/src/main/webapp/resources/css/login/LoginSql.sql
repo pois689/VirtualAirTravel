@@ -14,6 +14,9 @@ SELECT * FROM(
     )
 WHERE num BETWEEN 6 AND 10;
 
+SELECT * FROM(SELECT ROWNUM num, TBL_USER.* FROM
+(SELECT id as a, id from TBL_USER group by id ORDER BY a DESC) TBL_USER)
+WHERE num BETWEEN 1 AND 10;
 
 CREATE TABLE TBL_USER (
     uno number(10) ,

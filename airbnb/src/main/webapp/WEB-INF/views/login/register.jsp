@@ -24,13 +24,13 @@
 				<input type="button" value="ID 중복검사" id="idcheck" class="idcheck">		
             </div>
 			<div class="int-area">
-				<input type="text" name="pwd" id="pwd"
+				<input type="password" name="pwd" id="pwd"
 				autocomplete="off" required="required" maxlength="20" oninput="checkPwd()">
 				<label for="pwd">PASSWORD</label>				
 				<img src="/resources/images/key1.png" id="pswd1_img1" class="pswdImg1">
             </div>
 			<div class="int-area">
-				<input type="text" name="pwdCheck" id="pwdCheck"
+				<input type="password" name="pwdCheck" id="pwdCheck"
 				autocomplete="off" required="required" maxlength="20" oninput="checkPwd()">
 				<label for="pwdCheck">REPASSWORD</label>				
 				<img src="/resources/images/key2.png" id="pswd1_img2" class="pswdImg2">

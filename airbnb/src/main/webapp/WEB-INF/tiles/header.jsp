@@ -23,7 +23,7 @@
 	/* 카테고리 선택 */
 	$(document).ready( function() {
 	
-		$.ajax({
+/* 		$.ajax({
 			url : '/login/update',
 			method : 'post',
 			dataType : 'String',
@@ -42,9 +42,7 @@
 				console.log(error);
 			}
 			
-		});
-		
-		
+		}); */
 		
 		
 		
