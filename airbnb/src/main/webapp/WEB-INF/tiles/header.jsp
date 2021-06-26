@@ -57,9 +57,9 @@
 	
 	});
 </script>
-${sessionScope.user }
+<%-- ${sessionScope.user }
 ${sessionScope.snsUser }
-${sessionScope.user.userRole.indexOf('ROLE_ADMIN')}
+${sessionScope.user.userRole.indexOf('ROLE_ADMIN')} --%>
     <header>
     	<nav class=" bg-white w-full flex relative justify-between items-center mx-auto px-8 h-20">
 		    <!-- logo -->

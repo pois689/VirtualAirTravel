@@ -57,7 +57,7 @@
 			    <input type="radio" name="radio-btn" id="img-1" checked />
 			    <li class="slide-container">
 				    	<div class="slide">
-				      		<img src="/resources/images/test2.jpg" />
+				      		<img src="/resources/images/F1.jpg" />
 				        	<span class="slide-text">1월의 행사</span>
 				        </div>
 					    <div class="nav">
@@ -70,7 +70,7 @@
 			    <input type="radio" name="radio-btn" id="img-2" />
 			    <li class="slide-container">
 				        <div class="slide">
-				          <img src="/resources/images/Festival2.jpg" />
+				          <img src="/resources/images/F2.jpg" />
 				          <span class="slide-text">2월의 행사</span>
 				        </div>
 					    <div class="nav">
@@ -83,7 +83,7 @@
 			    <input type="radio" name="radio-btn" id="img-3" />
 			    <li class="slide-container">
 				        <div class="slide">
-				          <img src="/resources/images/Festival3.jpg" />
+				          <img src="/resources/images/F3.jpg" />
 				          <span class="slide-text">3월의 행사</span>
 				        </div>
 					    <div class="nav">
@@ -96,7 +96,7 @@
 			    <input type="radio" name="radio-btn" id="img-4" />
 			    <li class="slide-container">
 				        <div class="slide">
-				          <img src="/resources/images/Festival4.jpg" />
+				          <img src="/resources/images/F4.jpg" />
 				          <span class="slide-text">4월의 행사</span>
 				        </div>
 					    <div class="nav">
@@ -109,7 +109,7 @@
 			    <input type="radio" name="radio-btn" id="img-5" />
 			    <li class="slide-container">
 				        <div class="slide">
-				          <img src="/resources/images/Festival5.jpg" />
+				          <img src="/resources/images/F5.jpg" />
 				          <span class="slide-text">5월의 행사</span>
 				        </div>
 					    <div class="nav">
@@ -122,7 +122,7 @@
 			    <input type="radio" name="radio-btn" id="img-6" />
 			    <li class="slide-container">
 				        <div class="slide">
-				          <img src="/resources/images/Festival6.jpg" />
+				          <img src="/resources/images/F6.jpg" />
 				          <span class="slide-text">6월의 행사</span>
 				        </div>
 					    <div class="nav">
@@ -134,7 +134,7 @@
 			    <input type="radio" name="radio-btn" id="img-7" />
 			    <li class="slide-container">
 					        <div class="slide">
-					          <img src="/resources/images/Festival7.jpg" />
+					          <img src="/resources/images/F7.jpg" />
 					          <span class="slide-text">7월의 행사</span>
 					        </div>
 					    <div class="nav">
@@ -146,7 +146,7 @@
 			    <input type="radio" name="radio-btn" id="img-8" />
 			    <li class="slide-container">
 				        <div class="slide">
-				          <img src="/resources/images/Festival8.jpg" />
+				          <img src="/resources/images/F8.jpg" />
 				          <span class="slide-text">8월의 행사</span>
 				        </div>
 					    <div class="nav">
@@ -158,7 +158,7 @@
 			    <input type="radio" name="radio-btn" id="img-9" />
 			    <li class="slide-container">
 				        <div class="slide">
-				          <img src="/resources/images/sity1.jpg" />
+				          <img src="/resources/images/F9.jpg" />
 				          <span class="slide-text">9월의 행사</span>
 				        </div>
 					    <div class="nav">
@@ -170,7 +170,7 @@
 			    <input type="radio" name="radio-btn" id="img-10" />
 			    <li class="slide-container">
 				        <div class="slide">
-				          <img src="/resources/images/sity2.jpg" />
+				          <img src="/resources/images/F10.jpg" />
 				          <span class="slide-text">10월의 행사</span>
 				        </div>
 					    <div class="nav">
@@ -182,7 +182,7 @@
 			    <input type="radio" name="radio-btn" id="img-11" />
 			    <li class="slide-container">
 					        <div class="slide">
-					          <img src="/resources/images/sity3.jpg" />
+					          <img src="/resources/images/F11.jpg" />
 					          <span class="slide-text">11월의 행사</span>
 					        </div>
 					    <div class="nav">
@@ -194,7 +194,7 @@
 			    <input type="radio" name="radio-btn" id="img-12" />
 			    <li class="slide-container">
 				        <div class="slide">
-				          <img src="/resources/images/sity4.jpg" />
+				          <img src="/resources/images/F12.jpg" />
 				          <span class="slide-text">12월의 행사</span>
 				        </div>
 					    <div class="nav">
