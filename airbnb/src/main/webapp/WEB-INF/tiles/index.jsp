@@ -12,7 +12,6 @@
 	<link rel = "preconnect"href = "https://fonts.gstatic.com">
 	<title>Virtual Air Travel</title>
 </head>
-
 <body>
 <div class="img"></div>
     <main>

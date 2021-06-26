@@ -9,7 +9,4 @@ let traffic = ['airport','subway_station','train_station','taxi_stand','bus_stat
 let all = travel + accommodation + restaurant + spot + traffic;
 let selectCategory = [];
 
-
-
-
-let placesList = document.getElementById("places");//list 시작 부분
+let placesList = $('#places');//list 시작 부분

@@ -127,8 +127,6 @@ function initAutocomplete() {
 			 					
 			 					place_list_str += '<li class="sidebar_li"><div class="map_img"><img alt="미리보기" class="map_img_img" src="';
 			 					
-			 					console.log(results[i]);
-			 					console.log(detail_results);
 			 					if(detail_results.photos != null && detail_results.photos[0] != null){
 									place_list_str += detail_results.photos[0].getUrl();//image url
 								} else {
@@ -140,7 +138,7 @@ function initAutocomplete() {
 								place_list_str += detail_results.name; //place name
 								place_list_str += '</h2></div><hr><div class="content_detail"><div class="content_detail_header"><div class="content_detail_star"><span><svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="presentation" focusable="false" style="display: block; height: 20px; width: 20px; fill: currentcolor; color: #FF385C !important;"><path d="M15.094 1.579l-4.124 8.885-9.86 1.27a1 1 0 0 0-.542 1.736l7.293 6.565-1.965 9.852a1 1 0 0 0 1.483 1.061L16 25.951l8.625 4.997a1 1 0 0 0 1.482-1.06l-1.965-9.853 7.293-6.565a1 1 0 0 0-.541-1.735l-9.86-1.271-4.127-8.885a1 1 0 0 0-1.814 0z" fill-rule="evenodd"></path></svg></span><span>';
 								
-								/*
+								
 								replyService.getList({place_id:results[i].place_id, page: page||1}, function(map){
 									let avgStar = map['avgStar'];
 									place_list_str += avgStar;
@@ -151,16 +149,16 @@ function initAutocomplete() {
 										place_list_str += detail_results.rating; //평균 별점
 									}
 								}); 
-								*/
+								
 								
 								place_list_str += '1.0';
 								place_list_str += '</span><span style="color: rgb(113, 113, 113) !important;">(후기';
 								
-								/*
+								
 								replyService.getList({place_id:results[i].place_id, page: page||1}, function(map){
 									place_list_str += map['ReplyCnt'] || 5
 								}); 
-								*/
+								
 								
 								place_list_str += '개)</span></div><div class="content_bottom"><div class="content_bottom_address">';
 								place_list_str += detail_results.adr_address; //주소
@@ -330,6 +328,7 @@ function initAutocomplete() {
 					strictBounds: false
 				}
 	       	});
+	       	cityCircle.setCenter(center);
 			nearbySearch(map, service,center, category);
 	    });
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -419,7 +418,7 @@ function initAutocomplete() {
 								place_list_str += detail_results.name; //place name
 								place_list_str += '</h2></div><hr><div class="content_detail"><div class="content_detail_header"><div class="content_detail_star"><span><svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="presentation" focusable="false" style="display: block; height: 20px; width: 20px; fill: currentcolor; color: #FF385C !important;"><path d="M15.094 1.579l-4.124 8.885-9.86 1.27a1 1 0 0 0-.542 1.736l7.293 6.565-1.965 9.852a1 1 0 0 0 1.483 1.061L16 25.951l8.625 4.997a1 1 0 0 0 1.482-1.06l-1.965-9.853 7.293-6.565a1 1 0 0 0-.541-1.735l-9.86-1.271-4.127-8.885a1 1 0 0 0-1.814 0z" fill-rule="evenodd"></path></svg></span><span>';
 								
-								/*
+								
 								replyService.getList({place_id:results[i].place_id, page: page||1}, function(map){
 									let avgStar = map['avgStar'];
 									place_list_str += avgStar;
@@ -430,16 +429,16 @@ function initAutocomplete() {
 										place_list_str += detail_results.rating; //평균 별점
 									}
 								}); 
-								*/
+								
 								
 								place_list_str += '1.0';
 								place_list_str += '</span><span style="color: rgb(113, 113, 113) !important;">(후기';
 								
-								/*
+								
 								replyService.getList({place_id:results[i].place_id, page: page||1}, function(map){
 									place_list_str += map['ReplyCnt'] || 5
 								}); 
-								*/
+								
 								
 								place_list_str += '개)</span></div><div class="content_bottom"><div class="content_bottom_address">';
 								place_list_str += detail_results.adr_address; //주소
@@ -495,6 +494,12 @@ function initAutocomplete() {
 		 	markers = [];
 		}//remove marker
 
+		
+		$('#places').on("click","li",function(){
+			let query_name = ($(this).find('.content_title').html());
+			location.href = '/view?name='+ query_name + '&mapid='+mapID;
+		});
+			 
 		 
 		 
 	}//initAutocomplete
