@@ -6,6 +6,7 @@ let accommodation = ['lodging']; //숙소
 let restaurant = ['bar','cafe','restaurant'];//맛집
 let spot = ['tourist_attraction']; //볼거리
 let traffic = ['airport','subway_station','train_station','taxi_stand','bus_station']; //교통
+let all = travel + accommodation + restaurant + spot + traffic;
 let selectCategory = [];
 
 

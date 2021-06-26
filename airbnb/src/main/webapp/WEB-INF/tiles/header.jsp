@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,15 +20,28 @@
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous"></script>
 <script type="text/javascript">
-	/* 카테고리 선택 */
-	$(document).ready( function() {
-	    $(".dropdown-item").click(function(){
-	    	var category = this.value;
-	    	document.getElementById("category").value = category;
-	    });
+	/* 이름 및 카테고리 선택 */
+	let search_name = '';
+	let search_category = '';
 	
+	$(document).ready( function() {
+	
+		// 카테고리
+	    $(".dropdown-item").click(function(){
+	    	search_category = this.value;
+	    	document.getElementById("search_category").value = search_category;
+	    });
+		//검색
+	    $('#search_button_dd').on("click",function(e){
+			search_name = document.getElementById('search_name');
+			location.href='/map?search_name='+search_name.value+'&search_category='+search_category;
+	    });
 	});
+	
 </script>
+${sessionScope.user }
+${sessionScope.snsUser }
+${sessionScope.user.userRole.indexOf('ROLE_ADMIN')}
     <header>
     	<nav class=" bg-white w-full flex relative justify-between items-center mx-auto px-8 h-20">
 		    <!-- logo -->
@@ -45,11 +59,11 @@
 		    <!-- 검색 bar -->
 		    <div class="header__search">
 				<div class="search__button" style="padding-left: 24px; outline: none;" role="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-					<div style="font-weight: 800">카테고리</div>
-					<input class="button__value" id="category" placeholder="미입력" readonly="readonly">
+					<div class="search__category">카테고리</div>
+					<input class="button__value" id="search_category" placeholder="미입력" readonly="readonly">
 				</div>
 				<!-- 카테고리 -->
-				<div class="dropdown-menu" aria-labelledby="dropdownMenuButton1" style="border-radius: 2.5rem; text-align: center; min-width: 12rem;">
+				<div class="dropdown-menu" aria-labelledby="dropdownMenuButton1" style="border-radius: 2rem; text-align: center; min-width: 12rem;">
 				    <button class="dropdown-item" value="여행지">여행지</button>
 				    <button class="dropdown-item" value="숙소">숙소</button>
 				    <button class="dropdown-item" value="맛집">맛집</button>
@@ -59,43 +73,40 @@
 				
 			<span class="search__span"></span>
 			<!-- 검색어 -->
-			<input class="search__button" placeholder="검색">
+			<input class="search__button" placeholder="검색" id="search_name">
 			<span class="search__span"></span>
 			<!-- 검색 아이콘 -->
-			<button class="flex items-center justify-center relative  h-8 w-8 rounded-full" type="submit" style="padding-right: 7px; width: 150px; outline: none;">
-			                        <svg
-			                            viewBox="0 0 32 32"
-			                            xmlns="http://www.w3.org/2000/svg"
-			                            aria-hidden="true"
-			                            role="presentation"
-			                            focusable="false"
-			                            style="
-			                                display: block;
-			                                fill: none;
-			                                height: 20px;
-			                                width: 50px;
-			                                stroke: currentcolor;
-			                                stroke-width: 5.33333;
-			                                overflow: visible;
-			                            "
-			                        >
-			                            <g fill="none">
-			                                <path
-			                                    d="m13 24c6.0751322 0 11-4.9248678 11-11 0-6.07513225-4.9248678-11-11-11-6.07513225 0-11 4.92486775-11 11 0 6.0751322 4.92486775 11 11 11zm8-3 9 9"
-			                                ></path>
-			                            </g>
-			                        </svg>
-			                    </button>
-        </div>
+			<div class="search__submit__button">
+				<button id="search_button_dd" class="flex items-center justify-center relative  h-8 w-8 rounded-full" type="submit" style="width: -webkit-fill-available; height: -webkit-fill-available;">
+				                        <svg
+				                            viewBox="0 0 32 32"
+				                            xmlns="http://www.w3.org/2000/svg"
+				                            aria-hidden="true"
+				                            role="presentation"
+				                            focusable="false"
+				                            style="
+				                                display: block;
+				                                fill: none;
+				                                height: 20px;
+				                                width: 50px;
+				                                stroke: currentcolor;
+				                                stroke-width: 5.33333;
+				                                overflow: visible;">
+				                            <g fill="none">
+				                                <path
+				                                    d="m13 24c6.0751322 0 11-4.9248678 11-11 0-6.07513225-4.9248678-11-11-11-6.07513225 0-11 4.92486775-11 11 0 6.0751322 4.92486775 11 11 11zm8-3 9 9"
+				                                ></path>
+				                            </g>
+				                        </svg>
+				 </button>
+			 </div>
+        	</div>
 		    <!-- end search bar -->
 		    <!-- login -->
-		    <div class="flex-initial">
+		    <div class="flex-initial" style="margin-right: 30px;">
 		      <div class="flex justify-end items-center relative">
 		       
 		        <div class="flex mr-4 items-center">
-		          <a class="inline-block py-2 px-3 hover:bg-gray-200 rounded-full" href="#" style="text-decoration: none;">
-		            <div class="flex items-center relative cursor-pointer whitespace-nowrap" style="color: rgb(34, 34, 34);">호스팅 신청</div>
-		          </a>
 		          <div class="block relative">
 		            <button type="button" class="inline-block py-2 px-3 hover:bg-gray-200 rounded-full relative ">
 		              <div class="flex items-center h-5">
@@ -141,11 +152,29 @@
 		                        </svg>
 		                    </div>
 		                </button>
+
 		                <!-- 로그인 메뉴 -->
 		                <ul class="dropdown-menu" aria-labelledby="dropdownRoginButton" style="border-radius: 2.5rem; text-align: center; min-width: 12rem;">
-						    <li><a class="dropdown-item" href="#">회원 가입</a></li>
-						    <li><a class="dropdown-item" href="#">로그인</a></li>
-						    <li><a class="dropdown-item" href="#">마이페이지</a></li>
+		                <!--로그인한 사용자인 경우 로그아웃 처리 로그인전 이면 로그인 처리-->
+	                        <c:choose>
+	                        	<c:when test="${sessionScope.user.email == null }">
+	                        		<li><a class="dropdown-item" href="/login/register">회원 가입</a></li>
+			                        <li><a class="dropdown-item" href="/login/login">로그인</a></li>
+	                        	</c:when>
+	                        	<c:when test="${sessionScope.user.uno == 0 }">
+	                        	<li><a class="dropdown-item" href="/login/logout">로그아웃</a></li>
+	                        	</c:when>
+	                        	<c:otherwise>
+	        		                <li><a class="dropdown-item" href="/login/logout">로그아웃</a></li>
+	        		                <li><a class="dropdown-item" href="/login/member_edit">마이페이지</a></li>
+	                        	</c:otherwise>
+	                        </c:choose>
+	                        <c:if test="${sessionScope.user.userRole.indexOf('ROLE_ADMIN') >= 0}">
+	                        <li><a class="dropdown-item" href="/login/working/adminList">관리자페이지</a></li>
+	                        </c:if>
+<!-- 						    <li><a class="dropdown-item" href="/login/register">회원 가입</a></li>
+						    <li><a class="dropdown-item" href="/login/login">로그인</a></li>
+						    <li><a class="dropdown-item" href="/login/member_edit">마이페이지</a></li> -->
 						</ul>
 		            </div>
 		        </div>
