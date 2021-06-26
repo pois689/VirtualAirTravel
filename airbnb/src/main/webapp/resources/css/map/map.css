@@ -107,6 +107,10 @@ hr{
 	height: 85%;
 }
 
+.content_detail_header {
+	height: 40%;
+}
+
 .content_detail_star {
 	display: flex;
 	align-items: center;
@@ -118,17 +122,22 @@ hr{
 }
 
 .content_bottom {
+	padding: 10px 0px;
+}
+
+.content_bottom_address {
 	display: flex;
-	flex-direction: column;
+    flex-direction: row;
+    flex-wrap: wrap;
 }
 
 .content_bottom span {
-	font-size: 20px;
+	font-size: 15px;
 }
 
 .content_img {
 	display: flex;
-	height: 75%;
+	height: 60%;
 }
 
 .content_img_img {
