@@ -39,4 +39,10 @@
 	<select id="avgStar" resultType="float">
 		select avg(star) from tbl_reply where place_id = #{place_id}
 	</select> 
+	
+	<select id="getRank" resultType="airbnb.spring.dto.RankDTO">
+		select * from (select avg(star) as star, place_id from tbl_reply group by place_id order by star desc) 
+		where rownum&lt;9
+	</select>
 </mapper>
+

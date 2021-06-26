@@ -1,11 +1,11 @@
 package airbnb.spring.mapper;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
-import airbnb.spring.dto.Criteria;
-import airbnb.spring.dto.ReplyDTO;
+import airbnb.spring.dto.*;
 
 public interface ReplyMapper {
 
@@ -25,4 +25,6 @@ public interface ReplyMapper {
 	public int getCountReply(String place_id);
 	
 	public float avgStar(String place_id);
+	
+	public ArrayList<RankDTO> getRank();
 }
