@@ -48,7 +48,7 @@
 		<div id="map"></div>
 	</div>
 </body>
-<!-- <script src="/resources/js/reply/reply.js"></script> -->
+<script src="/resources/js/reply/reply.js"></script>
 <script src="/resources/js/map/mapConstant.js"></script>
 <script type="text/javascript">
 	let name = "<c:out value='${name}'/>" || "도쿄역";

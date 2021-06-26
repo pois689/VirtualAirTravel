@@ -74,10 +74,34 @@ function initAutocomplete() {
 		             	})
 					);
 				});
+				
+				
+				let avgStar;
+				let list_num;
+				
+				replyService.getList({place_id:results[0].place_id, page: 1}, function(map){
+					avgStar = map['avgStar'];
+					list_num = map['ReplyCnt'];
+				},function(er){//error
+					list_num = 5;
+				}); 
+				
 				service.getDetails({placeId: results[0].place_id, fields: ['name','photos','geometry','rating','reviews','adr_address','business_status','types','website','international_phone_number','reviews']},(main_results, status) => {
+					
+					if(avgStar == null){
+						if(main_results.rating != null){
+							avgStar = main_results.rating;
+						}else{
+							avgStar = 4.5;
+						}
+					}
+					console.log(avgStar);
+					console.log(list_num);
+					
 					$('.map_img_img').attr('src',main_results.photos[0].getUrl());
 					$('.content_title').html(main_results.name);
-					$('.content_bottom').children().eq(0).html(main_results.adr_address);
+					$('.content_detail_star').children().eq(1).html(avgStar);
+					$('.content_detail_star').children().eq(2).html('(후기'+ list_num +'개)');
 					$('.content_bottom').children().eq(1).html('국제 전화번호 : ' + main_results.international_phone_number);
 					$('.content_img_img').attr('src',main_results.photos[1].getUrl());
 					$('.content_img_img2').attr('src',main_results.photos[2].getUrl());
@@ -85,6 +109,8 @@ function initAutocomplete() {
 				center = results[0].geometry.location; 
 			    map.setCenter(center);
 				cityCircle.setCenter(results[0].geometry.location);    
+				
+				
 			   //
 			   	let getNextPage;
 		 		const moreButton = document.getElementById("more");
@@ -105,8 +131,19 @@ function initAutocomplete() {
 		        	});
 		        	markers = [];
 		 			for(let i=0; i<results.length; i++){
+		 				
+		 				let list_avgStar;
+		 				let list_num_num;
+		 				replyService.getList({place_id:results[i].place_id, page: 1}, function(map){
+							list_avgStar = map['avgStar'];
+							list_num_num = map['ReplyCnt'];
+						},function(er){//error
+							list_num_num = 5;
+						}); 
+						
+		 				
 		 				setTimeout(() => {
-			 				service.getDetails({placeId: results[i].place_id,fields: ['name','photos','geometry','rating','reviews','adr_address','business_status','types','website','international_phone_number','reviews']},(detail_results, status) => {
+		 					service.getDetails({placeId: results[i].place_id,fields: ['name','photos','geometry','rating','reviews','adr_address','business_status','types','website','international_phone_number','reviews']},(detail_results, status) => {
 		 						let place_list_str = '';
 			 					const image = {
 									url: results[i].icon,
@@ -130,8 +167,7 @@ function initAutocomplete() {
 			 					if(detail_results.photos != null && detail_results.photos[0] != null){
 									place_list_str += detail_results.photos[0].getUrl();//image url
 								} else {
-									let temp = Math.floor(Math.random() * 8) + 1;
-									place_list_str += "/resources/images/Festival"+ temp +".jpg";
+									place_list_str += "/resources/images/travel_image.jpg";
 								}
 								
 								place_list_str += '"></div><div class="content_review"><div class="content_header"><h2 class="content_title">';
@@ -139,27 +175,19 @@ function initAutocomplete() {
 								place_list_str += '</h2></div><hr><div class="content_detail"><div class="content_detail_header"><div class="content_detail_star"><span><svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="presentation" focusable="false" style="display: block; height: 20px; width: 20px; fill: currentcolor; color: #FF385C !important;"><path d="M15.094 1.579l-4.124 8.885-9.86 1.27a1 1 0 0 0-.542 1.736l7.293 6.565-1.965 9.852a1 1 0 0 0 1.483 1.061L16 25.951l8.625 4.997a1 1 0 0 0 1.482-1.06l-1.965-9.853 7.293-6.565a1 1 0 0 0-.541-1.735l-9.86-1.271-4.127-8.885a1 1 0 0 0-1.814 0z" fill-rule="evenodd"></path></svg></span><span>';
 								
 								
-								replyService.getList({place_id:results[i].place_id, page: page||1}, function(map){
-									let avgStar = map['avgStar'];
-									place_list_str += avgStar;
-								},function(er){//error
-									if(detail_results.rating == 'undefined'){
-										place_list_str += '1.0';
-									} else {
-										place_list_str += detail_results.rating; //평균 별점
+								if(list_avgStar == null){
+									if(detail_results.rating != null){
+										list_avgStar = detail_results.rating;
+									}else{
+										list_avgStar = 4.5;
 									}
-								}); 
+								}
 								
 								
-								place_list_str += '1.0';
+								place_list_str += list_avgStar;
 								place_list_str += '</span><span style="color: rgb(113, 113, 113) !important;">(후기';
 								
-								
-								replyService.getList({place_id:results[i].place_id, page: page||1}, function(map){
-									place_list_str += map['ReplyCnt'] || 5
-								}); 
-								
-								
+								place_list_str += list_num_num;
 								place_list_str += '개)</span></div><div class="content_bottom"><div class="content_bottom_address">';
 								place_list_str += detail_results.adr_address; //주소
 								place_list_str += '</div><span>';
@@ -176,8 +204,7 @@ function initAutocomplete() {
 								if(detail_results.photos != null && detail_results.photos[1] != null){
 									place_list_str += detail_results.photos[1].getUrl();//image url
 								} else {
-									let temp = Math.floor(Math.random() * 8) + 1;
-									place_list_str += "/resources/images/Festival"+ temp +".jpg";
+									place_list_str += "/resources/images/travel_image.jpg";
 								}
 								
 								place_list_str += '"><img alt="여분 사진 미리보기" class="content_img_img2" src="';
@@ -185,8 +212,7 @@ function initAutocomplete() {
 								if(detail_results.photos != null && detail_results.photos[2] != null){
 									place_list_str += detail_results.photos[2].getUrl();//image url
 								} else {
-									let temp = Math.floor(Math.random() * 8) + 1;
-									place_list_str += "/resources/images/Festival"+ temp +".jpg";
+									place_list_str += "/resources/images/travel_image.jpg";
 								}
 								
 								place_list_str += '"></div></div></div></li>';
@@ -282,7 +308,18 @@ function initAutocomplete() {
 			
 	    	map.fitBounds(bounds);
 	    	map.setCenter(center);
-	    	cityCircle.setCenter(center); 
+	    	
+	    	let cityCircle = new google.maps.Circle({
+				strokeColor: "#FF0000",
+				strokeOpacity: 0.8,
+				strokeWeight: 1,
+				fillColor: "#FF0000",
+				fillOpacity: 0.15,
+				map: map,
+				center: center,
+				radius: 300,
+			});	
+			
 		});//searchbox -> place changed
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -385,6 +422,19 @@ function initAutocomplete() {
 		 	// Perform a nearby search.
 		 	service.nearbySearch( { location: location, radius: 290, type: type }, (results, status, pagination) => {
 		 		for(let i=0; i<results.length; i++){
+		 			
+		 			
+		 			
+		 			let avgStar;
+		 			let list_num;
+		 			replyService.getList({place_id:results[i].place_id, page: 1}, function(map){
+						avgStar = map['avgStar'];
+						list_num = map['ReplyCnt'];
+					},function(er){//error
+						list_num = 5;
+					}); 
+		 		
+		 		
 	 				setTimeout(() => {
 		 				service.getDetails({placeId: results[i].place_id,fields: ['name','photos','geometry','rating','reviews','adr_address','business_status','types','website','international_phone_number','reviews']},(detail_results, status) => {
 	 						let place_list_str = '';
@@ -410,8 +460,7 @@ function initAutocomplete() {
 			 					if(detail_results.photos != null && detail_results.photos[0] != null){
 									place_list_str += detail_results.photos[0].getUrl();//image url
 								} else {
-									let temp = Math.floor(Math.random() * 8) + 1;
-									place_list_str += "/resources/images/Festival"+ temp +".jpg";
+									place_list_str += "/resources/images/travel_image.jpg";
 								}
 								
 								place_list_str += '"></div><div class="content_review"><div class="content_header"><h2 class="content_title">';
@@ -419,27 +468,17 @@ function initAutocomplete() {
 								place_list_str += '</h2></div><hr><div class="content_detail"><div class="content_detail_header"><div class="content_detail_star"><span><svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="presentation" focusable="false" style="display: block; height: 20px; width: 20px; fill: currentcolor; color: #FF385C !important;"><path d="M15.094 1.579l-4.124 8.885-9.86 1.27a1 1 0 0 0-.542 1.736l7.293 6.565-1.965 9.852a1 1 0 0 0 1.483 1.061L16 25.951l8.625 4.997a1 1 0 0 0 1.482-1.06l-1.965-9.853 7.293-6.565a1 1 0 0 0-.541-1.735l-9.86-1.271-4.127-8.885a1 1 0 0 0-1.814 0z" fill-rule="evenodd"></path></svg></span><span>';
 								
 								
-								replyService.getList({place_id:results[i].place_id, page: page||1}, function(map){
-									let avgStar = map['avgStar'];
-									place_list_str += avgStar;
-								},function(er){//error
-									if(detail_results.rating == 'undefined'){
-										place_list_str += '1.0';
-									} else {
-										place_list_str += detail_results.rating; //평균 별점
+								if(avgStar == null){
+									if(detail_results.rating != null){
+										avgStar = detail_results.rating;
+									}else{
+										avgStar = 4.5;
 									}
-								}); 
-								
-								
-								place_list_str += '1.0';
+								}
+								place_list_str += avgStar;
 								place_list_str += '</span><span style="color: rgb(113, 113, 113) !important;">(후기';
 								
-								
-								replyService.getList({place_id:results[i].place_id, page: page||1}, function(map){
-									place_list_str += map['ReplyCnt'] || 5
-								}); 
-								
-								
+								place_list_str += list_num;
 								place_list_str += '개)</span></div><div class="content_bottom"><div class="content_bottom_address">';
 								place_list_str += detail_results.adr_address; //주소
 								place_list_str += '</div><span>';
@@ -456,8 +495,7 @@ function initAutocomplete() {
 								if(detail_results.photos != null && detail_results.photos[1] != null){
 									place_list_str += detail_results.photos[1].getUrl();//image url
 								} else {
-									let temp = Math.floor(Math.random() * 8) + 1;
-									place_list_str += "/resources/images/Festival"+ temp +".jpg";
+									place_list_str += "/resources/images/travel_image.jpg";
 								}
 								
 								place_list_str += '"><img alt="여분 사진 미리보기" class="content_img_img2" src="';
@@ -465,8 +503,7 @@ function initAutocomplete() {
 								if(detail_results.photos != null && detail_results.photos[2] != null){
 									place_list_str += detail_results.photos[2].getUrl();//image url
 								} else {
-									let temp = Math.floor(Math.random() * 8) + 1;
-									place_list_str += "/resources/images/Festival"+ temp +".jpg";
+									place_list_str += "/resources/images/travel_image.jpg";
 								}
 								
 								place_list_str += '"></div></div></div></li>';
