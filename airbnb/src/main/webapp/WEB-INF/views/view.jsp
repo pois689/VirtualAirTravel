@@ -281,7 +281,7 @@
 					<!-- text -->
 					<ul class="list-group list-group-flush">
 						<li class="list-group-item">
-							<input type="text" class="form-control ml-2" placeholder="user" id="user" value=<%=session.getId() %> readonly>
+							<input type="text" class="form-control ml-2" placeholder="user" id="user" value="${sessionScope.user.id}" readonly>
 						</li>
 						<li class="list-group-item">
 							<textarea class="form-control" id="content" placeholder="content" rows="3" maxlength="2000"></textarea>
@@ -309,8 +309,8 @@
 
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<!-- <link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script async
@@ -581,7 +581,7 @@ window.onload = function(){
 	});
 	
 	// 모달로 상세보기 불러오기 작성자와 session id
-	//if(session.getId() == reply.name){
+	if(${sessionScope.user.id} == reply.name){
 		$(".review_start").on("click",".review_frame",function(e){
 			var rno = $(this).data("rno");
 			
@@ -600,7 +600,7 @@ window.onload = function(){
 				$(".modal").modal("show");
 			});
 		});
-	//}
+	}
 	
 	// 댓글 수정
 	modalModBtn.on("click", function(e){
