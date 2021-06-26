@@ -281,7 +281,7 @@
 					<!-- text -->
 					<ul class="list-group list-group-flush">
 						<li class="list-group-item">
-							<input type="text" class="form-control ml-2" placeholder="user" id="user">
+							<input type="text" class="form-control ml-2" placeholder="user" id="user" value=<%=session.getId() %> readonly>
 						</li>
 						<li class="list-group-item">
 							<textarea class="form-control" id="content" placeholder="content" rows="3" maxlength="2000"></textarea>
@@ -309,8 +309,8 @@
 
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<!-- <link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script async
@@ -390,10 +390,7 @@ function initMap() {
 	    				// 제목 바꾸기.
 	    				let title='';
 
-						title += '<h1>';
-						
 						title += detail_results.name;
-						title += '</h1>';
 						$('.section_main_title').html(title);
 						
 						let temp = '';
