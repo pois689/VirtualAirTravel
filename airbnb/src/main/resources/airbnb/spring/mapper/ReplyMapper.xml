@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="airbnb.spring.mapper.ReplyMapper">
+
+	<insert id="insert">
+		insert into tbl_reply (rno, place_id, content, name, star, replydate)
+		values(seq_tbl_reply.nextval, #{place_id}, #{content}, #{name}, #{star}, sysdate)
+	</insert>
+
+	<select id="read" resultType="airbnb.spring.dto.ReplyDTO">
+	   select RNO, PLACE_ID, CONTENT,
+       		  NAME, STAR, REPLYDATE,
+       		  UPDATEDATE, to_char(replydate,'yyyy-mm-dd') replydate 
+       from tbl_reply where rno = #{rno}
+	</select>
+	
+	<delete id="delete">
+		delete from tbl_reply where rno = #{rno}
+	</delete>
+	
+	<update id="update">
+		update tbl_reply set content = #{content}, updatedate = sysdate, star = #{star} where rno = #{rno}
+	</update>
+	
+	<select id="getList" resultType="airbnb.spring.dto.ReplyDTO">
+		select rno, place_id, content, name, replydate, updatedate, star
+		from tbl_reply
+		where place_id = #{place_id}
+		order by rno desc
+	</select>
+	
+	<select id="getCountReply" resultType="int">
+		select count(rno) from tbl_reply where place_id=#{place_id}
+	</select>
+	
+	<select id="avgStar" resultType="float">
+		select avg(star) from tbl_reply where place_id = #{place_id}
+	</select> 
+</mapper>

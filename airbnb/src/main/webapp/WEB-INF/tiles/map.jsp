@@ -6,7 +6,140 @@
 <html>
 <head>
 <title>Places Search Box</title>
-<link rel="stylesheet" href="/resources/css/map/map.css">
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+<link rel="stylesheet" href="/resources/css/styleindex.css">
+<!-- 파비콘 링크  / 없으면 아이콘 안뜸-->
+<link rel="shortcut icon" sizes="76x76" type="image/x-icon"
+	href="https://a0.muscache.com/airbnb/static/logotype_favicon-21cc8e6c6a2cca43f061d2dcabdf6e58.ico"
+>
+<link href="https://unpkg.com/tailwindcss@2.0.2/dist/tailwind.min.css"
+	rel="stylesheet"
+>
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x"
+	crossorigin="anonymous"
+>
+<style type="text/css">
+/* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+
+/* Optional: Makes the sample page fill the window. */
+html, body {
+	height: 100%;
+	margin: 0;
+	padding: 0;
+}
+
+#container {
+	display: flex;
+	height: 100%;
+}
+
+.sidebar {
+	flex-basis: 5rem;
+	flex-grow: 1;
+	padding: 1rem;
+	max-width: 30rem;
+	height: 100%;
+	box-sizing: border-box;
+	display: flex;
+}
+
+#map {
+	flex-basis: 0;
+	flex-grow: 3;
+	height: 100%;
+}
+
+#sidebar {
+	display: flex;
+	width: 840px;
+	flex-direction: column;
+}
+
+.header__search {
+	flex-grow: 1;
+}
+
+.list {
+	background-color: #f1f1f1;
+	padding: 10px;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+	font-size: 1.25rem;
+	cursor: pointer;
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+}
+
+.list:nth-child(odd) {
+	background-color: #fcfcfc;
+}
+
+.img {
+	border-radius: 20px;
+	position: relative;
+	height: 100%;
+	width: 300px;
+}
+
+.img img {
+	position: absolute;
+	top: 50%;
+	margin-top: 15px;
+	width: 300px;
+	height: 200px;
+	border-radius: 20px;
+}
+
+.content {
+	margin: 16px;
+	height: 200px;
+}
+
+hr {
+	width: 32px;
+}
+
+button {
+	width: 100%;
+	padding: 1rem;
+	flex-grow: 0;
+	cursor: pointer;
+	background: #1a73e8;
+	font-size: 1.5rem;
+	color: white;
+	border: none;
+}
+
+button:hover {
+	color: #c5d4f0;
+}
+
+button:disabled {
+	background-color: #9fc1ee;
+	color: #c5d4f0;
+	cursor: auto;
+}
+</style>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+	integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+	crossorigin="anonymous"
+></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js"
+	integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT"
+	crossorigin="anonymous"
+></script>
+
 </head>
 <body>
 	<div id="container">
@@ -43,7 +176,6 @@
 					</div>
 				</li>
 			</ul>
-			
 			<button id="more">Load more results</button>
 		</div>
 		<div id="map"></div>

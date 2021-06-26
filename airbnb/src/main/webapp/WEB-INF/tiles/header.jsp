@@ -23,7 +23,6 @@
 	/* 이름 및 카테고리 선택 */
 	let search_name = '';
 	let search_category = '';
-	
 	$(document).ready( function() {
 	
 		// 카테고리
@@ -65,6 +64,7 @@ ${sessionScope.user.userRole.indexOf('ROLE_ADMIN')}
 				<!-- 카테고리 -->
 				<div class="dropdown-menu" aria-labelledby="dropdownMenuButton1" style="border-radius: 2rem; text-align: center; min-width: 12rem;">
 				    <button class="dropdown-item" value="여행지">여행지</button>
+				    <button class="dropdown-item" value="행사">행사</button>
 				    <button class="dropdown-item" value="숙소">숙소</button>
 				    <button class="dropdown-item" value="맛집">맛집</button>
 				    <button class="dropdown-item" value="볼거리">볼거리</button>

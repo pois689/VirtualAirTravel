@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class IndexController {
-	
+
 	@GetMapping("/")
 	public String init() {
 		return "tiles/index.tiles";
@@ -20,4 +20,10 @@ public class IndexController {
 	public void test() {
 		
 	}
+	
+	@GetMapping("/hostform")
+	public void hostform() {
+		
+	}
+	
 }
