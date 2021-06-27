@@ -15,6 +15,7 @@ public class ViewController {
 		// name 값이 넘어오면 받아오기
 		model.addAttribute("name", name);
 		model.addAttribute("mapid", mapid);
+		
 	}
 	
 

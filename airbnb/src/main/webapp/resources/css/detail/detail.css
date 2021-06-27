@@ -26,6 +26,12 @@
     100% { transform: rotate(360deg); }
 }
 
+.logo {
+    font-size: 35px;
+    font-weight: 800;
+    transform: translate(0, 110%);
+}
+
 * {
     padding: 0px;
     margin: 0px;
@@ -368,6 +374,9 @@ textarea:focus {outline: none;}
     .review_text {
     	font-size: 13px;
     }
+    .logo {
+    	font-size: 30px;
+    }
 }
 
 @media screen and (max-width: 1087px) {
@@ -389,6 +398,9 @@ textarea:focus {outline: none;}
     .section_img {
     	height: 370px;
     }
+    .logo {
+    	font-size: 27px;
+    }
 }
 
 @media screen and (max-width: 860px) {
@@ -398,6 +410,17 @@ textarea:focus {outline: none;}
 	.section_start {
 	    margin-left: 30px;
 	    margin-right: 30px;
+	}
+	.review_insert_image {
+		width: 45px;
+	    height: 45px;
+	    border-radius: 50%;
+	}
+	.review_id {
+	    font-size: 12px;
+	}
+	.review_date {
+	    font-size: 10px;
 	}
 }
 

@@ -14,6 +14,17 @@
 	<main class="izxcuioww" style="display:none;">
 	<section>
 		<div class="section_start">
+			<!-- logo -->
+		    <div class="logo">
+		    	<a href="/index" style="color: rgb(34, 34, 34);">
+                <svg viewBox="0 0 1000 1000" role="presentation" aria-hidden="true" focusable="false"
+                    style="height: 1em; width: 1em; fill: currentcolor;">
+                    <path
+                        d="m499.3 736.7c-51-64-81-120.1-91-168.1-10-39-6-70 11-93 18-27 45-40 80-40s62 13 80 40c17 23 21 54 11 93-11 49-41 105-91 168.1zm362.2 43c-7 47-39 86-83 105-85 37-169.1-22-241.1-102 119.1-149.1 141.1-265.1 90-340.2-30-43-73-64-128.1-64-111 0-172.1 94-148.1 203.1 14 59 51 126.1 110 201.1-37 41-72 70-103 88-24 13-47 21-69 23-101 15-180.1-83-144.1-184.1 5-13 15-37 32-74l1-2c55-120.1 122.1-256.1 199.1-407.2l2-5 22-42c17-31 24-45 51-62 13-8 29-12 47-12 36 0 64 21 76 38 6 9 13 21 22 36l21 41 3 6c77 151.1 144.1 287.1 199.1 407.2l1 1 20 46 12 29c9.2 23.1 11.2 46.1 8.2 70.1zm46-90.1c-7-22-19-48-34-79v-1c-71-151.1-137.1-287.1-200.1-409.2l-4-6c-45-92-77-147.1-170.1-147.1-92 0-131.1 64-171.1 147.1l-3 6c-63 122.1-129.1 258.1-200.1 409.2v2l-21 46c-8 19-12 29-13 32-51 140.1 54 263.1 181.1 263.1 1 0 5 0 10-1h14c66-8 134.1-50 203.1-125.1 69 75 137.1 117.1 203.1 125.1h14c5 1 9 1 10 1 127.1.1 232.1-123 181.1-263.1z">
+                    </path>
+                </svg>
+                </a>
+            </div>
 			<!-- 제목 부분 -->
 			<div class="main_title">
 				<div>
@@ -36,7 +47,7 @@
 							<span class="margins" aria-hidden="true"></span>
 						</div>
 						<div class="title_information_first">
-							<span class="title_information_first_address">경기도 광명시 광명7동</span>
+							<span class="title_information_first_address">주소</span>
 						</div>
 					</div>
 				</div>
@@ -61,9 +72,8 @@
 	<!-- 상세 정보 -->
 	<section>
 		<div class="section_start">
-			<span class="section_detail" id="type">쏼라쏼라 매장 정보 제공부분
-				가져오기(테이크아웃 or 매장내 식사가능 등)</span> <span class="section_detail" id="phone">쏼라쏼라
-				매장 정보 제공부분 가져오기(테이크아웃 or 매장내 식사가능 등)</span>
+			<span class="section_detail" id="type">카테고리</span>
+			<span class="section_detail" id="phone">번호</span>
 			<div class="section_detail_information">
 				<svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"
 					aria-hidden="true" role="presentation" focusable="false"
@@ -79,7 +89,7 @@
 						d="M17.954 2.781l.175.164 13.072 12.842-1.402 1.426-1.8-1.768L28 29a2 2 0 0 1-1.85 1.994L26 31H6a2 2 0 0 1-1.995-1.85L4 29V15.446l-1.8 1.767-1.4-1.426L13.856 2.958a3 3 0 0 1 4.097-.177zm-2.586 1.503l-.096.088L6 13.48 6 29l5-.001V19a2 2 0 0 1 1.85-1.995L13 17h6a2 2 0 0 1 1.995 1.85L21 19v9.999h5V13.48l-9.3-9.135a1.001 1.001 0 0 0-1.332-.06zM19 19h-6v9.999h6z"></path></svg>
 				<div id="adr"></div>
 			</div>
-
+		</div>
 		</section>
 		
 		<hr>
@@ -91,8 +101,8 @@
 					<span>
 						<svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="presentation" focusable="false" style="display: block; height: 20px; width: 20px; fill: currentcolor; color: #FF385C !important;"><path d="M15.094 1.579l-4.124 8.885-9.86 1.27a1 1 0 0 0-.542 1.736l7.293 6.565-1.965 9.852a1 1 0 0 0 1.483 1.061L16 25.951l8.625 4.997a1 1 0 0 0 1.482-1.06l-1.965-9.853 7.293-6.565a1 1 0 0 0-.541-1.735l-9.86-1.271-4.127-8.885a1 1 0 0 0-1.814 0z" fill-rule="evenodd"></path></svg>
 					</span>
-					<span class="avgStar">4.5</span>
-					<span class="reply_cnt">(후기 20개)</span>
+					<span class="avgStar">0</span>
+					<span class="reply_cnt">(후기 0개)</span>
 					<!-- 로그인 안했으면 댓글 작성 불가 -->
 					<c:choose>
 	                	<c:when test="${sessionScope.user.id == null }">
@@ -103,18 +113,8 @@
 	                </c:choose>
 				</h2>
 				
-				<!-- <div class="review_insert">
-					<div class="review_insert_header">
-						<img class="review_insert_image" src="/resources/images/profile.png" alt="프로필사진">
-						<div class="review_insert_id">id</div>
-					</div>
-					star_jquery
-					<textarea class="review_insert_context" onclick=""></textarea>
-					<button class="hostbox-context-button" type="button">Write</button>
-				</div> -->
-				
 				<div class="review_start">
-					<div class="review_frame">
+					<!-- <div class="review_frame">
 						<div class="review_box">
 							<div class="review_header">
 								<img class="review_insert_image" src="/resources/images/profile.png" alt="프로필사진">
@@ -132,122 +132,8 @@
 							<span>너무 좋앗어용</span>
 						</div>
 					</div>
-					
-					<div class="review_frame">
-						<div class="review_box">
-							<div class="review_header">
-								<img class="review_insert_image" src="/resources/images/profile.png" alt="프로필사진">
-								<div class="review_id">ID2
-									<div class="review_date">2021년 6월 2일</div>
-								</div>
-							</div>
-							
-							<div class="review_text">
-								<span>너무 좋앗어용너무 좋앗어용너무 좋앗어용너무 좋앗어용너무 좋앗어용너무 좋앗어용</span>
-							</div>
-						</div>
-
-						<div class="review_text">
-							<span>너무 좋앗어용너무 좋앗어용너무 좋앗어용너무 좋앗어용너무 좋앗어용너무 좋앗어용</span>
-						</div>
-					</div>
-
-					<div class="review_frame">
-						<div class="review_box">
-							<div class="review_header">
-								<img class="review_insert_image" src="/resources/images/profile.png" alt="프로필사진">
-								<div class="review_id">ID2
-									<div class="review_date">2021년 6월 2일</div>
-								</div>
-							</div>
-							
-							<div class="review_text">
-								<span>너무 좋앗어용너무 좋앗어용너무 좋앗어용너무 좋앗어용너무 좋앗어용너무 좋앗어용</span>
-							</div>
-						</div>
-
-						<div class="review_text">
-							<span>너무 좋앗어용너무 좋앗어용너무 좋앗어용너무 좋앗어용너무 좋앗어용너무 좋앗어용</span>
-						</div>
-					</div>
-					<div class="review_frame">
-						<div class="review_box">
-							<div class="review_header">
-								<img class="review_insert_image" src="/resources/images/profile.png" alt="프로필사진">
-								<div class="review_id">ID2
-									<div class="review_date">2021년 6월 2일</div>
-								</div>
-							</div>
-							
-							<div class="review_text">
-								<span>너무 좋앗어용너무 좋앗어용너무 좋앗어용너무 좋앗어용너무 좋앗어용너무 좋앗어용</span>
-							</div>
-						</div>
-						
-						<div class="review_text">
-							<span>너무 좋앗어용너무 좋앗어용너무 좋앗어용너무 좋앗어용너무 좋앗어용너무 좋앗어용</span>
-						</div>
-					</div>
-
-					<div class="review_frame">
-						<div class="review_box">
-							<div class="review_header">
-								<img class="review_insert_image" src="/resources/images/profile.png" alt="프로필사진">
-								<div class="review_id">ID2
-									<div class="review_date">2021년 6월 2일</div>
-								</div>
-							</div>
-							
-							<div class="review_text">
-								<span>너무 좋앗어용너무 좋앗어용너무 좋앗어용너무 좋앗어용너무 좋앗어용너무 좋앗어용</span>
-							</div>
-						</div>
-
-						<div class="review_text">
-							<span>너무 좋앗어용너무 좋앗어용너무 좋앗어용너무 좋앗어용너무 좋앗어용너무 좋앗어용</span>
-						</div>
-					</div>
-
-					<div class="review_frame">
-						<div class="review_box">
-							<div class="review_header">
-								<img class="review_insert_image" src="/resources/images/profile.png" alt="프로필사진">
-								<div class="review_id">ID2
-									<div class="review_date">2021년 6월 2일</div>
-								</div>
-							</div>
-							
-							<div class="review_text">
-								<span>너무 좋앗어용너무 좋앗어용너무 좋앗어용너무 좋앗어용너무 좋앗어용너무 좋앗어용</span>
-							</div>
-						</div>
-
-						<div class="review_text">
-							<span>너무 좋앗어용너무 좋앗어용너무 좋앗어용너무 좋앗어용너무 좋앗어용너무 좋앗어용</span>
-						</div>
-					</div>
-
-					<div class="review_frame">
-						<div class="review_box">
-							<div class="review_header">
-								<img class="review_insert_image" src="/resources/images/profile.png" alt="프로필사진">
-								<div class="review_id">ID2
-									<div class="review_date">2021년 6월 2일</div>
-								</div>
-							</div>
-							
-							<div class="review_text">
-								<span>너무 좋앗어용너무 좋앗어용너무 좋앗어용너무 좋앗어용너무 좋앗어용너무 좋앗어용</span>
-							</div>
-						</div>
-
-						<div class="review_text">
-							<span>너무 좋앗어용너무 좋앗어용너무 좋앗어용너무 좋앗어용너무 좋앗어용너무 좋앗어용</span>
-						</div>
-					</div>
-				</div>
-			</div>
-			
+				  </div> -->
+			    </div>
 			<!-- 댓글 더 보기 -->
 			<div class="review_more">
 				<!-- <button class="review_more_button">댓글 더 보기</button> -->
