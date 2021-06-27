@@ -12,40 +12,6 @@
 <script src="https://www.google.com/recaptcha/api.js"></script>
 <script src="/resources/js/jquery-3.6.0.min.js"></script>
 <script src="/resources/js/ljk_snowfall.jquery.js"></script>
-<!-- <script>
-            function onSubmit(token) {
-              document.getElementById("demo-form").submit();
-            }
-            function registerCheckFunction(){
-                var userID = $('#id').val();
-                $ajax({
-                    url: './UserRegisterCheckServlet',
-                    method: 'POST',
-                    data: {userID: userID},
-                    success: function(result){
-                        if(result == 1){
-                            $('#checkMessage').html('사용할수있는아이디입니다');
-                            $('#checkType').attr('class', 'modal-content panel-success');
-                        }
-                        else{
-                            $('#checkMessage').html('사용할수 없는 아이디입니다.');
-                            $('#checkType').attr('class', 'modal-content panel-warning');
-                        }
-                        $('#checkModal').modal("show");
-                    }
-                });
-            }
-            function passwordCheckFunction(){
-                var passwd1 = $('#pswd1').val();
-                var passwd2 = $('#pswd2').val();
-                if(passwd1 != passwd2){
-                    $('#passwordCheckMessage').html('비밀번호가 서로 일치하지 않습니다');
-                }else{
-                    $('#passwordCheckMessage').html('');
-                }
-            }
-          </script> -->
-          
 </head>
 <body>
 <%-- ${result } --%>

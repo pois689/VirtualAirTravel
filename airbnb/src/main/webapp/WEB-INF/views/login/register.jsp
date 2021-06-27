@@ -11,43 +11,8 @@
 <script src="https://www.google.com/recaptcha/api.js"></script>
 <script src="/resources/js/jquery-3.6.0.min.js"></script>
 <script src="/resources/js/ljk_snowfall.jquery.js"></script>
-<!-- <script>
-            function onSubmit(token) {
-              document.getElementById("demo-form").submit();
-            }
-            function registerCheckFunction(){
-                var userID = $('#id').val();
-                $ajax({
-                    url: './UserRegisterCheckServlet',
-                    method: 'POST',
-                    data: {userID: userID},
-                    success: function(result){
-                        if(result == 1){
-                            $('#checkMessage').html('사용할수있는아이디입니다');
-                            $('#checkType').attr('class', 'modal-content panel-success');
-                        }
-                        else{
-                            $('#checkMessage').html('사용할수 없는 아이디입니다.');
-                            $('#checkType').attr('class', 'modal-content panel-warning');
-                        }
-                        $('#checkModal').modal("show");
-                    }
-                });
-            }
-            function passwordCheckFunction(){
-                var passwd1 = $('#pswd1').val();
-                var passwd2 = $('#pswd2').val();
-                if(passwd1 != passwd2){
-                    $('#passwordCheckMessage').html('비밀번호가 서로 일치하지 않습니다');
-                }else{
-                    $('#passwordCheckMessage').html('');
-                }
-            }
-          </script> -->
-          
 </head>
 <body oncopy="return false" oncut="return false" onpaste="return false">
-<%-- ${result } --%>
 	<section class="login-form">
 		<a href="/index"><h1>Virtual Air Travel</h1></a>
 		<form action="/login/registerMember" method="post">
@@ -55,16 +20,16 @@
 				<input type="text" name="id" id="id"
 				autocomplete="off" required="required" maxlength="20">
 				<label for="id">ID</label>
-				<input type="button" value="ID 중복검사" id="idCheck" class="idcheck">		
+				<input type="button" value="ID 중복검사" id="idcheck" class="idcheck">		
             </div>
 			<div class="int-area">
-				<input type="text" name="pwd" id="pwd"
+				<input type="password" name="pwd" id="pwd"
 				autocomplete="off" required="required" maxlength="20" oninput="checkPwd()">
 				<label for="pwd">PASSWORD</label>				
 				<img src="/resources/images/key1.png" id="pswd1_img1" class="pswdImg1">
             </div>
 			<div class="int-area">
-				<input type="text" name="pwdCheck" id="pwdCheck"
+				<input type="password" name="pwdCheck" id="pwdCheck"
 				autocomplete="off" required="required" maxlength="20" oninput="checkPwd()">
 				<label for="pwdCheck">REPASSWORD</label>				
 				<img src="/resources/images/key2.png" id="pswd1_img2" class="pswdImg2">
@@ -81,9 +46,9 @@
 				<button class="sendMail" type="button">이메일 인증</button>
             </div>
             <div class="int-area">
-            	<input type="text" placeholder="인증 키 입력" style="display: none;"
-					class="compare" maxlength="100" name="compare">
-					<span class="compare-text" style="display: none;">일치</span>
+            <input type="text" placeholder="인증 키 입력" style="display: none;"
+				class="compare" maxlength="100" name="compare">
+				<span class="compare-text" style="display: none;"></span>
             </div>
 			<div class="int-area">
 				<input type="tel" name="tel" id="tel"
@@ -117,12 +82,12 @@ $(document).ready(
 				$("input[name=id]").prop("dataValue",false);
 				$("input[name=id]").attr("dataValue",false);
 			});
-			$("#idCheck").on("click", function(){
+			$("#idcheck").on("click", function(){
 				let idd = $("input[name=id]").val();
 				if(idd == ""){
 					alert("아이디가 입력되지 않았습니다");
 					//$("input[name=id]").css("background-color", "#ffffff");
-					$("#idCheck").val("불가능");
+					$("#idcheck").val("불가능");
 				}
 				else{
 				$.ajax({
@@ -134,14 +99,14 @@ $(document).ready(
 						if(!data){
 							alert("이미 등록된 아이디 입니다.")
 							//$("input[name=id]").css("background-color", "#FFCECE");
-							$("#idCheck").val("불가능");
+							$("#idcheck").val("불가능");
 						}else{
 							alert("등록 가능한 아이디 입니다.")
 							//회원가입버특클릭시 중복처리 했다고 알림
 							//속성값을 추가 해보자
 							$("input[name=id]").prop("dataValue",true);
 							//$("input[name=id]").css("background-color", "#4CAF50");
-							$("#idCheck").val("가능");
+							$("#idcheck").val("가능");
 						}
 						//등록 가능한 아이디인 경우
 					},

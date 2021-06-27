@@ -24,7 +24,6 @@
 	let search_name = '';
 	let search_category = '';
 	$(document).ready( function() {
-		// 카테고리
 	    $(".dropdown-item").click(function(){
 	    	search_category = this.value;
 	    	document.getElementById("search_category").value = search_category;
@@ -37,9 +36,6 @@
 	});
 	
 </script>
-${sessionScope.user }
-${sessionScope.snsUser }
-${sessionScope.user.userRole.indexOf('ROLE_ADMIN')}
     <header>
     	<nav class=" bg-white w-full flex relative justify-between items-center mx-auto px-8 h-20">
 		    <!-- logo -->
