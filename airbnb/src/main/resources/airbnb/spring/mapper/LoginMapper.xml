@@ -53,6 +53,11 @@
     and email = #{email}	AND enabled != '0'
     </select>
 	
+	<select id="searchPwd2" resultType="airbnb.spring.dto.User">
+	select * from TBL_USER where id = #{id}
+    and email = #{email}	AND enabled != '0'
+    </select>
+	
 	<update id="updatePwd">
 	update TBL_USER set pwd=#{pwd} where id=#{id} and name=#{name} 
 	and email=#{email}
@@ -68,7 +73,7 @@
 	
 	 <update id="update">
  		update TBL_USER
- 		set id=#{id}, name=#{name}, email=#{email}, jip=#{jip}, address=#{address}, dtaddress=#{dtaddress}
+ 		set id=#{id}, name=#{name}, email=#{email}, tel=#{tel}, jip=#{jip}, address=#{address}, dtaddress=#{dtaddress}
  		where uno=#{uno} 
  	</update>
 	

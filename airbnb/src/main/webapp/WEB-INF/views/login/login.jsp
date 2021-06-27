@@ -33,7 +33,7 @@ ${result }
 			<div class="int-area">
 				<input type="text" name="id" id="id"
 				autocomplete="off" required="required">
-				<label for="id">USER NAME</label>				
+				<label for="id">USER ID</label>				
             </div>
 			<div class="int-area">
 				<input type="password" name="pwd" id="pwd"

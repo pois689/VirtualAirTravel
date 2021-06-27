@@ -16,9 +16,9 @@
 	<section class="login-form">
 		<a href="/index"><h1>Virtual Air Travel</h1></a>
 		<form action="/pwd_change" method="post">
-		<input type="hidden" name="email" id="email" value ="${user.email }" readonly="readonly">
-		<input type="hidden" name="name" id="name" value ="${user.name }" readonly="readonly">
-		<input type="hidden" name="id" id="id" value ="${user.id }" readonly="readonly">
+		<input type="text" name="email" id="email" value ="${user.email }" readonly="readonly">
+		<input type="text" name="name" id="name" value ="${user.name }" readonly="readonly">
+		<input type="text" name="id" id="id" value ="${user.id }" readonly="readonly">
 			<div class="int-area">
 				<input type="password" name="pwd" id="pwd"
 				autocomplete="off" required="required" maxlength="20">
@@ -84,16 +84,25 @@ $(document).ready(
 			        }
 			        else if(check1 == null){ //체크확인,기존비밀번호확인
 			        	var pw = $('#pwd').val();
+			       		var id = $('#id').val();
+			       		var email = $('#email').val();
 /* 			        	alert("변경비밀번호:"+$(repwdCheck).val());
 			        	alert("기존비밀번호:"+pw); */
 			    		//ajax로 기존비밀번호 확인
+			    		
+			    		var User = {
+			        			id : id,
+			        			email : email,
+			        			pwd : pw
+			        	};
 			    		$.ajax({
-			    			type : "POST",
+			    			method : 'post',
 			    			url :"/checkPwd",
-			    			data : {pw:pw},
-			    			dataType :'text',
-			    			success:function(result){
-			    				if(result == "Success"){
+			    			data : JSON.stringify(User),
+			    			contentType : 'application/json; charset=UTF-8',
+			    			dataType :'json',
+			    			success : function(data){
+			    				if(data.result == "Success"){
 			    					alert("기존비밀번호가 맞습니다");
 			    					check1 = "ok";
 			    					ok();

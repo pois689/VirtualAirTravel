@@ -260,7 +260,6 @@ $(document).ready(
 			        }else if(reg.test(inputed) && (chk_num > 0 || chk_eng > 0) && (inputed == reinputed)) { //pwd1이 유효성검사했을때 틀리면
 			        	img1.src="/resources/images/key5.png";
 			        	img2.src="/resources/images/key3.png";
-
 			            console.log("실2행");
 			        }else if (!reg.test(inputed) && (chk_num < 0 || chk_eng < 0) && inputed == reinputed ) { //pwd1이 유효성검사했을때 틀리면
 			        	img1.src="/resources/images/key4.png";
@@ -274,6 +273,19 @@ $(document).ready(
 			        	img1.src="/resources/images/key4.png";
 			        	img2.src="/resources/images/key2.png";
 			            console.log("실5행");
+			        }else if(reg.test(reinputed) && inputed != reinputed){
+			        	img1.src="/resources/images/key6.png";
+			        	img2.src="/resources/images/key2.png";
+			        	console.log("실6행");
+			        	
+			        }else if(!reg.test(inputed) && inputed == reinputed){
+			        	img1.src="/resources/images/key4.png";
+			        	img2.src="/resources/images/key3.png";
+						console.log("실7행")
+			        }else if(!reg.test(inputed) && inputed != reinputed){
+			        	img1.src="/resources/images/key4.png";
+			        	img2.src="/resources/images/key2.png";
+						console.log("실8행")
 			        }
 				}
 				
