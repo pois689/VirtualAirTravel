@@ -16,9 +16,9 @@
 	<section class="login-form">
 		<a href="/index"><h1>Virtual Air Travel</h1></a>
 		<form action="/pwd_change" method="post">
-		<input type="text" name="email" id="email" value ="${user.email }" readonly="readonly">
-		<input type="text" name="name" id="name" value ="${user.name }" readonly="readonly">
-		<input type="text" name="id" id="id" value ="${user.id }" readonly="readonly">
+		<input type="hidden" name="email" id="email" value ="${user.email }" readonly="readonly">
+		<input type="hidden" name="name" id="name" value ="${user.name }" readonly="readonly">
+		<input type="hidden" name="id" id="id" value ="${user.id }" readonly="readonly">
 			<div class="int-area">
 				<input type="password" name="pwd" id="pwd"
 				autocomplete="off" required="required" maxlength="20">
@@ -175,6 +175,19 @@ $(document).ready(
         	img1.src="/resources/images/key4.png";
         	img2.src="/resources/images/key2.png";
             console.log("실5행");
+        }else if(reg.test(reinputed) && inputed != reinputed){
+        	img1.src="/resources/images/key6.png";
+        	img2.src="/resources/images/key2.png";
+        	console.log("실6행");
+        	
+        }else if(!reg.test(inputed) && inputed == reinputed){
+        	img1.src="/resources/images/key4.png";
+        	img2.src="/resources/images/key3.png";
+			console.log("실7행")
+        }else if(!reg.test(inputed) && inputed != reinputed){
+        	img1.src="/resources/images/key4.png";
+        	img2.src="/resources/images/key2.png";
+			console.log("실8행")
         }
 	}
 
