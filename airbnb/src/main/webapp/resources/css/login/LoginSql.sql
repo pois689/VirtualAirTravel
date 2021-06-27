@@ -58,10 +58,29 @@ DROP TABLE TBL_USER_ROLE;
 
 
 insert into TBL_USER (uno ,id, pwd, enabled, name, email, tel)
-values (SEQ_USER.nextval, 'user01', '1234', '1', '일번', 'leehjcap1@gmail.com', '010-1234-5678');
+values (SEQ_USER.nextval, 'admin', '1234', '1', '어드민', 'leehjcap1@gmail.com', '010-1234-5678');
 
 insert into TBL_USER_ROLE (UNO, ROLE_UNO) values (1, 'ROLE_USER');
 insert into TBL_USER_ROLE (UNO, ROLE_UNO) values (1, 'ROLE_ADMIN');
+
+insert into TBL_USER (uno ,id, pwd, enabled, name, email, tel)
+values (SEQ_USER.nextval, 'guest1', '1234', '1', '게스트1', 'leehjcap2@gmail.com', '010-5555-5678');
+insert into TBL_USER (uno ,id, pwd, enabled, name, email, tel)
+values (SEQ_USER.nextval, 'guest2', '1234', '1', '게스트2', 'leehjcap3@gmail.com', '010-6666-5678');
+insert into TBL_USER (uno ,id, pwd, enabled, name, email, tel)
+values (SEQ_USER.nextval, 'guest3', '1234', '1', '게스트3', 'leehjcap5@gmail.com', '010-7777-5678');
+insert into TBL_USER (uno ,id, pwd, enabled, name, email, tel)
+values (SEQ_USER.nextval, 'guest4', '1234', '1', '게스트4', 'leehjcap6@gmail.com', '010-8888-5678');
+insert into TBL_USER (uno ,id, pwd, enabled, name, email, tel)
+values (SEQ_USER.nextval, 'guest5', '1234', '1', '게스트5', 'leehjcap7@gmail.com', '010-9999-5678');
+insert into TBL_USER_ROLE (UNO, ROLE_UNO) values (2, 'ROLE_USER');
+
+
+select * from TBL_USER where name='이름' AND enabled != '0';
+
+select id from TBL_USER where name = '어드민' and email = 'leehjcap1@gmail.com' and enabled != '0';
+
+
 alter table TBL_USER add sessionkey varchar(50);
 alter table TBL_USER add sessionlimit date;
 
