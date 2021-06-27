@@ -2,6 +2,7 @@ package airbnb.spring.controller;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Random;
 import java.util.UUID;
@@ -418,6 +419,7 @@ public class LoginController {
 	@RequestMapping(value = "/login/id_finded", method = RequestMethod.POST)
 	public String find_id_res(User user, Model model) throws Exception{
 		User us = service.searchId(user);
+		System.err.println("\n\n\n\n\n\n\n"+user);
 		if(us != null) {
 			model.addAttribute("res", us.getId());
 		}else {
@@ -550,23 +552,26 @@ public class LoginController {
 	//비밀번호중복확인
 	@PostMapping("/checkPwd")
 	@ResponseBody
-	public String checkPw(HttpSession session,HttpServletRequest request)throws Exception {
+	public Map<String, Object> checkPw(@RequestBody User user2, HttpSession session,HttpServletRequest request)throws Exception {
 		String result = null;
-		String pw = request.getParameter("pw");
+		String pw = user2.getPwd();
 		System.out.println("\n\n\n\n\n"+pw);
-		
+		Map<String, Object> map = new HashMap<>();
 		//암호화 확인
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-		User user = (User) session.getAttribute("user");
+		//User user = (User) session.getAttribute("user");
+		User user = service.searchPwd2(user2);
 		System.out.println(user.getPwd());
+		System.out.println(encoder.matches(pw, user.getPwd()));
 		if(encoder.matches(pw, user.getPwd())) {
 			result = "Success";
-			return result;
+			map.put("result", result);
+			return map;
 		}else {
 			result = "fail";
-			return result;
+			map.put("result", result);
+			return map;
 		}
-		
 		
 	}
 	
@@ -629,6 +634,9 @@ public class LoginController {
 	public String editExe(User vo, RedirectAttributes rttr, HttpServletRequest request) {
 		int res = service.update(vo);
 		HttpSession session = request.getSession();
+		User user = (User) session.getAttribute("user");
+		List<String> list = user.getUserRole();
+		vo.setUserRole(list);
 		session.setAttribute("user", vo);
 		return "redirect:/index";
 	}

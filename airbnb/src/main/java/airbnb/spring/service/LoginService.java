@@ -21,6 +21,7 @@ public interface LoginService {
 	
 	public User searchId(User user);
 	public User searchPwd(User user);
+	public User searchPwd2(User user);
 
 	public int updatePwd(User user);
 

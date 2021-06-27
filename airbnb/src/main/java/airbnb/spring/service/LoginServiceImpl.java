@@ -96,6 +96,12 @@ public class LoginServiceImpl implements LoginService{
 	public User searchPwd(User user) {
 		return mapper.searchPwd(user);
 	}
+	
+	@Override
+	public User searchPwd2(User user) {
+		// TODO Auto-generated method stub
+		return mapper.searchPwd2(user);
+	}
 
 	@Override
 	public int updatePwd(User user) {
@@ -179,6 +185,8 @@ public class LoginServiceImpl implements LoginService{
 		// TODO Auto-generated method stub
 		return mapper.selectBoard(vo);
 	}
+
+
 
 
 
