@@ -321,7 +321,7 @@
     </main>
 </body>
 <script
-	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDUBAs2Aoeh9UJxjarRyXFSvuBDE-BLFVM&callback=initAutocomplete&libraries=places&v=weekly"  async>
+	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBGO9draDsIXDmO64Q-bGg04FQVfGDrlSw&callback=initAutocomplete&libraries=places&v=weekly"  async>
 </script>
 <script src="/resources/js/reply/reply.js"></script>
 <script type="text/javascript">
