@@ -425,6 +425,7 @@ window.onload = function(){
 					str += map['List'][i].text+"</span></div></div></div>";
 				}
 				$(".review_start").html(str);
+				//jquery-bar-rating
 				for(let i=0; i<map['List'].length; i++){
 					$('.example_'+i).barrating({
 				      theme: 'fontawesome-stars',

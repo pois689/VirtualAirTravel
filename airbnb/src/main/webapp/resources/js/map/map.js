@@ -433,8 +433,6 @@ function initAutocomplete() {
 	
 	
 	window.onload = function() {
-		
-		
 		_showPage();
 	}
 
