@@ -9,6 +9,7 @@
 <link rel="stylesheet" href="/resources/css/map/map.css">
 </head>
 <body>
+	<div class="loader"></div>
 	<div id="container">
 		<div id="sidebar">
 			<ul id="places">
@@ -48,8 +49,8 @@
 		<div id="map"></div>
 	</div>
 </body>
-<script src="/resources/js/reply/reply.js"></script>
 <script src="/resources/js/map/mapConstant.js"></script>
+<script src="/resources/js/reply/reply.js"></script>
 <script type="text/javascript">
 	let name = "<c:out value='${name}'/>" || "도쿄역";
 	let query_category = "<c:out value='${category}'/>" || "";
