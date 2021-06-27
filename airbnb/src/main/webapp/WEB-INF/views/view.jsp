@@ -207,7 +207,7 @@
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script async
-	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDUBAs2Aoeh9UJxjarRyXFSvuBDE-BLFVM&region=JP&language=ko&libraries=places&callback=initMap">
+	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBGO9draDsIXDmO64Q-bGg04FQVfGDrlSw&region=JP&language=ko&libraries=places&callback=initMap">
 </script>
 <script type="text/javascript" src="/resources/js/reply/reply.js"></script>
 <!-- bar-rating -->
