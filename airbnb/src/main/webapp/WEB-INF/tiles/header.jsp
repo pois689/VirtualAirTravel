@@ -20,21 +20,22 @@
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous"></script>
 <script type="text/javascript">
-	/* 카테고리 선택 */
+	/* 이름 및 카테고리 선택 */
 	let search_name = '';
+	let search_category = '';
 	$(document).ready( function() {
 	    $(".dropdown-item").click(function(){
-	    	var search_category = this.value;
+	    	search_category = this.value;
 	    	document.getElementById("search_category").value = search_category;
 	    });
-	    $('#search_button_dd').on("click",function(){
+		//검색
+	    $('#search_button_dd').on("click",function(e){
 			search_name = document.getElementById('search_name');
-			location.href='/map?search_name='+search_name.value;
+			location.href='/map?search_name='+search_name.value+'&search_category='+search_category;
 	    });
 	});
 	
 </script>
-${sessionScope.user }
     <header>
     	<nav class=" bg-white w-full flex relative justify-between items-center mx-auto px-8 h-20">
 		    <!-- logo -->
@@ -58,7 +59,6 @@ ${sessionScope.user }
 				<!-- 카테고리 -->
 				<div class="dropdown-menu" aria-labelledby="dropdownMenuButton1" style="border-radius: 2rem; text-align: center; min-width: 12rem;">
 				    <button class="dropdown-item" value="여행지">여행지</button>
-				    <button class="dropdown-item" value="행사">행사</button>
 				    <button class="dropdown-item" value="숙소">숙소</button>
 				    <button class="dropdown-item" value="맛집">맛집</button>
 				    <button class="dropdown-item" value="볼거리">볼거리</button>
@@ -151,18 +151,21 @@ ${sessionScope.user }
 		                <ul class="dropdown-menu" aria-labelledby="dropdownRoginButton" style="border-radius: 2.5rem; text-align: center; min-width: 12rem;">
 		                <!--로그인한 사용자인 경우 로그아웃 처리 로그인전 이면 로그인 처리-->
 	                        <c:choose>
-	                        	<c:when test="${sessionScope.user.id != null }">
-	        		                <li><a class="dropdown-item" href="/login/logout">로그아웃</a></li>
-	        		                <li><a class="dropdown-item" href="/login/member_edit">마이페이지</a></li>
-	                        	</c:when>
-	                        	<c:otherwise>
+	                        	<c:when test="${sessionScope.user.email == null }">
 	                        		<li><a class="dropdown-item" href="/login/register">회원 가입</a></li>
 			                        <li><a class="dropdown-item" href="/login/login">로그인</a></li>
+	                        	</c:when>
+	                        	<c:when test="${sessionScope.user.uno == 0 }">
+	                        		<li><a class="dropdown-item" href="/login/logout">로그아웃</a></li>
+	                        	</c:when>
+	                        	<c:otherwise>
+	        		                <li><a class="dropdown-item" href="/login/logout">로그아웃</a></li>
+	        		                <li><a class="dropdown-item" href="/login/member_edit">마이페이지</a></li>
 	                        	</c:otherwise>
 	                        </c:choose>
-<!-- 						    <li><a class="dropdown-item" href="/login/register">회원 가입</a></li>
-						    <li><a class="dropdown-item" href="/login/login">로그인</a></li>
-						    <li><a class="dropdown-item" href="/login/member_edit">마이페이지</a></li> -->
+	                        <c:if test="${sessionScope.user.userRole.indexOf('ROLE_ADMIN') >= 0}">
+	                        <li><a class="dropdown-item" href="/login/working/adminList">관리자페이지</a></li>
+	                        </c:if>
 						</ul>
 		            </div>
 		        </div>

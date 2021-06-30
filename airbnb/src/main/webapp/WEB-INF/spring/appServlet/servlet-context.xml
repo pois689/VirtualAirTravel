@@ -73,7 +73,8 @@
 	        <beans:constructor-arg value="IDZgsg3PbT" />
 	</beans:bean>
 	<beans:bean id="naverRedirectUrl" class="java.lang.String">
-	        <beans:constructor-arg value="http://localhost:8090/login/callback2" />
+	       <!-- <beans:constructor-arg value="http://localhost:8090/naver/callback2" /> -->
+	         <beans:constructor-arg value="http://192.168.1.113:8090/naver/callback2" />
 	</beans:bean>
 	    
 	<beans:bean id="naverSns" class="airbnb.spring.auth.SNS">
@@ -92,7 +93,7 @@
 	</beans:bean>
     
     <beans:bean id="googleRedirectUrl" class="java.lang.String">
-	        <beans:constructor-arg value="http://localhost:8090/login/callback2" />
+	        <beans:constructor-arg value="http://localhost:8090/google/callback2" />
 	</beans:bean>
     
 	<beans:bean id="googleSns" class="airbnb.spring.auth.SNS">
@@ -121,6 +122,9 @@
 			<beans:ref bean="loginInterceptor"/>
 		</interceptor>
 	</interceptors> -->
+	
+	
+	<!--AuthInterceptor를 Bean으로 등록 합니다. 권한 확인-->
 	<context:component-scan base-package="airbnb.spring.service" />
 	<context:component-scan base-package="airbnb.spring.controller" />
 

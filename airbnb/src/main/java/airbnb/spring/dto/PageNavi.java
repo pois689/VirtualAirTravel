@@ -1,7 +1,6 @@
 package airbnb.spring.dto;
 
 import lombok.Data;
-
 // 페이지 처리
 @Data
 public class PageNavi {
@@ -41,7 +40,4 @@ public class PageNavi {
 		
 			
 	}
-	
-	
-	
 }

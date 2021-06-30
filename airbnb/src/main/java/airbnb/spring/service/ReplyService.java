@@ -1,8 +1,9 @@
 package airbnb.spring.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
-import airbnb.spring.dto.ReplyDTO;
+import airbnb.spring.dto.*;
 
 public interface ReplyService {
 	public int register(ReplyDTO dto);
@@ -18,4 +19,6 @@ public interface ReplyService {
 	public int getCountReply(String place_id);
 	
 	public float avgStar(String place_id);
+	
+	public ArrayList<RankDTO> getRank();
 }

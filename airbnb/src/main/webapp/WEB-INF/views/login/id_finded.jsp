@@ -8,14 +8,16 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <link rel="stylesheet" href="/resources/css/login/style2.css">
+    <link rel="shortcut icon" sizes="76x76" type="image/x-icon"
+        href="https://a0.muscache.com/airbnb/static/logotype_favicon-21cc8e6c6a2cca43f061d2dcabdf6e58.ico">
     <script src="/resources/js/jquery-3.6.0.min.js"></script>
-    <script src="/resources/js/snowfall.jquery.js"></script>
+    <script src="/resources/js/ljk_snowfall.jquery.js"></script>
 </head>
 <body>
 	<section class="login-form">
-		<a href="/index"><h1>찾기 결과</h1></a>
+		<a href="/index"><h1>${ res }</h1></a>
             <div class="btn-area">
-                <button id="btn" onclick="location.href='/login/login'" type="button">${ res }</button>
+                <button id="btn" onclick="location.href='/login/login'" type="button">로그인창으로</button>
             </div>
         <div class="caption">
             <p><a href="id_find" id="f1">Forgot ID?&nbsp;</a>

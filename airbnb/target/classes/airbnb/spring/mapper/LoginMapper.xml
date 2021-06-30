@@ -6,7 +6,7 @@
 <mapper namespace="airbnb.spring.mapper.LoginMapper">
 	
 	<select id="login" resultType="airbnb.spring.dto.User">
-		select * from TBL_USER where id=#{id}
+		select * from TBL_USER where id=#{id} AND enabled != '0'
 	</select>
 
 	<select id="userRole" resultType="String">
@@ -24,15 +24,15 @@
 	<select id="loginSessionKey" resultType="airbnb.spring.dto.User">
 		select * from TBL_USER 
 				where sessionkey= #{sessionkey} 
-                and sessionlimit > sysdate
+                and sessionlimit > sysdate AND enabled != '0'
 	</select>
 	
 	<select id="checkId" resultType="airbnb.spring.dto.User">
-		select * from TBL_USER where id = #{id}
+		select * from TBL_USER where id = #{id} AND enabled != '0'
 	</select>
 	
 	<select id="checkemail" resultType="airbnb.spring.dto.User">
-		select * from TBL_USER where email = #{email}
+		select * from TBL_USER where email = #{email} AND enabled != '0'
 	</select>
 	
 	<insert id="insertUser">
@@ -45,21 +45,78 @@
 	</insert>
 	
 	<select id="searchId" resultType="airbnb.spring.dto.User">
-		select id from TBL_USER where name = #{name} or email = #{email}
+		select id from TBL_USER where name = #{name} and email = #{email} and enabled != '0'
 	</select>
 	
 	<select id="searchPwd" resultType="airbnb.spring.dto.User">
-	select * from TBL_USER where id = #{id} or name = #{name}
-    or email = #{email}	
+	select * from TBL_USER where id = #{id} and name = #{name}
+    and email = #{email}	AND enabled != '0'
+    </select>
+	
+	<select id="searchPwd2" resultType="airbnb.spring.dto.User">
+	select * from TBL_USER where id = #{id}
+    and email = #{email}	AND enabled != '0'
     </select>
 	
 	<update id="updatePwd">
-	update TBL_USER set pwd=#{pwd} where id=#{id} or name=#{name} 
-	or email=#{email} 
+	update TBL_USER set pwd=#{pwd} where id=#{id} and name=#{name} 
+	and email=#{email}
 	</update>
 	
 	<select id="get" resultType="airbnb.spring.dto.User">
-		select * from TBL_USER where id=#{id}
+		select * from TBL_USER where id=#{id} AND enabled != '0'
+	</select>
+	
+	<select id="snslogin" resultType="airbnb.spring.dto.User">
+		select * from TBL_USER where email=#{email} AND enabled != '0'
+	</select>
+	
+	 <update id="update">
+ 		update TBL_USER
+ 		set id=#{id}, name=#{name}, email=#{email}, tel=#{tel}, jip=#{jip}, address=#{address}, dtaddress=#{dtaddress}
+ 		where uno=#{uno} 
+ 	</update>
+	
+	
+	<!-- ag  -->
+		<select id="selectBoardList" resultType="airbnb.spring.dto.User">
+		SELECT * 
+		FROM TBL_USER
+	</select>
+
+	<insert id="addBoard" parameterType="airbnb.spring.dto.User"> <!-- bean이름의 값 -->
+		insert into TBL_USER (uno, id, pwd, enabled, name, email, tel)
+		values (SEQ_USER.nextval, #{id}, #{pwd}, 1, #{name}, #{email}, #{tel})
+	</insert>
+
+	<update id="updateBoard" parameterType="airbnb.spring.dto.User">
+ 		update TBL_USER
+ 		set id=#{id}, name=#{name}, email=#{email}, tel=#{tel}, enabled=#{enabled}, jip=#{jip}, address=#{address}, dtaddress=#{dtaddress}
+ 		where uno=#{uno}
+			
+	</update>
+	
+	
+	<delete id="deleteBoard" parameterType="airbnb.spring.dto.User">
+		DELETE FROM TBL_USER WHERE uno = #{uno}
+	</delete>
+	
+	<update id="deleteuser">
+     UPDATE TBL_USER
+     SET enabled = '0'
+     WHERE uno=#{uno}
+	</update>  
+	
+	<select id="countBoard" resultType="int">
+	SELECT COUNT(*) FROM TBL_USER
+	</select>
+	
+	<select id="selectBoard" resultType="airbnb.spring.dto.User">
+	SELECT * FROM(
+	    SELECT ROWNUM num, tbl_user.*
+	    FROM (SELECT * FROM  tbl_user ORDER BY uno DESC) tbl_user
+	    )
+	WHERE num BETWEEN #{start} AND #{end}
 	</select>
 	
 </mapper>

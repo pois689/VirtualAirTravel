@@ -9,14 +9,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class ViewController {
-
-	
 	@GetMapping("/view")
 	public void view(@Nullable @RequestParam String name,@Nullable @RequestParam String mapid, Model model) {
 		// 네임에 null 값이 넘어오면 404 에러 페이지 연결
 		// name 값이 넘어오면 받아오기
 		model.addAttribute("name", name);
 		model.addAttribute("mapid", mapid);
+		
 	}
 	
 

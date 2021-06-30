@@ -1,19 +1,19 @@
 package airbnb.spring.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
 import java.util.UUID;
 
-import javax.inject.Inject;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
 import org.springframework.mail.MailSender;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -26,6 +26,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -33,18 +34,19 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.util.WebUtils;
 
+
 import airbnb.spring.auth.SNS;
 import airbnb.spring.auth.SNSLogin;
 import airbnb.spring.service.LoginService;
+import airbnb.spring.dto.PagingVo;
 import airbnb.spring.dto.User;
 
 @Controller
 public class LoginController {
 
-	
 	@Autowired
 	LoginService service;
-	
+
 	@Autowired
 	MailSender sender;
 	
@@ -60,6 +62,8 @@ public class LoginController {
 	@Autowired
 	private OAuth2Parameters googleOAuth2Parameters;
 	
+	
+	
 	@GetMapping("/login")
 	public void slogin() {
 		
@@ -69,27 +73,285 @@ public class LoginController {
 		
 		return "tiles/index.tiles";
 	}
-	/*
-	 * @GetMapping("/login/callback2") public void scallback2() {
-	 * 
-	 * }
-	 */
 	
 	
-	
-	@RequestMapping(value = "/login/callback2",
-					method = {RequestMethod.GET, RequestMethod.POST})
-	public String snsLoginCallback(Model model, @RequestParam String code) throws Exception {
-		//1. code를 이용하여 access_token받기
-		//2. access_token을 이용하여 사용자 프로필가져오기
-		//3. db에 해당유저가 존재하는지 체크
-		//4. 존재시 강제로그인 ,미존재시 가입페이지로
-		SNSLogin snslogin = new SNSLogin(googleSns);
-		String profile = snslogin.getUserProfile(code);
-				
-		
-		return "/login/callback2";
+	@GetMapping("/login/deleteuser")
+	public String deleteuser(HttpSession session,HttpServletRequest request) {
+		User user = (User) session.getAttribute("user");
+		service.deleteuser(user);
+		session.invalidate();
+
+		return "tiles/index.tiles";
 	}
+	
+	@GetMapping("/login/working/adminList/{nowPage}/{cntPerPage}")
+	@ResponseBody
+	public Map<String, Object> adminstorage3(PagingVo vo, Model model
+			,@PathVariable("nowPage") String nowPage
+			,@PathVariable("cntPerPage") String cntPerPage
+			) {
+		int total = service.countBoard();
+		if (nowPage == null && cntPerPage == null) {
+			nowPage = "1";
+			cntPerPage = "5";
+		} else if (nowPage == null) {
+			nowPage = "1";
+		} else if (cntPerPage == null) { 
+			cntPerPage = "5";
+		}
+		Map<String, Object> map = new HashMap<String, Object>();
+		vo = new PagingVo(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
+		model.addAttribute("paging", vo);
+		model.addAttribute("viewAll", service.selectBoard(vo));
+		vo.calcStartEndPage(Integer.parseInt(nowPage), 5);
+		vo.calcStartEnd(Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
+		ArrayList<User> boardList = new ArrayList<User>();
+		boardList = service.selectBoard(vo);
+		System.out.println(boardList);
+		map.put("list", boardList);
+		return map;
+	}
+	
+	@GetMapping("/login/working/adminList2")
+	public String adminstorage() {
+		return "/login/working/adminList";
+	}
+	
+	
+	@GetMapping("/login/working/adminList")
+	public String adminstorage2(PagingVo vo, Model model
+			,@RequestParam(value="nowPage", required=false) String nowPage
+			,@RequestParam(value="cntPerPage", required=false) String cntPerPage) {
+		int total = service.countBoard();
+		if (nowPage == null && cntPerPage == null) {
+			nowPage = "1";
+			cntPerPage = "5";
+		} else if (nowPage == null) {
+			nowPage = "1";
+		} else if (cntPerPage == null) { 
+			cntPerPage = "5";
+		}
+		vo = new PagingVo(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
+		model.addAttribute("paging", vo);
+		model.addAttribute("viewAll", service.selectBoard(vo));
+		vo.calcStartEndPage(Integer.parseInt(nowPage), 5);
+		vo.calcStartEnd(Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
+		return "/login/working/adminList";
+	}
+	
+	@GetMapping("/login/updatePwd")
+	public String updatePwd() {
+		return "/login/updatePwd";
+	}
+	
+	//게시글 리스트 조회
+	@RequestMapping(value="/board/selectBoardList2") //맵핑요청(자료 가져오기)
+	@ResponseBody
+	public ArrayList<User> selectBoardList(HttpServletRequest request) throws Exception{//http으로부터 request를 받음
+		ArrayList<User> boardList = new ArrayList<User>();
+		
+		boardList = service.selectBoardList();
+		return boardList; //어레이리스트를 리턴(자료를 리턴)
+	}
+	
+	//게시글 리스트 조회
+	@RequestMapping(value="/board/selectBoardList") //맵핑요청(자료 가져오기)
+	@ResponseBody
+	public ArrayList<User> selectBoardList2(@RequestBody PagingVo vo,HttpServletRequest request,Model model
+
+			) throws Exception{//http으로부터 request를 받음
+		System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\\n\n"+vo.getEnd());
+		int nowPage = vo.getNowPage();
+		int cntPerPage = vo.getCntPerPage();
+		int total = service.countBoard();
+
+		vo = new PagingVo(total, nowPage, cntPerPage);
+		model.addAttribute("paging", vo);
+		model.addAttribute("viewAll", service.selectBoard(vo));
+		vo.calcStartEndPage(nowPage, 5);
+		vo.calcStartEnd(nowPage, cntPerPage);
+		ArrayList<User> boardList = new ArrayList<User>();
+		boardList = service.selectBoard(vo);
+		return boardList;
+		
+	}
+	//맵, 리스트, 어레이리스트의 차이 - 몇번째에(index)값이있는가, 맵은 이름으로 찾음(문)
+	
+	//게시글 등록
+	@RequestMapping(value="/board/addBoard")
+	@ResponseBody
+	public Map<String, Object> addBoard(@RequestBody User boardBean, HttpServletRequest request) throws Exception{//http으로부터 request를 받음
+		Map<String, Object> resMap = new HashMap<String, Object>();
+		String result = "fail";
+		String resultMsg = "게시글 등록에 실패하였습니다.";
+		int res = service.addBoard(boardBean);  //boardDao == mapper역활
+		if(res > 0) {
+			result = "ok";
+			resultMsg = "게시글 등록에 성공하였습니다.";
+		}
+		resMap.put("result", result);
+		resMap.put("resultMsg", resultMsg);
+		
+		return resMap; //어레이리스트를 리턴(자료를 리턴)
+	}
+	
+	//게시글 수정
+	@RequestMapping(value="/board/updateBoard")
+	@ResponseBody
+	public Map<String, Object> updateBoard(@RequestBody User boardBean, HttpServletRequest request) throws Exception{//http으로부터 request를 받음
+		Map<String, Object> resMap = new HashMap<String, Object>();
+		String result = "fail";
+		String resultMsg = "게시글 수정에 실패하였습니다.";
+		
+		try { //원하는 구문
+			int res = service.updateBoard(boardBean);  //boardDao == mapper역활
+			if(res > 0) {
+				result = "ok";
+				resultMsg = "게시글 수정에 성공하였습니다.";
+			}
+
+		}
+		catch(Exception e) { //에러발생할경우(db에서 실패한경우)
+			//에러 로그 기록
+		}
+		 //그후 처리(무조건 처리할것)
+		resMap.put("result", result);
+		resMap.put("resultMsg", resultMsg);
+		return resMap; //어레이리스트를 리턴(자료를 리턴)
+	}
+	//게시글 삭제
+	@RequestMapping(value="/board/removeBoard")
+	@ResponseBody
+	public Map<String, Object> removeBoard(@RequestBody User boardBean, HttpServletRequest request) throws Exception{//http으로부터 request를 받음
+		Map<String, Object> resMap = new HashMap<String, Object>();
+		String result = "fail";
+		String resultMsg = "게시글 삭제에 실패하였습니다.";
+		
+		try { //원하는 구문
+			int res = service.deleteBoard(boardBean);  //boardDao == mapper역활
+			if(res > 0) {
+				result = "ok";
+				resultMsg = "게시글 삭제에 성공하였습니다.";
+			}
+			
+		}
+		catch(Exception e) { //에러발생할경우(db에서 실패한경우)
+			//에러 로그 기록
+		}
+		//그후 처리(무조건 처리할것)
+		resMap.put("result", result);
+		resMap.put("resultMsg", resultMsg);
+		return resMap; //어레이리스트를 리턴(자료를 리턴)
+	}
+
+	
+//	@RequestMapping(value = "/login/callback2",
+//					method = {RequestMethod.GET, RequestMethod.POST})
+//	public String snsLoginCallback(Model model, @RequestParam String code) throws Exception {
+//		//1. code를 이용하여 access_token받기
+//		//2. access_token을 이용하여 사용자 프로필가져오기
+//		SNSLogin snslogin = new SNSLogin(naverSns);
+//		String profile = snslogin.getUserProfile(code);
+//		//System.out.println(profile);
+//		//model.addAttribute("result", profile);
+//		//3. db에 해당유저가 존재하는지 체크
+//		//4. 존재시 강제로그인 ,미존재시 가입페이지로
+//		return "/login/callback2";
+//	}
+	@RequestMapping(value = "/{snsService}/callback2",
+			method = {RequestMethod.GET, RequestMethod.POST})
+	public String snsLoginCallback(@PathVariable String snsService,
+				Model model, @RequestParam String code,HttpSession session) throws Exception {
+		SNS sns = null;
+		if (StringUtils.equals("naver", snsService))
+			sns = naverSns;
+		else
+			sns = googleSns;
+		
+		SNSLogin snsLogin = new SNSLogin(sns); //sns로그인부분을 컨트롤러
+		//sns회원가입페이지 따로
+		User snsUser = snsLogin.getUserProfile(code);// 1,2번 동시 sns유저
+		System.out.println("\n\n\n\n\n\n\n\n"+snsUser);
+		User user = service.snslogin(snsUser); //기존유저
+		if(user != null) {
+			session.setAttribute("user", user);
+		}
+		else if(snsUser.getEnabled()==null){
+			session.setAttribute("user", snsUser);
+		}
+		else {
+			session.setAttribute("user", snsUser);
+
+		}
+		
+//		User user = service.snslogin(snsUser);
+//		System.out.println(user);
+//		if (user == null) {
+//			model.addAttribute("msg", "추가 정보를 입력해주세요.");
+//			model.addAttribute("email", snsUser.getEmail());
+//			if(snsUser.getName()!=null) {
+//				model.addAttribute("name", snsUser.getName());
+//			}
+//			if(snsUser.getTel()!=null){
+//				model.addAttribute("tel", snsUser.getTel());
+//			}
+//			//미존재시 가입페이지로!!
+//			return "/login/snsregister";
+//		} else {
+//			model.addAttribute("result", user.getName() + "님 반갑습니다.");
+//			
+//			// 4. 존재시 강제로그인
+//			session.setAttribute("user", user);
+//			return "tiles/index.tiles";
+//		}
+		return "tiles/index.tiles";
+	}
+	
+	//네이버 소셜 로그인 콜백가면 회원이 있으면 index페이지로 , 없으면 회원가입페이지로
+//	@RequestMapping(value = "/login/callback2",
+//			method = {RequestMethod.GET, RequestMethod.POST})
+//	public void snsLoginCallback(Model model) throws Exception {
+//		
+//	}
+	
+	//네이버 소셜 로그인
+//	@RequestMapping(value = "/login/snsloginProcess",
+//			method = {RequestMethod.GET, RequestMethod.POST})
+//	@ResponseBody  //AJAX후 값을 리턴하기위해 작성
+//	public Map<String, Object> snsloginProcess(User vo, Model model, HttpServletRequest request) throws Exception {
+//		System.out.println("\n\n\n\n\n\n\n\n\n"+vo);
+//		User user = service.snslogin(vo.getEmail());
+//		
+//		Map<String, Object> map = new HashMap<String, Object>();
+//		if(user != null) {
+//			// user 객체를 세션에 담아줌 - 로그인 처리
+//			HttpSession session = request.getSession();
+//			session.setAttribute("user", user);
+//			System.out.println("\n\n\n\n\n\n\n"+user);
+//			map.put("result", "success");
+//			return map;
+//		}else {
+//			map.put("result", "fail");
+//			return map;
+//
+//		}
+//	}
+
+	//회원가입처리//
+	//네이버 소셜 회원가입
+	@GetMapping("/login/snsregister")
+	public void snsregister(Model model,HttpSession session,HttpServletRequest request) {
+		User user = (User) session.getAttribute("user");
+		model.addAttribute("msg", "추가 정보를 입력해주세요.");
+		model.addAttribute("email", user.getEmail());
+		if(user.getName()!=null) {
+			model.addAttribute("name", user.getName());
+		}
+		if(user.getTel()!=null){
+			model.addAttribute("tel", user.getTel());
+		}
+	}
+	
 	
 	//로그인
 	@GetMapping("/login/login")
@@ -119,12 +381,12 @@ public class LoginController {
 			HttpSession session = request.getSession();
 			session.setAttribute("user", user);
 			
-			model.addAttribute("msg",user.getId()+"님 로그인에 성공하였습니다");
+			model.addAttribute("res",user.getId()+"님 로그인에 성공하였습니다");
 			return "tiles/index.tiles";
 			
 		}else {
-			model.addAttribute("msg","로그인에 실패하였습니다 Id,Pwd를 확인하세요");
-			return "/login/loginProcess";
+			model.addAttribute("res","로그인 실패 Id,Pwd를 확인하세요");
+			return "/login/id_finded";
 		}
 		
 	}
@@ -157,6 +419,7 @@ public class LoginController {
 	@RequestMapping(value = "/login/id_finded", method = RequestMethod.POST)
 	public String find_id_res(User user, Model model) throws Exception{
 		User us = service.searchId(user);
+		System.err.println("\n\n\n\n\n\n\n"+user);
 		if(us != null) {
 			model.addAttribute("res", us.getId());
 		}else {
@@ -191,22 +454,24 @@ public class LoginController {
 	  	String uuid = null;
 		 for (int i = 0; i < 5; i++) {
 		        uuid = UUID.randomUUID().toString().replaceAll("-", ""); // -를 제거해 주었다.
-		        uuid = uuid.substring(0, 10); //uuid를 앞에서부터 10자리 잘라줌.
+		        uuid = uuid.substring(0, 8); //uuid를 앞에서부터 10자리 잘라줌.
 		  }
 		String encodePwd = encoder.encode(uuid);
 		User us = service.searchPwd(user);
 		if(us != null) {
-			user.setPwd(encodePwd);
-			int updateRes = service.updatePwd(user);
+			us.setPwd(uuid);
+			System.out.println(uuid);
+			int updateRes = service.updatePwd(us);
 			if(updateRes>0) {
 					SimpleMailMessage msg = new SimpleMailMessage();
-					msg.setTo("leehjcap1@gmail.com"); //보내는 경로
+					//msg.setTo("leehjcap1@gmail.com"); //보내는 경로
+					msg.setTo(us.getEmail()); //보내는 경로
 					msg.setSubject("비밀번호확인해주세요");
-					msg.setText("임시비밀번호는"+uuid+"기존비밀번호"+us.getPwd()+"암호화된비밀번호" + encodePwd);
+					msg.setText("임시비밀번호는"+uuid+"입니다 \n 암호화된비밀번호는" + encodePwd);
 					//비밀번호 업데이트 서비스
 					msg.setFrom("leehjcap4@gmail.com");
 					sender.send(msg);
-					model.addAttribute("res", "입력하신 이메일로\n임시이메일을 전송하였습니다");
+					model.addAttribute("res", "임시이메일을 전송하였습니다");
 				}else {
 					model.addAttribute("res", "메일전송에 실패했습니다. 관리자에게 문의해주세요");
 				}
@@ -251,7 +516,6 @@ public class LoginController {
 	//회원가입//
 	@GetMapping("/login/register")
 	public void register() {
-		
 	}
 	//회원가입처리//
 	@PostMapping("/login/registerMember")
@@ -284,6 +548,53 @@ public class LoginController {
 			return true;
 		}
 	}
+	
+	//비밀번호중복확인
+	@PostMapping("/checkPwd")
+	@ResponseBody
+	public Map<String, Object> checkPw(@RequestBody User user2, HttpSession session,HttpServletRequest request)throws Exception {
+		String result = null;
+		String pw = user2.getPwd();
+		System.out.println("\n\n\n\n\n"+pw);
+		Map<String, Object> map = new HashMap<>();
+		//암호화 확인
+		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+		//User user = (User) session.getAttribute("user");
+		User user = service.searchPwd2(user2);
+		System.out.println(user.getPwd());
+		System.out.println(encoder.matches(pw, user.getPwd()));
+		if(encoder.matches(pw, user.getPwd())) {
+			result = "Success";
+			map.put("result", result);
+			return map;
+		}else {
+			result = "fail";
+			map.put("result", result);
+			return map;
+		}
+		
+	}
+	
+	@PostMapping("/pwd_change")
+	@ResponseBody
+	public Map<String, Object> pwChange(@RequestBody User user, HttpSession session)throws Exception{
+		System.out.println(user);
+		Map<String, Object> map = new HashMap<>();
+		String result = null;
+			int res = service.updatePwd(user);
+			
+			if(res>0) {
+				result = "Success";
+				map.put("result", result);
+				System.out.println("\n\n\n\n\n\n\n\n" + result);
+				session.invalidate();
+			}else {
+				result = "fail";
+				map.put("result", result);
+			}
+			return map;
+
+	}
 
 	//유저정보 페이지
 	
@@ -306,29 +617,28 @@ public class LoginController {
 		return "/login/member_edit";
 	}
 	
+	/*
+	 * @GetMapping("/login/member_edit") public void edit(User vo ,Model model) {
+	 * //상세정보조회 vo = service.get(vo.getId());
+	 * 
+	 * //모델에 담아서 화면에 전달 model.addAttribute("vo", vo);
+	 * 
+	 * //리턴이없으므로 /board/get(URL)로 페이지연결
+	 * 
+	 * }
+	 */
+	
+	
 	//에딧(포스트)
 	@PostMapping("/login/member_edit")
-	public String editExe(User vo, RedirectAttributes rttr) {
-		
-//		int res = service.update(vo);
-//		String resMsg = "";
-//		55
-//		if(res>0) {
-//			resMsg = "수정되었습니다";
-//		}else {
-//			resMsg = "수정작업이 실패 했습니다. 관리자에게 문의해주세요.";
-//		}
-//		//상세화면 이동시 필요한 파라메터를 세팅
-//		rttr.addAttribute("bno", vo.getBno());//bno에파라미터값 넣기
-//		
-//		rttr.addAttribute("pageNo", cri.getPageNo());//페이지번호
-//		rttr.addAttribute("type", cri.getType());//타입(제목,내용,작성자)
-//		rttr.addAttribute("keyword", cri.getKeyword());//검색어
-//		
-//		rttr.addFlashAttribute("resMsg", resMsg);
-//		
-		return "redirect:/login/member_edit";
-		
+	public String editExe(User vo, RedirectAttributes rttr, HttpServletRequest request) {
+		int res = service.update(vo);
+		HttpSession session = request.getSession();
+		User user = (User) session.getAttribute("user");
+		List<String> list = user.getUserRole();
+		vo.setUserRole(list);
+		session.setAttribute("user", vo);
+		return "redirect:/index";
 	}
 	
 

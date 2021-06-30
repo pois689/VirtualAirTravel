@@ -1,9 +1,11 @@
 package airbnb.spring.mapper;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
+import airbnb.spring.dto.PagingVo;
 import airbnb.spring.dto.User;
 
 public interface LoginMapper { //crud create,read,delete,update
@@ -22,6 +24,32 @@ public interface LoginMapper { //crud create,read,delete,update
 	
 	public User searchId(User user);
 	public User searchPwd(User user);
+	public User searchPwd2(User user);
 	public int updatePwd(User user);
 	public User get(String id);
+	
+	public User snslogin(User user);
+	public int snsinsertUser(User user);
+
+	public int update(User vo);
+	
+	
+	///////
+	public ArrayList<User> selectBoardList();
+
+	public int addBoard(User user);
+
+	public int updateBoard(User user) throws Exception;
+
+	public int deleteBoard(User user) throws Exception;
+	
+	public int deleteuser(User user);
+	
+	//////페이징
+	// 게시물 총 갯수
+	public int countBoard();
+
+	// 페이징 처리 게시글 조회
+	public ArrayList<User> selectBoard(PagingVo vo);
+	
 }
