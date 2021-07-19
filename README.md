@@ -1,7 +1,7 @@
 # VirtualAirTravel
 일본 여행 사이트 프로젝트
 
-![Uploading 인덱스.png…]()
+![인덱스](https://user-images.githubusercontent.com/52490515/126123067-a97884da-dee5-4542-b2f0-5a63d71e8eab.png)
 
 개발 기간 : 4.27 ~ 06.25
 
