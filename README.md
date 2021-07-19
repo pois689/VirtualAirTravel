@@ -1,6 +1,8 @@
 # VirtualAirTravel
 일본 여행 사이트 프로젝트
 
+![Uploading 인덱스.png…]()
+
 개발 기간 : 4.27 ~ 06.25
 
 프로젝트 목표
