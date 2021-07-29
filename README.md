@@ -15,7 +15,7 @@
 - 리뷰를 통해 자신의 경험을 타인과 공유 가능
 - 제공받은 정보를 바탕으로 구체적인 여행 계획 세우기
 
-사용 언어 : Java, JavaScript, HTML5, CSS, Oracle, JSP, Jquery, Spring Framework
+사용 언어 : Java, JavaScript, HTML5, CSS, Oracle, JSP, Jquery, Spring Framework, Bootstrap
 
 라이브러리 : Mybatis, HicariCP, lombok, Spring Tiles, Log4j, Spring security
 
