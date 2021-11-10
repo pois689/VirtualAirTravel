@@ -23,5 +23,5 @@ API : Google login API, Google Map API, Java Mail API, Naver login API
 
 Tool : STS, Sql developer, GitHub Desktop
 
-형상 관리 : Github, Click Up
+협업  : Github, Click Up
 
