@@ -23,5 +23,6 @@ API : Google login API, Google Map API, Java Mail API, Naver login API
 
 Tool : STS, Sql developer, GitHub Desktop
 
-협업  : Github, Click Up
+협업 툴 : Github, Click Up
 
+![CleckUp](https://user-images.githubusercontent.com/52490515/141128884-362c069c-4ede-4311-94cc-c46452730da1.png)
